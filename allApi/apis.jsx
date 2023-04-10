@@ -270,3 +270,90 @@ export const singlemnedia = async(meta_title, category_name) =>{
   });
   return data
 }
+
+export const userDetails = async () => {
+
+    const { data } = await instance.get("loginApis", {
+      withCredentials: true,
+    });
+    return data
+ 
+};
+
+export const priceSubIllu = async(category_name, price, illumination, table, city, locations) => {
+  
+
+      const { data } = await instance.post(`filters`, {
+        category_name,
+        price,
+        illumination,
+        table,
+        city,
+        locations,
+      });
+
+    return data
+  };
+
+  export const iconFiltersData =
+  async (distance, datas, table, city, minLatitude, maxLatitude, uniqueValues) =>
+
+    {
+
+
+      const { data } = await instance.patch(`filters`, {
+        distance,
+        datas,
+        table,
+        city,
+        minLatitude,
+        maxLatitude,
+        uniqueValues,
+      });
+     return data
+  };
+
+  export const cartitems = () => async () => {
+   
+      const { data } = await instance.get(`cart`);
+    return data
+  };
+  
+
+  export const addItem = async(mediaid, mediatype) => {
+      const { data } = await instance.put(`cart`, {
+        mediaid,
+        mediatype,
+      });
+    return data
+  };
+  
+  export const removeItem =async (code) =>   {
+  
+      const { data } = await instance.patch(`cart`, { code });
+      return data
+    
+  };
+
+  export const nearProduct =async(code, category_name) =>   {
+    
+ 
+      const { data } = await instance.patch("enquiries", {
+        code,
+        category_name,
+
+      });
+    return data
+    
+  };
+
+  export const markersPosition = async (NorthLat, SouthLat, NorthLong, SouthLong) => {
+   
+      const { data } = await instance.post("team", {
+        NorthLat,
+        SouthLat,
+        NorthLong,
+        SouthLong,
+      });
+     return data
+  };
