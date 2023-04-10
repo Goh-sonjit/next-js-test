@@ -7,25 +7,23 @@ import { Dropdown } from "react-bootstrap";
 // import "react-calendar/dist/Calendar.css";
 import Link from "next/link";
 import { RiDeleteBinLine } from "react-icons/ri";
+import { getCookie, removeCookies } from "cookies-next";
 import { FaRupeeSign } from "react-icons/fa";
 import { FaCalendarAlt } from "react-icons/fa"; 
 import styles from '../../styles/cart.module.scss';
 import instance from "@/allApi/axios";
 import Fixednavbar from "../../components/navbar/fixednavbar";
 import { toast, ToastContainer } from "react-toastify";
- import { cartitems, mediawithcity, removeItem, userDetails } from "@/redux/adminAction";
+import { cartitems, mediaDataApi, removeItem, userDetails } from "@/allApi/apis";
 import Loader from "@/components/loader";
 import { DateRange } from "react-date-range";
 import { addDays } from "date-fns";
 
 
-
-
-
 const Cart = () => {
   const route = useRouter()
   const [Start, setStart] = useState(new Date());
-  const [items, setItems] = useState();
+  const [items, setItems] = useState([]);
   let defaultEndDate = new Date(new Date().setDate(Start.getDate() + 4));
   const [End, setEnd] = useState(defaultEndDate);
   const { addRemove, initalState } = useContext(AccountContext);
@@ -43,11 +41,13 @@ const Cart = () => {
   ]);
 
 
-
+const getData = async() =>{
+  const data = await cartitems()
+  setItems(data)
+}
 
   useEffect(() => {
-    const data2 = cartitems()
-    setItems(data2)
+    getData()
   }, []);
 
 
@@ -88,7 +88,8 @@ const Cart = () => {
 
 
   const removefroCart = async (obj) => {
-    // await dispatch(removeItem(obj.code));
+    const data = await removeItem(obj.code)
+    if(data.message == 'Done'){
     addRemove({ type: "DECR" });
     const pricese = obj.price * obj.days;
     const withGST = (pricese * 18) / 100;
@@ -96,7 +97,7 @@ const Cart = () => {
     const finalStep = parseInt(price - heloo);
     setPrice(finalStep);
     removeCart(obj);
-
+    }
   };
 
   const removeCart = async (event) => {
@@ -149,7 +150,7 @@ const submitAllProduct = async () => {
     (totalPrice, item) => totalPrice + parseInt(item.price * item.days),
     0
   );
-const value = localStorage.getItem("permissions")
+const value =getCookie("permissions")
 if(value){
   return (
     <>
@@ -159,17 +160,7 @@ if(value){
         className={`container-xxl  container-xl container-lg container-md  ${styles.cart_content} cart-content`}
       >
         <div className="row mt-4 ">
-          {loading ? (
-            <>
-              <div className=" container ">
-                <div className="row  text-center my-3">
-                  <Loader />
-                </div>
-              </div>
-            </>
-          ) : (
-            <>
-              {posts.length > 0 ? (
+        {posts.length > 0 ? (
                 <>
                   <>
                     <div className=" ">
@@ -564,8 +555,6 @@ if(value){
                   </div>
                 </>
               )}
-            </>
-          )}
         </div>
       </div>
     </>

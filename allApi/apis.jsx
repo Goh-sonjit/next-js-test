@@ -271,10 +271,11 @@ export const singlemnedia = async(meta_title, category_name) =>{
 }
 
 export const userDetails = async () => {
-
-    const { data } = await instance.get("loginApis", {
+  console.log("hii");
+ const { data } = await instance.get("loginApis", {
       withCredentials: true,
     });
+    console.log(data);
     return data
  
 };

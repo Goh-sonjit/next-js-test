@@ -23,6 +23,7 @@ exports.token = catchError(async (userid, statuscode, res) => {
 })
 
 exports.verifyToken = catchError(async (req, res, next) => {
+
     const cookieData = req.cookies;
     if (!cookieData) {
         return res.status(400).json({message: "No Cookie Found"})
@@ -35,6 +36,7 @@ exports.verifyToken = catchError(async (req, res, next) => {
             if (err) {
                 return res.status(400).json({message: "InValid Token"});
             } else {
+          
                 req.id = user.id;
                 next()
             }

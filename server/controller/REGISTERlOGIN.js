@@ -229,20 +229,24 @@ exports.refreshToken = catchError(async (req, res, next) => {
 })
 
 exports.getuser = catchError(async (req, res) => {
+    console.log("hii");
     const userId = req.id;
     if (!userId) {
         return res.status(404).json({message: "Token Valid"})
     } else {
         const data = await client.get(userId)
+        console.log(data);
       if(data){
         return  res.send(JSON.parse(data))
       }else{
         db.changeUser({database: "gohoardi_crmapp"})
         db.query("SELECT userid,firstname, email, phonenumber,profile_image, provider  FROM tblcontacts WHERE userid='" + userId + "'", async (err, result) => {
             if (err) {
+                console.log(err);
                 return res.status(206).json({success:false, message: "User Not found"})
             } else {
-                client.setEx(userId, process.env.REDIS_TIMEOUT,JSON.stringify(result))
+                console.log(result);
+                client.setEx(userId, process.env.REDIS_TIMEOUT, JSON.stringify(result))
                 return res.status(200).json(result)
             }
         })

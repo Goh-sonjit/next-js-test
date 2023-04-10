@@ -7,11 +7,10 @@ import {
   clientId,
   googleLogin,
   logoutUser,
-  refreshToken, cartitems, userDetails
+  
+  refreshToken,userDetails
 } from "@/allApi/apis";
-import Cookies from "js-cookie";
 import { AccountContext } from "@/allApi/apicontext";
-
 import Dropdown from "react-bootstrap/Dropdown";
 import styles from "../../styles/navbarHome.module.scss";
 import { MdDashboard } from "react-icons/md";
@@ -20,9 +19,9 @@ import { BiLogOut, BiLogIn } from "react-icons/bi";
 import { FaUserCircle } from "react-icons/fa";
 import { useRouter } from "next/router";
 import Modal from "react-bootstrap/Modal";
-import { getCookie, setCookie,  removeCookies } from "cookies-next";
 import LoginN from "@/pages/login/loginParent";
 import instance from "@/allApi/axios";
+import { getCookie, removeCookies } from "cookies-next";
 
 const Userdetail = () => {
   const dispatch = useDispatch();
@@ -32,7 +31,7 @@ const Userdetail = () => {
   const pth = route.asPath;
   const [posts, setPosts] = useState(true);
   const [scrollY, setScrollY] = useState(0);
-  const { user, loading } = useSelector((state) => state.user);
+  const [user, setUser] = useState([])
 
   
   // const oneTap = async (response) => {
@@ -48,34 +47,38 @@ const Userdetail = () => {
 
 
 
-// useEffect(() =>{
-//   if(session){
-//     const data = async() => await instance.post('linkedin',{session})
-//     data().then(() =>{dispatch(userDetails());
-//       addRemove({ type: "DECR" });})
-//   }
-// },[session])
-
-// const handelLogout = async () => {
-//   route.push('/')
-//     signOut().then(async() =>{
-//       await logoutUser()
-//       localStorage.removeItem("permissions",true) 
-//       Cookies.remove("LoggedIn")
-//     })
-//   };
-
-const value = async() =>{
-  const data = getCookie("permissions")
-  if(data){
-    const userdata = await userDetails()
-    console.log(userdata);
+useEffect(() =>{
+  if(session){
+    const data = async() => await instance.post('linkedin',{session})
+    data().then(async() =>{
+      const data = await userDetails()
+  setUser(data)
+      addRemove({ type: "DECR" });})
   }
+},[session])
+
+const handelLogout = async () => {
+  route.push('/')
+    signOut().then(async() =>{
+      await logoutUser()
+      removeCookies("permissions")
+    })
+  };
+
+  const value = getCookie("permissions")
+const data = async() =>{
+ if(value){
+  const data = await userDetails()
+  setUser(data)
+ }
 
 }
+ 
 useEffect(() =>{
-value()
-},[])
+if(!data){
+  dispatch(userDetails)
+}
+},[data])
   const profile = async () => {
     route.push('/profile')
   };
@@ -99,9 +102,8 @@ value()
   // });
 
 
- 
+ console.log(user);
   useEffect(() => {
-    dispatch(cartitems())
     const handleScroll = () => {
       setScrollY(window.scrollY);
     };
@@ -120,7 +122,7 @@ value()
     }
   }, [scrollY]);
 
-  if(loading == false && user !== "No Token Found"){
+  if(value){
   return (
 
     <div
@@ -141,7 +143,7 @@ value()
                 disabled={true}
               >
                 <CgUserlane className={`mb-1 } text-light`} />
-                {" "}  {user[0].firstname.toUpperCase()}
+                {/* {" "}  {user.firstname.toUpperCase()} */}
               </Dropdown.Item>
               <hr className=" m-0" />
               <Dropdown.Item
