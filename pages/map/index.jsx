@@ -49,7 +49,6 @@ const Map = () => {
       const data =  await mediaDataApi(meta_title, city_name);
       setSearch(data)
     }
-    
   }
 
   const [mapMarker, setPosts] = useState([]);
@@ -99,12 +98,12 @@ const Map = () => {
     googleMapsApiKey:"AIzaSyDEKx_jLb_baUKyDgkXvzS_o-xlOkvLpeE",
   });
 
-  const getRelateddata = () => {
+  const getRelateddata = async() => {
     if(slice.length == 1) {
     const value = [...search];
     const code = value[0].code;
     const category_name = value[0].category_name;
-    const data = nearProduct(code, category_name)
+    const data =await nearProduct(code, category_name)
     setSearch(data)
       }
   };
