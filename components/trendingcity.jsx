@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import Slider from "react-slick";
 import Link from "next/link";
+import { mediaDataApi } from "@/allApi/apis";
 import Loader from "../components/loader";
 import { mediawithcity } from "@/redux/adminAction";
 
 const Trendingcity = () => {
 
-  const [search, setSearch] = useState();
+  const [search, setSearch] = useState([]);
   const [city, setCity] = useState();
   var items = ["delhi", "mumbai", "bengaluru", "hyderabad", "chennai"];
   function random_item() {
@@ -15,7 +16,7 @@ const Trendingcity = () => {
   const data = async () => {
     const category_name = "traditional-ooh-media";
     const city_name = city;
-    const data2 = await  mediawithcity(category_name, city_name)
+    const data2 = await  mediaDataApi(category_name, city_name)
     setSearch(data2)
   };
   useEffect(() => {
@@ -49,7 +50,7 @@ const Trendingcity = () => {
 
   let slider = settings;
   let slice;
-  if (!loading) {
+  if (search) {
     slice = search.slice(0, 5);
   }
 
@@ -66,15 +67,8 @@ const Trendingcity = () => {
           </h6>
         </section>
 
-        {loading ? (
-          <div className=" container ">
-            <div className="row  text-center my-3">
-              <Loader />
-            </div>
-          </div>
-        ) : (
-          <>
-            {loading == true ? (
+      
+            {!search? (
               <div className=" container ">
                 <div className="row  text-center my-3">
                   <Loader />
@@ -134,8 +128,8 @@ const Trendingcity = () => {
                 </Slider>
               </>
             )}
-          </>
-        )}
+         
+     
       </div>
       <style jsx>
         {`
