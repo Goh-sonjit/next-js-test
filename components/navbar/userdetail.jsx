@@ -7,11 +7,11 @@ import {
   clientId,
   googleLogin,
   logoutUser,
-  refreshToken,
+  refreshToken, cartitems, userDetails
 } from "@/allApi/apis";
 import Cookies from "js-cookie";
 import { AccountContext } from "@/allApi/apicontext";
-import { cartitems, userDetails } from "@/redux/adminAction";
+
 import Dropdown from "react-bootstrap/Dropdown";
 import styles from "../../styles/navbarHome.module.scss";
 import { MdDashboard } from "react-icons/md";
@@ -20,6 +20,7 @@ import { BiLogOut, BiLogIn } from "react-icons/bi";
 import { FaUserCircle } from "react-icons/fa";
 import { useRouter } from "next/router";
 import Modal from "react-bootstrap/Modal";
+import { getCookie, setCookie,  removeCookies } from "cookies-next";
 import LoginN from "@/pages/login/loginParent";
 import instance from "@/allApi/axios";
 
@@ -47,38 +48,38 @@ const Userdetail = () => {
 
 
 
-useEffect(() =>{
-  if(session){
-    const data = async() => await instance.post('linkedin',{session})
-    data().then(() =>{dispatch(userDetails());
-      addRemove({ type: "DECR" });})
+// useEffect(() =>{
+//   if(session){
+//     const data = async() => await instance.post('linkedin',{session})
+//     data().then(() =>{dispatch(userDetails());
+//       addRemove({ type: "DECR" });})
+//   }
+// },[session])
+
+// const handelLogout = async () => {
+//   route.push('/')
+//     signOut().then(async() =>{
+//       await logoutUser()
+//       localStorage.removeItem("permissions",true) 
+//       Cookies.remove("LoggedIn")
+//     })
+//   };
+
+const value = async() =>{
+  const data = getCookie("permissions")
+  if(data){
+    const userdata = await userDetails()
+    console.log(userdata);
   }
-},[session])
 
-const handelLogout = async () => {
-  route.push('/')
-    signOut().then(async() =>{
-      await logoutUser()
-      localStorage.removeItem("permissions",true) 
-      Cookies.remove("LoggedIn")
-    })
-  };
-
-const data = localStorage.getItem("permissions",true)
-useEffect(() =>{
-if(!data){
-  dispatch(userDetails)
 }
-},[data])
+useEffect(() =>{
+value()
+},[])
   const profile = async () => {
     route.push('/profile')
   };
 
-  const cart = async () => {
-    await dispatch(cartitems()).then(() => {
-  route.push('/cart')
-    });
-  };
 
 
   const refreshUser = async () => {
@@ -161,7 +162,7 @@ if(!data){
               </Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
-          <div className={`${styles.cart} ms-2`} onClick={cart}>
+          <div className={`${styles.cart} ms-2`} >
             <span>
               <img
                 aria-expanded={posts}

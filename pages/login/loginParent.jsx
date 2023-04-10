@@ -22,7 +22,8 @@ import Cookies from "js-cookie";
 import { MdOutlineError } from "react-icons/md";
 import navigate  from "next/navigation";
 import {useRouter} from 'next/navigation'
-import styles from '../../styles/login.module.scss'  ;
+import styles from '../../styles/login.module.scss';
+import { setCookie } from "cookies-next";
 import { AccountContext } from "@/allApi/apicontext";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 
@@ -51,15 +52,12 @@ const LoginN = () => {
 
 
 
-  const [user, setUser] = useState();
+
 
   const navigate = useRouter()
 
   const afterLogin = async () => {
-     localStorage.setItem("permissions", true);
-     Cookies.set("LoggedIn",true);
-     const data = userDetails()
-     setUser(data)
+     setCookie("permissions", true);
     addRemove({ type: "DECR" });
     handleClose()
    setSuccess(true);

@@ -11,7 +11,6 @@ import Link from "next/link";
 const NavbarH = () => {
 const route = useRouter()   
   const getMap = () => {
-    
     route.push('/map')
   }
 
