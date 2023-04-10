@@ -19,7 +19,7 @@ const [city, setCity] = useState([])
  
 
 const apiforFillters = async () => {
- if(slice){
+ if(slice.length > 0){  
   const category_name = slice[0].category_name;
   setCategory(category_name)
   const city_name = slice[0].city_name;

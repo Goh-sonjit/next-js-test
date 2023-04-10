@@ -15,7 +15,7 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import Citylocation from "../cityLocation";
-import {setCookie} from "cookies-next";
+import {removeCookies, setCookie} from "cookies-next";
 import styles from "../../styles/fixedNavbar.module.scss";
 import NavbarDropdown from "./dropdown";
 // import Citylocation from "../cityLocation/citylocation";
@@ -41,6 +41,7 @@ const Fixednavbar = () => {
  
   const getMap = () => {
     route.push('/map')
+    removeCookies('meta_title')
   }
 
   let selecType;

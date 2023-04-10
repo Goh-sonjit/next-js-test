@@ -7,10 +7,12 @@ import { useRouter } from "next/router";
 import styles from "../../styles/navbarHome.module.scss";
 import LoginN from "@/pages/login/loginParent";
 import Link from "next/link";
+import {removeCookies, setCookie} from "cookies-next";
 
 const NavbarH = () => {
 const route = useRouter()   
   const getMap = () => {
+    removeCookies('meta_title')
     route.push('/map')
   }
 
