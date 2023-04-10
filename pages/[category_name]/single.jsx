@@ -9,7 +9,7 @@ const Singlecard = ({
   slice,
   loading,
   addonCart,
-  removefroCart,
+  removefromCart,
   locatetologin,
   mapData,
 }) => {
@@ -132,7 +132,7 @@ const Singlecard = ({
                         {item.isDelete === 0 ? (
                           <div
                             className={`${styles.cart_btn} text-center p-2 rounded me-2`}
-                            onClick={(e) => removefroCart(item)}
+                            onClick={(e) => removefromCart(item)}
                           >
                             <h6 className=" mt-2 fw-bold text-light"> Remove</h6>
                           </div>

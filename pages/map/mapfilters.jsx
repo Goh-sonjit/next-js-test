@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { mediaDataApi } from "@/allApi/apis";
+import { mediaDataApi, priceSubIllu } from "@/allApi/apis";
 import Multirangeslider from "./multirangeslider";
-import { priceSubIllu } from "@/redux/adminAction";
 import styles from '../../styles/map.module.scss'
 
-const Mapfilters = ({search}) => {
+const Mapfilters = ({slice}) => {
   const [price, setprice] = useState([]);
   const [mediaData, setMediadata] = useState([]);
 const [locationData, setlocationData] = useState([]);
@@ -20,10 +19,10 @@ const [city, setCity] = useState([])
  
 
 const apiforFillters = async () => {
- if(search){
-  const category_name = search[0].category_name;
+ if(slice){
+  const category_name = slice[0].category_name;
   setCategory(category_name)
-  const city_name = search[0].city_name;
+  const city_name = slice[0].city_name;
   setCity(city_name)
   const  data = await mediaDataApi (
     category_name,
@@ -91,7 +90,7 @@ const data = priceSubIllu(categoryArray, price, singlemedia, table, city, locati
 
 useEffect(() => {
   apiforFillters()
-},[search])
+},[slice])
 return (
   <div
       className="filter-items p-2 accordion accordion-collapse collapse"

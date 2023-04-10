@@ -56,7 +56,7 @@ const Media = () => {
   };
 
 
-  const removefroCart = async (obj) => {
+  const removefromCart = async (obj) => {
     const data = await removeItem(obj.code)
     if(data.message == 'Done'){
       addRemove({ type: "DECR" });
@@ -185,7 +185,7 @@ useEffect(() =>{
   }
   const mapData = async () => {
     if(search){  
-      setCookie(meta_title, search[0].meta_title)
+      setCookie("meta_title", search[0].meta_title)
         router.push("/map");
     }
   }
@@ -373,7 +373,7 @@ useEffect(() =>{
                     Less={Less}
                     addonCart={addonCart}
                
-                    removefroCart={removefroCart}
+                    removefromCart={removefromCart}
                     add={add}
                     remove={remove}
                    
@@ -385,7 +385,7 @@ useEffect(() =>{
                     mapData={mapData}
                   
                     addonCart={addonCart}
-                    removefroCart={removefroCart}
+                    removefromCart={removefromCart}
                   />
                 )}
               </div>

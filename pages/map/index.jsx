@@ -6,13 +6,13 @@ import Mapfilter from "./mapfilters";
 import { useJsApiLoader } from "@react-google-maps/api";
 import Markers from "./marker";
 import Iconsselection from "./iconsselection";
-import {
-  addItem,
+import {  addItem,
   markersPosition,
   mediawithcity,
+  mediaDataApi,
   nearProduct,
-  removeItem,
-} from "@/redux/adminAction";
+  singlemnedia,
+  removeItem, } from "@/allApi/apis";
 import { BsListUl } from "react-icons/bs";
 import {
   MdAddLocationAlt,
@@ -21,35 +21,56 @@ import {
 } from "react-icons/md";
 import { FaFilter, FaRupeeSign, FaMapMarked } from "react-icons/fa";
 import { useRouter } from "next/router";
+import { setCookie,getCookie } from 'cookies-next';
 import Fixednavbar from "@/components/navbar/fixednavbar";
 
 const Map = () => {
   const router = useRouter();
-  const [search, setSearch] = useState();
+  const [search, setSearch] = useState([]);
   const { state, addRemove } = useContext(AccountContext);
   const [noOfLogo, setnoOfLogo] = useState(8);
   const { handleClose,handleShow} = useContext(AccountContext);
   var slice;
 
-  if (!loading) {
+
     slice = search.slice(0, noOfLogo);
-    if(slice.length === 0){
-      const data = mediawithcity("tradition-ooh-media", "delhi")
+   
+    const city_name = getCookie('city_name')
+    const category_name = getCookie('category_name')
+    const meta_title = getCookie('meta_title')
+  const getData = async() =>{
+    if(!meta_title){
+      const data =  await mediaDataApi(category_name, city_name);
       setSearch(data)
-    };
-    
+    }else if(!category_name){
+      const data =  await mediaDataApi("tradition-ooh-media", "delhi");
+      setSearch(data)
+    }else{
+      const data =  await mediaDataApi(meta_title, city_name);
+      setSearch(data)
+    }
   }
 
   const [mapMarker, setPosts] = useState([]);
 
-  const addonCart = async (code, category_name) => {
-    if (!localStorage.getItem("permissions")) {
+  const addonCart = async (e) => {
+    const data = await addItem(e.code, e.category_name)
+    if(data.message == "Login First"){
       handleShow()
-     } else {
-      console.log("hii");
+    }else{
       addRemove({ type: "INCR" });
-      add(code);
+      add(e)
     }
+  };
+
+
+  const removefromCart = async (obj) => {
+    const data = await removeItem(obj.code)
+    if(data.message == 'Done'){
+      addRemove({ type: "DECR" });
+      remove(obj);
+    }
+  
   };
   const add = (code) => {
     let temp = [...slice];
@@ -61,10 +82,6 @@ const Map = () => {
     });
   };
 
-  const removefromCart = async (code) => {
-    addRemove({ type: "DECR" });
-    remove(code);
-  };
 
   const remove = (code) => {
     let temp = [...slice];
@@ -81,12 +98,12 @@ const Map = () => {
     googleMapsApiKey:"AIzaSyDEKx_jLb_baUKyDgkXvzS_o-xlOkvLpeE",
   });
 
-  const getRelateddata = () => {
+  const getRelateddata = async() => {
     if(slice.length == 1) {
     const value = [...search];
     const code = value[0].code;
     const category_name = value[0].category_name;
-    const data = nearProduct(code, category_name)
+    const data =await nearProduct(code, category_name)
     setSearch(data)
       }
   };
@@ -115,9 +132,9 @@ const Map = () => {
   //   }
   // },[nearProduct])
 
-  // useEffect(() => {
-  // data()
-  // },[])
+  useEffect(() => {
+  getData()
+  },[city_name, category_name])
 
   //   const data = async () => {
   //   const category_name = "traditional-ooh-media";
@@ -179,10 +196,7 @@ const Map = () => {
                   className="accordion items mb-2 rounded"
                   id="accordionExample"
                 >
-                  {loading ? (
-                    <></>
-                  ) : (
-                    <>
+                 
                       {slice.length == 0 ? (
                         <h5 className="text-center">No Data Found</h5>
                       ) : (
@@ -287,17 +301,10 @@ const Map = () => {
                           ))}
                         </>
                       )}
-                    </>
-                  )}
+                   
 
                   <div className={`${styles.map_btn_more} text-center`}>
-                    {loading ? (
-                      <>
-                        <h5 className="text-center">No Data Found</h5>
-                      </>
-                    ) : (
-                      <>
-                        {" "}
+                   
                         {slice.length < 8 ? (
                           <></>
                         ) : (
@@ -338,19 +345,18 @@ const Map = () => {
                             </div>
                           </>
                         )}
-                      </>
-                    )}
+                   
                   </div>
                 </div>
               </div>
-              {search && search.length > 0 ? (
+              {/* {search && search.length > 0 ? (
                 <Iconsselection
                   slice={slice}
                   loading={loading}
                   fnmedia={search}
                 />
               ) : null}
-              <Mapfilter search={search} />
+              <Mapfilter slice={slice} /> */}
             </div>
 
             {/* <div id={` ${styles.map_view_mobile}`}>
@@ -390,7 +396,7 @@ const Map = () => {
               </div>
             </div>
 
-            {
+            {/* {
           !mapMarker.length > 0 ?
           isLoaded && slice && slice.length > 0 ? (
             <Markers markers={slice} removefromCart={removefromCart} addonCart={addonCart} />
@@ -399,7 +405,7 @@ const Map = () => {
           <h5 className="text-center m-3">No Data Found </h5>
         :
         <Markers markers={slice} removefromCart={removefromCart} addonCart={addonCart}  />
-        }
+        } */}
           </div>
         </div>
       </div>

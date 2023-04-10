@@ -58,8 +58,11 @@ const Fixednavbar = () => {
   };
    
   const mavigatetoMediaPage = (userType, value) => {
-    if (pathname === "/map" && userType.length > 3 && value.length > 2) {
-    } else if (userType.length > 3 && value.length > 2) {
+    // if (pathname === "/map" && userType.length > 3 && value.length > 2) {
+    //   setCookie('category_name',userType)
+    //     setCookie('city_name',value)
+    // } else 
+    if (userType.length > 3 && value.length > 2) {
       setCookie('category_name',userType)
         setCookie('city_name',value)
         route.push(`/${userType}`)

@@ -208,7 +208,6 @@ export const mediaDataApi = async (category_name, city_name) => {
   return data
 }
 export const mediawithlocation = async (category_name, city_name, loca) => {
-
   const { data } = await instance.put(`team`, {
     category_name,
     city_name,
