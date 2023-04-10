@@ -1,7 +1,6 @@
 import React, {useState} from "react";
 // import Slider from "./slider.jsx";
 import {iconFiltersData} from "@/redux/adminAction";
-import {useDispatch} from "react-redux";
 import {MdSchool, MdOutlineRestaurantMenu } from "react-icons/md";
 import {BiDrink } from "react-icons/bi";
 import {SiHotelsdotcom } from "react-icons/si";
@@ -10,7 +9,6 @@ import {TbMassage } from "react-icons/tb";
 import {CgGym } from "react-icons/cg";
 
 const Iconsselection = ({slice}) => {
-  const dispatch = useDispatch()
   const [distance, Setdistance] = useState(0);
 
   const [hording, setHording] = useState([]);
@@ -121,8 +119,7 @@ const Iconsselection = ({slice}) => {
   let array = [...uniqueValues];
   let arrayJJson = JSON.stringify(array);
   let newString = arrayJJson.replace(/\[|\]/g, '');
-  dispatch(iconFiltersData(distance, hording, table, city, minLatitude, maxLatitude , newString))
-
+  const data = iconFiltersData(distance, hording, table, city, minLatitude, maxLatitude , newString)
   }
 
   return (

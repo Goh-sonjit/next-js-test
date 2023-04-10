@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useContext } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useRouter } from "next/router";
 // import { AccountContext } from "../../apis/apicontext";
@@ -25,9 +24,8 @@ import { addDays } from "date-fns";
 
 const Cart = () => {
   const route = useRouter()
-  const dispatch = useDispatch();
   const [Start, setStart] = useState(new Date());
-  const { items, loading } = useSelector((state) => state.cart);
+  const [items, setItems] = useState();
   let defaultEndDate = new Date(new Date().setDate(Start.getDate() + 4));
   const [End, setEnd] = useState(defaultEndDate);
   const { addRemove, initalState } = useContext(AccountContext);
@@ -48,7 +46,8 @@ const Cart = () => {
 
 
   useEffect(() => {
-    dispatch(cartitems());
+    const data2 = cartitems()
+    setItems(data2)
   }, []);
 
 
@@ -89,7 +88,7 @@ const Cart = () => {
 
 
   const removefroCart = async (obj) => {
-    await dispatch(removeItem(obj.code));
+    // await dispatch(removeItem(obj.code));
     addRemove({ type: "DECR" });
     const pricese = obj.price * obj.days;
     const withGST = (pricese * 18) / 100;
@@ -109,7 +108,8 @@ const Cart = () => {
 
       const result = data.filter((word) => word.isDelete === 0);
       setPosts(result);
-      dispatch(cartitems());
+      const data2 = cartitems()
+      setItems(data2)
     });
   };
 
@@ -133,17 +133,13 @@ const submitAllProduct = async () => {
   });
   if (data.success == true) {
     addRemove({ type: "DECR" });
-    dispatch(cartitems());
+    const data2 = cartitems()
+    setItems(data2)
     setPosts([]);
     toast(data.message);
     setCampains("");
-    dispatch(
-      mediawithcity({
-        category_name: "traditional-ooh-media",
-        city_name: "delhi",
-        limit:0,
-      })
-    );
+    const data3 = mediawithcity({category_name: "traditional-ooh-media",city_name: "delhi",limit:0})
+    setItems(data3)
   } else {
     toast(data.message);
   }

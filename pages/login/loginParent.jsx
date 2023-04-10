@@ -25,10 +25,8 @@ import {useRouter} from 'next/navigation'
 import styles from '../../styles/login.module.scss'  ;
 import { AccountContext } from "@/allApi/apicontext";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
-import { useDispatch, useSelector } from "react-redux";
 
 const LoginN = () => {
-  const dispatch = useDispatch()
 
   const [name, setName] = useState("");
   // const { addRemove } = useContext(AccountContext);
@@ -51,14 +49,17 @@ const LoginN = () => {
   const [withOtp,setWithOtp] = useState(false);
   const [success,setSuccess] = useState(false);
 
-  const {user, loading} = useSelector((state) => state.user)
+
+
+  const [user, setUser] = useState();
 
   const navigate = useRouter()
 
   const afterLogin = async () => {
      localStorage.setItem("permissions", true);
      Cookies.set("LoggedIn",true);
-    dispatch(userDetails);
+     const data = userDetails()
+     setUser(data)
     addRemove({ type: "DECR" });
     handleClose()
    setSuccess(true);

@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState, useCallback } from "react";
 import { AccountContext } from "@/allApi/apicontext";
 import styles from "../../styles/map.module.scss";
-import { useSelector, useDispatch } from "react-redux";
 import Link from "next/link";
 import Mapfilter from "./mapfilters";
 import { useJsApiLoader } from "@react-google-maps/api";
@@ -25,9 +24,8 @@ import { useRouter } from "next/router";
 import Fixednavbar from "@/components/navbar/fixednavbar";
 
 const Map = () => {
-  const dispatch = useDispatch();
   const router = useRouter();
-  const { search, loading } = useSelector((state) => state.search);
+  const [search, setSearch] = useState();
   const { state, addRemove } = useContext(AccountContext);
   const [noOfLogo, setnoOfLogo] = useState(8);
   const { handleClose,handleShow} = useContext(AccountContext);
@@ -36,8 +34,10 @@ const Map = () => {
   if (!loading) {
     slice = search.slice(0, noOfLogo);
     if(slice.length === 0){
-      dispatch(mediawithcity("tradition-ooh-media", "delhi"))
-    }
+      const data = mediawithcity("tradition-ooh-media", "delhi")
+      setSearch(data)
+    };
+    
   }
 
   const [mapMarker, setPosts] = useState([]);
@@ -47,7 +47,6 @@ const Map = () => {
       handleShow()
      } else {
       console.log("hii");
-      dispatch(addItem(code, category_name));
       addRemove({ type: "INCR" });
       add(code);
     }
@@ -63,7 +62,6 @@ const Map = () => {
   };
 
   const removefromCart = async (code) => {
-    dispatch(removeItem(code));
     addRemove({ type: "DECR" });
     remove(code);
   };
@@ -88,8 +86,8 @@ const Map = () => {
     const value = [...search];
     const code = value[0].code;
     const category_name = value[0].category_name;
-
-    dispatch(nearProduct(code, category_name));
+    const data = nearProduct(code, category_name)
+    setSearch(data)
       }
   };
 

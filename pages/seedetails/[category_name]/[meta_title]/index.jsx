@@ -3,7 +3,6 @@ import { AccountContext } from "@/allApi/apicontext";
 import { Link } from "next/link";
 import { enquiryApi, emailformate } from "@/allApi/apis";
 import { MdLocationPin } from "react-icons/md";
-import { useDispatch, useSelector } from "react-redux";
 import { toast, ToastContainer } from "react-toastify";
 import instance from "@/allApi/axios";
 import Fixednavbar from "../../../../components/navbar/fixednavbar";
@@ -14,7 +13,6 @@ import { addItem, removeItem, singlemnedia } from "@/redux/adminAction";
 import { useRouter } from "next/router";
 
 const Details = () => {
-  const dispatch = useDispatch();
   const router = useRouter();
   const { category_name, meta_title } = router.query;
   const { addRemove } = useContext(AccountContext);
@@ -56,9 +54,7 @@ const Details = () => {
     }
   };
   const mapData = async () => {
-    dispatch(singlemnedia(meta_title, category_name)).then(() => {
       router.push("/map");
-    });
   };
 
   // useEffect(() => {
@@ -87,13 +83,11 @@ const Details = () => {
     } 
     else {
       addRemove({ type: "INCR" });
-      dispatch(addItem(e.code, e.category_name));
       addRemove({ type: "INCR" });
       add(e);
     }
   };
   const removefroCart = async (obj) => {
-    await dispatch(removeItem(obj.code));
     addRemove({ type: "DECR" });
     remove(obj);
   };
