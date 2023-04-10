@@ -35,10 +35,10 @@ const Map = () => {
 
     slice = search.slice(0, noOfLogo);
    
-  const getData = async() =>{
     const city_name = getCookie('city_name')
     const category_name = getCookie('category_name')
     const meta_title = getCookie('meta_title')
+  const getData = async() =>{
     if(!meta_title){
       const data =  await mediaDataApi(category_name, city_name);
       setSearch(data)
@@ -134,7 +134,7 @@ const Map = () => {
 
   useEffect(() => {
   getData()
-  },[])
+  },[city_name, category_name])
 
   //   const data = async () => {
   //   const category_name = "traditional-ooh-media";
