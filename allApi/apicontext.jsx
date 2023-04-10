@@ -1,6 +1,6 @@
 import React, { useState,createContext, useReducer } from 'react';
 import instance from './axios';
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 export const AccountContext = createContext(null);
 

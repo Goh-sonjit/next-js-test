@@ -6,7 +6,6 @@ import { getAllCity } from "@/allApi/apis";
 import { DropdownButton } from "react-bootstrap";
 import Link from "next/link";
 import { CityNameImage } from "@/allApi/apis";
-import { useDispatch, useSelector } from "react-redux";
 import Userdetail from "./userdetail";
 import { MdOutlineSearch, MdLocationPin } from "react-icons/md";
 import { GiHamburgerMenu } from "react-icons/gi";
@@ -25,7 +24,6 @@ import { mediawithcity } from "@/redux/adminAction";
 
 
 const Fixednavbar = () => {
-  const dispatch = useDispatch();
   const [city, setCity] = useState([]);
   const [posts, setPosts] = useState();
   const [focus, setFocus] = useState(false);
@@ -61,7 +59,6 @@ const Fixednavbar = () => {
    
   const mavigatetoMediaPage = (userType, value) => {
     if (pathname === "/map" && userType.length > 3 && value.length > 2) {
-      dispatch(mediawithcity(userType, value));
     } else if (userType.length > 3 && value.length > 2) {
       setCookie('category_name',userType)
         setCookie('city_name',value)
