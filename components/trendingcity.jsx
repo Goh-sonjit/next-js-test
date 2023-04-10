@@ -6,7 +6,7 @@ import { mediawithcity } from "@/redux/adminAction";
 
 const Trendingcity = () => {
 
-  const [saerch, setSearch] = useState();
+  const [search, setSearch] = useState();
   const [city, setCity] = useState();
   var items = ["delhi", "mumbai", "bengaluru", "hyderabad", "chennai"];
   function random_item() {

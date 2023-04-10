@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { mediaDataApi } from "@/allApi/apis";
 import Multirangeslider from "./multirangeslider";
-import { useDispatch } from "react-redux";
 import { priceSubIllu } from "@/redux/adminAction";
 import styles from '../../styles/map.module.scss'
 
 const Mapfilters = ({search}) => {
-  const dispatch = useDispatch()
   const [price, setprice] = useState([]);
   const [mediaData, setMediadata] = useState([]);
 const [locationData, setlocationData] = useState([]);
@@ -61,7 +59,7 @@ function categoryFilter(cate) {
       setCategoryArray(categoryArray);
     }
   });
-  dispatch(priceSubIllu(categoryArray, price, singlemedia, table, city, locationCkheckbox))
+  const data = priceSubIllu(categoryArray, price, singlemedia, table, city, locationCkheckbox)
 }
 
 function locationFilter(loca) {
@@ -74,7 +72,7 @@ function locationFilter(loca) {
       setLocationCkheckbox(locationCkheckbox);
     }
   });
-  dispatch(priceSubIllu(categoryArray, price, singlemedia, table, city, locationCkheckbox))
+  const data = priceSubIllu(categoryArray, price, singlemedia, table, city, locationCkheckbox)
 } 
 
 function mediaTypeFilter(cate) {
@@ -87,7 +85,7 @@ ILLUMINATION.forEach((el) => {
     setsingleMedia(singlemedia);
   }
 })
-dispatch(priceSubIllu(categoryArray, price, singlemedia, table, city, locationCkheckbox))
+const data = priceSubIllu(categoryArray, price, singlemedia, table, city, locationCkheckbox)
 }
 
 

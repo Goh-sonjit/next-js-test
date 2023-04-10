@@ -52,7 +52,7 @@ const Media = () => {
      handleShow()
     } else {
       addRemove({ type: "INCR" });
-      dispatch(addItem(e.code, e.category_name));
+      // dispatch(addItem(e.code, e.category_name));
       addRemove({ type: "INCR" });
       add(e);
     }
@@ -60,7 +60,7 @@ const Media = () => {
 
 
   const removefroCart = async (obj) => {
-    dispatch(removeItem(obj.code));
+    // dispatch(removeItem(obj.code));
     addRemove({ type: "DECR" });
     remove(obj);
   };

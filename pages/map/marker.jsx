@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { GoogleMap, InfoWindow, Marker } from "@react-google-maps/api";
-import { useDispatch } from "react-redux";
 import Link from 'next/link'
 import Streetview from "./streetview";
 import styles from '../../styles/markers.module.scss'
@@ -11,8 +10,7 @@ const Markers = ({ markers, removefromCart, addonCart}) => {
   console.log(markers);
   const [map, setMap] = useState(null);
   const [hasmarker, sethasmarker] = useState(false);
-  const dispatch = useDispatch()
-  const { iconfilter, loading } = useSelector((state) => state.iconfilter);
+  const [iconfilter, setSearch] = useState();
 
   markers.forEach((e) => {
   
@@ -51,8 +49,9 @@ const Markers = ({ markers, removefromCart, addonCart}) => {
       const bounds = mapThing.getBounds()
       const ne = bounds.getNorthEast()
       const sw = bounds.getSouthWest()
-      dispatch(markersPosition(ne.lat(), sw.lat(),  ne.lng(), sw.lng()))
-    }
+      const data = await  markersPosition(ne.lat(), sw.lat(),  ne.lng(), sw.lng())
+      setSearch(data)
+    };
   };
   const customMapStyle = [
     {

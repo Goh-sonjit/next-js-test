@@ -50,7 +50,7 @@ const Userdetail = () => {
 useEffect(() =>{
   if(session){
     const data = async() => await instance.post('linkedin',{session})
-    data().then(() =>{dispatch(userDetails);
+    data().then(() =>{dispatch(userDetails());
       addRemove({ type: "DECR" });})
   }
 },[session])
