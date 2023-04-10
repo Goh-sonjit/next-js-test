@@ -1,0 +1,28 @@
+#booked_media{
+    overflow-y: scroll;
+    height: 63vh;
+}
+.campaign_box{
+    td{
+
+        padding: 2px 6px;
+    }
+    th{
+
+        padding: 2px 6px;
+    }
+    p{
+        cursor: pointer;
+        font-size: 16px;
+        color: rgb(57, 55, 55);
+    }
+    .down {
+        font-size: 17px;
+        float: right;
+        color: rgb(89, 85, 85); ;
+      }
+      .point{
+        font-size: 17px;
+        color: rgb(136, 133, 133); ;
+      }
+}
