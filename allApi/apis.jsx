@@ -27,7 +27,7 @@ export const CityNameImage = [
     srcImgM: "../images/web_pics/traditional-ooh-media-advertising.jpg",
     Link: `/traditional-ooh-media/delhi`,
     icon: <GiAwareness />,
-    city: "cities"
+    city: "delhi"
   },
   {
     label: "Digital Media",
@@ -37,7 +37,7 @@ export const CityNameImage = [
     srcImgM: "../images/web_pics/digital-media-hoardings-digital-hoardings.jpg",
     Link: `/digital-media/delhi`,
     icon: <GiLaptop />,
-    city: "citesc"
+    city: "mumbai"
   },
   {
     label: "Mall Media",
@@ -47,7 +47,7 @@ export const CityNameImage = [
     srcImgM: "../images/web_pics/mall-media-advertising-near-me.jpg",
     Link: `/mall-media/delhi`,
     icon: <TbBuildingCommunity />,
-    city: "citesc"
+    city: "bengaluru"
   },
 
   {
@@ -58,7 +58,7 @@ export const CityNameImage = [
     srcImgM: "../images/web_pics/office-branding-media-near-me.jpg",
     Link: `/office-branding/delhi`,
     icon: <ImOffice />,
-    city: "citesc"
+    city: "pune"
   },
   {
     label: "Transit Media",
@@ -68,7 +68,7 @@ export const CityNameImage = [
     srcImgM: "../images/web_pics/transit-media-advertising-near-me.jpg",
     Link: `/transit-media/delhi`,
     icon: <TfiLayoutMediaCenterAlt />,
-    city: "citesc"
+    city: "chennai"
   },
   {
     label: "Airport Branding",
@@ -78,7 +78,7 @@ export const CityNameImage = [
     srcImgM: "../images/web_pics/airport-media-digital-hoardings.jpg",
     Link: `/airport-media/delhi`,
     icon: <GiAirplaneDeparture />,
-    city: "citesc"
+    city: "hyderabad"
   }
 ];
 

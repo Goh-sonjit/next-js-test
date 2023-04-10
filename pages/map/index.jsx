@@ -32,7 +32,6 @@ const Map = () => {
   const { handleClose,handleShow} = useContext(AccountContext);
   var slice;
 
-
     slice = search.slice(0, noOfLogo);
    
     const city_name = getCookie('city_name')
@@ -46,7 +45,7 @@ const Map = () => {
       const data =  await mediaDataApi("tradition-ooh-media", "delhi");
       setSearch(data)
     }else{
-      const data =  await mediaDataApi(meta_title, city_name);
+      const data =  await mediaDataApi(meta_title, category_name);
       setSearch(data)
     }
   }
@@ -349,14 +348,13 @@ const Map = () => {
                   </div>
                 </div>
               </div>
-              {/* {search && search.length > 0 ? (
+              {search && search.length > 0 ? (
                 <Iconsselection
                   slice={slice}
-                  loading={loading}
                   fnmedia={search}
                 />
               ) : null}
-              <Mapfilter slice={slice} /> */}
+              <Mapfilter slice={slice} />
             </div>
 
             {/* <div id={` ${styles.map_view_mobile}`}>
@@ -396,7 +394,7 @@ const Map = () => {
               </div>
             </div>
 
-            {/* {
+            {
           !mapMarker.length > 0 ?
           isLoaded && slice && slice.length > 0 ? (
             <Markers markers={slice} removefromCart={removefromCart} addonCart={addonCart} />
@@ -405,7 +403,7 @@ const Map = () => {
           <h5 className="text-center m-3">No Data Found </h5>
         :
         <Markers markers={slice} removefromCart={removefromCart} addonCart={addonCart}  />
-        } */}
+        }
           </div>
         </div>
       </div>

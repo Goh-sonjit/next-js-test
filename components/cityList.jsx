@@ -71,7 +71,7 @@ const City = () => {
       <div className="container mt-4">
         <div className="row">
           <div className="col col-md-4">
-            <Link href={`/cities/chennai`}>
+            <Link href={`/chennai`}>
               <div className="city-img-container"
                onClick={() =>{setCookie("category_name","traditional-ooh-media"),setCookie("city_name","chennai")}}>
                 <img

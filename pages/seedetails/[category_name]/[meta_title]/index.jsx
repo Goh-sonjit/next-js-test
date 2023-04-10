@@ -11,6 +11,7 @@ import { Carousel } from "react-responsive-carousel";
 import Loader from "@/components/loader";
 import { addItem, removeItem, singlemnedia } from "@/redux/adminAction";
 import { useRouter } from "next/router";
+import { setCookie } from "cookies-next";
 
 const Details = () => {
   const router = useRouter();
@@ -53,13 +54,10 @@ const Details = () => {
       }
     }
   };
-  const mapData = async () => {
+  const mapData = async (meta) => {
+      setCookie('meta_title',meta)
       router.push("/map");
   };
-
-  // useEffect(() => {
-  //   mapData()
-  // }, []);
 
   const getMedia = async () => {
     if (category_name && meta_title) {
@@ -221,7 +219,7 @@ const Details = () => {
                     <div className="col-2">
                       <div
                         className="location p-2 text-center rounded"
-                        onClick={mapData}
+                        onClick={(element) => mapData(item.meta_title)}
                       >
                         <MdLocationPin
                           className="icon-clr me-4 me-md-0 mt-1 mt-md-0"

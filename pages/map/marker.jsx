@@ -10,7 +10,7 @@ const Markers = ({ markers, removefromCart, addonCart}) => {
   console.log(markers);
   const [map, setMap] = useState(null);
   const [hasmarker, sethasmarker] = useState(false);
-  const [iconfilter, setSearch] = useState();
+  const [iconfilter, setSearch] = useState([]);
 
   markers.forEach((e) => {
   
@@ -19,13 +19,13 @@ const Markers = ({ markers, removefromCart, addonCart}) => {
   });
 
   let combinedArray;
-  if (!loading) {
+
     // iconfilter.flat(Infinity);
      combinedArray = [].concat(...iconfilter);
      combinedArray.forEach((e) => {
       e["position"] = { lat: e.lat, lng: e.lng };
     });
-  }
+  
 
   const [activeMarker, setActiveMarker] = useState(null);
 
@@ -223,9 +223,9 @@ const Markers = ({ markers, removefromCart, addonCart}) => {
         />
       ) : (
         <>
-             <div className="text-center me-5 pe-5">
+             {/* <div className="text-center me-5 pe-5">
              <button className={`${styles.back_map} w-25 `} onClick={onBoundsChanged} >Search in this area</button>
-             </div>
+             </div> */}
           <GoogleMap
             onLoad={handleOnLoad}
             zoom={"8"}
@@ -348,9 +348,7 @@ const Markers = ({ markers, removefromCart, addonCart}) => {
                 )
               )
             )}
-            {loading ? (
-              <h1>Loading.... Please Wait</h1>
-            ) : (
+            {
               combinedArray.map(({ id, position, name, lat, lng }) => (
               <Marker
                 key={id}
@@ -371,7 +369,7 @@ const Markers = ({ markers, removefromCart, addonCart}) => {
               </Marker>
             ))
              
-            )}
+            }
           </GoogleMap>
         </>
       )}
