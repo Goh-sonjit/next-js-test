@@ -42,7 +42,7 @@ const Media = () => {
 
     slice = search.slice(0, noOfLogo);
  
-
+console.log("uyi8yu")
   const view = () => {
     setMulticard(!multicard);
   };
