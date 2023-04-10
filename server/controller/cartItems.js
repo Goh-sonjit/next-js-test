@@ -478,7 +478,7 @@ exports.deleteFromCart = catchError(async (req, res, next) => {
                 return res.status(206).json({success:false, message : "Can't Delete this Item"})
             } else {
                 client.setEx(key, process.env.REDIS_TIMEOUT,JSON.stringify(result))
-                return res.send(result);
+                return res.status(200).json({success:true, message:'Done'});
             }
         }
     );

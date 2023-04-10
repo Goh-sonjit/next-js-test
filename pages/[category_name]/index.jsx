@@ -8,8 +8,7 @@ import { MdLocationPin } from "react-icons/md";
 import { BsGrid } from "react-icons/bs";
 import { CiGrid2H } from "react-icons/ci";
 import { MdArrowUpward, MdOutlineArrowDownward } from "react-icons/md";
-import { CityNameImage, Less, mediaDataApi, mediawithlocation,  mediaFilters, More } from "../../allApi/apis";
-import { addItem, removeItem } from "@/redux/adminAction";
+import { CityNameImage, Less, mediaDataApi, mediawithlocation,  mediaFilters, More, addItem, removeItem } from "../../allApi/apis";
 import Fixednavbar from "@/components/navbar/fixednavbar";
 import Medialogo from "@/components/mediaBranding";
 import Singlecard from "./single";
@@ -18,10 +17,9 @@ import { setCookie,getCookie } from 'cookies-next';
 import { MdOutlineShoppingCart } from "react-icons/md";
 
 const Media = () => {
-  const dispatch = useDispatch();
   const router = useRouter();
   const [search, setSearch] = useState([])
-  const { handleClose,handleShow} = useContext(AccountContext);
+  const { handleShow} = useContext(AccountContext);
   const { category_name } = router.query;
   const { addRemove } = useContext(AccountContext);
   const [query, setQuery] = useState("");
@@ -36,33 +34,35 @@ const Media = () => {
   const [locationData, setlocationData] = useState([]);
   const [categoryData, setcategoryData] = useState([]);
   const [locationCkheckbox, setLocationCkheckbox] = useState([]);
-
-  const city_name = getCookie('city_name')
+ const city_name = getCookie('city_name')
   let slice;
 
+  if(search){
     slice = search.slice(0, noOfLogo);
- 
+  }
 
   const view = () => {
     setMulticard(!multicard);
   };
 
   const addonCart = async (e) => {
-    if (!localStorage.getItem("permissions")) {
-     handleShow()
-    } else {
+    const data = await addItem(e.code, e.category_name)
+    if(data.message == "Login First"){
+      handleShow()
+    }else{
       addRemove({ type: "INCR" });
-      dispatch(addItem(e.code, e.category_name));
-      addRemove({ type: "INCR" });
-      add(e);
+      add(e)
     }
   };
 
 
   const removefroCart = async (obj) => {
-    dispatch(removeItem(obj.code));
-    addRemove({ type: "DECR" });
-    remove(obj);
+    const data = await removeItem(obj.code)
+    if(data.message == 'Done'){
+      addRemove({ type: "DECR" });
+      remove(obj);
+    }
+  
   };
 
   const add = (event) => {
