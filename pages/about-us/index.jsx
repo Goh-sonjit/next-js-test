@@ -18,9 +18,9 @@ const About = () => {
     }
   };
 
-  const toContact = () => {
-    window.location.href = "/contact-us";
-  };
+  // const toContact = () => {
+  //   window.location.href = "/contact-us";
+  // };
 
   return (
     <>
@@ -230,7 +230,7 @@ const About = () => {
             ) : (
               <button
                 className="load-button mt-3 mb-5 p-2 "
-                onClick={() => toContact()}
+                // onClick={() => toContact()}
               >
                 Let&#39;s Talk <i className="bi bi-arrow-right-square"></i>
               </button>

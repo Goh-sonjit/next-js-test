@@ -36,7 +36,7 @@ const Userprofile = () => {
     const data = await updateProfile(imge, firstname, phonenumber);
     if (data.sucess == true) {
       toast(data.message);
-      window.location.reload();
+      // window.location.reload();
     } else {
       toast(data.message);
     }

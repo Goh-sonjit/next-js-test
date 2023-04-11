@@ -45,7 +45,7 @@ const Companyprofile = () => {
     const data = await companydata(stateData);
     if (data.sucess == true) {
       toast(data.message);
-      window.location.reload();
+      // window.location.reload();
     } else {
       toast(data.message);
     }

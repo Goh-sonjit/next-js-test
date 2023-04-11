@@ -1,6 +1,6 @@
 import React, { useState,createContext, useReducer } from 'react';
 import instance from './axios';
-import { getCookie } from 'cookies-next';
+import { getCookie, removeCookies } from "cookies-next";
 
 export const AccountContext = createContext(null);
 
@@ -8,23 +8,24 @@ export const AccountProvider = ({ children }) => {
   
   const [show, setShow] = useState(false);
   var [initalState, setInitalState] = useState(0)
-  let pdata = getCookie('permissions')
+
 
   const item = async () => {
-      if(pdata){
-        const { data } = await instance.get(`forgetPass`)
-        if(data.message == "InValid Token"){
-          setInitalState(0);
-          return initalState;
-        }else{
-          setInitalState(data[0].item);
-          return initalState;
-        }
+    const value = getCookie("permissions")
+    if(value){
+      const { data } = await instance.get(`forgetPass`)
+      if(data.message == "InValid Token"){
+        setInitalState(0);
+        return initalState;
+  
       }else{
-        return initalState
+        setInitalState(data[0].item);
+        return initalState;
       }
-    
-}
+    }
+  
+    }
+
 
   const reducer = (state, action) => {
     if (action.type === 'INCR') {
