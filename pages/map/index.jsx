@@ -290,9 +290,9 @@ const Map = () => {
                                 </div>
                               </div>
                               {slice.length == 1 && (
-                                <div>
+                            <div className={`${styles.map_btn_more} text-center`}>
                                   <button
-                                    className={` ${styles.btn_hover}  ${styles.buttonload} disabled`}
+                                    className={` ${styles.btn_hover}  ${styles.buttonload} `}
                                     onClick={getRelateddata}
                                   >
                                     Get Related Data

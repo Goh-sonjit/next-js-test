@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 import Changepassword from "./changepassword";
 import Companyprofile from "./companyprofile";
 import Userprofile from "./userprofile";
+
 import Campign from "./campign";
 import Profoma from "./profoma";
 import { getCookie, removeCookies } from "cookies-next";
@@ -26,16 +27,18 @@ const Profile = () => {
 
 
   const value = getCookie("permissions")
-const data = async() =>{
+  const getData = async() =>{
  if(value){
   const data = await userDetails()
   setUser(data)
+ }else{
+  route.push('/')
  }
 
 }
 
 useEffect(() =>{
-  data()
+  getData()
 },[value])
   const userData = async () => {
     const data = await profileDetails();
