@@ -36,14 +36,15 @@ const Profile = () => {
  }
 
 }
+const userData = async () => {
+  const data = await profileDetails();
+  setPosts(data.message);
+};
 
 useEffect(() =>{
   getData()
+  userData();
 },[value])
-  const userData = async () => {
-    const data = await profileDetails();
-    setPosts(data.message);
-  };
 
   const showCompaney =async () => {
     setCompaney(true);
@@ -90,9 +91,6 @@ useEffect(() =>{
     setAnnounce(true);
   };
 
-  useEffect(() => {
-    userData();
-  }, []);
 
   return (
     <>
