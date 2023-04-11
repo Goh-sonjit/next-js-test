@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AccountContext } from "@/allApi/apicontext";
-import { useDispatch, useSelector } from "react-redux";
 import OverView from "./overView";
 import { useRouter } from "next/router";
 import styles from "../../styles/media.module.scss";
@@ -11,7 +10,7 @@ import { MdArrowUpward, MdOutlineArrowDownward } from "react-icons/md";
 import { CityNameImage, Less, mediaDataApi, mediawithlocation,  mediaFilters, More, addItem, removeItem } from "../../allApi/apis";
 import Singlecard from "./single";
 import Multicard from "./multicard";
-import { setCookie,getCookie } from 'cookies-next';
+import { setCookie,getCookie, removeCookies } from 'cookies-next';
 import { MdOutlineShoppingCart } from "react-icons/md";
 import dynamic from "next/dynamic";
 import Fixednavbar from "@/components/navbar/fixednavbar";
@@ -56,6 +55,10 @@ const Media = () => {
       addRemove({ type: "INCR" });
       add(e)
     }
+  };
+  const getMap = () => {
+    removeCookies("meta_title");
+    router.push("/map");
   };
 
 
@@ -186,9 +189,9 @@ useEffect(() =>{
       locationCkheckbox)
     setSearch(data)
   }
-  const mapData = async () => {
+  const mapData = async (e) => {
     if(search){  
-      setCookie("meta_title", search[0].meta_title)
+      setCookie("meta_title", e)
         router.push("/map");
     }
   }
@@ -360,7 +363,7 @@ useEffect(() =>{
                         <span className="float-end me-2">
                           <MdLocationPin
                             className={`${styles.media_location_logo_map} icon-clr`}
-                          onClick={() => router.push("/map")} />
+                          onClick={getMap} />
                         </span>
                       </div>
                     );

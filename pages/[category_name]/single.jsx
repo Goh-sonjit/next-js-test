@@ -119,7 +119,7 @@ const Singlecard = ({
                         {" "}
                         <div
                           className={`${styles.location} p-2 text-center rounded`}
-                          onClick={(e,i) => mapData(item.meta_title,item.category_name)}
+                          onClick={(e) => mapData(item.meta_title)}
                         >
                         <MdLocationPin
                             className="icon-clr"
