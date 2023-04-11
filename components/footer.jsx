@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import { AccountContext } from "@/allApi/apicontext";
 import { FiPhoneCall } from "react-icons/fi";
 import { BiMailSend } from "react-icons/bi";
+import { setCookie } from "cookies-next";
 import { MdLocationOn } from "react-icons/md";
 import { toast, ToastContainer } from "react-toastify";
 import {
@@ -35,7 +36,11 @@ const Footer = () => {
       }
     }
   };
+  const directlink=(e)=>{
+    setCookie("category_name","traditional-media")
+    setCookie("city_name",e)
 
+  }
   const logo = [
     {
       id: 1,
@@ -211,6 +216,7 @@ const Footer = () => {
                     href={`/${el.value}`}
                     className="text-decoration-none "
                   >
+                 
                     <li className=" py-md-2  text-decoration-none f-heading-clr ">
                       {el.label}
                     </li>
@@ -229,7 +235,7 @@ const Footer = () => {
                     href={`/${el.city}`}
                     className="text-decoration-none "
                   >
-                    <li className=" py-md-2  text-decoration-none f-heading-clr ">
+                    <li className=" py-md-2  text-decoration-none f-heading-clr " onClick={(e) => directlink(el.city)}>
                       {el.name}
                     </li>
                   </Link>

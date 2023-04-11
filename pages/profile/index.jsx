@@ -37,8 +37,12 @@ const Profile = () => {
 
 }
 const userData = async () => {
-  const data = await profileDetails();
-  setPosts(data.message);
+  if(value){
+    const data = await profileDetails();
+    setPosts(data.message);
+   }else{
+    route.push('/')
+   }
 };
 
 useEffect(() =>{
