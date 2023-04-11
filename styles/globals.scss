@@ -72,6 +72,7 @@ input::-webkit-inner-spin-button {
   transform: translate(-50%, -50%) !important;
   width: 70vw !important;
   height: auto !important;
+  min-height: 70vh !important;
 }
 // @media screen and (max-width: 1366px) {  
 //   .modal-content {
