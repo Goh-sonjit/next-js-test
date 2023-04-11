@@ -1,11 +1,8 @@
 import React, { useState, useEffect, useContext } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useRouter } from "next/router";
-// import { AccountContext } from "../../apis/apicontext";
 import { AccountContext } from "@/allApi/apicontext";
 import { Dropdown } from "react-bootstrap";
-// import "react-calendar/dist/Calendar.css";
-
 import Link from "next/link";
 import { RiDeleteBinLine } from "react-icons/ri";
 import { getCookie, removeCookies } from "cookies-next";
@@ -13,12 +10,12 @@ import { FaRupeeSign } from "react-icons/fa";
 import { FaCalendarAlt } from "react-icons/fa"; 
 import styles from '../../styles/cart.module.scss';
 import instance from "@/allApi/axios";
-import dynamic from "next/dynamic";
 import { toast, ToastContainer } from "react-toastify";
 import { cartitems, mediaDataApi, removeItem, userDetails } from "@/allApi/apis";
 import Loader from "@/components/loader";
 import { DateRange } from "react-date-range";
 import { addDays } from "date-fns";
+import Fixednavbar from "@/components/navbar/fixednavbar";
 
 
 
@@ -147,12 +144,10 @@ const submitAllProduct = async () => {
     (totalPrice, item) => totalPrice + parseInt(item.price * item.days),
     0
   );
-  const Fixednavbar = dynamic(() => import("@/components/navbar/fixednavbar"),{
-    ssr:false
-  });
+
   return (
     <>
-      <Fixednavbar />
+    <Fixednavbar/>
   
       <div
         className={`container-xxl  container-xl container-lg container-md  ${styles.cart_content} cart-content`}
