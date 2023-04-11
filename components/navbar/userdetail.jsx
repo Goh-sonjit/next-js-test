@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { toast, ToastContainer } from "react-toastify";
 import {useSession, signIn, signOut} from 'next-auth/react'
 import { GoogleLogout } from "react-google-login";
@@ -23,6 +24,7 @@ import instance from "@/allApi/axios";
 import { getCookie, removeCookies } from "cookies-next";
 
 const Userdetail = () => {
+
   const route = useRouter()
   const {data:session} = useSession()
   const { handleClose, handleShow,show, addRemove ,initalState} = useContext(AccountContext);
@@ -65,7 +67,6 @@ const handelLogout = async () => {
 const data = async() =>{
  if(value){
   const data = await userDetails()
-
   setUser(data)
  }
 

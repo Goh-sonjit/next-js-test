@@ -1,20 +1,23 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AccountContext } from "@/allApi/apicontext";
+import { useDispatch, useSelector } from "react-redux";
 import OverView from "./overView";
 import { useRouter } from "next/router";
 import styles from "../../styles/media.module.scss";
 import { MdLocationPin } from "react-icons/md";
 import { BsGrid } from "react-icons/bs";
-import dynamic from "next/dynamic";
 import { CiGrid2H } from "react-icons/ci";
 import { MdArrowUpward, MdOutlineArrowDownward } from "react-icons/md";
 import { CityNameImage, Less, mediaDataApi, mediawithlocation,  mediaFilters, More, addItem, removeItem } from "../../allApi/apis";
 import Singlecard from "./single";
-import Medialogo from "@/components/mediaBranding";
 import Multicard from "./multicard";
 import { setCookie,getCookie } from 'cookies-next';
 import { MdOutlineShoppingCart } from "react-icons/md";
+import dynamic from "next/dynamic";
 const Fixednavbar = dynamic(() => import("@/components/navbar/fixednavbar"),{
+  ssr:false
+});
+const Medialogo = dynamic(() => import("@/components/mediaBranding"),{
   ssr:false
 });
 const Media = () => {
@@ -194,7 +197,7 @@ useEffect(() =>{
     <>
       <Fixednavbar />
       <div className="d-hide drop-nd"></div>
-      {/* <Medialogo category_name={category_name} city_name={city_name} /> */}
+      <Medialogo category_name={category_name} city_name={city_name} />
       <div className=" container-xxl  container-xl container-lg container-md  mt-4 mb-5 p-0 media-con rounded">
         <div className={`mt-md-5 pt-md-3  list ${styles.media_choice} d-flex`}>
           <h2 aria-expanded={listings} onClick={toggle}>

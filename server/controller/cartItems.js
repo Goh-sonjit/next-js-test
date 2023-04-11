@@ -116,7 +116,7 @@ exports.ppt = catchError(async (req, res) => {
           if (!file) {
             reject(new Error("Invalid file"));
           }
-   
+     
           resolve(file);
         }
       });
@@ -488,7 +488,7 @@ exports.deleteFromCart = catchError(async (req, res, next) => {
 
 
 exports.useritems = catchError(async (req, res, next) => {
-
+    console.log("runned");
     const user = req.id
     const key = `${user}cart`
     const data = await client.get(key)

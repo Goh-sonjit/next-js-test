@@ -2,7 +2,6 @@ import React from "react";
 import { CityNameImage } from "@/allApi/apis";
 const Medialogo = ({ category_name, city_name }) => {
 
-
   return (
     <>
       <div className="media-branding">

@@ -1,5 +1,7 @@
 import React, { useEffect } from "react";
 import "@/styles/globals.scss";
+
+
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -12,10 +14,14 @@ import { SSRProvider } from "react-bootstrap";
 import {SessionProvider} from 'next-auth/react'
 import AccountProvider from "@/allApi/apicontext";
 import Footer from "@/components/footer";
+import dynamic from "next/dynamic";
+// const Feedback = dynamic(() => import("@/components/feedback"), {
+//   ssr: false,
+// });
 
 
 
-export default function App({ Component, pageProps, session }) {
+function App({ Component, pageProps, session }) {
   useEffect(() => {
     import("bootstrap/dist/js/bootstrap.js");
   }, []);
@@ -27,11 +33,13 @@ export default function App({ Component, pageProps, session }) {
           <SessionProvider session={session}>
           <Component {...pageProps} />
           </SessionProvider>
-
-    
+  
+          {/* <Feedback/> */}
           <Footer />
         </AccountProvider>
       </SSRProvider>
      
   );
 }
+
+export default App;

@@ -14,7 +14,7 @@ const navbarDropdown = () => {
                 <li>
                 
                   <Link
-                    href={`/traditional-ooh-media/delhi`}
+                    href={`/traditional-ooh-media`}
                     className="button text-light text-nowrap is-small is-info text-decoration-none"
                   >
                  
@@ -24,7 +24,7 @@ const navbarDropdown = () => {
                 <li>
                 
                   <Link
-                    href={`/mall-media/delhi`}
+                    href={`/mall-media`}
                     className="button text-light text-nowrap is-small is-info text-decoration-none"
                   >
                    
@@ -34,7 +34,7 @@ const navbarDropdown = () => {
                 <li>
                 
                   <Link
-                    href={`/airport-media/delhi`}
+                    href={`/airport-media`}
                     className="button text-light text-nowrap is-small is-info text-decoration-none"
                   >
                    
@@ -45,7 +45,7 @@ const navbarDropdown = () => {
                 <li>
                 
                   <Link
-                    href={`/office-media/delhi`}
+                    href={`/office-media`}
                     className="button text-light text-nowrap is-small is-info text-decoration-none"
                   >
                    
@@ -59,7 +59,7 @@ const navbarDropdown = () => {
                 <li>
                 
                   <Link
-                    href={`/digital-media/delhi`}
+                    href={`/digital-media`}
                     className="button text-light text-nowrap is-small is-info text-decoration-none"
                   >
                     Digital Screen
@@ -68,7 +68,7 @@ const navbarDropdown = () => {
                 {/* <li>
                 
                   <Link
-                    href={`/inFlight-branding/delhi`}
+                    href={`/inFlight-branding`}
                     className="button text-light text-nowrap is-small is-info text-decoration-none"
                   >
                     InFlight Branding
@@ -77,7 +77,7 @@ const navbarDropdown = () => {
                 <li>
                 
                   <Link
-                    href={`/transit-media/delhi`}
+                    href={`/transit-media`}
                     className="button text-light text-nowrap is-small is-info text-decoration-none"
                   >
                     Transit Media

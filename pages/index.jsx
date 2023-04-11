@@ -9,13 +9,12 @@ import dynamic from "next/dynamic";
 const Trendingcity = dynamic(() => import("@/components/trendingcity"),{
   ssr:false
 });
-const Floatingnavbar = dynamic(() => import("@/components/navbar/flotingnavbar"),{
-  ssr:false
-});
 const NavbarH = dynamic(() => import("@/components/navbar/navbar"),{
   ssr:false
 });
-
+const Floatingnavbar = dynamic(() => import("@/components/navbar/flotingnavbar"),{
+  ssr:false
+});
 
 export default function Home() {   
   return (
@@ -46,7 +45,6 @@ export default function Home() {
       </Head>
       <main>
         <NavbarH />
-        {/* <MyComponent /> */}
         <Floatingnavbar/>
         <section>
           <Searchmedia />
