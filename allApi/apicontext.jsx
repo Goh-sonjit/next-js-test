@@ -1,22 +1,21 @@
 import React, { useState,createContext, useReducer } from 'react';
 import instance from './axios';
-import { useSelector } from "react-redux";
+import { getCookie } from 'cookies-next';
 
 export const AccountContext = createContext(null);
 
 export const AccountProvider = ({ children }) => {
   
-  const { user, loading } = useSelector((state) => state.user);
   const [show, setShow] = useState(false);
   var [initalState, setInitalState] = useState(0)
+  let pdata = getCookie('permissions')
+
   const item = async () => {
-    if (localStorage.getItem("permissions")) {
-      if(loading == false && user.message !== "No Token Found"){
+      if(pdata){
         const { data } = await instance.get(`forgetPass`)
         if(data.message == "InValid Token"){
           setInitalState(0);
           return initalState;
-    
         }else{
           setInitalState(data[0].item);
           return initalState;
@@ -24,7 +23,7 @@ export const AccountProvider = ({ children }) => {
       }else{
         return initalState
       }
-    }
+    
 }
 
   const reducer = (state, action) => {
