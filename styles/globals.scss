@@ -1,5 +1,11 @@
 @import "../assets/scss/variables";
 
+//Global font
+* {
+  font-family: "Outfit", sans-serif !important;
+}
+
+
 .prf-content {
   * {
     -webkit-box-sizing: border-box;
@@ -249,10 +255,7 @@ display: none;
     box-shadow: none;
   }
 }
-* {
-  // font-family: "Poppins "!important;
-  font-family: "Outfit", sans-serif !important;
-}
+
 .enqry {
   .slick-next:before {
     display: none !important;

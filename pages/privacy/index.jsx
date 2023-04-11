@@ -5,8 +5,7 @@ const Privacy = () => {
   return (
     <section>
           <Fixednavbar/>
-          <div className="d-hide drop-nd" >
-      </div>
+     
       <Branding title="Privacy Policy"/>
         <div className="container-xxl  container-xl container-lg container-md">
             <div className="row my-5 py-3">
