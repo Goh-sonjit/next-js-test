@@ -72,14 +72,12 @@ const Details = () => {
 
   
   const addonCart = async (e) => {
-    if (!localStorage.getItem("permissions")) {
+    const data = await addItem(e.code, e.category_name)
+    if(data.message == "Login First"){
       handleShow()
-     
-    } 
-    else {
+    }else{
       addRemove({ type: "INCR" });
-      addRemove({ type: "INCR" });
-      add(e);
+      add(e)
     }
   };
   const removefroCart = async (obj) => {
