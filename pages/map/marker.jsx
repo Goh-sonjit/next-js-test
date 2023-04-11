@@ -7,7 +7,7 @@ import styles from '../../styles/markers.module.scss'
 import { markersPosition } from "@/redux/adminAction";
 
 const Markers = ({ markers, removefromCart, addonCart}) => {
-  console.log(markers);
+
   const [map, setMap] = useState(null);
   const [hasmarker, sethasmarker] = useState(false);
   const [iconfilter, setSearch] = useState([]);

@@ -66,14 +66,11 @@ const Details = () => {
         category_name: category_name,
       });
       setPosts(data);
-      console.log(data);
+ 
     }
   };
 
-  const locatetologin = async () => {
-    localStorage.setItem("locate", `/services/${category_name}/${meta_title}`);
-    handleShow()
-  };
+  
   const addonCart = async (e) => {
     if (!localStorage.getItem("permissions")) {
       handleShow()

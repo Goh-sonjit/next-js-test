@@ -3,9 +3,6 @@ import { CityNameImage } from "@/allApi/apis";
 const Medialogo = ({ category_name, city_name }) => {
 
 
-console.log(category_name)
-
-
   return (
     <>
       <div className="media-branding">

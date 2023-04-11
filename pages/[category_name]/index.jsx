@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AccountContext } from "@/allApi/apicontext";
-import { useDispatch, useSelector } from "react-redux";
 import OverView from "./overView";
 import { useRouter } from "next/router";
 import styles from "../../styles/media.module.scss";
@@ -9,13 +8,15 @@ import { BsGrid } from "react-icons/bs";
 import { CiGrid2H } from "react-icons/ci";
 import { MdArrowUpward, MdOutlineArrowDownward } from "react-icons/md";
 import { CityNameImage, Less, mediaDataApi, mediawithlocation,  mediaFilters, More, addItem, removeItem } from "../../allApi/apis";
-import Fixednavbar from "@/components/navbar/fixednavbar";
+import dynamic from "next/dynamic";
 import Medialogo from "@/components/mediaBranding";
 import Singlecard from "./single";
 import Multicard from "./multicard";
 import { setCookie,getCookie } from 'cookies-next';
 import { MdOutlineShoppingCart } from "react-icons/md";
-
+const Fixednavbar = dynamic(() => import("@/components/navbar/fixednavbar"),{
+  ssr:false
+});
 const Media = () => {
   const router = useRouter();
   const [search, setSearch] = useState([])

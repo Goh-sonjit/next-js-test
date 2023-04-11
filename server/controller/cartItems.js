@@ -116,7 +116,7 @@ exports.ppt = catchError(async (req, res) => {
           if (!file) {
             reject(new Error("Invalid file"));
           }
-          console.log(file);
+   
           resolve(file);
         }
       });
