@@ -22,10 +22,8 @@ import {
 import { FaFilter, FaRupeeSign, FaMapMarked } from "react-icons/fa";
 import { useRouter } from "next/router";
 import { setCookie,getCookie } from 'cookies-next';
-import dynamic from "next/dynamic";
-const Fixednavbar = dynamic(() => import("@/components/navbar/fixednavbar"),{
-  ssr:false
-});
+import Fixednavbar from "@/components/navbar/fixednavbar";
+
 
 const Map = () => {
   const router = useRouter();
@@ -152,7 +150,7 @@ const Map = () => {
 
   return (
     <>
-      <Fixednavbar />
+<Fixednavbar/>
       <div className="container-fluid" id={styles.map_body}>
         <div className="row" id={styles.map_view_row}>
           <div className="col-lg-3 col-md-3 col-sm-12 p-0 border-end position-relative">

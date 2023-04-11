@@ -1,8 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Nav from "react-bootstrap/Nav";
-import { MdLocationPin } from "react-icons/md";
 import Navbar from "react-bootstrap/Navbar";
-import Userdetail from "./userdetail";
 import { useRouter } from "next/router";
 import styles from "../../styles/navbarHome.module.scss";
 import dynamic from "next/dynamic";
@@ -14,7 +12,7 @@ const NavbarH = () => {
     removeCookies("meta_title");
     route.push("/map");
   };
-  const LoginN  = dynamic(() => import("@/components/navbar/flotingnavbar"),{
+  const Userdetail  = dynamic(() => import("./userdetail"),{
     ssr:false
   });
 
