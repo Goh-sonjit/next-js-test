@@ -3,9 +3,9 @@ import { mediaDataApi, priceSubIllu } from "@/allApi/apis";
 import Multirangeslider from "./multirangeslider";
 import styles from '../../styles/map.module.scss'
 
-const Mapfilters = ({slice}) => {
-  const [price, setprice] = useState([]);
-  const [mediaData, setMediadata] = useState([]);
+const Mapfilters = ({search, setSearch}) => {
+const [price, setprice] = useState([]);
+const [mediaData, setMediadata] = useState([]);
 const [locationData, setlocationData] = useState([]);
 const [query,setQuery]=useState('');
 const [categoryData, setcategoryData] = useState([]);
@@ -15,14 +15,11 @@ const [locationCkheckbox,setLocationCkheckbox] = useState([])
 const [table, setCategory] = useState([])
 const [city, setCity] = useState([])
 
-
- 
-
 const apiforFillters = async () => {
- if(slice.length > 0){  
-  const category_name = slice[0].category_name;
+ if(search.length > 0){  
+  const category_name = search[0].category_name;
   setCategory(category_name)
-  const city_name = slice[0].city_name;
+  const city_name = search[0].city_name;
   setCity(city_name)
   const  data = await mediaDataApi (
     category_name,
@@ -32,8 +29,6 @@ const apiforFillters = async () => {
   setlocationData(data)
   setcategoryData(data)
  }
- 
- 
 };
 
 let locations;
@@ -48,8 +43,8 @@ let ILLUMINATION;
 const allIllumations = mediaData.map((illumation) => illumation.illumination);
 ILLUMINATION = [...new Set(allIllumations)];
 
-function categoryFilter(cate) {
-  category.forEach((el) => {
+async function categoryFilter(cate) {
+  category.forEach(async(el) => {
     if (el === cate && categoryArray.indexOf(el) > -1) {
       categoryArray.splice(categoryArray.indexOf(el), 1);
       setCategoryArray(categoryArray);
@@ -58,10 +53,11 @@ function categoryFilter(cate) {
       setCategoryArray(categoryArray);
     }
   });
-  const data = priceSubIllu(categoryArray, price, singlemedia, table, city, locationCkheckbox)
+  const data = await priceSubIllu(categoryArray, price, singlemedia, table, city, locationCkheckbox)
+  setSearch(data)
 }
 
-function locationFilter(loca) {
+async function locationFilter(loca) {
   locations.forEach((el) => {
     if (el === loca && locationCkheckbox.indexOf(el) > -1) {
       locationCkheckbox.splice(locationCkheckbox.indexOf(el), 1);
@@ -71,10 +67,11 @@ function locationFilter(loca) {
       setLocationCkheckbox(locationCkheckbox);
     }
   });
-  const data = priceSubIllu(categoryArray, price, singlemedia, table, city, locationCkheckbox)
+  const data = await priceSubIllu(categoryArray, price, singlemedia, table, city, locationCkheckbox)
+  setSearch(data)
 } 
 
-function mediaTypeFilter(cate) {
+async function mediaTypeFilter(cate) {
 ILLUMINATION.forEach((el) => {
   if (el === cate && singlemedia.indexOf(el) > -1) {
     singlemedia.splice(singlemedia.indexOf(el), 1);
@@ -84,13 +81,14 @@ ILLUMINATION.forEach((el) => {
     setsingleMedia(singlemedia);
   }
 })
-const data = priceSubIllu(categoryArray, price, singlemedia, table, city, locationCkheckbox)
+const data = await priceSubIllu(categoryArray, price, singlemedia, table, city, locationCkheckbox)
+setSearch(data)
 }
 
 
 useEffect(() => {
   apiforFillters()
-},[slice])
+},[search])
 return (
   <div
       className="filter-items p-2 accordion accordion-collapse collapse"

@@ -280,8 +280,6 @@ export const userDetails = async () => {
 };
 
 export const priceSubIllu = async(category_name, price, illumination, table, city, locations) => {
-  
-
       const { data } = await instance.post(`filters`, {
         category_name,
         price,
@@ -290,7 +288,6 @@ export const priceSubIllu = async(category_name, price, illumination, table, cit
         city,
         locations,
       });
-
     return data
   };
 

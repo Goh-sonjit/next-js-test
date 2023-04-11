@@ -22,7 +22,10 @@ import {
 import { FaFilter, FaRupeeSign, FaMapMarked } from "react-icons/fa";
 import { useRouter } from "next/router";
 import { setCookie,getCookie } from 'cookies-next';
-import Fixednavbar from "@/components/navbar/fixednavbar";
+import dynamic from "next/dynamic";
+const Fixednavbar = dynamic(() => import("@/components/navbar/fixednavbar"),{
+  ssr:false
+});
 
 const Map = () => {
   const router = useRouter();
@@ -64,7 +67,7 @@ const Map = () => {
 
 
   const removefromCart = async (obj) => {
-    const data = await removeItem(obj.code)
+    const data = await removeItem(obj)
     if(data.message == 'Done'){
       addRemove({ type: "DECR" });
       remove(obj);
@@ -354,7 +357,7 @@ const Map = () => {
                   fnmedia={search}
                 />
               ) : null}
-              <Mapfilter slice={slice} />
+              <Mapfilter search={search} setSearch={setSearch} />
             </div>
 
             {/* <div id={` ${styles.map_view_mobile}`}>
