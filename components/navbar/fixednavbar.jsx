@@ -11,7 +11,6 @@ import { MdOutlineSearch, MdLocationPin } from "react-icons/md";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { Dropdown } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
-// import { mediawithcity } from "../../action/adminAction";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import Citylocation from "../cityLocation";
@@ -20,7 +19,7 @@ import styles from "../../styles/fixedNavbar.module.scss";
 import NavbarDropdown from "./dropdown";
 // import Citylocation from "../cityLocation/citylocation";
 import { useRouter } from "next/router";
-import { mediawithcity } from "@/redux/adminAction";
+
 
 
 const Fixednavbar = () => {

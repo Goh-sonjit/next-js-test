@@ -4,13 +4,14 @@ import { GoogleMap, InfoWindow, Marker } from "@react-google-maps/api";
 import Link from 'next/link'
 import Streetview from "./streetview";
 import styles from '../../styles/markers.module.scss'
-import { markersPosition } from "@/redux/adminAction";
+import { markersPosition } from "@/allApi/apis";
 
-const Markers = ({ markers, removefromCart, addonCart}) => {
+
+const Markers = ({ markers, removefromCart, addonCart, setSearch}) => {
 
   const [map, setMap] = useState(null);
   const [hasmarker, sethasmarker] = useState(false);
-  const [iconfilter, setSearch] = useState([]);
+  const [iconfilter] = useState([]);
 
   markers.forEach((e) => {
   
@@ -223,9 +224,9 @@ const Markers = ({ markers, removefromCart, addonCart}) => {
         />
       ) : (
         <>
-             {/* <div className="text-center me-5 pe-5">
+             <div className="text-center me-5 pe-5">
              <button className={`${styles.back_map} w-25 `} onClick={onBoundsChanged} >Search in this area</button>
-             </div> */}
+             </div>
           <GoogleMap
             onLoad={handleOnLoad}
             zoom={"8"}

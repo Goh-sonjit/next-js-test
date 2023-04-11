@@ -23,7 +23,7 @@ const Footer = () => {
     e.preventDefault();
     if (!emailformate.test(email)) {
       count = +1;
-      setEror(true);
+    
     } else if (count === 0) {
       const data = await enquiryApi(email);
       if (data.success == true) {
@@ -31,7 +31,7 @@ const Footer = () => {
         toast(
           "Thank for becoming our member, You will get best deals from us."
         );
-        setEror(false);
+
       }
     }
   };

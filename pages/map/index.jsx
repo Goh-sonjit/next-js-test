@@ -355,7 +355,6 @@ const Map = () => {
               {search && search.length > 0 ? (
                 <Iconsselection
                   slice={slice}
-                  fnmedia={search}
                 />
               ) : null}
               <Mapfilter search={search} setSearch={setSearch} />
@@ -401,7 +400,7 @@ const Map = () => {
             {
           !mapMarker.length > 0 ?
           isLoaded && slice && slice.length > 0 ? (
-            <Markers markers={slice} removefromCart={removefromCart} addonCart={addonCart} />
+            <Markers markers={slice} setSearch={setSearch} removefromCart={removefromCart} addonCart={addonCart} />
           ) : 
           
           <h5 className="text-center m-3">No Data Found </h5>

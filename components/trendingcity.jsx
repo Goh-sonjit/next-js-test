@@ -3,7 +3,7 @@ import Slider from "react-slick";
 import Link from "next/link";
 import { mediaDataApi } from "@/allApi/apis";
 import Loader from "../components/loader";
-import { mediawithcity } from "@/redux/adminAction";
+
 
 const Trendingcity = () => {
 

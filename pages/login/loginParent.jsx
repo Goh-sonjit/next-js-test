@@ -3,7 +3,6 @@ import Login from './login';
 
 import Sign from "./signup";
 import ForgetPass from "./forgetPass";
-import { userDetails } from "@/redux/adminAction";
 import { toast, ToastContainer } from "react-toastify";
 import {
   changePasswordApi,
@@ -18,9 +17,9 @@ import {
   sendOTP,
  emailformate } from "@/allApi/apis";
 import { useGoogleLogin } from "react-google-login";
-import Cookies from "js-cookie";
+
 import { MdOutlineError } from "react-icons/md";
-import navigate  from "next/navigation";
+
 import {useRouter} from 'next/navigation'
 import styles from '../../styles/login.module.scss';
 import { setCookie } from "cookies-next";
@@ -30,7 +29,6 @@ import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 const LoginN = () => {
 
   const [name, setName] = useState("");
-  // const { addRemove } = useContext(AccountContext);
   const [nameValidate, setNameValidate] = useState();
   const [email, setEmail] = useState();
   const [emailsValidate, setEmailsValidate] = useState();

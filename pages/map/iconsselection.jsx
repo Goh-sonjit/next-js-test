@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 // import Slider from "./slider.jsx";
-import {iconFiltersData} from "@/redux/adminAction";
+import { iconFiltersData } from "@/allApi/apis";
 import {MdSchool, MdOutlineRestaurantMenu } from "react-icons/md";
 import {BiDrink } from "react-icons/bi";
 import {SiHotelsdotcom } from "react-icons/si";
