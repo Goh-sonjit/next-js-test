@@ -31,11 +31,13 @@ const Markers = ({ markers, nsearch, removefromCart, addonCart, setSearch}) => {
   //   console.log(combinedArray);
 
     const updateCombinedArray = () => {
-      const newArray = [].concat(...nsearch);
+      if(nsearch){
+        const newArray = [].concat(...nsearch);
       newArray.forEach((e) => {
         e["position"] = { lat: e.lat, lng: e.lng };
       });
       setCombinedArray(newArray);
+      }
     };
   
 
@@ -225,7 +227,7 @@ const Markers = ({ markers, nsearch, removefromCart, addonCart, setSearch}) => {
       sethasmarker(true);
     }
     },[streetView])
-    
+
     useEffect(() => {
       updateCombinedArray()
       },[nsearch])
