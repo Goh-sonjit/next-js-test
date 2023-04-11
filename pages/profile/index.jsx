@@ -11,8 +11,6 @@ import Profoma from "./profoma";
 import Invoice from "./invoice";
 import Announcement from "./announcement";
 
-import { useSelector } from "react-redux";
-
 
 const Profile = () => {
   const route = useRouter()
@@ -23,7 +21,7 @@ const Profile = () => {
   const [profoma, setProfoma] = useState(false);
   const [invoice, setInvoice] = useState(false);
   const [announce, setAnnounce] = useState(false);
-  const { user, loading } = useSelector((state) => state.user);
+
 
 
 
@@ -91,7 +89,7 @@ if(value){
             <div className="card">
               {loading == false && (
                 <img
-                  src={user[0].profile_image}
+                  src= {user && user.map((el) =>el.profile_image)}
                   className="card-img-top p-3 pb-2"
                   alt="user-profile"
                   onError={(e) =>
