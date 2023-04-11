@@ -8,7 +8,7 @@ export const AccountProvider = ({ children }) => {
   
   const [show, setShow] = useState(false);
   var [initalState, setInitalState] = useState(0)
-  let pdata = getCookie('permissions')
+
 
   const item = async () => {
     const value = getCookie("permissions")
