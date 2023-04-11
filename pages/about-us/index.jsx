@@ -1,8 +1,10 @@
-import Fixednavbar from "@/components/navbar/fixednavbar";
+
 import React, { useState } from "react";
 import Head from "next/head";
 import Branding from "../../components/branding";
 import clientslogo from "./clients";
+import dynamic from "next/dynamic";
+import { useRouter } from "next/router";
 
  
 const About = () => {
@@ -18,9 +20,14 @@ const About = () => {
     }
   };
 
-  // const toContact = () => {
-  //   window.location.href = "/contact-us";
-  // };
+  const route=useRouter();
+  const Fixednavbar = dynamic(() => import("@/components/navbar/fixednavbar"),{
+    ssr:false
+  });
+
+  const toContact = () => {
+    route.push("/contact-us")
+  };
 
   return (
     <>
@@ -230,7 +237,7 @@ const About = () => {
             ) : (
               <button
                 className="load-button mt-3 mb-5 p-2 "
-                // onClick={() => toContact()}
+                onClick={() => toContact()}
               >
                 Let&#39;s Talk <i className="bi bi-arrow-right-square"></i>
               </button>

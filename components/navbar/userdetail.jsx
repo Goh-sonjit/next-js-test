@@ -54,11 +54,12 @@ useEffect(() =>{
   }
 },[session])
 
+
 const handelLogout = async () => {
-  route.push('/')
-    signOut().then(async() =>{
-      await logoutUser()
-      removeCookies("permissions")
+  signOut().then(async() =>{
+    await logoutUser()
+    removeCookies("permissions")
+    route.push('/about-us')
     })
   };
 

@@ -88,7 +88,7 @@ export const getAllCity = async (value) => {
 };
 
 export const logoutUser = async () => {
-  const data = await instance.get("sociallogin");
+  const {data} = await instance.get("sociallogin");
   return data;
 }
 
