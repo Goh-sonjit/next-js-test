@@ -1,10 +1,10 @@
 import React from 'react';
 import Branding from "../../components/branding";
-// import Fixednavbar from "../../components/navbar/fixednavbar";
+import Fixednavbar from "../../components/navbar/fixednavbar";
 const Privacy = () => {
   return (
     <section>
-          {/* <Fixednavbar/> */}
+          <Fixednavbar/>
           <div className="d-hide drop-nd" >
       </div>
       <Branding title="Privacy Policy"/>
