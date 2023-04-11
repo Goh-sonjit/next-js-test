@@ -34,11 +34,13 @@
   }
   .loc_select[aria-expanded=true]{
     background-color: #d7d7d7;
-      color: white; 
+      color: rgb(43, 43, 43); 
+      border-radius: 3px;
   }
   .loc_select:hover{
     background-color: #d7d7d7;
-      color: white;
+      color: rgb(43, 43, 43); 
+      border-radius: 3px;
       
   }
   .media_filter_text_card_detail {
