@@ -119,7 +119,7 @@ const Iconsselection = ({slice}) => {
   let array = [...uniqueValues];
   let arrayJJson = JSON.stringify(array);
   let newString = arrayJJson.replace(/\[|\]/g, '');
-  const data = iconFiltersData(distance, hording, table, city, minLatitude, maxLatitude , newString)
+  const data = await iconFiltersData(distance, hording, table, city, minLatitude, maxLatitude , newString)
   }
 
   return (
