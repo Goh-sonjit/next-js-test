@@ -316,6 +316,7 @@ export const priceSubIllu = async(category_name, price, illumination, table, cit
   
 
   export const addItem = async(mediaid, mediatype) => {
+    console.log(mediaid, mediatype);
       const { data } = await instance.put(`cart`, {
         mediaid,
         mediatype,
