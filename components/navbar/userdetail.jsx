@@ -56,11 +56,11 @@ useEffect(() =>{
 
 
 const handelLogout = async () => {
-  signOut().then(async() =>{
-    await logoutUser();
-    removeCookies("permissions")
-    route.push('/about-us')
-    })
+  // signOut()
+  await logoutUser();
+  route.push('/')
+  removeCookies("permissions")
+  
   };
 
   const value = getCookie("permissions")

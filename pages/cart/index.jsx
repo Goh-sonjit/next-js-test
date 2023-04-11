@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 import { AccountContext } from "@/allApi/apicontext";
 import { Dropdown } from "react-bootstrap";
 // import "react-calendar/dist/Calendar.css";
+
 import Link from "next/link";
 import { RiDeleteBinLine } from "react-icons/ri";
 import { getCookie, removeCookies } from "cookies-next";
@@ -20,7 +21,9 @@ import { DateRange } from "react-date-range";
 import { addDays } from "date-fns";
 
 
+
 const Cart = () => {
+  const route = useRouter()
   const [Start, setStart] = useState(new Date());
   let defaultEndDate = new Date(new Date().setDate(Start.getDate() + 4));
   const [End, setEnd] = useState(defaultEndDate);
@@ -40,7 +43,10 @@ const Cart = () => {
 
 
 const getData = async() =>{
-  const data = await cartitems()
+  const value = getCookie("permissions")
+  if(value){
+    const data = await cartitems()
+
   if(data){
     data.map((obj, i) => {
       obj["days"] = 5;
@@ -48,7 +54,12 @@ const getData = async() =>{
       obj["endDate"] = End;
     });
   }
+
+  
   setPosts(data);
+  }else{
+    route.push('/')
+  }
 }
 
   useEffect(() => {

@@ -88,7 +88,7 @@ export const getAllCity = async (value) => {
 };
 
 export const logoutUser = async () => {
-  const {data} = await instance.get("sociallogin");
+  const data = await instance.get("sociallogin");
   return data;
 }
 
@@ -228,10 +228,6 @@ export const mediaFilters = async (category_name, illunation, categorys, city_na
   return data
 }
 
-export const cartItemsApi = async () => {
-  const { data } = await instance.get("cart/cartitems");
-  return data
-}
 
 export const loginOTP = async (otp) => {
   const { data } = await instance.put("otp/mobileOtp", { otp });
@@ -272,7 +268,7 @@ export const singlemnedia = async(meta_title, category_name) =>{
 
 export const userDetails = async () => {
 
- const { data } = await instance.get("loginApis", {
+    const { data } = await instance.get("loginApis", {
       withCredentials: true,
     });
     return data
@@ -280,6 +276,8 @@ export const userDetails = async () => {
 };
 
 export const priceSubIllu = async(category_name, price, illumination, table, city, locations) => {
+  
+
       const { data } = await instance.post(`filters`, {
         category_name,
         price,
@@ -288,6 +286,7 @@ export const priceSubIllu = async(category_name, price, illumination, table, cit
         city,
         locations,
       });
+
     return data
   };
 
@@ -309,13 +308,15 @@ export const priceSubIllu = async(category_name, price, illumination, table, cit
      return data
   };
 
-  export const cartitems =  async () => {
-      const { data } = await instance.get(`cart`)
+  export const cartitems = async () => {
+   
+      const { data } = await instance.get(`cart`);
     return data
   };
   
 
   export const addItem = async(mediaid, mediatype) => {
+    console.log(mediaid, mediatype);
       const { data } = await instance.put(`cart`, {
         mediaid,
         mediatype,

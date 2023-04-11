@@ -55,13 +55,14 @@ const Map = () => {
 
   const [mapMarker, setPosts] = useState([]);
 
-  const addonCart = async (e) => {
-    const data = await addItem(e.code, e.category_name)
+  const addonCart = async (code, category_name) => {
+   
+    const data = await addItem(code, category_name)
     if(data.message == "Login First"){
       handleShow()
     }else{
       addRemove({ type: "INCR" });
-      add(e)
+      add(code)
     }
   };
 
@@ -268,7 +269,7 @@ const Map = () => {
                                                 onClick={() =>
                                                   removefromCart(
                                                     item.code,
-                                                    item.category_name
+                                                 
                                                   )
                                                 }
                                                 className={`${styles.addonCart} icon-clr`}
@@ -277,7 +278,7 @@ const Map = () => {
                                               <img
                                                 alt="cart-icon"
                                                 src="../images/web_pics/A-cart.png"
-                                                onClick={(e) => addonCart(item.code)
+                                                onClick={(e) => addonCart(item.code, item.category_name)
                                                 }
                                                 className={`${styles.addonCart} icon-clr`}
                                               />
