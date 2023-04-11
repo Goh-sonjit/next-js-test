@@ -229,7 +229,7 @@ exports.refreshToken = catchError(async (req, res, next) => {
 })
 
 exports.getuser = catchError(async (req, res) => {
-    console.log("hii");
+
     const userId = req.id;
     if (!userId) {
         return res.status(404).json({message: "Token Valid"})

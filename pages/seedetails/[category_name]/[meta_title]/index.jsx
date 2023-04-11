@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AccountContext } from "@/allApi/apicontext";
 import { Link } from "next/link";
-import { enquiryApi, emailformate } from "@/allApi/apis";
+import { enquiryApi, emailformate,  addItem, removeItem, singlemnedia } from "@/allApi/apis";
 import { MdLocationPin } from "react-icons/md";
 import { toast, ToastContainer } from "react-toastify";
 import instance from "@/allApi/axios";
@@ -9,7 +9,6 @@ import Fixednavbar from "../../../../components/navbar/fixednavbar";
 
 import { Carousel } from "react-responsive-carousel";
 import Loader from "@/components/loader";
-import { addItem, removeItem, singlemnedia } from "@/redux/adminAction";
 import { useRouter } from "next/router";
 import { setCookie } from "cookies-next";
 
@@ -70,13 +69,15 @@ const Details = () => {
     }
   };
 
-  const locatetologin = async () => {
-    localStorage.setItem("locate", `/services/${category_name}/${meta_title}`);
-    handleShow()
-  };
+  // const locatetologin = async () => {
+  //   localStorage.setItem("locate", `/services/${category_name}/${meta_title}`);
+  //   handleShow()
+  // };
+
+
   const addonCart = async (e) => {
     const data = await addItem(e.code, e.category_name)
-    if(data.message == "Login First"){
+    if(data.message === "Login First"){
       handleShow()
     }else{
       addRemove({ type: "INCR" });
@@ -84,8 +85,11 @@ const Details = () => {
     }
   };
   const removefroCart = async (obj) => {
-    addRemove({ type: "DECR" });
-    remove(obj);
+    const data = await removeItem(obj.code)
+    if(data.message == 'Done'){
+      addRemove({ type: "DECR" });
+      remove(obj);
+    }
   };
 
   const add = (event) => {

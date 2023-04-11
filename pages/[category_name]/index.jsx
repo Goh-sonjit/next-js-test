@@ -9,12 +9,15 @@ import { BsGrid } from "react-icons/bs";
 import { CiGrid2H } from "react-icons/ci";
 import { MdArrowUpward, MdOutlineArrowDownward } from "react-icons/md";
 import { CityNameImage, Less, mediaDataApi, mediawithlocation,  mediaFilters, More, addItem, removeItem } from "../../allApi/apis";
-import Fixednavbar from "@/components/navbar/fixednavbar";
 import Medialogo from "@/components/mediaBranding";
 import Singlecard from "./single";
 import Multicard from "./multicard";
 import { setCookie,getCookie } from 'cookies-next';
 import { MdOutlineShoppingCart } from "react-icons/md";
+import dynamic from "next/dynamic";
+const Fixednavbar = dynamic(() => import("@/components/navbar/fixednavbar"),{
+  ssr:false
+});
 
 const Media = () => {
   const router = useRouter();
@@ -193,7 +196,7 @@ useEffect(() =>{
     <>
       <Fixednavbar />
       <div className="d-hide drop-nd"></div>
-      <Medialogo category_name={category_name} city_name={city_name} />
+      {/* <Medialogo category_name={category_name} city_name={city_name} /> */}
       <div className=" container-xxl  container-xl container-lg container-md  mt-4 mb-5 p-0 media-con rounded">
         <div className={`mt-md-5 pt-md-3  list ${styles.media_choice} d-flex`}>
           <h2 aria-expanded={listings} onClick={toggle}>

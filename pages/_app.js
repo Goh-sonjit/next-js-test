@@ -15,15 +15,11 @@ import {SessionProvider} from 'next-auth/react'
 import AccountProvider from "@/allApi/apicontext";
 import Footer from "@/components/footer";
 import dynamic from "next/dynamic";
-import { createWrapper } from "next-redux-wrapper";
-import Feedback from "@/components/feedback";
-
-// const MyComponent = dynamic(() => import("@/components/feedback"), {
+// const Feedback = dynamic(() => import("@/components/feedback"), {
 //   ssr: false,
 // });
 
-const makeStore = () => store;
-const wrapper = createWrapper(makeStore);
+
 
 function App({ Component, pageProps, session }) {
   useEffect(() => {
@@ -37,8 +33,8 @@ function App({ Component, pageProps, session }) {
           <SessionProvider session={session}>
           <Component {...pageProps} />
           </SessionProvider>
-          {/* <MyComponent /> */}
-          <Feedback/>
+  
+          {/* <Feedback/> */}
           <Footer />
         </AccountProvider>
       </SSRProvider>
@@ -46,4 +42,4 @@ function App({ Component, pageProps, session }) {
   );
 }
 
-export default wrapper.withRedux(App);
+export default App;

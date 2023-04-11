@@ -24,7 +24,7 @@ import instance from "@/allApi/axios";
 import { getCookie, removeCookies } from "cookies-next";
 
 const Userdetail = () => {
-  const dispatch = useDispatch();
+
   const route = useRouter()
   const {data:session} = useSession()
   const { handleClose, handleShow,show, addRemove ,initalState} = useContext(AccountContext);
@@ -102,7 +102,7 @@ if(!data){
   // });
 
 
- console.log(user);
+
   useEffect(() => {
     const handleScroll = () => {
       setScrollY(window.scrollY);

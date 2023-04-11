@@ -21,11 +21,12 @@ const Team = () => {
   return (
     <>
   <Fixednavbar/>
-  <div className="d-hide drop-nd" >
-      </div>
+ <section className="team-area-container">
+
   <Branding title="Our expert team includes the following Gems" />
+ </section>
    
-      <section>
+      <section className="">
         <div className="team-area  pt-0 mb-5 mt-5">
           <div className="container">
             <div className="row">
@@ -68,6 +69,9 @@ const Team = () => {
       <style jsx>
         {
           `
+          .team-area-container{
+            margin-top: 4.1%;
+          }
           .single-team {
             position: relative;
             overflow: hidden;
