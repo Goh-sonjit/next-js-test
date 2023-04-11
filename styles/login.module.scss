@@ -150,3 +150,23 @@
       transform: scale(1.1);
     }
   }
+  @media screen and (max-width: 425px) {
+    .opacitydiv {
+  display: none;
+    }
+    .google_icon {
+      height: 30px;
+      width: 30px;
+   
+    }
+    .linkdin_icon {
+      height: 30px;
+      width: 30px;
+     
+    }
+    .otp_icon {
+      height: 20px;
+      width: 25px;
+  
+    }
+  }
