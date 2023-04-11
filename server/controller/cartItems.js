@@ -464,7 +464,8 @@ exports.processdCart = catchError(async (req, res) => {
 
 exports.deleteFromCart = catchError(async (req, res, next) => {
     const userid = req.id
-    const { code } = req.body;  
+    const { code } = req.body; 
+    const key = `${userid}+user` 
     const data = await client.get(code)
    if(data){
     return  res.send(JSON.parse(data))
@@ -487,7 +488,7 @@ exports.deleteFromCart = catchError(async (req, res, next) => {
 
 
 exports.useritems = catchError(async (req, res, next) => {
-    console.log("runned");
+
     const user = req.id
     const key = `${user}cart`
     const data = await client.get(key)

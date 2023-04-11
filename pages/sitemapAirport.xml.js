@@ -1,5 +1,4 @@
 import instance from "@/allApi/axios";
-import { useEffect } from "react";
 
 function generateSiteMap(data) {
  
