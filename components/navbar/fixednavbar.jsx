@@ -4,24 +4,24 @@ import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import { getAllCity } from "@/allApi/apis";
 import { DropdownButton } from "react-bootstrap";
-import Link from "next/link";
 import { CityNameImage } from "@/allApi/apis";
-import Userdetail from "./userdetail";
 import { MdOutlineSearch, MdLocationPin } from "react-icons/md";
-import { GiHamburgerMenu } from "react-icons/gi";
 import { Dropdown } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
-import Citylocation from "../cityLocation";
-import {removeCookies, setCookie} from "cookies-next";
+import { removeCookies, setCookie } from "cookies-next";
 import styles from "../../styles/fixedNavbar.module.scss";
 import NavbarDropdown from "./dropdown";
-// import Citylocation from "../cityLocation/citylocation";
+import dynamic from "next/dynamic";
+
 import { useRouter } from "next/router";
 
 
 
+const Userdetail = dynamic(() => import("./userdetail"), {
+  ssr: false,
+});
 const Fixednavbar = () => {
   const [city, setCity] = useState([]);
   const [posts, setPosts] = useState();
@@ -32,16 +32,12 @@ const Fixednavbar = () => {
   const [showMenu, setShowMenu] = useState(false);
   const route = useRouter();
 
-
-
   const { pathname } = useRouter();
 
-
- 
   const getMap = () => {
-    route.push('/map')
-    removeCookies('meta_title')
-  }
+    route.push("/map");
+    removeCookies("meta_title");
+  };
 
   let selecType;
   CityNameImage.map((el) => {
@@ -56,16 +52,16 @@ const Fixednavbar = () => {
     const data = await getAllCity(cities);
     setCity(data);
   };
-   
+
   const mavigatetoMediaPage = (userType, value) => {
     // if (pathname === "/map" && userType.length > 3 && value.length > 2) {
     //   setCookie('category_name',userType)
     //     setCookie('city_name',value)
-    // } else 
+    // } else
     if (userType.length > 3 && value.length > 2) {
-      setCookie('category_name',userType)
-        setCookie('city_name',value)
-        route.push(`/${userType}`)
+      setCookie("category_name", userType);
+      setCookie("city_name", value);
+      route.push(`/${userType}`);
     }
   };
 
@@ -94,7 +90,6 @@ const Fixednavbar = () => {
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
         >
-        
           <div className={`${styles.nav_icon_6} me-3`} aria-expanded={showMenu}>
             <span></span>
             <span></span>
@@ -121,7 +116,6 @@ const Fixednavbar = () => {
         <Navbar.Collapse id={styles.basic_navbar_nav}>
           <Nav className={`navbar-nav mx-auto  ${styles.search_inner_drop} `}>
             <InputGroup className=" me-3">
-            
               <Form.Control
                 placeholder="Search your location"
                 aria-describedby="basic-addon1"
@@ -174,37 +168,35 @@ const Fixednavbar = () => {
                 ))}
               </DropdownButton>
             </div>
-            {userType && value ? 
-            <Button
-              className="ms-3"
-              onClick={(a, b) => mavigatetoMediaPage(userType, value)}
-              id={styles.search_button_flotnav}
-            >
-              <MdOutlineSearch className={`${styles.search_logo} icon-clr`} />
-            </Button> : 
-             <Button
-             className={`ms-3 ${styles.float_btn_notalowed}`}
-             
-             id={styles.search_button_flotnav }
-           >
-             <MdOutlineSearch className={`${styles.search_logo} icon-clr ${styles.float_btn_notalowed}`} />
-           </Button>
-            
-            }
-
+            {userType && value ? (
+              <Button
+                className="ms-3"
+                onClick={(a, b) => mavigatetoMediaPage(userType, value)}
+                id={styles.search_button_flotnav}
+              >
+                <MdOutlineSearch className={`${styles.search_logo} icon-clr`} />
+              </Button>
+            ) : (
+              <Button
+                className={`ms-3 ${styles.float_btn_notalowed}`}
+                id={styles.search_button_flotnav}
+              >
+                <MdOutlineSearch
+                  className={`${styles.search_logo} icon-clr ${styles.float_btn_notalowed}`}
+                />
+              </Button>
+            )}
           </Nav>
           <form className="  text-center me-3">
-          
-              <Nav.Link
-                className={`${styles.mapLink} ${styles.float_map_btn}   p-0 rounded-pill pt-1`}
-               onClick={getMap}
-              >
-                Map
-                <MdLocationPin
-                  className={`${styles.GiHamburgerMenu} ps-0 p-0  ms-0`}
-                />
-              </Nav.Link>
-     
+            <Nav.Link
+              className={`${styles.mapLink} ${styles.float_map_btn}   p-0 rounded-pill pt-1`}
+              onClick={getMap}
+            >
+              Map
+              <MdLocationPin
+                className={`${styles.GiHamburgerMenu} ps-0 p-0  ms-0`}
+              />
+            </Nav.Link>
           </form>
 
           <form className="text-center">

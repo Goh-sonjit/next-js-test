@@ -5,13 +5,13 @@ import City from "@/components/cityList";
 import Enquire from "@/components/enquire/enquire";
 import Searchmedia from "@/components/searchMedia";
 import dynamic from "next/dynamic";
+import { Suspense } from "react";
+import NavbarH from "@/components/navbar/navbar";
 
 const Trendingcity = dynamic(() => import("@/components/trendingcity"),{
   ssr:false
 });
-const NavbarH = dynamic(() => import("@/components/navbar/navbar"),{
-  ssr:false
-});
+
 const Floatingnavbar = dynamic(() => import("@/components/navbar/flotingnavbar"),{
   ssr:false
 });
@@ -44,7 +44,8 @@ export default function Home() {
         />
       </Head>
       <main>
-        <NavbarH />
+
+       <NavbarH/>
         <Floatingnavbar/>
         <section>
           <Searchmedia />
@@ -61,6 +62,7 @@ export default function Home() {
       <section>
       <Trendingcity/>
      </section> 
+
       </main>
     </>
   );

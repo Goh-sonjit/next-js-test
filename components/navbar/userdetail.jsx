@@ -78,6 +78,7 @@ const data = async() =>{
 useEffect(() =>{
   data()
 },[value])
+
   const profile = async () => {
     route.push('/profile')
   };

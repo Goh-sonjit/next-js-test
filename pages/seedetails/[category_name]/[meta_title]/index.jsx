@@ -1,12 +1,10 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AccountContext } from "@/allApi/apicontext";
-import { Link } from "next/link";
 import { enquiryApi, emailformate,  addItem, removeItem, singlemnedia } from "@/allApi/apis";
 import { MdLocationPin } from "react-icons/md";
 import { toast, ToastContainer } from "react-toastify";
 import instance from "@/allApi/axios";
 import Fixednavbar from "../../../../components/navbar/fixednavbar";
-
 import { Carousel } from "react-responsive-carousel";
 import Loader from "@/components/loader";
 import { useRouter } from "next/router";
@@ -16,7 +14,7 @@ const Details = () => {
   const router = useRouter();
   const { category_name, meta_title } = router.query;
   const { addRemove } = useContext(AccountContext);
-  const { handleClose,handleShow} = useContext(AccountContext);
+  const {handleShow} = useContext(AccountContext);
   const [markers, setPosts] = useState([]);
   const [name, setName] = useState("");
   const [phone, setNumber] = useState("");

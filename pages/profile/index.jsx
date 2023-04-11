@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { profileDetails, userDetails } from "@/allApi/apis";
 import Campaings from "./userdata";
-import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
 import Changepassword from "./changepassword";
 import Companyprofile from "./companyprofile";
@@ -11,9 +10,8 @@ import Profoma from "./profoma";
 import { getCookie, removeCookies } from "cookies-next";
 import Invoice from "./invoice";
 import Announcement from "./announcement";
-const Fixednavbar = dynamic(() => import("../../components/navbar/fixednavbar"),{
-  ssr:false
-});
+import Fixednavbar from "@/components/navbar/fixednavbar";
+
 
 const Profile = () => {
   const route = useRouter()
@@ -95,7 +93,7 @@ useEffect(() =>{
 
   return (
     <>
-      <Fixednavbar />
+    <Fixednavbar/>
       <div className=" container-xxl  container-xl container-lg container-md my-5 prf-content">
         <div className="row  p-5">
           <div className="col-md-3">

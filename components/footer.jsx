@@ -16,7 +16,7 @@ import {
 const Footer = () => {
   const route = useRouter();
   const [email, setEmail] = useState([]);
-  const { handleClose, handleShow } = useContext(AccountContext);
+  const {handleShow } = useContext(AccountContext);
 
   const handelSubmit = async (e) => {
     let count = 0;
@@ -74,8 +74,8 @@ const Footer = () => {
       city: "delhi",
     },
     {
-      name: "Goa",
-      city: "goa",
+      name: "Pune",
+      city: "pune",
     },
     {
       name: "Bengaluru",
@@ -190,7 +190,7 @@ const Footer = () => {
                   <li className="py-md-2 text-decoration-none ">
                     {" "}
                     <p
-                      onClick={() => route.push("/privacy-policy")}
+                      onClick={() => route.push("/privacy")}
                       className=" f-heading-clr mb-0"
                     >
                       Privacy Policy
@@ -208,7 +208,7 @@ const Footer = () => {
                   <Link
                     key={i}
                     //  href="#"
-                    href={`/${el.value}/delhi`}
+                    href={`/${el.value}`}
                     className="text-decoration-none "
                   >
                     <li className=" py-md-2  text-decoration-none f-heading-clr ">
@@ -226,7 +226,7 @@ const Footer = () => {
                 {cities.map((el, i) => (
                   <Link
                     key={i}
-                    href={`/${"traditional-ooh-media"}/${el.city}`}
+                    href={`/${el.city}`}
                     className="text-decoration-none "
                   >
                     <li className=" py-md-2  text-decoration-none f-heading-clr ">

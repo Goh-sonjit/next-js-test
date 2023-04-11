@@ -156,7 +156,7 @@ exports.ppt = catchError(async (req, res) => {
             }
             promises.push(
                 new Promise(async (reject, resolve) => {
-                    const sql = "SELECT media.id,media.medianame as 'Media name', media.location, media.illumination, media.city_name as City, media.state, media.width as 'Width (feet)', media.height as 'Height (feet)', Media.area as 'Total Area', media.widthunit as 'Area in', media.price as Price, media.pricetype as 'Price type', media.ftf as 'Foot Fall', media.subcategory as Category, media.geolocation FROM  " + table_name + " AS media WHERE media.code='" + obj.mediaid + "'"
+                    const sql = "SELECT media.id,media.medianame as 'Media name', media.location, media.illumination, media.city_name as City, media.state, media.width as 'Width (feet)', media.height as 'Height (feet)', media.widthunit as 'Area in', media.price as Price, media.pricetype as 'Price type', media.ftf as 'Foot Fall', media.subcategory as Category, media.geolocation FROM  " + table_name + " AS media WHERE media.code='" + obj.mediaid + "'"
                     db.query(sql,async(err,result)=>{
                         if (err) {             
                             return reject(err)
@@ -425,8 +425,8 @@ exports.processdCart = catchError(async (req, res) => {
                 products.map((el) => {
                     promises.push(
                         new Promise(async (resolve,reject ) => {
-                    const sql = "INSERT into goh_serach_activities (user, phone, campaign_name, start_date, end_date, campaign_city, media_type, address, city) VALUES (" + userId + ",'" + phone + "', '"+newCampain+"-"+ campaign_name+ "','" + el.start_date + "','" + el.end_date + "','" + el.medianame + "','" + el.category_name + "','" + el.address + "','" + el.city_name + "') ";
-                    db.query(
+                    const sql = "INSERT into goh_serach_activities (user, phone, campaign_name, start_date, end_date, campaign_city, media_type, address, city) VALUES (" + userId + ",'" + phone + "', '"+newCampain+"-"+ campaign_name+ "','" + el.start_date.slice(0,10) + "','" + el.end_date.slice(0,10) + "','" + el.medianame + "','" + el.category_name + "','" + el.address + "','" + el.city_name + "') ";
+                        db.query(
                         sql,
                         async (err, code) => {
                             if (err) {
