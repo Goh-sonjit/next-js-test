@@ -29,7 +29,7 @@ function SiteMap() {
 
 export async function getServerSideProps({ res }) {
   // We make an API call to gather the URLs for our site
-  const {data} = await instance.post(`traditional-ooh-media`)
+  const {data} = await instance.post(`digital-media`)
 
 
 

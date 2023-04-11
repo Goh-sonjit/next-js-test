@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 // import Slider from "./slider.jsx";
-import { iconFiltersData } from "@/allApi/apis";
+import {iconFiltersData} from "@/allApi/apis";
 import {MdSchool, MdOutlineRestaurantMenu } from "react-icons/md";
 import {BiDrink } from "react-icons/bi";
 import {SiHotelsdotcom } from "react-icons/si";
@@ -8,7 +8,7 @@ import {RiHospitalFill, RiMovie2Fill } from "react-icons/ri";
 import {TbMassage } from "react-icons/tb";
 import {CgGym } from "react-icons/cg";
 
-const Iconsselection = ({slice}) => {
+const Iconsselection = ({slice,nsearch,setNsearch}) => {
   const [distance, Setdistance] = useState(0);
 
   const [hording, setHording] = useState([]);
@@ -120,6 +120,7 @@ const Iconsselection = ({slice}) => {
   let arrayJJson = JSON.stringify(array);
   let newString = arrayJJson.replace(/\[|\]/g, '');
   const data = await iconFiltersData(distance, hording, table, city, minLatitude, maxLatitude , newString)
+  setNsearch(data)
   }
 
   return (

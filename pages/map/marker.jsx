@@ -7,11 +7,12 @@ import styles from '../../styles/markers.module.scss'
 import { markersPosition } from "@/allApi/apis";
 
 
-const Markers = ({ markers, removefromCart, addonCart, setSearch}) => {
+const Markers = ({ markers, nsearch, removefromCart, addonCart, setSearch}) => {
 
   const [map, setMap] = useState(null);
   const [hasmarker, sethasmarker] = useState(false);
   const [iconfilter] = useState([]);
+  const [combinedArray, setCombinedArray] = useState([]);
 
   markers.forEach((e) => {
   
@@ -19,14 +20,25 @@ const Markers = ({ markers, removefromCart, addonCart, setSearch}) => {
 
   });
 
-  let combinedArray;
+  // let combinedArray;
 
-    // iconfilter.flat(Infinity);
-     combinedArray = [].concat(...iconfilter);
-     combinedArray.forEach((e) => {
-      e["position"] = { lat: e.lat, lng: e.lng };
-    });
+  //   // iconfilter.flat(Infinity);
+  //    combinedArray = [].concat(...nsearch);
+  //    combinedArray.forEach((e) => {
+  //     e["position"] = { lat: e.lat, lng: e.lng };
+  //   });
   
+  //   console.log(combinedArray);
+
+    const updateCombinedArray = () => {
+      const newArray = [].concat(...nsearch);
+      newArray.forEach((e) => {
+        e["position"] = { lat: e.lat, lng: e.lng };
+      });
+      setCombinedArray(newArray);
+    };
+  
+
 
   const [activeMarker, setActiveMarker] = useState(null);
 
@@ -213,6 +225,10 @@ const Markers = ({ markers, removefromCart, addonCart, setSearch}) => {
       sethasmarker(true);
     }
     },[streetView])
+    
+    useEffect(() => {
+      updateCombinedArray()
+      },[nsearch])
 
   return (
     <>

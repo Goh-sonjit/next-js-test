@@ -28,6 +28,7 @@ import Fixednavbar from "@/components/navbar/fixednavbar";
 const Map = () => {
   const router = useRouter();
   const [search, setSearch] = useState([]);
+  const [nsearch,setNsearch] = useState([]);
   const { state, addRemove } = useContext(AccountContext);
   const [noOfLogo, setnoOfLogo] = useState(8);
   const { handleClose,handleShow} = useContext(AccountContext);
@@ -353,6 +354,7 @@ const Map = () => {
               {search && search.length > 0 ? (
                 <Iconsselection
                   slice={slice}
+                  search={nsearch} setNsearch={setNsearch}
                 />
               ) : null}
               <Mapfilter search={search} setSearch={setSearch} />
@@ -398,7 +400,7 @@ const Map = () => {
             {
           !mapMarker.length > 0 ?
           isLoaded && slice && slice.length > 0 ? (
-            <Markers markers={slice} setSearch={setSearch} removefromCart={removefromCart} addonCart={addonCart} />
+            <Markers markers={slice} nsearch={nsearch} setSearch={setSearch} removefromCart={removefromCart} addonCart={addonCart} />
           ) : 
           
           <h5 className="text-center m-3">No Data Found </h5>
