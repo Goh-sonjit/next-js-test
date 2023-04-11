@@ -229,20 +229,20 @@ const Details = () => {
                     </div>
                     <div className="col-4" id="detail-Map">
                       {item.isDelete === 0 ? (
-                        <div className="cart-btn text-center p-2 rounded me-2">
+                        <div className="cart-btn text-center p-2 rounded me-2"   onClick={() => removefroCart(item)}>
                           <h6
                             className=" mt-2 fw-bold "
-                            onClick={() => removefroCart(item)}
+                          
                           >
                             {" "}
                             Remove
                           </h6>
                         </div>
                       ) : (
-                        <div className="cart-btn text-center p-2 rounded me-2">
+                        <div className="cart-btn text-center p-2 rounded me-2"   onClick={() => addonCart(item)}>
                           <h6
                             className="fw-bold mt-2"
-                            onClick={() => addonCart(item)}
+                          
                           >
                             Add to Cart
                           </h6>

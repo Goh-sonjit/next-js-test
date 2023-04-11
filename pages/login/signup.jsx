@@ -19,7 +19,7 @@ const Sign = ({ googleSignIn, toggleSignUp,sendOtp,  setPassword, afterLogin, pa
           setName(e.target.value);
         }}
       />
-      <p className="ms-3 p-0 text ">{nameValidate}</p>
+      <p className="ms-3 p-0 text text-danger">{nameValidate}</p>
       <label htmlFor="floatingInput">Full Name</label>
     </div>
     <div className="form-floating mt-2">
@@ -33,7 +33,7 @@ const Sign = ({ googleSignIn, toggleSignUp,sendOtp,  setPassword, afterLogin, pa
           setEmail(e.target.value);
         }}
       />
-      <p className="ms-2 p-0 text ">{emailsValidate}</p>
+      <p className="ms-2 p-0 text text-danger">{emailsValidate}</p>
       <label htmlFor="floatingInput">Email</label>
     </div>
     <div className="form-floating mt-2 d-flex pe-0 ">
@@ -50,7 +50,7 @@ const Sign = ({ googleSignIn, toggleSignUp,sendOtp,  setPassword, afterLogin, pa
       /> <button className='border-0' id={styles.sendf} onClick={onRegister}>Send</button>
       <label htmlFor="floatingInput">Phone</label>
     </div>
-      <p className="ms-2 p-0 text ">{numbervalidate}</p>
+      <p className="ms-2 p-0 text text-danger">{numbervalidate}</p>
     <div className="form-floating  mt-2 ">
       <input
         type="password"
@@ -75,7 +75,7 @@ const Sign = ({ googleSignIn, toggleSignUp,sendOtp,  setPassword, afterLogin, pa
       placeholder="OTP" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" 
       onChange={e => setOtp(e.target.value)}
     />
-    <p className="ms-2 p-0 text ">{numbervalidate}</p>
+    <p className="ms-2 p-0 text text-danger">{numbervalidate}</p>
     <label htmlFor="floatingInput">OTP</label>
   </div>
     }
