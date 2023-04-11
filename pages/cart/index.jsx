@@ -12,7 +12,7 @@ import { FaRupeeSign } from "react-icons/fa";
 import { FaCalendarAlt } from "react-icons/fa"; 
 import styles from '../../styles/cart.module.scss';
 import instance from "@/allApi/axios";
-import Fixednavbar from "../../components/navbar/fixednavbar";
+import dynamic from "next/dynamic";
 import { toast, ToastContainer } from "react-toastify";
 import { cartitems, mediaDataApi, removeItem, userDetails } from "@/allApi/apis";
 import Loader from "@/components/loader";
@@ -21,9 +21,7 @@ import { addDays } from "date-fns";
 
 
 const Cart = () => {
-  const route = useRouter()
   const [Start, setStart] = useState(new Date());
-  const [items, setItems] = useState([]);
   let defaultEndDate = new Date(new Date().setDate(Start.getDate() + 4));
   const [End, setEnd] = useState(defaultEndDate);
   const { addRemove, initalState } = useContext(AccountContext);
@@ -43,7 +41,14 @@ const Cart = () => {
 
 const getData = async() =>{
   const data = await cartitems()
-  setItems(data)
+  if(data){
+    data.map((obj, i) => {
+      obj["days"] = 5;
+      obj["startDate"] = Start;
+      obj["endDate"] = End;
+    });
+  }
+  setPosts(data);
 }
 
   useEffect(() => {
@@ -52,20 +57,6 @@ const getData = async() =>{
 
 
 
-  const setDays = async () => {
-    const data = [...items];
-    data.map((obj, i) => {
-      obj["days"] = 5;
-      obj["startDate"] = Start;
-      obj["endDate"] = End;
-    });
-
-    setPosts(data);
-  };
-  useEffect(() => {
-
-    setDays();
-  }, []);
 
   const SelectDate = (obj) => {
     var diff = state[0].endDate - state[0].startDate;
@@ -109,8 +100,7 @@ const getData = async() =>{
 
       const result = data.filter((word) => word.isDelete === 0);
       setPosts(result);
-      const data2 = cartitems()
-      setItems(data2)
+
     });
   };
 
@@ -134,13 +124,9 @@ const submitAllProduct = async () => {
   });
   if (data.success == true) {
     addRemove({ type: "DECR" });
-    const data2 = cartitems()
-    setItems(data2)
     setPosts([]);
     toast(data.message);
     setCampains("");
-    const data3 = mediawithcity({category_name: "traditional-ooh-media",city_name: "delhi",limit:0})
-    setItems(data3)
   } else {
     toast(data.message);
   }
@@ -150,17 +136,20 @@ const submitAllProduct = async () => {
     (totalPrice, item) => totalPrice + parseInt(item.price * item.days),
     0
   );
-const value =getCookie("permissions")
-if(value){
+  const Fixednavbar = dynamic(() => import("@/components/navbar/fixednavbar"),{
+    ssr:false
+  });
   return (
     <>
       <Fixednavbar />
-      <div className="d-hide drop-nd"></div>
+  
       <div
         className={`container-xxl  container-xl container-lg container-md  ${styles.cart_content} cart-content`}
       >
         <div className="row mt-4 ">
-        {posts.length > 0 ? (
+          {posts? 
+          <>
+            {posts.length > 0 ? (
                 <>
                   <>
                     <div className=" ">
@@ -555,12 +544,18 @@ if(value){
                   </div>
                 </>
               )}
+          </>
+          :
+<>
+<Loader/>
+</>
+
+          }
+      
         </div>
       </div>
     </>
   );
-}else{
-  route.push('/')
-}
+
 };
 export default Cart;

@@ -1,16 +1,19 @@
 import React, { useEffect, useState } from "react";
-import { profileDetails } from "@/allApi/apis";
-import Fixednavbar from "../../components/navbar/fixednavbar";
+import { profileDetails, userDetails } from "@/allApi/apis";
 import Campaings from "./userdata";
+import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
 import Changepassword from "./changepassword";
 import Companyprofile from "./companyprofile";
 import Userprofile from "./userprofile";
 import Campign from "./campign";
 import Profoma from "./profoma";
+import { getCookie, removeCookies } from "cookies-next";
 import Invoice from "./invoice";
 import Announcement from "./announcement";
-
+const Fixednavbar = dynamic(() => import("../../components/navbar/fixednavbar"),{
+  ssr:false
+});
 
 const Profile = () => {
   const route = useRouter()
@@ -21,10 +24,21 @@ const Profile = () => {
   const [profoma, setProfoma] = useState(false);
   const [invoice, setInvoice] = useState(false);
   const [announce, setAnnounce] = useState(false);
+  const [user, setUser] = useState([])
 
 
+  const value = getCookie("permissions")
+const data = async() =>{
+ if(value){
+  const data = await userDetails()
+  setUser(data)
+ }
 
+}
 
+useEffect(() =>{
+  data()
+},[value])
   const userData = async () => {
     const data = await profileDetails();
     setPosts(data.message);
@@ -78,8 +92,7 @@ const Profile = () => {
   useEffect(() => {
     userData();
   }, []);
-  const value = localStorage.getItem("permissions")
-if(value){
+
   return (
     <>
       <Fixednavbar />
@@ -87,7 +100,7 @@ if(value){
         <div className="row  p-5">
           <div className="col-md-3">
             <div className="card">
-              {loading == false && (
+             
                 <img
                   src= {user && user.map((el) =>el.profile_image)}
                   className="card-img-top p-3 pb-2"
@@ -96,7 +109,7 @@ if(value){
                     (e.target.src = "../images/web_pics/user-profile.png")
                   }
                 />
-              )}
+              
               <div className="card-body text-light  row text-center pt-0 pb-2">
                 <div className="col pe-0 ">
                   <div className="p-1 border prf-btn " onClick={showProfile}>
@@ -374,9 +387,7 @@ if(value){
       </style>
     </>
   );
-}else{
-  route.push('/')
-}
+
 };
 
 export default Profile;

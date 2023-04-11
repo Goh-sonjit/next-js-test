@@ -312,9 +312,8 @@ export const priceSubIllu = async(category_name, price, illumination, table, cit
      return data
   };
 
-  export const cartitems = () => async () => {
-   
-      const { data } = await instance.get(`cart`);
+  export const cartitems =  async () => {
+      const { data } = await instance.get(`cart`)
     return data
   };
   

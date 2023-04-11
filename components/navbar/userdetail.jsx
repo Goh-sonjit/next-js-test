@@ -7,7 +7,6 @@ import {
   clientId,
   googleLogin,
   logoutUser,
-  
   refreshToken,userDetails
 } from "@/allApi/apis";
 import { AccountContext } from "@/allApi/apicontext";
@@ -71,6 +70,7 @@ const data = async() =>{
  }
 
 }
+
 
 
 
@@ -162,7 +162,7 @@ useEffect(() =>{
               </Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
-          <div className={`${styles.cart} ms-2`} >
+          <div className={`${styles.cart} ms-2`} onClick={() => route.push('/cart')}>
             <span>
               <img
                 aria-expanded={posts}

@@ -579,7 +579,7 @@ exports.cartiemfromdb = async (req, res, next) => {
         data.forEach(element => {
             result.push(element.value[0])
         });
-        return res.send(result);
+        return res.status(200).json(result);
     } catch (err) {
         return res.status(400).json({success:false, message: "Database Error"})
     }
