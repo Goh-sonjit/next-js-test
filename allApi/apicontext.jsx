@@ -16,10 +16,8 @@ export const AccountProvider = ({ children }) => {
       const { data } = await instance.get(`forgetPass`)
       if(data.message == "InValid Token"){
         setInitalState(0);
-        return initalState;
       }else{
         setInitalState(data[0].item);
-        return initalState;
       }
     }
   
