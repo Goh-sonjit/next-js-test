@@ -57,7 +57,7 @@ useEffect(() =>{
 
 const handelLogout = async () => {
   signOut().then(async() =>{
-    await logoutUser()
+    await logoutUser();
     removeCookies("permissions")
     route.push('/about-us')
     })
