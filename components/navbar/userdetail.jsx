@@ -1,8 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import {useSession, signIn, signOut} from 'next-auth/react'
-// import { useGoogleOneTapLogin } from 'react-google-one-tap-login';
-
+import { useGoogleOneTapLogin } from "react-google-one-tap-login";
 import {
   clientId,
   googleLogin,
@@ -20,10 +19,9 @@ import { useRouter } from "next/router";
 import Modal from "react-bootstrap/Modal";
 import LoginN from "@/pages/login/loginParent";
 import instance from "@/allApi/axios";
-import { getCookie, removeCookies } from "cookies-next";
+import { getCookie, setCookie,removeCookies } from "cookies-next";
 
 const Userdetail = () => {
-
   const route = useRouter()
   const {data:session} = useSession()
   const { handleClose, handleShow,show, addRemove ,initalState} = useContext(AccountContext);
@@ -39,9 +37,12 @@ useEffect(() =>{
   if(session){
     const data = async() => await instance.post('linkedin',{session})
     data().then(async() =>{
-      const data = await userDetails()
-  setUser(data)
-      addRemove({ type: "DECR" });})
+      setCookie("permissions", true);
+    
+    addRemove({ type: "DECR" });
+    handleClose()
+    setUser()
+;})
   }
 },[session])
 
@@ -55,7 +56,7 @@ const handelLogout = async () => {
   };
 
   const value = getCookie("permissions")
-const data = async() =>{
+const userData = async() =>{
  if(value){
   const data = await userDetails()
   setUser(data)
@@ -67,7 +68,7 @@ const data = async() =>{
 
 
 useEffect(() =>{
-  data()
+  userData()
 },[value])
 
   const profile = async () => {
@@ -82,24 +83,24 @@ useEffect(() =>{
   };
 
   
-  // const oneTap = async (response) => {
-  //   const data = await googleLogin(response);
-  //   if (data.success === true) {
-   
-  //     addRemove({ type: "DECR" });
+  const oneTap = async (response) => {
+    const data = await googleLogin(response);
+    if (data.success === true) {
+      setCookie("permissions", true);
+      addRemove({ type: "DECR" });
+      setUser()
+    }
+  };
 
-  //   }
-  // };
 
-
-  // useGoogleOneTapLogin({
-  //   onSuccess: (response) => oneTap(response),
-  //   onError: (response) => toast(response.message),
-  //   // disabled: localStorage.getItem("true"),
-  //   googleAccountConfigs: {
-  //     client_id: clientId,
-  //   },
-  // });
+  useGoogleOneTapLogin({
+    onSuccess: (response) => oneTap(response),
+    onError: (response) => toast(response.message),
+    disabled:getCookie("permissions"),
+    googleAccountConfigs: {
+      client_id: clientId,
+    },
+  });
 
 
 
