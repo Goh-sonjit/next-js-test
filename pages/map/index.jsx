@@ -23,6 +23,7 @@ import { FaFilter, FaRupeeSign, FaMapMarked } from "react-icons/fa";
 import { useRouter } from "next/router";
 import { setCookie,getCookie } from 'cookies-next';
 import Fixednavbar from "@/components/navbar/fixednavbar";
+import Loader from "@/components/loader";
 
 
 const Map = () => {
@@ -391,11 +392,11 @@ const Map = () => {
               Load more{" "}
             </button> */}
 
-            <div className={`d-inline-block position-absolute bottom-0 mb-2 ${styles.aval_hoarding }bg-warning p-2  pb-0"`}>
+            {/* <div className={`d-inline-block position-absolute bottom-0 mb-2 ${styles.aval_hoarding }bg-warning p-2  pb-0"`}>
               <div className="d-inline-block border-0 ">
                 <p className="">Click on markers to add/remove into cart.</p>
               </div>
-            </div>
+            </div> */}
 
             {
           !mapMarker.length > 0 ?
@@ -403,7 +404,7 @@ const Map = () => {
             <Markers markers={slice} nsearch={nsearch} setSearch={setSearch} removefromCart={removefromCart} addonCart={addonCart} />
           ) : 
           
-          <h5 className="text-center m-3">No Data Found </h5>
+        <Loader/>
         :
         <Markers markers={slice} removefromCart={removefromCart} addonCart={addonCart}  />
         }

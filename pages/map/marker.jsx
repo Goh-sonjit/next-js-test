@@ -5,6 +5,7 @@ import Link from 'next/link'
 import Streetview from "./streetview";
 import styles from '../../styles/markers.module.scss'
 import { markersPosition } from "@/allApi/apis";
+import Loader from "@/components/loader";
 
 
 const Markers = ({ markers, nsearch, removefromCart, addonCart, setSearch}) => {
@@ -20,15 +21,9 @@ const Markers = ({ markers, nsearch, removefromCart, addonCart, setSearch}) => {
 
   });
 
-  // let combinedArray;
-
-  //   // iconfilter.flat(Infinity);
-  //    combinedArray = [].concat(...nsearch);
-  //    combinedArray.forEach((e) => {
-  //     e["position"] = { lat: e.lat, lng: e.lng };
-  //   });
-  
-  //   console.log(combinedArray);
+  var center = {
+    lat: markers?.[0].latitude, lng: markers?.[0].longitude
+  }
 
     const updateCombinedArray = () => {
       if(nsearch){
@@ -231,7 +226,6 @@ const Markers = ({ markers, nsearch, removefromCart, addonCart, setSearch}) => {
     useEffect(() => {
       updateCombinedArray()
       },[nsearch])
-
   return (
     <>
       {streetView ? (
@@ -250,6 +244,7 @@ const Markers = ({ markers, nsearch, removefromCart, addonCart, setSearch}) => {
             zoom={"8"}
             onClick={() => setActiveMarker(null)}
             mapContainerStyle={{ height: "100%" }}
+            center={center}
             options={{
               styles: customMapStyle,
             }}
@@ -257,7 +252,7 @@ const Markers = ({ markers, nsearch, removefromCart, addonCart, setSearch}) => {
           >
        <button>Load more  </button> 
             {!hasmarker ? (
-              <h1>Loading.... Please Wait</h1>
+             <><Loader/></>
             ) : (
               markers.map(
                 ({

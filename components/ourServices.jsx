@@ -12,6 +12,14 @@ const Ourservices = () => {
     setCookie("city_name","delhi")
 
   }
+
+  
+  const directlinkget=()=>{
+    console.log("ftgh");
+    setCookie("category_name","traditional-ooh-media")
+    setCookie("city_name","delhi")
+
+  }
  
   {
     var settings = {
@@ -115,8 +123,11 @@ const Ourservices = () => {
               </div>
               <div className="col-3">
                 <span className={`${styles.button_serch} text-white rounded-pill`}>
-                  <Link href="/traditional-ooh-media">
-                    <button className={styles.search_btn}>Get it Now</button>
+                  <Link href="/traditional-ooh-media" >
+                    <button className={styles.search_btn}   
+                      onClick={directlinkget}>
+                        Get it Now
+                        </button>
                   </Link>
                 </span>
               </div>

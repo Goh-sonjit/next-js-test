@@ -1,4 +1,31 @@
 @import "../assets/scss/variables";
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;500;600;700&display=swap');
+
+//Global fonts
+body {
+  font-family: 'Poppins', sans-serif !important;
+}
+
+
+//Global scrollbar
+::-webkit-scrollbar {
+  width: 7px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+  
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #cacaca;
+}
+
+/* Handle on hover */
+// ::-webkit-scrollbar-thumb:hover {
+//   background: #cacaca;
+// }
 
 .prf-content {
   * {
@@ -66,13 +93,9 @@ input::-webkit-inner-spin-button {
   transform: translate(-50%, -50%) !important;
   width: 70vw !important;
   height: auto !important;
+  min-height: 70vh !important;
 }
-// @media screen and (max-width: 1366px) {  
-//   .modal-content {
-//     height: auto !important;
-//   }
 
-// }
 
 #exampleModal {
   .form-control {
@@ -99,24 +122,7 @@ input::-webkit-inner-spin-button {
 }
 
 
-::-webkit-scrollbar {
-  width: 7px;
-}
 
-/* Track */
-::-webkit-scrollbar-track {
-  background: #f1f1f1;
-}
-
-/* Handle */
-::-webkit-scrollbar-thumb {
-  background: #dfdfdf;
-}
-
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: #cacaca;
-}
 @media screen and (max-width: 425px) {
   ::-webkit-scrollbar {
 display: none;
@@ -249,10 +255,7 @@ display: none;
     box-shadow: none;
   }
 }
-* {
-  // font-family: "Poppins "!important;
-  font-family: "Outfit", sans-serif !important;
-}
+
 .enqry {
   .slick-next:before {
     display: none !important;

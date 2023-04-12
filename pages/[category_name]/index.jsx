@@ -18,6 +18,8 @@ import Fixednavbar from "@/components/navbar/fixednavbar";
 const Medialogo = dynamic(() => import("@/components/mediaBranding"),{
   ssr:false
 });
+
+
 const Media = () => {
   const router = useRouter();
   const [search, setSearch] = useState([])
@@ -195,6 +197,8 @@ useEffect(() =>{
         router.push("/map");
     }
   }
+console.log
+
   return (
     <>
     <Fixednavbar/>
