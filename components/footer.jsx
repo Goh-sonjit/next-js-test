@@ -131,13 +131,13 @@ const Footer = () => {
               <ul className="position-relative  pt-md-3  ps-0">
                 <li className="py-md-2">
                   {" "}
-                  <p
+                  <a
                     className=" text-decoration-none f-heading-clr  mb-0"
-                    onClick={() => route.push("https://odoads.com/register")}
+                     href="https://odoads.com/register"
                     target="_blank"
                   >
                     Login As Media Owner
-                  </p>
+                  </a>
                 </li>
 
                 <li
@@ -149,13 +149,13 @@ const Footer = () => {
                 </li>
                 <span className="pos-absolute">
                   <li className="py-md-2">
-                    <p
-                      onClick={() => route.push("https://www.odoads.com/")}
+                    <a
+                      href="https://www.odoads.com/"
                       target="_blank"
                       className=" text-decoration-none f-heading-clr mb-0"
                     >
                       Odoads
-                    </p>
+                    </a>
                   </li>
                   <li className="py-md-2">
                     <p

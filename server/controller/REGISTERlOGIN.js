@@ -405,7 +405,9 @@ exports.updateProfile = catchError(async (req, res, next) => {
 })
 
 exports.updateImage = catchError((req,res) => {
+  console.log("hello");
     const filename = req.file;
+    console.log(filename);
     const userId = req.id;
     let sql; 
     if(filename != undefined){
