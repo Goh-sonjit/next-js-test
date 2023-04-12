@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { toast, ToastContainer } from "react-toastify";
 import {useSession, signIn, signOut} from 'next-auth/react'
-import { GoogleLogout } from "react-google-login";
+// import { useGoogleOneTapLogin } from 'react-google-one-tap-login';
+
 import {
   clientId,
   googleLogin,
@@ -32,15 +32,6 @@ const Userdetail = () => {
   const [scrollY, setScrollY] = useState(0);
   const [user, setUser] = useState([])
 
-  
-  // const oneTap = async (response) => {
-  //   const data = await googleLogin(response);
-  //   if (data.success === true) {
-  //     localStorage.setItem(true, "long");
-  //     addRemove({ type: "DECR" });
-  //     getUser();
-  //   }
-  // };
 
 
 
@@ -56,7 +47,7 @@ useEffect(() =>{
 
 
 const handelLogout = async () => {
-  // signOut()
+  signOut()
   await logoutUser();
   route.push('/')
   removeCookies("permissions")
@@ -90,12 +81,21 @@ useEffect(() =>{
     return data;
   };
 
+  
+  // const oneTap = async (response) => {
+  //   const data = await googleLogin(response);
+  //   if (data.success === true) {
+   
+  //     addRemove({ type: "DECR" });
+
+  //   }
+  // };
 
 
   // useGoogleOneTapLogin({
   //   onSuccess: (response) => oneTap(response),
   //   onError: (response) => toast(response.message),
-  //   disabled: localStorage.getItem("true"),
+  //   // disabled: localStorage.getItem("true"),
   //   googleAccountConfigs: {
   //     client_id: clientId,
   //   },

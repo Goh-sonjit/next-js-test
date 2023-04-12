@@ -173,18 +173,22 @@ const navbarDropdown = () => {
             }
             .drop-data ul li {
               color: rgb(103, 103, 103);
-              transition: all 0.1s ease-out;
               width:130px;
               padding: 4px;
-       
-            border-bottom: 1px solid transparent;
               cursor: pointer;
               list-style-type: none;
             }
-            .drop-data ul li:hover {
-              border-bottom: 1px solid white;
-              // font-weight: 600;
-            }
+            .drop-data ul li:after {
+              display      : block;
+              content      : '';
+              border-bottom: solid 1px white;
+              transform    : scaleX(0);
+              transition   : transform 300ms ease-in-out;
+          }
+            
+            .drop-data ul li:hover:after {
+              transform: scaleX(1);
+          }
             
             .border-box {
               border-right: 1px solid #c8c9ca;
