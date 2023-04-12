@@ -26,15 +26,14 @@ const Trendingcity = () => {
 
   {
     var settings = {
-      dots: false,
+      dots: true,
       infinite: true,
       slidesToShow: 4,
       slidesToScroll: 2,
       autoplay: true,
-      speed: 4700,
+      speed: 3500,
       pauseOnHover: true,
-      autoplaySpeed: 4700,
-      cssEase: "linear",
+  
       responsive: [
         {
           breakpoint: 1024,
@@ -51,7 +50,7 @@ const Trendingcity = () => {
   let slider = settings;
   let slice;
   if (search) {
-    slice = search.slice(0, 5);
+    slice = search.slice(0, 8);
   }
 
   return (
@@ -180,7 +179,7 @@ const Trendingcity = () => {
             color: #ffffff;
             left: 16px;
             font-size: 1.3rem;
-            font-weight: 600;
+            font-weight: 400;
             padding-right: 0px;
           }
 
