@@ -33,13 +33,14 @@ const Userprofile = () => {
     // formData.append("photo", imge);
     formData.append("firstname", firstname);
     formData.append("phonenumber", phonenumber);
-    const data = await updateProfile(imge, firstname, phonenumber);
-    if (data.sucess == true) {
-      toast(data.message);
-      // window.location.reload();
-    } else {
-      toast(data.message);
-    }
+    console.log(formData);
+    // const data = await updateProfile(imge, firstname, phonenumber);
+    // if (data.sucess == true) {
+    //   toast(data.message);
+    //   // window.location.reload();
+    // } else {
+    //   toast(data.message);
+    // }
   };
 
   const handleChange = async (e) => {
@@ -60,7 +61,7 @@ const Userprofile = () => {
               <div className="col-md-12">
                 <div className="form-group">
                   <div className="form-group">
-                   {/*   <label for="profile_image" className="profile-image">
+                     <label for="profile_image" className="profile-image">
                       Profile image
                     </label>
                    <Form.Control
@@ -69,11 +70,11 @@ const Userprofile = () => {
                       accept="image/png, image/jpg, image/jpeg"
                       name="photo"
                       onChange={(e) => sendImagefile(e)}
-                    /> */}
-                    {/* <Form.Control
+                    /> 
+                   {/* <Form.Control
                    className="form-control"
                   type='file' name='photo' onChange={sendImagefile}
-                  /> */}
+                  />  */}
                   </div>
                   <label for="firstname">First Name</label>
                   <Form.Control
