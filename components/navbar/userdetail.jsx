@@ -50,7 +50,6 @@ useEffect(() =>{
 const handelLogout = async () => {
   signOut()
   await logoutUser();
-  route.push('/')
   removeCookies("permissions")
   
   };
