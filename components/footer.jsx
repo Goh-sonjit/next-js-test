@@ -422,13 +422,13 @@ const Footer = () => {
               font-size: 1.5rem;
             }
             .f-second-heading {
-              font-size: 1rem;
+              font-size: 1.1rem;
             }
             .f-heading-clr {
-              font-size: 1rem;
+              font-size: 1.1rem;
             }
             .reach-clr {
-              font-size: 1rem;
+              font-size: 1.1rem;
             }
             .grid-container1 {
               width: 260px;
