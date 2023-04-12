@@ -22,7 +22,10 @@ import {
 import { FaFilter, FaRupeeSign, FaMapMarked } from "react-icons/fa";
 import { useRouter } from "next/router";
 import { setCookie,getCookie } from 'cookies-next';
-import Fixednavbar from "@/components/navbar/fixednavbar";
+import dynamic from "next/dynamic";
+const Fixednavbar = dynamic(() => import("@/components/navbar/fixednavbar"),{
+  ssr:false
+});
 
 
 const Map = () => {
