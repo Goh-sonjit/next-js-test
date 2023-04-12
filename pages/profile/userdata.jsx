@@ -248,7 +248,7 @@ const Campaings = ({ posts }) => {
           input {
             color: #636363;
             font-size: 15px;
-            font-family: "Poppins", sans-serif;
+  
             font-weight: 400;
           }
 
