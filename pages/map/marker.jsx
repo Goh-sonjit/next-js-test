@@ -5,6 +5,7 @@ import Link from 'next/link'
 import Streetview from "./streetview";
 import styles from '../../styles/markers.module.scss'
 import { markersPosition } from "@/allApi/apis";
+import Loader from "@/components/loader";
 
 
 const Markers = ({ markers, nsearch, removefromCart, addonCart, setSearch}) => {
@@ -251,7 +252,7 @@ const Markers = ({ markers, nsearch, removefromCart, addonCart, setSearch}) => {
           >
        <button>Load more  </button> 
             {!hasmarker ? (
-              <h1>Loading.... Please Wait</h1>
+             <><Loader/></>
             ) : (
               markers.map(
                 ({

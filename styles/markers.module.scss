@@ -1,7 +1,4 @@
-#mark_img{
-  height: 150px;
-  width: 100%;
-}
+
 
 .back_map {
     z-index: 5;
@@ -42,8 +39,36 @@ margin-left: 10px;
     // font-weight: 600;
     position: absolute;
      left: 83%;
-     top: 9.5%;
+     top: 9.8%;
    width: 200px; 
+  }
+  @media screen and (max-width: 1366px) {
+    .this_area{
+    
+      width: 160px;
+  
+
+      font-weight: 500;
+      position: absolute;
+       left: 81%;
+       top: 10.3%;
+     width: 200px; 
+    }
+
+  }
+  @media screen and (max-width: 1024px) {
+    .this_area{
+    
+      width: 160px;
+  
+
+      font-weight: 500;
+      position: absolute;
+       left: 75%;
+       top: 10.3%;
+     width: 200px; 
+    }
+
   }
   .streetv {
     height: 49px;
@@ -81,7 +106,7 @@ margin-left: 10px;
   .infoWindow {
     width: 300px;
     height: 210px;
-    .media-image img {
+    #mark_img {
       width: 100%;
       position: absolute;
       top: -20px;
