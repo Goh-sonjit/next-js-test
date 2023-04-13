@@ -21,7 +21,7 @@ export default function Home() {
     <>
       <Head>
         <title>
-        India&#39s Largest Outdoor Advertising Agency | Gohoarding Solution
+        India's Largest Outdoor Advertising Agency | Gohoarding Solution
         </title>
         <meta charSet="utf-8" />
         <link

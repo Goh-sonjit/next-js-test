@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useState, useCallback } from "react";
 import { AccountContext } from "@/allApi/apicontext";
 import styles from "../../styles/map.module.scss";
 import Link from "next/link";
-import Mapfilter from "./mapfilters";
 import { useJsApiLoader } from "@react-google-maps/api";
 import Markers from "./marker";
 import Iconsselection from "./iconsselection";
@@ -26,7 +25,9 @@ import dynamic from "next/dynamic";
 const Fixednavbar = dynamic(() => import("@/components/navbar/fixednavbar"),{
   ssr:false
 });
-
+const Mapfilter = dynamic(() => import("./mapfilters"),{
+  ssr:false
+});
 
 const Map = () => {
   const router = useRouter();
@@ -113,8 +114,6 @@ const Map = () => {
       }
   };
 
-
-
   
   const More = async () => {
     if (search.length >= noOfLogo) {
@@ -128,33 +127,16 @@ const Map = () => {
 
     }
   };
-  // const data = useCallback(() => {
-  //   if (slice.length == 0){
-  //     dispatch(mediawithcity("traditional-ooh-media","delhi",noOfLogo)).then(() => {
-  //      window.location.reload()
-  //    })
 
-  //   }
-  // },[nearProduct])
 
   useEffect(() => {
   getData()
   },[city_name, category_name])
 
-  //   const data = async () => {
-  //   const category_name = "traditional-ooh-media";
-  //   const city_name = "delhi";
-  //   const limit = noOfLogo
-  //   dispatch(mediawithcity(category_name, city_name, limit));
-  // };
-
-  // useEffect(() => {
-  //   data()
-  //     },[noOfLogo])
 
   return (
     <>
-<Fixednavbar/>
+	<Fixednavbar/>
       <div className="container-fluid" id={styles.map_body}>
         <div className="row" id={styles.map_view_row}>
           <div className="col-lg-3 col-md-3 col-sm-12 p-0 border-end position-relative">
@@ -213,11 +195,11 @@ const Map = () => {
                                   <div className="row m-0">
                                     <div
                                       className={`col-xl-4 col-lg-12 col-md-12 col-sm-6 ${styles.map_media_items}`}
-                                    >
- <Link
-                      href={`/seedetails/${item.category_name}/${item.meta_title}`}
-                      className="text-decoration-none"
-                    >
+                                    	>
+ 										<Link
+                      					href={`/seedetails/${item.category_name}/${item.meta_title}`}
+                      					className="text-decoration-none"
+                    					>
                                     <img
                                     
                                       src={
@@ -243,14 +225,14 @@ const Map = () => {
                                       className="w-100 h-75 mt-2 pt-2"
                                     />
        
-</Link> 
+									</Link> 
                                     </div>
                                     <div className="col-xl-8 col-lg-12 col-md-12 col-sm-6">
                                       <ul className="list-unstyled pt-1">
-                                      <Link
-                      href={`/seedetails/${item.category_name}/${item.meta_title}`}
-                      className="text-decoration-none"
-                    >
+                                      	<Link
+                      					href={`/seedetails/${item.category_name}/${item.meta_title}`}
+                      					className="text-decoration-none"
+                    					>
                                       <li title={item.page_title} className='text-dark'>
                                         {item.page_title.substring(0, 20) +
                                           "..."}
@@ -362,38 +344,8 @@ const Map = () => {
               ) : null}
               <Mapfilter search={search} setSearch={setSearch} />
             </div>
-
-            {/* <div id={` ${styles.map_view_mobile}`}>
-            <div className={`${styles.aval_hoarding} d-inline-block position-absolute`}>
-              <div className={`${styles.map_btns} d-inline-block p-1 pe-2 border-end`}>
-                <img
-                  src="./assests/map-icons/billboard.png"
-                  alt="billboard"
-                  className="p-2"
-                />
-                <span className="pe-2">Available</span>
-              </div>
-
-              <div className={`${styles.map_btns} d-inline-block p-1 pe-2`}>
-                <img
-                  src="./assests/map-icons/billboard.png"
-                  alt="billboard"
-                  className="p-2"
-                />
-                <span className="pe-2">Not Available</span>
-              </div>
-            </div>
-
-          </div> */}
           </div>
           <div className="col-9 p-0 mt-5 pt-3" id={styles.map_view}>
-            {/* <button
-              className={`${styles.Load_more} ms-2`}
-              onClick={() => More()}
-            >
-              Load more{" "}
-            </button> */}
-
             <div className={`d-inline-block position-absolute bottom-0 mb-2 ${styles.aval_hoarding }bg-warning p-2  pb-0"`}>
               <div className="d-inline-block border-0 ">
                 <p className="">Click on markers to add/remove into cart.</p>
