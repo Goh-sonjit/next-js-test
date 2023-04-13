@@ -54,7 +54,7 @@ const Branding = (props) => {
           }
           .inn-pag-ban h2 {
             font-size: 50px;
-            font-family: Montserrat, sans-serif;
+       
             font-weight: 700;
             margin-top: 0;
             margin-bottom: 0;

@@ -2,11 +2,9 @@ const db = require("../conn/conn");
 const jwtToken = require('jsonwebtoken')
 const catchError = require('../middelware/catchError')
 const redis = require('redis');
+
 const client = redis.createClient()
     client.connect()
-
-
-
 
 exports.city = catchError(async (req, res, next) => {
     const { value } = req.body
@@ -14,7 +12,7 @@ exports.city = catchError(async (req, res, next) => {
     if (value) {
         citystart = " WHERE name LIKE '" + value + "%'"
     }
-    const data = await client.get(`cities?name=${citystart}`)
+    const data = await client.get(`cities${citystart}`)
     if (data) {
         return  res.send(JSON.parse(data))
     } else {
@@ -24,7 +22,7 @@ exports.city = catchError(async (req, res, next) => {
             if (err) {
                 return res.status(206).json({success : false, message:"No City Found"})
             };
-            client.setEx("cities", 157788000000,JSON.stringify(result))
+            client.setEx("cities", process.env.REDIS_TIMEOUT,JSON.stringify(result))
 
             res.send(result)
         });

@@ -37,8 +37,8 @@
     border-radius: 5px;
     background-color: rgba(255, 255, 255, 0.15);
     backdrop-filter: blur(5px);
-    height: 58vh;
-    width: 54vh;
+    height: 80%;
+    width: 80%;
   }
 
   .title {
@@ -63,17 +63,18 @@
   }
 
   .img_responsive {
-    height: 48vh;
+    height: 75%;
     position: fixed;
-    top: 17%;
-    left: 0%;
+    top: 25%;
+    left: 8%;
   }
 
   .img_responsive2 {
-    height: 38vh;
+    height: 60%;
     position: fixed;
-    top: 34.4%;
+    top: 40%;
     left: 19%;
+    
   }
 }
 .login_container2 {

@@ -55,7 +55,6 @@ const Enquire = () => {
            </div>
          ))}
        </Slider>
-
    </section>
       <div className={`container-xxl  container-xl container-lg container-md ${styles.enquire_content} py-2 py-md-5 my-md-3 px-md-5 `}>
         <div className={`row p-2 ${styles.enquire_description_row}`}>

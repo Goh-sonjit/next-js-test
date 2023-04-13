@@ -37,7 +37,7 @@ exports.sendOTP = catchError(async (req, res) => {
                 if (error) {
                     res.status(400).json({message: error.message})
                 } else {
-                    const sql = "UPDATE tblcontacts SET phone_otp= " + otp + " WHERE phonenumber=" + email + ""
+                    const sql = "UPDATE tblcontacts SET phone_otp= " + otp + " WHERE phonenumber='" + email + "'"
                     db.query(sql, async (err, result) => {
                         if (err) {
                             res.status(400).json({message: err.message})

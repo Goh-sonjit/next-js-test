@@ -133,8 +133,15 @@ export const profileDetails = async () => {
   return data
 }
 
-export const updateProfile = async (img, firstname, phonenumber) => {
-  const { data } = await instance.post("profile", { img, firstname, phonenumber });
+export const updateProfile = async ( firstname, phonenumber) => {
+  const { data } = await instance.post("profile", { firstname, phonenumber });
+  return data
+}
+export const updateProfilePic = async (item) => {
+ 
+  const formData = new FormData()
+  formData.append('photo', item)
+  const { data } = await instance.patch("excel",formData);
   return data
 }
 export const emailOTP = async (email) => {
