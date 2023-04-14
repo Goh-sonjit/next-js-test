@@ -1,4 +1,5 @@
 import React from "react";
+import Head from "next/head";
 import { CityNameImage } from "@/allApi/apis";
 const Medialogo = ({ category_name, city_name }) => {
 
@@ -12,7 +13,7 @@ const Medialogo = ({ category_name, city_name }) => {
         })}
         <div className="centered">
           <h1>
-            Hoarding Advertising Agency in{" "} {city_name}
+            Hoarding Advertising Agency in{" "} {city_name.charAt(0).toUpperCase() + city_name.slice(1)}
             {/* {`${city_name.charAt(0).toUpperCase() + city_name.slice(1)}`}{" "} */}
           </h1>
           <p className="mt-1 mt-md-4">

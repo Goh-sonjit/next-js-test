@@ -46,7 +46,7 @@ const NavbarH = () => {
               </Nav.Link>
               <Nav.Link
                 className={`me-3  me-md-0   ${styles.nav_text_btn}  text-center`}
-                href="/contact-us"
+                onClick={() =>route.push("/contact-us")}
               >
                 Contact
               </Nav.Link>

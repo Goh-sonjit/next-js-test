@@ -17,7 +17,10 @@ export const CityNameImage = [
   //   srcImg: "../images/web_pics/airport.jpg",
   //   icon: <GiCommercialAirplane/>,  
   //   link: "inflight-media/",
-  //   city: "citesc"
+  //   city: "delhi",
+  //   page_titel:'',
+  //   page_decri:'',
+  //   meta_keyword:''
   // },
   {
     label: "Traditional OOH Media ",
@@ -27,7 +30,10 @@ export const CityNameImage = [
     srcImgM: "../images/web_pics/traditional-ooh-media-advertising.jpg",
     Link: `/traditional-ooh-media/delhi`,
     icon: <GiAwareness />,
-    city: "delhi"
+    city: "delhi",
+    page_titel:'Outdoor Advertising Agency in India | OOH in India | Gohoardings',
+    page_decri:'Gohoarding is the leading company of OOH Advertising agency in India. Gohoardings provide Hoardings across  India at best price. | Gohoardings Solution LLP',
+    meta_keyword:'OOH Advertising in India, Outdoor Advertising in India, Hoardings Company in India, OOH Branding in India, Hoardings Agency in India, Billboard Advertising in India, Hoarding Rates in India, Outdoor Publicity Company in India, Unipole Advertising in India. Bus Shelter, Pole Kiosk Advertising, Gohoardings Solution in India'
   },
   {
     label: "Digital Media",
@@ -37,7 +43,10 @@ export const CityNameImage = [
     srcImgM: "../images/web_pics/digital-media-hoardings-digital-hoardings.jpg",
     Link: `/digital-media/delhi`,
     icon: <GiLaptop />,
-    city: "mumbai"
+    city: "mumbai",
+    page_titel:'Digital OOH Advertising Agency | Digital OOH in India | Gohoardings',
+    page_decri:'Gohoarding is the Leading Company of Digital OOH Advertising Agency in India. Gohoardings provides Digital Hoarding across India at best price | Gohoardings Solution',
+    meta_keyword:'Digital OOH Advertising in India, Outdoor Advertising in India, Digital Billboard Agency in India, Digital OOH Advertising details, Rates, And services in India, Digital OOH, Outdoor Advertising, Traditional OOH, Internet Advertising, OOH news India, OOH Industry'
   },
   {
     label: "Mall Media",
@@ -47,7 +56,10 @@ export const CityNameImage = [
     srcImgM: "../images/web_pics/mall-media-advertising-near-me.jpg",
     Link: `/mall-media/delhi`,
     icon: <TbBuildingCommunity />,
-    city: "bengaluru"
+    city: "bengaluru",
+    page_titel:'Mall Advertising Agency in India, Advertising in Malls | Gohoardings',
+    page_decri:'Gohoardings is one of the leading Mall Advertising Agency in India, Which helps brands to grow their brands with Advertising in Malls and supermarkets. | Gohoardings',
+    meta_keyword:'Mall Advertising in India, Mall Ads India, Mall Marketing In India, Advertising in Malls India, Mall Branding India, Mall Promotions India, Mall Events India, Mall Activations India, Digital Mall Advertising in India, Retail Mall Advertising in India, Mall Advertising Solutions in India, Mall Signage India, Mall Advertising Rates India'
   },
 
   {
@@ -58,7 +70,10 @@ export const CityNameImage = [
     srcImgM: "../images/web_pics/office-branding-media-near-me.jpg",
     Link: `/office-branding/delhi`,
     icon: <ImOffice />,
-    city: "pune"
+    city: "pune",
+    page_titel:'Office Branding Company in India, Office Hoardings | Gohoardings',
+    page_decri:'Office Branding Company in India, It is helpful for business for brand awareness, Office Space Advertising, Office Branding in India | Gohoardings Solution LLP',
+    meta_keyword:'Office Space Advertising, Tech Park Branding,Software Offices,Office Branding, Co-woking office space branding, Office Branding Agency in Mumbai, India, Branding agencies in India'
   },
   {
     label: "Transit Media",
@@ -68,7 +83,10 @@ export const CityNameImage = [
     srcImgM: "../images/web_pics/transit-media-advertising-near-me.jpg",
     Link: `/transit-media/delhi`,
     icon: <TfiLayoutMediaCenterAlt />,
-    city: "chennai"
+    city: "chennai",
+    page_titel:'Transit Advertising company in Delhi | Gohoardings Solution LLP',
+    page_decri:'Go Hoardings offers a wide range of transit media advertising solutions to help you reach your target audience, Train, Mobile Van, State Roadways Buses, Auto Rickshaws, Metro and local train Advertising.',
+    meta_keyword:''
   },
   {
     label: "Airport Branding",
@@ -78,7 +96,10 @@ export const CityNameImage = [
     srcImgM: "../images/web_pics/airport-media-digital-hoardings.jpg",
     Link: `/airport-media/delhi`,
     icon: <GiAirplaneDeparture />,
-    city: "hyderabad"
+    city: "hyderabad",
+    page_titel:'Airport Advertising Company in India, Airport Branding | Gohoardings',
+    page_decri:'Airport Advertising Company in India, Showcase your brand in Airports. Get the more attention on you brands with help of Airport & Airlines ads | Gohoardings.com',
+    meta_keyword:'Airport Advertising, Airlines Advertising, Airport Advertising Rates, Airport Advertising Company in Noida, India, Airport Ad Company in Delhi, Airport Branding Agency in India, Indian Airport Advertising Company in Delhi, Delhi Airport Branding, Airlines Advertising'
   }
 ];
 
@@ -88,7 +109,7 @@ export const getAllCity = async (value) => {
 };
 
 export const logoutUser = async () => {
-  const data = await instance.get("sociallogin");
+  const {data} = await instance.get("sociallogin");
   return data;
 }
 

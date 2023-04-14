@@ -3,10 +3,13 @@ import LinkedInProvider from "next-auth/providers/linkedin";
 
 
 export default NextAuth({
+  
     providers: [
+      
         LinkedInProvider({
           clientId: process.env.LINKEDIN_CLIENT_ID,
-          clientSecret: process.env.LINKEDIN_CLIENT_SECRET
+          clientSecret: process.env.LINKEDIN_CLIENT_SECRET,
+          callbackUrl:"www.google.com"
         })
       ],
     secret:"thisismysecretejsonWebToken"

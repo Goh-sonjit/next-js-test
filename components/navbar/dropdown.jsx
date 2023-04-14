@@ -1,7 +1,15 @@
 import Link from "next/link"
-
+import { useRouter } from 'next/router'
+import { setCookie } from "cookies-next";
 
 const navbarDropdown = () => {
+  const route=useRouter();
+  const directlink=(e)=>{
+    setCookie("category_name",e)
+    setCookie("city_name","delhi")
+    route.push(e)
+
+  }
   return (
     <>
     <div
@@ -12,59 +20,37 @@ const navbarDropdown = () => {
           <div className="row m-1 drop-data">
             <div className="col-3 p-0  border-box mb-3">
               <ul className="list-none ms-2">
-                <li>
+                <li onClick={(e) => directlink(`/traditional-ooh-media`)} className="button text-light text-nowrap is-small is-info">
                 
-                  <Link
-                    href={`/traditional-ooh-media`}
-                    className="button text-light text-nowrap is-small is-info text-decoration-none"
-                  >
-                 
+                
                     Traditional OOH
-                  </Link>
+                  
                 </li>
-                <li>
+                <li onClick={(e) => directlink(`/mall-media`)} className="button text-light text-nowrap is-small is-info">
+
                 
-                  <Link
-                    href={`/mall-media`}
-                    className="button text-light text-nowrap is-small is-info text-decoration-none"
-                  >
-                   
+                 
                     Mall Media
-                  </Link>
+             
                 </li>
-                <li>
-                
-                  <Link
-                    href={`/airport-media`}
-                    className="button text-light text-nowrap is-small is-info text-decoration-none"
-                  >
-                   
+                <li onClick={(e) => directlink(`/airport-media`)} className="button text-light text-nowrap is-small is-info">
                     Airport Media
-                  </Link>
+                
                 </li>
                
-                <li>
-                
-                  <Link
-                    href={`/office-media`}
-                    className="button text-light text-nowrap is-small is-info text-decoration-none"
-                  >
-                   
-                    Office Branding
-                  </Link>
+                <li onClick={(e) => directlink(`/office-media`)} className="button text-light text-nowrap is-small is-info">
+                 Office Branding
                 </li>
               </ul>
             </div>
             <div className="col-3 p-0 m-0 border-box mb-3">
               <ul className="list-none">
-                <li>
+              
+                <li onClick={(e) => directlink(`/digital-media`)} className="button text-light text-nowrap is-small is-info">
                 
-                  <Link
-                    href={`/digital-media`}
-                    className="button text-light text-nowrap is-small is-info text-decoration-none"
-                  >
+                 
                     Digital Screen
-                  </Link>
+               
                 </li>
                 {/* <li>
                 
@@ -75,14 +61,12 @@ const navbarDropdown = () => {
                     InFlight Branding
                   </Link>
                 </li> */}
-                <li>
+                             <li onClick={(e) => directlink(`/transit-media`)} className="button text-light text-nowrap is-small is-info">
+
                 
-                  <Link
-                    href={`/transit-media`}
-                    className="button text-light text-nowrap is-small is-info text-decoration-none"
-                  >
+                 
                     Transit Media
-                  </Link>
+               
                 </li>
               </ul>
             </div>

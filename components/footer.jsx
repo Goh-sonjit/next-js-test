@@ -213,7 +213,7 @@ const Footer = () => {
                   <Link
                     key={i}
                     //  href="#"
-                    href={`/${el.value}`}
+                    href={el.value}
                     className="text-decoration-none "
                   >
                  

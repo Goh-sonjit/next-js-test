@@ -5,20 +5,16 @@ import styles from "../styles/ourServices.module.scss";
 import { HiOutlineArrowNarrowRight } from "react-icons/hi";
 import Link from "next/link";
 const Ourservices = () => {
-
-
   const directlink=(e)=>{
     setCookie("category_name",e)
     setCookie("city_name","delhi")
 
   }
-
   
   const directlinkget=()=>{
     console.log("ftgh");
     setCookie("category_name","traditional-ooh-media")
     setCookie("city_name","delhi")
-
   }
  
   {
@@ -81,7 +77,7 @@ const Ourservices = () => {
                       {pos.label}
                     </h6>
                     <Link
-                      href={`/${pos.value}`}
+                      href={pos.value}
                       className="text-decoration-none"
 
                     >
@@ -123,7 +119,7 @@ const Ourservices = () => {
               </div>
               <div className="col-3">
                 <span className={`${styles.button_serch} text-white rounded-pill`}>
-                  <Link href="/traditional-ooh-media" >
+                  <Link href="/traditional-ooh-media-advertising" >
                     <button className={styles.search_btn}   
                       onClick={directlinkget}>
                         Get it Now

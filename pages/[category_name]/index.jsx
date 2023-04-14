@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AccountContext } from "@/allApi/apicontext";
 import OverView from "./overView";
+import Head from "next/head";
 import { useRouter } from "next/router";
 import styles from "../../styles/media.module.scss";
 import { MdLocationPin } from "react-icons/md";
@@ -195,10 +196,43 @@ useEffect(() =>{
         router.push("/map");
     }
   }
+ 
 
 
   return (
     <>
+     {CityNameImage && CityNameImage.map((el) => {
+    return (
+     el.value == category_name && (
+     <>
+      <Head>
+      <title>
+    {el.page_titel}
+      </title>
+      <meta charSet="utf-8" />
+      <link
+        rel="icon"
+        href="https://www.gohoardings.com/assets/images/favicon.png"
+      />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <meta name="theme-color" content="#000000" />
+      <meta
+        name="description"
+        content={el.page_decri}
+      />
+      <meta
+        name="google-site-verification"
+        content="fLT70DRZGdH5FUdrS8w1k2Zg_VTzNJGDF9ie9v4FAzM"
+      />
+      <meta
+        name="keywords"
+        content={el.meta_keyword}
+      />
+    </Head>
+     </>
+     )
+    )
+  })}
     <Fixednavbar/>
       <div className="d-hide drop-nd"></div>
       <Medialogo category_name={category_name} city_name={city_name} />
@@ -442,10 +476,10 @@ useEffect(() =>{
   );
 };
 
-// export async function getServerSideProps() {
+export async function getServerSideProps() {
  
-  
-//   return { props: { slice, category_name, city_name, mediaTypeFilter, locationFilter, categoryFilter, toggle } }
-// }
+ 
+  return { props: { slice, category_name, city_name, mediaTypeFilter, locationFilter, categoryFilter, toggle } }
+}
 
 export default Media;

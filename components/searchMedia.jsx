@@ -24,7 +24,7 @@ const Searchmedia = () => {
       if (userType.length > 3 && value.length > 2) {
         setCookie('category_name',userType)
         setCookie('city_name',value)
-        route.push(`/${userType}`)
+        route.push(userType)
         
       }
     };

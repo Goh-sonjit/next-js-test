@@ -50,11 +50,7 @@ const Campign = ({ posts }) => {
     }
   };
   
-  
-  
 
-  
-  
 
   const powerpoint = async () => {
     try {
