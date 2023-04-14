@@ -1,28 +1,39 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AccountContext } from "@/allApi/apicontext";
 import OverView from "./overView";
-import Head from "next/head";
 import { useRouter } from "next/router";
 import styles from "../../styles/media.module.scss";
 import { MdLocationPin } from "react-icons/md";
 import { BsGrid } from "react-icons/bs";
 import { CiGrid2H } from "react-icons/ci";
+import Head from "next/head";
 import { MdArrowUpward, MdOutlineArrowDownward } from "react-icons/md";
-import { CityNameImage, Less, mediaDataApi, mediawithlocation,  mediaFilters, More, addItem, removeItem } from "../../allApi/apis";
+import {
+  CityNameImage,
+  Less,
+  mediaDataApi,
+  mediawithlocation,
+  mediaFilters,
+  More,
+  addItem,
+  removeItem,
+} from "../../allApi/apis";
 import Singlecard from "./single";
 import Multicard from "./multicard";
-import { setCookie,getCookie, removeCookies } from 'cookies-next';
+import { setCookie, getCookie, removeCookies } from "cookies-next";
 import { MdOutlineShoppingCart } from "react-icons/md";
 import dynamic from "next/dynamic";
 import Fixednavbar from "@/components/navbar/fixednavbar";
 
-const Medialogo = dynamic(() => import("@/components/mediaBranding"),{
-  ssr:false
+const Medialogo = dynamic(() => import("@/components/mediaBranding"), {
+  ssr: false,
 });
-const Media = () => {
+const Media = (props) => {
+  const Metatag = props.MetaKeys;
+
   const router = useRouter();
-  const [search, setSearch] = useState([])
-  const { handleShow} = useContext(AccountContext);
+  const [search, setSearch] = useState([]);
+  const { handleShow } = useContext(AccountContext);
   const { category_name } = router.query;
   const { addRemove } = useContext(AccountContext);
   const [query, setQuery] = useState("");
@@ -37,10 +48,10 @@ const Media = () => {
   const [locationData, setlocationData] = useState([]);
   const [categoryData, setcategoryData] = useState([]);
   const [locationCkheckbox, setLocationCkheckbox] = useState([]);
- const city_name = getCookie('city_name')
+  const city_name = getCookie("city_name");
   let slice;
 
-  if(search){
+  if (search) {
     slice = search.slice(0, noOfLogo);
   }
 
@@ -49,12 +60,12 @@ const Media = () => {
   };
 
   const addonCart = async (e) => {
-    const data = await addItem(e.code, e.category_name)
-    if(data.message == "Login First"){
-      handleShow()
-    }else{
+    const data = await addItem(e.code, e.category_name);
+    if (data.message == "Login First") {
+      handleShow();
+    } else {
       addRemove({ type: "INCR" });
-      add(e)
+      add(e);
     }
   };
   const getMap = () => {
@@ -62,14 +73,12 @@ const Media = () => {
     router.push("/map");
   };
 
-
   const removefromCart = async (obj) => {
-    const data = await removeItem(obj.code)
-    if(data.message == 'Done'){
+    const data = await removeItem(obj.code);
+    if (data.message == "Done") {
       addRemove({ type: "DECR" });
       remove(obj);
     }
-  
   };
 
   const add = (event) => {
@@ -97,10 +106,10 @@ const Media = () => {
     setOverview(!overview);
   };
   const getCardData = async () => {
-    const data =  await mediaDataApi(category_name, city_name);
-    setSearch(data)
+    const data = await mediaDataApi(category_name, city_name);
+    setSearch(data);
   };
-  
+
   useEffect(() => {
     getCardData();
     apiforfillters();
@@ -108,11 +117,10 @@ const Media = () => {
 
   const apiforfillters = async () => {
     const data = await mediaDataApi(category_name, city_name);
-    setSearch(data)
+    setSearch(data);
     data.map((obj, i) => {
       obj["select"] = false;
     });
-
 
     let uniqueData = data.filter((obj, index, self) => {
       return index === self.findIndex((t) => t.location === obj.location);
@@ -132,16 +140,14 @@ const Media = () => {
       return el.illumination;
     }
   });
-useEffect(() =>{
-
-},[search])
+  useEffect(() => {}, [search]);
 
   let ILLUMINATION;
   const allIllumations = filtered.map((illumation) => illumation.illumination);
   ILLUMINATION = [...new Set(allIllumations)];
 
- async function categoryFilter(cate) {
-    category.forEach(async(el) => {
+  async function categoryFilter(cate) {
+    category.forEach(async (el) => {
       if (el === cate && categoryArray.indexOf(el) > -1) {
         categoryArray.splice(categoryArray.indexOf(el), 1);
         setCategoryArray(categoryArray);
@@ -150,12 +156,14 @@ useEffect(() =>{
         setCategoryArray(categoryArray);
       }
     });
-    const data = await mediaFilters(category_name,
+    const data = await mediaFilters(
+      category_name,
       singlemedia,
       categoryArray,
       city_name,
-      locationCkheckbox)
-    setSearch(data)
+      locationCkheckbox
+    );
+    setSearch(data);
   }
 
   const locationFilter = async (loca) => {
@@ -169,12 +177,16 @@ useEffect(() =>{
         setlocationData(locationData);
       }
     });
-   const data = await  mediawithlocation(category_name, city_name, loca.location)
-    setSearch(data)
+    const data = await mediawithlocation(
+      category_name,
+      city_name,
+      loca.location
+    );
+    setSearch(data);
   };
-   
+
   async function mediaTypeFilter(cate) {
-    ILLUMINATION.forEach(async(el) => {
+    ILLUMINATION.forEach(async (el) => {
       if (el === cate && singlemedia.indexOf(el) > -1) {
         singlemedia.splice(singlemedia.indexOf(el), 1);
         setsingleMedia(singlemedia);
@@ -183,60 +195,57 @@ useEffect(() =>{
         setsingleMedia(singlemedia);
       }
     });
-    const data = await mediaFilters(category_name,
+    const data = await mediaFilters(
+      category_name,
       singlemedia,
       categoryArray,
       city_name,
-      locationCkheckbox)
-    setSearch(data)
+      locationCkheckbox
+    );
+    setSearch(data);
   }
   const mapData = async (e) => {
-    if(search){  
-      setCookie("meta_title", e)
-        router.push("/map");
+    if (search) {
+      setCookie("meta_title", e);
+      router.push("/map");
     }
-  }
- 
-
-
+  };
+  console.log(category_name);
+  console.log(Metatag[0].page_titel);
   return (
     <>
-     {CityNameImage && CityNameImage.map((el) => {
-    return (
-     el.value == category_name && (
-     <>
       <Head>
-      <title>
-    {el.page_titel}
-      </title>
-      <meta charSet="utf-8" />
-      <link
-        rel="icon"
-        href="https://www.gohoardings.com/assets/images/favicon.png"
-      />
-      <meta name="viewport" content="width=device-width, initial-scale=1" />
-      <meta name="theme-color" content="#000000" />
-      <meta
-        name="description"
-        content={el.page_decri}
-      />
-      <meta
-        name="google-site-verification"
-        content="fLT70DRZGdH5FUdrS8w1k2Zg_VTzNJGDF9ie9v4FAzM"
-      />
-      <meta
-        name="keywords"
-        content={el.meta_keyword}
-      />
-    </Head>
-     </>
-     )
-    )
-  })}
-    <Fixednavbar/>
-      <div className="d-hide drop-nd"></div>
+        {Metatag.map((el, i) => {
+          if (category_name === el.value) {
+            return (
+              <>
+                <title>{el.page_titel}</title>
+                <meta charSet="utf-8" />
+                <link
+                  rel="icon"
+                  href="https://www.gohoardings.com/assets/images/favicon.png"
+                />
+                <meta
+                  name="viewport"
+                  content="width=device-width, initial-scale=1"
+                />
+                <meta name="theme-color" content="#000000" />
+                <meta name="description" content={el.page_decri} />
+                <meta
+                  name="google-site-verification"
+                  content="fLT70DRZGdH5FUdrS8w1k2Zg_VTzNJGDF9ie9v4FAzM"
+                />
+                <meta name="keywords" content={el.meta_keyword} />
+              </>
+            );
+          }
+        })}
+      </Head>
+
+      <Fixednavbar />
       <Medialogo category_name={category_name} city_name={city_name} />
-      <div className=" container-xxl  container-xl container-lg container-md  mt-4 mb-5 p-0 media-con rounded">
+
+      <div className=" container-xxl  container-xl container-lg container-md  mt-5 mb-5 p-0 media-con rounded">
         <div className={`mt-md-5 pt-md-3  list ${styles.media_choice} d-flex`}>
           <h2 aria-expanded={listings} onClick={toggle}>
             Listings
@@ -371,7 +380,7 @@ useEffect(() =>{
 
             <div className=" col-md-10 ">
               <div className={`${styles.multi_card_contaier} row`}>
-                {CityNameImage.map((el, i) => {
+                {/* {CityNameImage.map((el, i) => {
                   if (category_name === el.value) {
                     return (
                       <div
@@ -404,7 +413,7 @@ useEffect(() =>{
                       </div>
                     );
                   }
-                })}
+                })} */}
 
                 {multicard ? (
                   <Multicard
@@ -414,60 +423,53 @@ useEffect(() =>{
                     More={More}
                     Less={Less}
                     addonCart={addonCart}
-               
                     removefromCart={removefromCart}
                     add={add}
                     remove={remove}
-                   
                   />
                 ) : (
                   <Singlecard
                     MdOutlineShoppingCart={MdOutlineShoppingCart}
                     slice={slice}
                     mapData={mapData}
-                  
                     addonCart={addonCart}
                     removefromCart={removefromCart}
                   />
                 )}
               </div>
 
-            
-                
-                  {slice.length < 8 ? (
-                    <></>
-                  ) : (
-                    <>
-                      <div className="position-relative my-5 ">
-                        <div className=" position-absolute  top-0 start-50 translate-middle ms-md-4 w-100 text-center">
-                          {slice.length == search.length ? (
-                            <> </>
-                          ) : (
-                            <button
-                              className={`${styles.load_button} `}
-                              onClick={(a, b, c) =>
-                                More(setnoOfLogo, noOfLogo, search)
-                              }
-                            >
-                              View More <MdOutlineArrowDownward className="" />
-                            </button>
-                          )}
-                          {slice.length <= 9 ? (
-                            <> </>
-                          ) : (
-                            <button
-                              className={`${styles.load_button}  ms-5`}
-                              onClick={(a, b) => Less(setnoOfLogo, noOfLogo)}
-                            >
-                              View Less <MdArrowUpward className="" />
-                            </button>
-                          )}
-                        </div>
-                      </div>
-                    </>
-                  )}
-               
-            
+              {slice.length < 8 ? (
+                <></>
+              ) : (
+                <>
+                  <div className="position-relative my-5 ">
+                    <div className=" position-absolute  top-0 start-50 translate-middle ms-md-4 w-100 text-center">
+                      {slice.length == search.length ? (
+                        <> </>
+                      ) : (
+                        <button
+                          className={`${styles.load_button} `}
+                          onClick={(a, b, c) =>
+                            More(setnoOfLogo, noOfLogo, search)
+                          }
+                        >
+                          View More <MdOutlineArrowDownward className="" />
+                        </button>
+                      )}
+                      {slice.length <= 9 ? (
+                        <> </>
+                      ) : (
+                        <button
+                          className={`${styles.load_button}  ms-5`}
+                          onClick={(a, b) => Less(setnoOfLogo, noOfLogo)}
+                        >
+                          View Less <MdArrowUpward className="" />
+                        </button>
+                      )}
+                    </div>
+                  </div>
+                </>
+              )}
             </div>
           </div>
         )}
@@ -476,10 +478,66 @@ useEffect(() =>{
   );
 };
 
-export async function getServerSideProps() {
- 
- 
-  return { props: { slice, category_name, city_name, mediaTypeFilter, locationFilter, categoryFilter, toggle } }
-}
+Media.getInitialProps = async () => {
+  const MetaKeys = [
+    {
+      value: "traditional-ooh-media",
+      page_titel:
+        "Outdoor Advertising Agency in India | OOH in India | Gohoardings",
+      page_decri:
+        "Gohoarding is the leading company of OOH Advertising agency in India. Gohoardings provide Hoardings across  India at best price. | Gohoardings Solution LLP",
+      meta_keyword:
+        "OOH Advertising in India, Outdoor Advertising in India, Hoardings Company in India, OOH Branding in India, Hoardings Agency in India, Billboard Advertising in India, Hoarding Rates in India, Outdoor Publicity Company in India, Unipole Advertising in India. Bus Shelter, Pole Kiosk Advertising, Gohoardings Solution in India",
+    },
+    {
+      value: "digital-media",
+      page_titel:
+        "Digital OOH Advertising Agency | Digital OOH in India | Gohoardings",
+      page_decri:
+        "Gohoarding is the Leading Company of Digital OOH Advertising Agency in India. Gohoardings provides Digital Hoarding across India at best price | Gohoardings Solution",
+      meta_keyword:
+        "Digital OOH Advertising in India, Outdoor Advertising in India, Digital Billboard Agency in India, Digital OOH Advertising details, Rates, And services in India, Digital OOH, Outdoor Advertising, Traditional OOH, Internet Advertising, OOH news India, OOH Industry",
+    },
+    {
+      value: "mall-media",
+      page_titel:
+        "Mall Advertising Agency in India, Advertising in Malls | Gohoardings",
+      page_decri:
+        "Gohoardings is one of the leading Mall Advertising Agency in India, Which helps brands to grow their brands with Advertising in Malls and supermarkets. | Gohoardings",
+      meta_keyword:
+        "Mall Advertising in India, Mall Ads India, Mall Marketing In India, Advertising in Malls India, Mall Branding India, Mall Promotions India, Mall Events India, Mall Activations India, Digital Mall Advertising in India, Retail Mall Advertising in India, Mall Advertising Solutions in India, Mall Signage India, Mall Advertising Rates India",
+    },
+
+    {
+      value: "office-media",
+      page_titel:
+        "Office Branding Company in India, Office Hoardings | Gohoardings",
+      page_decri:
+        "Office Branding Company in India, It is helpful for business for brand awareness, Office Space Advertising, Office Branding in India | Gohoardings Solution LLP",
+      meta_keyword:
+        "Office Space Advertising, Tech Park Branding,Software Offices,Office Branding, Co-woking office space branding, Office Branding Agency in Mumbai, India, Branding agencies in India",
+    },
+    {
+      value: "transit-media",
+      page_titel:
+        "Transit Advertising company in Delhi | Gohoardings Solution LLP",
+      page_decri:
+        "Go Hoardings offers a wide range of transit media advertising solutions to help you reach your target audience, Train, Mobile Van, State Roadways Buses, Auto Rickshaws, Metro and local train Advertising.",
+      meta_keyword: "",
+    },
+    {
+      value: "airport-media",
+      page_titel:
+        "Airport Advertising Company in India, Airport Branding | Gohoardings",
+      page_decri:
+        "Airport Advertising Company in India, Showcase your brand in Airports. Get the more attention on you brands with help of Airport & Airlines ads | Gohoardings.com",
+      meta_keyword:
+        "Airport Advertising, Airlines Advertising, Airport Advertising Rates, Airport Advertising Company in Noida, India, Airport Ad Company in Delhi, Airport Branding Agency in India, Indian Airport Advertising Company in Delhi, Delhi Airport Branding, Airlines Advertising",
+    },
+  ];
+  return {
+    MetaKeys,
+  };
+};
 
 export default Media;

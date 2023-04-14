@@ -38,7 +38,7 @@ const ForgetPass = ({
   return (
     <>
       <div className=" mt-3 text-start">
-        <h2 className="">Did you forget your password ?</h2>
+        <h5 className="">Did you forget your password ?</h5>
         <a className={`${styles.forgetpass}  me-4 mb-2`} onClick={() => goBack()}>
           <FiArrowLeftCircle /> GoBack
         </a>

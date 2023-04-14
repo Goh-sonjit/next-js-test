@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 import styles from "../../styles/navbarHome.module.scss";
 import dynamic from "next/dynamic";
 import { removeCookies, setCookie } from "cookies-next";
+import Maintenance from "./maintenance";
 
 const NavbarH = () => {
   const route = useRouter();
@@ -17,8 +18,9 @@ const NavbarH = () => {
   });
 
   return (
-    <>
-      <Navbar expand={`lg px-md-0 pb-0 ${styles.fixd_nabar} sdsd`}>
+    <div>
+<Maintenance/>
+      <Navbar expand={`lg px-md-0 pb-0 ${styles.fixd_nabar} sdsd mt-3`}>
         <div className="navbar container-xxl  container-xl container-lg container-md">
           <Navbar.Brand>
             <img
@@ -66,7 +68,7 @@ const NavbarH = () => {
           </Navbar.Collapse>
         </div>
       </Navbar>
-    </>
+    </div>
   );
 };
 
