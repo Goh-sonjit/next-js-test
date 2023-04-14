@@ -25,13 +25,9 @@ exports.allCity = catchError(async (req, res, next) => {
     })
 
 exports.SiteMapProduct = catchError(async (req, res, next) => {
+    console.log("hii");
+const  category_name  = req.query.email
 
-    const  category_name  = req.query.email
-
-    const cookieData = req.cookies
-    if (!cookieData) {
-        return res.status(204).json({ message: "No Cookie Found" })
-    }
     db.changeUser({ database: "gohoardi_goh" });
     switch (category_name) {
         case "traditional-ooh-media":
@@ -58,10 +54,7 @@ exports.SiteMapProduct = catchError(async (req, res, next) => {
         default:
             table_name = "goh_media";
     }
-    const data =  client.get(category_name)
-    if(data){
-     return res.send(JSON.parse(data))
-    }else{
+  
         const sql = "SELECT DISTINCT meta_title, category_name FROM " + table_name + " WHERE category_name IS NOT NULL" 
 
         db.query(sql, async (err, result) => {
@@ -69,10 +62,10 @@ exports.SiteMapProduct = catchError(async (req, res, next) => {
     
                 return res.status(206).json({ success: false, err: err, message: "Wrong Data" })
             } else {
-                client.setEx(category_name, process.env.REDIS_TIMEOUT,JSON.stringify(result))
+            
                 return res.send(result)
             }
         })
     }
  
-})
+)

@@ -11,7 +11,7 @@ function generateSiteMap(data) {
        .map(({ meta_title, category_name}) => {
          return `
        <url>
-           <loc>${`http://localhost:3000/seedetails/${category_name}/${meta_title}`}</loc>
+           <loc>${`https://gohoardings.com/seedetails/${category_name}/${meta_title}`}</loc>
              <lastmod>${date}</lastmod>
              <changefreq>daily</changefreq>
 <priority>0.8</priority>

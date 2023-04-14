@@ -9,41 +9,12 @@ function generateSiteMap(data) {
        .map(({ name}) => {
          return `
        <url>
-           <loc>${`${"http://localhost:3000/"}/traditional-ooh-media/${name}`}</loc>
+           <loc>${`https://gohoardings.com/${name}`}</loc>
              <lastmod>${date}</lastmod>
              <changefreq>daily</changefreq>
 <priority>0.8</priority>
        </url>
-       <url>
-           <loc>${`${"http://localhost:3000/"}/mall-media/${name}`}</loc>
-             <lastmod>${date}</lastmod>
-             <changefreq>daily</changefreq>
-<priority>0.8</priority>
-       </url>
-       <url>
-           <loc>${`${"http://localhost:3000/"}/airport-media/${name}`}</loc>
-             <lastmod>${date}</lastmod>
-             <changefreq>daily</changefreq>
-<priority>0.8</priority>
-       </url>
-       <url>
-           <loc>${`${"http://localhost:3000/"}/office-media/${name}`}</loc>
-             <lastmod>${date}</lastmod>
-             <changefreq>daily</changefreq>
-<priority>0.8</priority>
-       </url>
-       <url>
-           <loc>${`${"http://localhost:3000/"}/digital-media/${name}`}</loc>
-             <lastmod>${date}</lastmod>
-             <changefreq>daily</changefreq>
-<priority>0.8</priority>
-       </url>
-       <url>
-           <loc>${`${"http://localhost:3000/"}/transit-media/${name}`}</loc>
-             <lastmod>${date}</lastmod>
-             <changefreq>daily</changefreq>
-<priority>0.8</priority>
-       </url>
+
      `;
        })
        .join('')}

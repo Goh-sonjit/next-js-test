@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import {useSession, signIn, signOut} from 'next-auth/react'
+import { signIn} from 'next-auth/react'
 import { FcGoogle } from "react-icons/fc";
 import instance from "@/allApi/axios";
 import styles from '../../styles/login.module.scss'  ;

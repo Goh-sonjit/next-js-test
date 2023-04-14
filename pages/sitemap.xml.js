@@ -6,76 +6,76 @@ function generateSiteMap() {
    <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
      <!--We manually set the two URLs we know already-->
      <url>
-     <loc>http://localhost:3000</loc>
+     <loc>https://gohoardings.com/</loc>
        <lastmod>${date}</lastmod>
        <changefreq>daily</changefreq>
 <priority>0.9</priority>
      </url>
     
      <url>
-     <loc>http://localhost:3000/sitemapDigital.xml</loc>
+     <loc>https://gohoardings.com/sitemapDigital.xml</loc>
        <lastmod>${date}</lastmod>
        <changefreq>daily</changefreq>
 <priority>0.9</priority>
      </url>
   
      <url>
-     <loc>http://localhost:3000/sitemapAirport.xml</loc>
+     <loc>https://gohoardings.com/sitemapAirport.xml</loc>
        <lastmod>${date}</lastmod>
        <changefreq>daily</changefreq>
 <priority>0.9</priority>
      </url>
  
      <url>
-     <loc >http://localhost:3000/sitemapMall.xml</loc>
+     <loc >https://gohoardings.com/sitemapMall.xml</loc>
        <lastmod>${date}</lastmod>
        <changefreq>daily</changefreq>
 <priority>0.9</priority>
      </url>
      <url>
-     <loc>http://localhost:3000/sitemapTraditional.xml</loc>
+     <loc>https://gohoardings.com/sitemapTraditionl.xml</loc>
        <lastmod>${date}</lastmod>
        <changefreq>daily</changefreq>
 <priority>0.9</priority>
      </url>
      <url>
-     <loc>http://localhost:3000/sitemaptransit.xml</loc>
+     <loc>https://gohoardings.com/sitemaptransit.xml</loc>
        <lastmod>${date}</lastmod>
        <changefreq>daily</changefreq>
 <priority>0.9</priority>
      </url>
      <url>
-     <loc>http://localhost:3000/sitemapCities.xml</loc>
+     <loc>https://gohoardings.com/sitemapCities.xml</loc>
        <lastmod>${date}</lastmod>
        <changefreq>daily</changefreq>
 <priority>0.9</priority>
      </url>
      <url>
-     <loc>http://localhost:3000/about-us</loc>
+     <loc>https://gohoardings.com/about-us</loc>
        <lastmod>${date}</lastmod>
        <changefreq>daily</changefreq>
 <priority>0.8</priority>
      </url>
      <url>
-     <loc>http://localhost:3000/team</loc>
+     <loc>https://gohoardings.com/team</loc>
        <lastmod>${date}</lastmod>
        <changefreq>daily</changefreq>
 <priority>0.8</priority>
      </url>
      <url>
-     <loc>http://localhost:3000/media-and-news</loc>
+     <loc>https://gohoardings.com/media-and-news</loc>
        <lastmod>${date}</lastmod>
        <changefreq>daily</changefreq>
 <priority>0.8</priority>
      </url>
      <url>
-     <loc>"http://localhost:3000/contact-us</loc>
+     <loc>"https://gohoardings.com/contact-us</loc>
        <lastmod>${date}</lastmod>
        <changefreq>daily</changefreq>
 <priority>0.8</priority>
      </url>
      <url>
-     <loc>"http://localhost:3000/testimonial</loc>
+     <loc>"https://gohoardings.com/testimonial</loc>
        <lastmod>${date}</lastmod>
        <changefreq>daily</changefreq>
 <priority>0.8</priority>

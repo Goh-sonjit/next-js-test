@@ -31,7 +31,7 @@ export async function getServerSideProps({ res }) {
   // We make an API call to gather the URLs for our site
   const {data} = await instance.post(`transit-media`)
 
-
+console.log(data);
 
   // We generate the XML sitemap with the posts data
   const sitemap = generateSiteMap(data);
