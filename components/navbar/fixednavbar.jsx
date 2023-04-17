@@ -59,13 +59,11 @@ const Fixednavbar = () => {
       setCookie('category_name',userType)
         setCookie('city_name',value)
         route.push(`/map`);
-        console.log(pathname)
     } else
     if (userType.length > 3 && value.length > 2) {
       setCookie("category_name", userType);
       setCookie("city_name", value);
       route.push(`/${userType}`);
-      console.log("absdf")
     }
   };
 

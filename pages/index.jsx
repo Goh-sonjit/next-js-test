@@ -5,7 +5,6 @@ import City from "@/components/cityList";
 import Enquire from "@/components/enquire/enquire";
 import Searchmedia from "@/components/searchMedia";
 import dynamic from "next/dynamic";
-import { Suspense } from "react";
 import NavbarH from "@/components/navbar/navbar";
 
 const Trendingcity = dynamic(() => import("@/components/trendingcity"),{

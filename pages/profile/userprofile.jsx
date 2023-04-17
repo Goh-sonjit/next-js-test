@@ -10,7 +10,6 @@ const initalState = {
   email: "",
 };
 const Userprofile = () => {
-  const [imge, setImage] = useState([]);
   const [posts, setPosts] = useState([]);
   const getUser = async () => {
     const { data } = await instance.get("loginApis");
@@ -23,24 +22,19 @@ const Userprofile = () => {
 
   const { firstname, phonenumber, email } = state;
 
-  const sendImagefile = async (e) => {
-    setImage(e.target.files[0]);
-  };
 
   const handelSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData();
-    // formData.append("photo", imge);
     formData.append("firstname", firstname);
     formData.append("phonenumber", phonenumber);
-    console.log(formData);
-    // const data = await updateProfile(imge, firstname, phonenumber);
-    // if (data.sucess == true) {
-    //   toast(data.message);
-    //   // window.location.reload();
-    // } else {
-    //   toast(data.message);
-    // }
+    const data = await updateProfile(firstname, phonenumber);
+    if (data.sucess == true) {
+      toast(data.message);
+      // window.location.reload();
+    } else {
+      toast(data.message);
+    }
   };
 
   const handleChange = async (e) => {
@@ -60,22 +54,7 @@ const Userprofile = () => {
             <form onSubmit={handelSubmit}>
               <div className="col-md-12">
                 <div className="form-group">
-                  <div className="form-group">
-                     <label for="profile_image" className="profile-image">
-                      Profile image
-                    </label>
-                   <Form.Control
-                      className="form-control"
-                      type="file"
-                      accept="image/png, image/jpg, image/jpeg"
-                      name="photo"
-                      onChange={(e) => sendImagefile(e)}
-                    /> 
-                   {/* <Form.Control
-                   className="form-control"
-                  type='file' name='photo' onChange={sendImagefile}
-                  />  */}
-                  </div>
+                  
                   <label for="firstname">First Name</label>
                   <Form.Control
                     type="text"

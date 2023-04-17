@@ -476,10 +476,10 @@ useEffect(() =>{
   );
 };
 
-export async function getServerSideProps() {
+// export async function getServerSideProps() {
  
  
-  return { props: { slice, category_name, city_name, mediaTypeFilter, locationFilter, categoryFilter, toggle } }
-}
+//   return { props: { slice, category_name, city_name, mediaTypeFilter, locationFilter, categoryFilter, toggle } }
+// }
 
 export default Media;

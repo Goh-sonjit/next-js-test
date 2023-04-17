@@ -12,7 +12,6 @@ const Ourservices = () => {
   }
   
   const directlinkget=()=>{
-    console.log("ftgh");
     setCookie("category_name","traditional-ooh-media")
     setCookie("city_name","delhi")
   }

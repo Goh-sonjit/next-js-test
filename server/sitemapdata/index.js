@@ -25,7 +25,6 @@ exports.allCity = catchError(async (req, res, next) => {
     })
 
 exports.SiteMapProduct = catchError(async (req, res, next) => {
-    console.log("hii");
 const  category_name  = req.query.email
 
     db.changeUser({ database: "gohoardi_goh" });

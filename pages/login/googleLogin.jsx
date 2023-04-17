@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { signIn} from 'next-auth/react'
 import { FcGoogle } from "react-icons/fc";
-import instance from "@/allApi/axios";
 import styles from '../../styles/login.module.scss'  ;
 
 const LoginOauth = ({ googleSignIn, afterLogin,setWithOtp ,withOtp,success}) => {
@@ -28,9 +27,6 @@ const LoginOauth = ({ googleSignIn, afterLogin,setWithOtp ,withOtp,success}) => 
         />
 
         }
-       
-      
-        
        <img
         alt="linkdin"
           src="../../images/web_pics/linkdin.png"
