@@ -16,6 +16,7 @@ import NavbarDropdown from "./dropdown";
 import dynamic from "next/dynamic";
 
 import { useRouter } from "next/router";
+import Maintenance from "./maintenance";
 
 
 
@@ -81,9 +82,10 @@ const Fixednavbar = () => {
   }
 
   return (
-    <>
+    < div className="fixed-top mb-2">
+    <Maintenance/>
       <Navbar
-        expand={`lg px-md-0 p-1 m-0 border-0 ${styles.navbar_main_floating} fixed-top`}
+        expand={`lg px-md-0 p-1 m-0 border-0 ${styles.navbar_main_floating} mt-4`}
       >
         <div className={styles.sss}></div>
 
@@ -208,7 +210,7 @@ const Fixednavbar = () => {
           <div className={styles.sss}></div>
         </Navbar.Collapse>
       </Navbar>
-    </>
+    </div>
   );
 };
 

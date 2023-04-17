@@ -137,7 +137,7 @@ const Map = () => {
   return (
     <>
 	<Fixednavbar/>
-      <div className="container-fluid" id={styles.map_body}>
+      <div className="container-fluid mt-4" id={styles.map_body}>
         <div className="row" id={styles.map_view_row}>
           <div className="col-lg-3 col-md-3 col-sm-12 p-0 border-end position-relative">
             <div className={`row ${styles.filter_icons} mt-5 pt-3`}>

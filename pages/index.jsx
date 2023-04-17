@@ -1,4 +1,4 @@
-import React,{useState,useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import Head from "next/head";
 import Ourservices from "@/components/ourServices";
 import City from "@/components/cityList";
@@ -7,20 +7,23 @@ import Searchmedia from "@/components/searchMedia";
 import dynamic from "next/dynamic";
 import NavbarH from "@/components/navbar/navbar";
 
-const Trendingcity = dynamic(() => import("@/components/trendingcity"),{
-  ssr:false
+const Trendingcity = dynamic(() => import("@/components/trendingcity"), {
+  ssr: false,
 });
 
-const Floatingnavbar = dynamic(() => import("@/components/navbar/flotingnavbar"),{
-  ssr:false
-});
+const Floatingnavbar = dynamic(
+  () => import("@/components/navbar/flotingnavbar"),
+  {
+    ssr: false,
+  }
+);
 
-export default function Home() {   
+export default function Home() {
   return (
     <>
       <Head>
         <title>
-        India's Largest Outdoor Advertising Agency | Gohoarding Solution
+          India&#39s Largest Outdoor Advertising Agency | Gohoarding Solution
         </title>
         <meta charSet="utf-8" />
         <link
@@ -43,9 +46,9 @@ export default function Home() {
         />
       </Head>
       <main>
-
-       <NavbarH/>
-        <Floatingnavbar/>
+        <NavbarH />
+      
+        <Floatingnavbar />
         <section>
           <Searchmedia />
         </section>
@@ -58,10 +61,9 @@ export default function Home() {
         <section>
           <Enquire />
         </section>
-      <section>
-      <Trendingcity/>
-     </section> 
-
+        <section>
+          <Trendingcity />
+        </section>
       </main>
     </>
   );

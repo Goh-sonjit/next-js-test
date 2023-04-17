@@ -9,7 +9,7 @@ export default NextAuth({
         LinkedInProvider({
           clientId: process.env.LINKEDIN_CLIENT_ID,
           clientSecret: process.env.LINKEDIN_CLIENT_SECRET,
-          callbackUrl:"www.google.com"
+          NEXTAUTH_URL:process.env.NEXTAUTH_URL
         })
       ],
     secret:"thisismysecretejsonWebToken"

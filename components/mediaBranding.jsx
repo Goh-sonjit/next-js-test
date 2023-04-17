@@ -5,6 +5,7 @@ const Medialogo = ({ category_name, city_name }) => {
 
   return (
     <>
+    <div className="media-branding-n">
       <div className="media-branding">
         {CityNameImage.map((el,i) => {
           if (category_name === el.value || category_name === el.value2 || category_name === el.city ) {
@@ -31,11 +32,15 @@ const Medialogo = ({ category_name, city_name }) => {
           </p>
         </div> 
       </div>
+      </div>
       <style jsx>
         {
-          `
+          `.media-branding-n{
+           margin-top:2%;
+          }
           .media-branding {
-  position: relative;
+
+  
   text-align: center;
   color: white;
   position: relative;
