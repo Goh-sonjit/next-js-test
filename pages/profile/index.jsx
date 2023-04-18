@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
-import { profileDetails, userDetails } from "@/allApi/apis";
+import React, { use, useEffect, useState } from "react";
+import { profileDetails, updateProfilePic, userDetails } from "@/allApi/apis";
 import Campaings from "./userdata";
 import { useRouter } from "next/router";
 import Changepassword from "./changepassword";
 import Companyprofile from "./companyprofile";
 import Userprofile from "./userprofile";
-
+import { Form } from "react-bootstrap";
 import Campign from "./campign";
 import Profoma from "./profoma";
 import { getCookie, removeCookies } from "cookies-next";
@@ -24,7 +24,7 @@ const Profile = () => {
   const [invoice, setInvoice] = useState(false);
   const [announce, setAnnounce] = useState(false);
   const [user, setUser] = useState([])
-
+  const [img,setImage] = useState([])
 
   const value = getCookie("permissions")
   const getData = async() =>{
@@ -94,7 +94,12 @@ useEffect(() =>{
     setInvoice(false);
     setAnnounce(true);
   };
-
+const getUpdateImage = async(e) =>{
+const data = await updateProfilePic(e)
+if(data.sucess == true){
+  setImage(data)
+}
+}
 
   return (
     <>
@@ -103,7 +108,8 @@ useEffect(() =>{
         <div className="row  p-5">
           <div className="col-md-3">
             <div className="card">
-             
+            <label htmlFor="photo-upload" className="custom-file-upload fas">
+                    <div className="img-wrap img-upload" >
                 <img
                   src= {user && user.map((el) =>el.profile_image)}
                   className="card-img-top p-3 pb-2"
@@ -112,7 +118,16 @@ useEffect(() =>{
                     (e.target.src = "../images/web_pics/user-profile.png")
                   }
                 />
-              
+                    </div>
+              <input
+                    className="form-control"
+                    type="file"
+                    accept="image/png, image/jpg, image/jpeg"
+                    name="photo"
+                    id="photo-upload" 
+                    onChange={(e) => getUpdateImage(e.target.files[0])}
+                  /> 
+                    </label>
               <div className="card-body text-light  row text-center pt-0 pb-2">
                 <div className="col pe-0 ">
                   <div className="p-1 border prf-btn " onClick={showProfile}>
@@ -385,6 +400,9 @@ useEffect(() =>{
           }
           table.dataTable thead tr > th {
             color: #4e75ad;
+          }
+          #photo-upload[type="file"] {
+            display: none;
           }
         `}
       </style>

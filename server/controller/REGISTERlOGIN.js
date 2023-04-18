@@ -405,22 +405,23 @@ exports.updateProfile = catchError(async (req, res, next) => {
 })
 
 exports.updateImage = catchError((req,res) => {
+    const {filename} = req.file;
 
-    const filename = req.file;
-    console.log(filename);
     const userId = req.id;
     let sql; 
     if(filename != undefined){
-        const image = `http://localhost:8080/upload/${filename}`
+        const image = `http://${req.headers.host}/images/profile_image/${filename}`
+  
         sql = "UPDATE tblcontacts SET  profile_image='" + image + "' WHERE userid=" + userId + "";
+
     }
     db.changeUser({database: "gohoardi_crmapp"})
-  
     db.query(sql, async (err, result) => {
         if (err) {
+   
             return res.status(206).json({sucess: false, message: "Image Updation failed"})
         } else {
-            return res.status(200).json({sucess: true, message: " Updated"})
+            return res.status(200).json({sucess: true, message: "Updated"})
         }
     })
 

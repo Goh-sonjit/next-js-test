@@ -123,6 +123,7 @@ export const registerUser = async (email, phone) => {
   })
   return data
 }
+
 export const OtpRegister = async (name, email, phone, password, otp) => {
   const { data } = await instance.put('loginApis', {
     name, email, phone, password, otp
@@ -146,22 +147,24 @@ export const updateProfile = async ( firstname, phonenumber) => {
   const { data } = await instance.post("profile", { firstname, phonenumber });
   return data
 }
-export const updateProfilePic = async (item) => {
- 
+
+export const updateProfilePic = async (img) => {
   const formData = new FormData()
-  formData.append('photo', item)
-  const { data } = await instance.patch("excel",formData);
+  formData.append('file', img)
+  const { data } = await instance.post('upload',formData);
   return data
 }
-export const emailOTP = async (email) => {
 
+export const emailOTP = async (email) => {
   const { data } = await instance.put(`${email}`);
   return data
 }
+
 export const mobileOTP = async (email) => {
   const { data } = await instance.patch(`${email}`);
   return data
 }
+
 export const sendOTP = async (otp) => {
   const { data } = await instance.patch(`forgetPass`, { otp });
   return data
@@ -213,16 +216,17 @@ export const reviewApi = async (feedback, rating, ip) => {
   const { data } = await instance.post("enquiry/review", { feedback, rating, ip });
   return data
 }
+
 export const getreviewApi = async () => {
   const { data } = await instance.get("enquiries");
   return data
 }
 
 export const mediaDataApi = async (category_name, city_name) => {
-
   const { data } = await instance.post("medias", { category_name, city_name });
   return data
 }
+
 export const mediawithlocation = async (category_name, city_name, loca) => {
   const { data } = await instance.put(`team`, {
     category_name,
@@ -267,6 +271,7 @@ export const More = async (setnoOfLogo, noOfLogo, search) => {
   }
 
 }
+
 export const Less = async (setnoOfLogo, noOfLogo) => {
   if (noOfLogo > 10) {
     setnoOfLogo(noOfLogo - 9);
@@ -283,18 +288,14 @@ export const singlemnedia = async(meta_title, category_name) =>{
 }
 
 export const userDetails = async () => {
-
     const { data } = await instance.get("loginApis", {
       withCredentials: true,
     });
     return data
- 
 };
 
 export const priceSubIllu = async(category_name, price, illumination, table, city, locations) => {
-  
-
-      const { data } = await instance.post(`filters`, {
+   const { data } = await instance.post(`filters`, {
         category_name,
         price,
         illumination,
@@ -306,12 +307,8 @@ export const priceSubIllu = async(category_name, price, illumination, table, cit
     return data
   };
 
-  export const iconFiltersData =
-  async (distance, datas, table, city, minLatitude, maxLatitude, uniqueValues) =>
-
+  export const iconFiltersData =async (distance, datas, table, city, minLatitude, maxLatitude, uniqueValues) =>
     {
-
-
       const { data } = await instance.patch(`filters`, {
         distance,
         datas,
@@ -325,14 +322,12 @@ export const priceSubIllu = async(category_name, price, illumination, table, cit
   };
 
   export const cartitems = async () => {
-   
       const { data } = await instance.get(`cart`);
     return data
   };
   
 
   export const addItem = async(mediaid, mediatype) => {
-    console.log(mediaid, mediatype);
       const { data } = await instance.put(`cart`, {
         mediaid,
         mediatype,
@@ -341,15 +336,12 @@ export const priceSubIllu = async(category_name, price, illumination, table, cit
   };
   
   export const removeItem =async (code) =>   {
-  
       const { data } = await instance.patch(`cart`, { code });
       return data
     
   };
 
   export const nearProduct =async(code, category_name) =>   {
-    
- 
       const { data } = await instance.patch("enquiries", {
         code,
         category_name,
@@ -360,7 +352,6 @@ export const priceSubIllu = async(category_name, price, illumination, table, cit
   };
 
   export const markersPosition = async (NorthLat, SouthLat, NorthLong, SouthLong) => {
-   
       const { data } = await instance.post("team", {
         NorthLat,
         SouthLat,
@@ -369,3 +360,5 @@ export const priceSubIllu = async(category_name, price, illumination, table, cit
       });
      return data
   };
+
+

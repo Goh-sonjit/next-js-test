@@ -141,17 +141,9 @@ const Map = () => {
         <div className="row" id={styles.map_view_row}>
           <div className="col-lg-3 col-md-3 col-sm-12 p-0 border-end position-relative">
             <div className={`row ${styles.filter_icons} mt-5 pt-3`}>
+             
               <div
-                className="col-4 list d-inline-block text-center py-2 shadow-sm border-top-0 border collapse-none"
-                data-bs-toggle="collapse"
-                data-bs-target="#collapseT1"
-                aria-expanded="true"
-                aria-controls="collapseT1"
-              >
-                <BsListUl className={`${styles.icons_sizes} icon-clr`} />
-              </div>
-              <div
-                className="col-4 poi d-inline-block text-center py-2 shadow-sm border-top-0 border collapse-none"
+                className="col-6 poi d-inline-block text-center py-2 shadow-sm border-top-0 border collapse-none"
                 id="test"
                 data-bs-toggle="collapse"
                 data-bs-target="#collapseT2"
@@ -163,7 +155,7 @@ const Map = () => {
                 />
               </div>
               <div
-                className="col-4 filter d-inline-block text-center py-2 shadow-sm border-top-0 border collapse-none"
+                className="col-6 filter d-inline-block text-center py-2 shadow-sm border-top-0 border collapse-none"
                 data-bs-toggle="collapse"
                 data-bs-target="#collapseT3"
                 aria-expanded="false"
@@ -174,168 +166,7 @@ const Map = () => {
             </div>
 
             <div id="accordionTest">
-              <div
-                className={`${styles.media_items} ${styles.map_media_item_list} p-2 accordion-collapse collapse show mb-1`}
-                id="collapseT1"
-                data-bs-parent="#accordionTest"
-              >
-                <div
-                  className="accordion items mb-2 rounded"
-                  id="accordionExample"
-                >
-                 
-                      {slice.length == 0 ? (
-                        <h5 className="text-center">No Data Found</h5>
-                      ) : (
-                        <>
-                          {slice.map((item, i) => (
-                            <>
-                              <div className=" border rounded mb-2" key={i}>
-                                <div>
-                                  <div className="row m-0">
-                                    <div
-                                      className={`col-xl-4 col-lg-12 col-md-12 col-sm-6 ${styles.map_media_items}`}
-                                    	>
- 										<Link
-                      					href={`/seedetails/${item.category_name}/${item.meta_title}`}
-                      					className="text-decoration-none"
-                    					>
-                                    <img
-                                    
-                                      src={
-                                        item.thumb.startsWith("https")
-                                          ? item.thumb
-                                          : `https://${item.mediaownercompanyname
-                                              .trim()
-                                              .split(" ")
-                                              .slice(0, 2)
-                                              .join("_")
-                                              .toLowerCase()}.odoads.com/media/${item.mediaownercompanyname
-                                              .trim()
-                                              .split(" ")
-                                              .slice(0, 2)
-                                              .join("_")
-                                              .toLowerCase()}/media/images/new${
-                                              item.thumb
-                                            }`
-                                      }
-                                      onError={(e) =>
-                                        (e.target.src = "../../images/web_pics/alter-img.png")
-                                      }
-                                      className="w-100 h-75 mt-2 pt-2"
-                                    />
-       
-									</Link> 
-                                    </div>
-                                    <div className="col-xl-8 col-lg-12 col-md-12 col-sm-6">
-                                      <ul className="list-unstyled pt-1">
-                                      	<Link
-                      					href={`/seedetails/${item.category_name}/${item.meta_title}`}
-                      					className="text-decoration-none"
-                    					>
-                                      <li title={item.page_title} className='text-dark'>
-                                        {item.page_title.substring(0, 20) +
-                                          "..."}
-                                      </li>
-                                      </Link>
-                                        <li>FTF : {item.ftf}</li>
-                                        <li>Size : {item.size} feet</li>
-
-                                        <li>
-                                          Price: {parseInt(item.price / 30)}
-                                          <span
-                                            className={`${styles.project_price} float-end`}
-                                          >
-                                            {item.isDelete == 0 ? (
-                                              <img
-                                                alt="check"
-                                                src="../images/web_pics/A-chek.png"
-                                                onClick={() =>
-                                                  removefromCart(
-                                                    item.code,
-                                                 
-                                                  )
-                                                }
-                                                className={`${styles.addonCart} icon-clr`}
-                                              />
-                                            ) : (
-                                              <img
-                                                alt="cart-icon"
-                                                src="../images/web_pics/A-cart.png"
-                                                onClick={(e) => addonCart(item.code, item.category_name)
-                                                }
-                                                className={`${styles.addonCart} icon-clr`}
-                                              />
-                                            )}
-                                          </span>
-                                        </li>
-                                      </ul>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                              {slice.length == 1 && (
-                            <div className={`${styles.map_btn_more} text-center`}>
-                                  <button
-                                    className={` ${styles.btn_hover}  ${styles.buttonload} `}
-                                    onClick={getRelateddata}
-                                  >
-                                    Get Related Data
-                                  </button>
-                                </div>
-                              )}
-                            </>
-                          ))}
-                        </>
-                      )}
-                   
-
-                  <div className={`${styles.map_btn_more} text-center`}>
-                   
-                        {slice.length < 8 ? (
-                          <></>
-                        ) : (
-                          <>
-                            <div className="position-relative my-5 ">
-                              <div className=" position-absolute mt-4 top-0 start-50 translate-middle">
-                                {slice.length == search.length ? (
-                                  <>
-                                    <h5 className="text-center">
-                                      No Data Found
-                                    </h5>
-                                  </>
-                                ) : (
-                                  <button
-                                    className={` ${styles.btn_hover}  ${styles.buttonload}`}
-                                    onClick={() => More()}
-                                  >
-                                    View More{" "}
-                                    <MdOutlineArrowDownward className="icon-clr" />
-                                  </button>
-                                )}
-                                {slice.length <= 9 ? (
-                                  <>
-                                    <h5 className="text-center">
-                                
-                                    </h5>
-                                  </>
-                                ) : (
-                                  <button
-                                    className={` ${styles.btn_hover} ${styles.buttonload}  mt-0`}
-                                    onClick={() => Less()}
-                                  >
-                                    View Less{" "}
-                                    <MdArrowUpward className="icon-clr" />
-                                  </button>
-                                )}
-                              </div>
-                            </div>
-                          </>
-                        )}
-                   
-                  </div>
-                </div>
-              </div>
+           
               {search && search.length > 0 ? (
                 <Iconsselection
                   slice={slice}

@@ -4,23 +4,23 @@ function generateSiteMap(data) {
  
     const	date = new Date().toISOString()
   return `<?xml version="1.0" encoding="UTF-8"?>
-   <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-     <!--We manually set the two URLs we know already-->
+  <sitemapindex  xmlns="https://gohoardings.com/">
+     <!--We manually set the two sitemaps we know already-->
      
      ${data
        .map(({ meta_title, category_name}) => {
          return `
-       <url>
+       <sitemap>
            <loc>${`https://gohoardings.com/seedetails/${category_name}/${meta_title}`}</loc>
              <lastmod>${date}</lastmod>
              <changefreq>daily</changefreq>
 <priority>0.8</priority>
-       </url>
+       </sitemap>
 
      `;
        })
        .join('')}
-   </urlset>
+   </sitemapindex>
  `;
 }
 
@@ -29,7 +29,7 @@ function SiteMap() {
 }
 
 export async function getServerSideProps({ res }) {
-  // We make an API call to gather the URLs for our site
+  // We make an API call to gather the sitemaps for our site
   const {data} = await instance.post(`airport-media`)
 
 

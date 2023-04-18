@@ -63,7 +63,6 @@ const Details = () => {
         category_name: category_name,
       });
       setPosts(data);
-      console.log(data);
     }
   };
 
