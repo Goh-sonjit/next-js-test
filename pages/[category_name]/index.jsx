@@ -210,8 +210,7 @@ const Media = (props) => {
       router.push("/map");
     }
   };
-  console.log(category_name);
-  console.log(Metatag[0].page_titel);
+
   return (
     <>
       <Head>

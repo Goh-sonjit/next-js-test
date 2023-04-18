@@ -7,20 +7,24 @@ import Link from "next/link";
 import { RiDeleteBinLine } from "react-icons/ri";
 import { getCookie, removeCookies } from "cookies-next";
 import { FaRupeeSign } from "react-icons/fa";
-import { FaCalendarAlt } from "react-icons/fa"; 
-import styles from '../../styles/cart.module.scss';
+import { FaCalendarAlt } from "react-icons/fa";
+import styles from "../../styles/cart.module.scss";
 import instance from "@/allApi/axios";
 import { toast, ToastContainer } from "react-toastify";
-import { cartitems, mediaDataApi, removeItem, userDetails } from "@/allApi/apis";
+import {
+  cartitems,
+  mediaDataApi,
+  removeItem,
+  userDetails,
+} from "@/allApi/apis";
 import Loader from "@/components/loader";
 import { DateRange } from "react-date-range";
 import { addDays } from "date-fns";
 import Fixednavbar from "@/components/navbar/fixednavbar";
-
-
+import moment from "moment";
 
 const Cart = () => {
-  const route = useRouter()
+  const route = useRouter();
   const [Start, setStart] = useState(new Date());
   let defaultEndDate = new Date(new Date().setDate(Start.getDate() + 4));
   const [End, setEnd] = useState(defaultEndDate);
@@ -38,33 +42,28 @@ const Cart = () => {
     },
   ]);
 
+  const getData = async () => {
+    const value = getCookie("permissions");
+    if (value) {
+      const data = await cartitems();
 
-const getData = async() =>{
-  const value = getCookie("permissions")
-  if(value){
-    const data = await cartitems()
+      if (data) {
+        data.map((obj, i) => {
+          obj["days"] = 5;
+          obj["startDate"] = Start;
+          obj["endDate"] = End;
+        });
+      }
 
-  if(data){
-    data.map((obj, i) => {
-      obj["days"] = 5;
-      obj["startDate"] = Start;
-      obj["endDate"] = End;
-    });
-  }
-
-  
-  setPosts(data);
-  }else{
-    route.push('/')
-  }
-}
+      setPosts(data);
+    } else {
+      route.push("/");
+    }
+  };
 
   useEffect(() => {
-    getData()
+    getData();
   }, []);
-
-
-
 
   const SelectDate = (obj) => {
     var diff = state[0].endDate - state[0].startDate;
@@ -85,17 +84,16 @@ const getData = async() =>{
     }
   };
 
-
   const removefroCart = async (obj) => {
-    const data = await removeItem(obj.code)
-    if(data.message == 'Done'){
-    addRemove({ type: "DECR" });
-    const pricese = obj.price * obj.days;
-    const withGST = (pricese * 18) / 100;
-    const heloo = pricese + withGST;
-    const finalStep = parseInt(price - heloo);
-    setPrice(finalStep);
-    removeCart(obj);
+    const data = await removeItem(obj.code);
+    if (data.message == "Done") {
+      addRemove({ type: "DECR" });
+      const pricese = obj.price * obj.days;
+      const withGST = (pricese * 18) / 100;
+      const heloo = pricese + withGST;
+      const finalStep = parseInt(price - heloo);
+      setPrice(finalStep);
+      removeCart(obj);
     }
   };
 
@@ -108,54 +106,54 @@ const getData = async() =>{
 
       const result = data.filter((word) => word.isDelete === 0);
       setPosts(result);
-
     });
   };
 
- 
-let products = [];
-const submitAllProduct = async () => {
-  posts.map((el) => {
-    products.push({
-      code: el.code,
-      city_name: el.city_name,
-      medianame: el.medianame,
-      category_name: el.category_name,
-      address: el.address,
-      start_date: addDays(el.startDate, 1),
-      end_date: addDays(el.endDate, 1),
+  let products = [];
+  const submitAllProduct = async () => {
+    posts.map((el) => {
+      products.push({
+        code: el.code,
+        city_name: el.city_name,
+        medianame: el.medianame,
+        category_name: el.category_name,
+        address: el.address,
+        start_date: addDays(el.startDate, 1),
+        end_date: addDays(el.endDate, 1),
+      });
     });
-  });
-  const { data } = await instance.post("cart", {
-    products: products,
-    campainName: campainName,
-  });
-  if (data.success == true) {
-    addRemove({ type: "DECR" });
-    setPosts([]);
-    toast(data.message);
-    setCampains("");
-  } else {
-    toast(data.message);
-  }
-};
+    const { data } = await instance.post("cart", {
+      products: products,
+      campainName: campainName,
+    });
+    if (data.success == true) {
+      addRemove({ type: "DECR" });
+      setPosts([]);
+      toast(data.message);
+      setCampains("");
+    } else {
+      toast(data.message);
+    }
+  };
 
   const cartItemprice = posts.reduce(
     (totalPrice, item) => totalPrice + parseInt(item.price * item.days),
     0
   );
 
+  // console.log(moment(obj.endDate).format('L'));
+
   return (
     <>
-    <Fixednavbar/>
-  
+      <Fixednavbar />
+
       <div
         className={`container-xxl  container-xl container-lg container-md  ${styles.cart_content} cart-content`}
       >
         <div className="row mt-4 ">
-          {posts? 
-          <>
-            {posts.length > 0 ? (
+          {posts ? (
+            <>
+              {posts.length > 0 ? (
                 <>
                   <>
                     <div className=" ">
@@ -259,7 +257,7 @@ const submitAllProduct = async () => {
                                   <div
                                     className={`row my-md-2  ${styles.date_select_section}`}
                                   >
-                                    <div className="col-md-4 col-4 ">
+                                    <div className="col-md-3 col-4 ">
                                       <h6 className={styles.des}>Calender</h6>
                                       <h6 className="">
                                         <div
@@ -289,23 +287,35 @@ const submitAllProduct = async () => {
                                                 moveRangeOnFirstSelection={
                                                   false
                                                 }
-                                                rangeColors={["#f1e615"]}
-                                                ranges={state}
+                                                rangeColors={["#E8DC14"]}
+                                                ranges={state
+                                                }
                                               />
                                             </Dropdown.Menu>
                                           </Dropdown>
                                         </div>
                                       </h6>
                                     </div>
-
-                                    <div className="col">
-                                      <h6 className={styles.des}>Total Days</h6>
+                                    <div className="col-md-3 col-4 ">
+                                      <h6 className={styles.des}>Start date</h6>
+                                      <h6 className="pt-2">
+                                        {moment(obj.startDate).format("DD/MM/YY")}
+                                      </h6>
+                                    </div>
+                                    <div className="col-md-3 col-4 ">
+                                      <h6 className={styles.des}>End date</h6>
+                                      <h6 className="pt-2">
+                                        {moment(obj.endDate).format("DD/MM/YY")}
+                                      </h6>
+                                    </div>
+                                    <div className="col-md-3 col">
+                                      
+                                      <h6 className={styles.des}>Total days</h6>
+                                     
                                       <h6 className="">
                                         <input
                                           className={styles.input_2}
                                           value={obj.days}
-                                          // type="number"
-                                          // onChange={(e) =>setInputDay(e.target.value)}
                                           disabled={true}
                                         />{" "}
                                         {daymsg ? (
@@ -313,12 +323,13 @@ const submitAllProduct = async () => {
                                             className="text-danger"
                                             id={styles.ereday}
                                           >
-                                            Total days should be minimum 5
+                                         minimum 5
                                           </span>
                                         ) : (
                                           <></>
                                         )}
                                       </h6>
+                                    
                                     </div>
                                   </div>
                                   <div className="row mt-1">
@@ -550,18 +561,15 @@ const submitAllProduct = async () => {
                   </div>
                 </>
               )}
-          </>
-          :
-<>
-<Loader/>
-</>
-
-          }
-      
+            </>
+          ) : (
+            <>
+              <Loader />
+            </>
+          )}
         </div>
       </div>
     </>
   );
-
 };
 export default Cart;

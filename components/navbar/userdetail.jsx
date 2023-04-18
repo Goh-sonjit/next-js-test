@@ -70,9 +70,7 @@ useEffect(() =>{
   userData()
 },[value])
 
-  const profile = async () => {
-    route.push('/profile')
-  };
+
 
 
 
@@ -147,7 +145,7 @@ useEffect(() =>{
               </Dropdown.Item>
               <hr className=" m-0" />
               <Dropdown.Item
-                 onClick={profile}
+                 onClick={()=>route.push('/profile')}
                 className={`${styles.drop_item}  ps-2 pt-2 pb-2 text-light`}
               >
                 {" "}

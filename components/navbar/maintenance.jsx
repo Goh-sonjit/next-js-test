@@ -18,8 +18,13 @@ const Maintenance = () => {
       
             padding: 5px 20px !important;
           }
-          @media screen and (max-width: 1024px) {
-            font-size: 9rem;
+      
+          @media screen and (max-width: 425px) {
+            h6 {
+ 
+              font-size: .5rem ;
+            }
+           
           }
         `}
       </style>
