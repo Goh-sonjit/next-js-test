@@ -7,6 +7,7 @@ import "animate.css";
 import "react-date-range/dist/styles.css"; 
 import "react-date-range/dist/theme/default.css"; 
 import "bootstrap/dist/css/bootstrap.css";
+
 import "react-toastify/dist/ReactToastify.css";
 import { SSRProvider } from "react-bootstrap";
 import {SessionProvider} from 'next-auth/react'

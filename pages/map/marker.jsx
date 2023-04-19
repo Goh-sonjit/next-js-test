@@ -7,7 +7,7 @@ import { markersPosition } from "@/allApi/apis";
 import Loader from "@/components/loader";
 
 
-const Markers = ({ markers, nsearch, removefromCart, addonCart, setSearch}) => {
+const Markers = ({ markers, nsearch, setSearch,removefromCart, addonCart,  More}) => {
 
   const [map, setMap] = useState(null);
   const [hasmarker, sethasmarker] = useState(false);
@@ -236,7 +236,7 @@ const Markers = ({ markers, nsearch, removefromCart, addonCart, setSearch}) => {
       ) : (
         <>
             
-             <button className={`${styles.this_area} `} onClick={onBoundsChanged} >Search in this area</button>
+            
          
           <GoogleMap
             onLoad={handleOnLoad}
@@ -249,7 +249,11 @@ const Markers = ({ markers, nsearch, removefromCart, addonCart, setSearch}) => {
             }}
             streetView={activeMarker}
           >
-       <button>Load more  </button> 
+            <div className={`${styles.this_area} d-flex`}>
+<button className={styles.this_area_button} onClick={() =>onBoundsChanged() }>Search in this area</button>
+<button className={styles.this_area_button} onClick={() => More()}>Load more</button>
+            </div>
+       {/* <button className={`${styles.this_area} `} onClick={onBoundsChanged} >Search in this area</button> */}
             {!hasmarker ? (
              <><Loader/></>
             ) : (

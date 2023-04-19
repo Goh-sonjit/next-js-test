@@ -59,19 +59,17 @@ if(data){
 });
 
 exports.locationFilter = catchError(async (req, res) => {
-  const { category_name, price, illumination, table, city, locations } = req.body;
+  const { category_name, illumination, table, city, locations } = req.body;
   const SubCategory = category_name.toString();
   const newSubCate = SubCategory.replace(/,/g, "','");
-  const min = price.split(",")[0].slice(4);
   const illumantios = illumination.toString();
   const newIllumantion = illumantios.replace(/,/g, "','");
-  const max = price.split(",")[1].slice(4);
   const makeStringfylocation = JSON.stringify(locations);
   const newLocation = makeStringfylocation.substring(
     1,
     makeStringfylocation.length - 1
   );
-  const key = `${category_name + price + illumination + table + city + locations}`
+  const key = `${category_name +  illumination + table + city + locations}`
   const data = await client.get(key)
   if(data){
     return res.send(JSON.parse(data))
@@ -115,27 +113,12 @@ exports.locationFilter = catchError(async (req, res) => {
   }
 
   db.changeUser({ database: "gohoardi_goh" });
-  const sql =
-    "SELECT * FROM " +
-    table_name +
-    " WHERE city_name='" +
-    city +
-    "' AND  price BETWEEN " +
-    min +
-    " AND " +
-    max +
-    " " +
-    addsubcategoryQuery +
-    " " +
-    addillumantionQuery +
-    " " +
-    addlovationQuery +
-    " ";
+  const sql ="SELECT * FROM " + table_name + " WHERE city_name='" + city + "'  " +addsubcategoryQuery + " " + addillumantionQuery + " " + addlovationQuery +" ";
   db.query(sql, async (err, result) => {
     if (err) {
       return res
         .status(400)
-        .json({ success: false, message: "Data Not Found" });
+        .json({ success: false, message:err });
     } else {
       client.setEx(key, process.env.REDIS_TIMEOUT,JSON.stringify(result))
       return res.status(200).json(result);
