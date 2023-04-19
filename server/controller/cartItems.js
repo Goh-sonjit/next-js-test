@@ -1,20 +1,20 @@
 const jwtToken = require('jsonwebtoken')
 const catchError = require('../middelware/catchError');
 const fetch = require('node-fetch');
+const  {executeQuery} = require("../conn/conn");
 const path = require('path')
 const {sendEmail} = require("../middelware/sendEmail");
 const XLSX = require('xlsx');
 const pptxgen = require ("pptxgenjs");
-const db = require("../conn/conn");
 const fs = require('fs');
 const redis = require('redis');
 const client = redis.createClient()
     client.connect()
 
 
-async function planMail(data, email) {
-      const excelPath = await excel(data)
-      const PPTPath = await powerpoint(data)
+async function planMail(data, email, next) {
+      const excelPath = await excel(data, next)
+      const PPTPath = await powerpoint(data, next)
     const message = `Your Media add on a Campaingn your Campain id is campaign-TEST`;
     await sendEmail({
       email: email,
@@ -27,20 +27,15 @@ async function planMail(data, email) {
     });
   
   }
-  exports.excel = catchError(async (req, res) => {
+
+  exports.excel = catchError(async (req, res, next) => {
     const {ID} = req.body;
     if(!ID){
         return res.status(206).json({success:false, message:"Try Again"})
     }
-    db.changeUser({ database: "gohoardi_goh" });
-    const sql = "SELECT DISTINCT mediaid, userid, mediatype FROM goh_shopping_carts_item WHERE campaigid = "+ID+" && status=1"
-    db.query(
-        sql,
-        async (err, result) => {
-            if (err) {
-                return res.status(400).json({success:false, message: "Database Error"})
-            } else { 
-                let file = await alldata(result,ID);
+    const sql = await executeQuery("SELECT DISTINCT mediaid, userid, mediatype FROM goh_shopping_carts_item WHERE campaigid = "+ID+" && status=1","gohoardi_goh", next )
+            if (sql) {
+                let file = await alldata(sql,ID, next);
                 if(!file){
                     return res.status(206).json({success:false, message:"Try Again"})
                 }
@@ -60,26 +55,17 @@ async function planMail(data, email) {
             }
         }
     );
-})
+
   
   
-exports.ppt = catchError(async (req, res) => {
+exports.ppt = catchError(async (req, res, next) => {
     const {ID} = req.body;
     if(!ID){
         return res.status(206).json({success:false, message:"Try Again"})
     }
-    db.changeUser({ database: "gohoardi_goh" });
-    const sql = "SELECT DISTINCT mediaid, userid, mediatype FROM goh_shopping_carts_item WHERE campaigid = "+ID+" && status=1"
-    db.query(
-        sql,
-        async (err, result) => {
-            if (err) {
-                return res.status(400).json({success:false, message: "Database Error"})
-            } else { 
-                let file = await alldata2(result,ID);
-                if(!file){
-                    return res.status(206).json({success:false, message:"Try Again"})
-                }
+    const sql = await executeQuery("SELECT DISTINCT mediaid, userid, mediatype FROM goh_shopping_carts_item WHERE campaigid = "+ID+" && status=1", "gohoardi_goh", next)
+            if (sql) {
+                let file = await alldata2(sql,ID);
                 const filePath = file;
                 const fileName = "plan.pptx";
                 const fileStat = fs.statSync(filePath);
@@ -96,21 +82,20 @@ exports.ppt = catchError(async (req, res) => {
             }
         }
     );
-})
+
   
 
-  const excel = (ID) => {
-    return new Promise((resolve, reject) => {
+  const excel = (ID, next) => {
+    return new Promise(async(resolve, reject) => {
       if (!ID) {
         reject(new Error("Invalid ID"));
       }
-      const sql =
-        "SELECT DISTINCT mediaid, userid, mediatype FROM goh_shopping_carts_item WHERE campaigid = " +
+      const result =await executeQuery("SELECT DISTINCT mediaid, userid, mediatype FROM goh_shopping_carts_item WHERE campaigid = " +
         ID +
-        " && status=1";
-      db.query(sql, async (err, result) => {
-        if (err) {
-          reject(err);
+        " && status=1","gohoardi_goh",next);
+    
+        if (!result) {
+          reject(result);
         } else {
           let file = await alldata(result, ID);
           if (!file) {
@@ -120,10 +105,10 @@ exports.ppt = catchError(async (req, res) => {
           resolve(file);
         }
       });
-    });
+
   };
 
-  const alldata = async (data,ID) => {
+  const alldata = async (data,ID, next) => {
     const arr = data;
     var table_name;
     let promises = [];
@@ -156,15 +141,13 @@ exports.ppt = catchError(async (req, res) => {
             }
             promises.push(
                 new Promise(async (reject, resolve) => {
-                    const sql = "SELECT media.id,media.medianame as 'Media name', media.location, media.illumination, media.city_name as City, media.state, media.width as 'Width (feet)', media.height as 'Height (feet)', media.widthunit as 'Area in', media.price as Price, media.pricetype as 'Price type', media.ftf as 'Foot Fall', media.subcategory as Category, media.geolocation FROM  " + table_name + " AS media WHERE media.code='" + obj.mediaid + "'"
-                    db.query(sql,async(err,result)=>{
-                        if (err) {             
-                            return reject(err)
+                    const sql =await executeQuery("SELECT media.id,media.medianame as 'Media name', media.location, media.illumination, media.city_name as City, media.state, media.width as 'Width (feet)', media.height as 'Height (feet)', media.widthunit as 'Area in', media.price as Price, media.pricetype as 'Price type', media.ftf as 'Foot Fall', media.subcategory as Category, media.geolocation FROM  " + table_name + " AS media WHERE media.code='" + obj.mediaid + "'","gohoardi_goh", next)
+                        if (!sql) {             
+                            return reject(sql)
                               } else {
-                                  return resolve(result)
+                                  return resolve(sql)
                               }
-                    });
-                })
+                  })
             );
         } catch (err) {
             return ({success:false, message: "Database Error"})
@@ -205,31 +188,30 @@ const convertJsonToExcel = async(data,ID) => {
     return filePath;
     }
   
-      const powerpoint = (ID) => {
-        return new Promise((resolve, reject) => {
+      const powerpoint = (ID, next) => {
+        return new Promise(async(resolve, reject) => {
           if (!ID) {
             reject(new Error("Invalid ID"));
           }
-          const sql =
-            "SELECT DISTINCT mediaid, userid, mediatype FROM goh_shopping_carts_item WHERE campaigid = " +
+          const sql = await executeQuery( "SELECT DISTINCT mediaid, userid, mediatype FROM goh_shopping_carts_item WHERE campaigid = " +
             ID +
-            " && status=1";
-          db.query(sql, async (err, result) => {
-            if (err) {
-              reject(err);
+            " && status=1", "gohoardi_goh",next);
+         
+            if (!sql) {
+              reject(sql);
             } else {
-              let file = await alldata2(result, ID);
+              let file = await alldata2(sql, ID, next);
               if (!file) {
                 reject(new Error("Invalid file"));
               }
               resolve(file);
             }
           });
-        });
-      };
+        }
+     
       
 
-    const alldata2 = async (data,ID) => {
+    const alldata2 = async (data,ID, next) => {
         var table_name;
         let promises = [];
         data.map((obj) => {
@@ -261,16 +243,16 @@ const convertJsonToExcel = async(data,ID) => {
                 }
                 promises.push(
                     new Promise(async (reject, resolve) => {
-                            const sql = "SELECT media.id, media.thumb ,media.medianame, media.mediaownercompanyname ,media.location, media.illumination, media.city_name, media.state, media.area as 'size', media.price, media.pricetype, media.foot_fall, media.subcategory, media.geolocation FROM  " + table_name + " AS media WHERE media.code='" + obj.mediaid + "'";
-                            db.query(sql,async(err,result)=>{
-                                if (err) {             
-                                    return reject(err)
+                            const sql = await executeQuery("SELECT media.id, media.thumb ,media.medianame, media.mediaownercompanyname ,media.location, media.illumination, media.city_name, media.state, media.area as 'size', media.price, media.pricetype, media.foot_fall, media.subcategory, media.geolocation FROM  " + table_name + " AS media WHERE media.code='" + obj.mediaid + "'","gohoardi_goh",next );
+             
+                                if (!sql) {             
+                                    return reject(sql)
                                       } else {
-                                          return resolve(result)
+                                          return resolve(sql)
                                       }
-                            });
-                    })
-                );
+                            }))
+                 
+                
             } catch (err) {
                 return res.status(400).json({success:false, message: "Database Error"})
             }
@@ -299,10 +281,10 @@ const convertJsonToExcel = async(data,ID) => {
         pres.layout = 'LAYOUT_4x3';
         
         // 2. Add a Slide
-        // let slide1 = pres.addSlide();
+        let slide1 = pres.addSlide();
         
         // Image by local URL
-        // slide1.addImage({ path: "images/headerppt.jpg",w:'100%', h:'100%' });
+        slide1.addImage({ path: "/public/images/backend/footerppt.jpg",w:'100%', h:'100%' });
       
         data.forEach(element => {
           const thumb = element.thumb.startsWith("https")
@@ -354,7 +336,7 @@ const convertJsonToExcel = async(data,ID) => {
         }
        }
 
-exports.addOnCart = catchError(async (req, res) => {
+exports.addOnCart = catchError(async (req, res, next) => {
     const cookieData = req.cookies
     if (!cookieData) {
         return res.status(206).json({success:false, message: "No Cookie Found" })
@@ -366,8 +348,8 @@ exports.addOnCart = catchError(async (req, res) => {
         } else {
             const userid = user.id
             const { mediaid, mediatype } = req.body;
-            db.changeUser({ database: "gohoardi_goh" });
-            db.query("INSERT INTO goh_shopping_carts_item (userid, mediaid, campaigid, mediatype, status) VALUES ('" +
+         
+         const result = await  executeQuery("INSERT INTO goh_shopping_carts_item (userid, mediaid, campaigid, mediatype, status) VALUES ('" +
                 userid +
                 "','" +
                 mediaid +
@@ -375,36 +357,26 @@ exports.addOnCart = catchError(async (req, res) => {
                 userid +
                 "','" +
                 mediatype +
-                "',0)",
-                async (err, result) => {
-                    if (err) {
-                        return res.status(400).json({success:false, message: "Database Error"})
-                    } else {
+                "',0)","gohoardi_goh",next)
+                    if (result) {
+                     
                         return res.send(result);
                     }
                 }
-            )
-        }
-    })
-})
+            })})
+
 
 
 exports.campaineId = catchError(async (req,res, next) => {
-    const userId = req.id;
-    let promises = [];
-    db.changeUser({ database: "gohoardi_goh" });
-    db.query(
-        "SELECT MAX(campaigid) as campaigid FROM goh_shopping_carts_item",
-        async (err, result) => {
-            if (err) throw err;
+       const result = await  executeQuery("SELECT MAX(campaigid) as campaigid FROM goh_shopping_carts_item", "gohoardi_goh", next)
+            if (result) {
              campaign_id = (result[0].campaigid) + 1; 
-                next()   
-                
-           
-})
+                next()  
+            } 
 })
 
-exports.processdCart = catchError(async (req, res) => {
+
+exports.processdCart = catchError(async (req, res, next) => {
     var { products, campainName } = req.body;
     const newCampain = campainName.replace(/ /g,"_");
 
@@ -414,42 +386,34 @@ exports.processdCart = catchError(async (req, res) => {
     if (!userId) {
         return res.status(404).json({message: "Token Valid"})
     } else {
-        db.changeUser({database: "gohoardi_crmapp"})
-        db.query("SELECT * FROM tblcontacts WHERE userid='" + userId + "'", async (err, result) => {
-            if (err) {
-                return res.status(206).json({success:false ,message:"User Not Found"})
-            };
+
+      const result = await executeQuery("SELECT * FROM tblcontacts WHERE userid='" + userId + "'", "gohoardi_crmapp",next)
               const phone = result[0].phonenumber
               const userEmail = result[0].email
-    db.changeUser({ database: "gohoardi_goh" });
+
                 products.map((el) => {
                     promises.push(
                         new Promise(async (resolve,reject ) => {
-                    const sql = "INSERT into goh_serach_activities (user, phone, campaign_name, start_date, end_date, campaign_city, media_type, address, city) VALUES (" + userId + ",'" + phone + "', '"+newCampain+"-"+ campaign_name+ "','" + el.start_date.slice(0,10) + "','" + el.end_date.slice(0,10) + "','" + el.medianame + "','" + el.category_name + "','" + el.address + "','" + el.city_name + "') ";
-                        db.query(
-                        sql,
-                        async (err, code) => {
-                            if (err) {
-                                   return reject(err)
+                    const sql = await executeQuery("INSERT into goh_serach_activities (user, phone, campaign_name, start_date, end_date, campaign_city, media_type, address, city) VALUES (" + userId + ",'" + phone + "', '"+newCampain+"-"+ campaign_name+ "','" + el.start_date.slice(0,10) + "','" + el.end_date.slice(0,10) + "','" + el.medianame + "','" + el.category_name + "','" + el.address + "','" + el.city_name + "')","gohoardi_goh",next);
+                      
+                            if (!sql) {
+                                   return reject(sql)
                             } else {
-                                const sql = "UPDATE goh_shopping_carts_item SET isDelete=1,status=1, campaigid = "+campaign_id+" WHERE userid=" + userId + " && mediaid='" + el.code + "'";
-                                db.query(
-                                    sql,
-                                    async (err, data) => {
-
-                                        if (err) {
+                                const data = await  executeQuery( "UPDATE goh_shopping_carts_item SET isDelete=1,status=1, campaigid = "+campaign_id+" WHERE userid=" + userId + " && mediaid='" + el.code + "'", "gohoardi_goh",next);
+                                        if (!data) {
                                           
-                                      return reject(err)
+                                      return reject(data)
                                         } else {
 
                                             return resolve(data)
                                         }
-                                    })
+                                    
                             }
-                        }
-                    );
-                    }))
-                });
+                        
+                        }))
+                    })
+           
+            
                 try {
                     const data = await Promise.all(promises);
                 // await sendEmail({email: "bussduro@gmail.com", subject: "Gohoadings Solutions : India's Largest Outdoor Advertising Company", message: "message" }); 
@@ -459,8 +423,7 @@ exports.processdCart = catchError(async (req, res) => {
                   return res.status(400).json({success:false, message:"Try Later"})
                 }
         }
-)}
-})
+    })
 
 exports.deleteFromCart = catchError(async (req, res, next) => {
     const userid = req.id
@@ -470,64 +433,43 @@ exports.deleteFromCart = catchError(async (req, res, next) => {
    if(data){
     return  res.send(JSON.parse(data))
    }else{
-    db.changeUser({ database: "gohoardi_goh" });
-    const sql = "UPDATE goh_shopping_carts_item SET isDelete=1 WHERE userid='" + userid + "' && mediaid='" + code + "'"
-    db.query(sql,
-        async (err, result) => {
-            if (err) {
-           
-                return res.status(206).json({success:false, message : "Can't Delete this Item"})
-            } else {
+    const result =await  executeQuery("UPDATE goh_shopping_carts_item SET isDelete=1 WHERE userid='" + userid + "' && mediaid='" + code + "'", "gohoardi_goh", next)
+            if (result) {
                 client.setEx(key, process.env.REDIS_TIMEOUT,JSON.stringify(result))
                 return res.status(200).json({success:true, message:'Done'});
             }
         }
-    );
-   }
-})
+    })
 
 
 exports.useritems = catchError(async (req, res, next) => {
     const user = req.id
-    db.changeUser({ database: "gohoardi_goh" });
-    db.query(
-        `SELECT COUNT(userid) AS item FROM goh_shopping_carts_item WHERE userid = ${user} && isDelete=0 `,
-        (err, result) => {
-            if (err) {
-                return res.send(err)
-            } else {
-
-              
+  const result = await executeQuery(`SELECT COUNT(userid) AS item FROM goh_shopping_carts_item WHERE userid = ${user} && isDelete=0`,"gohoardi_goh",next)
+            if (result) {
          return res.status(200).json(result)
             }
         }
     );
  
-})
+
 
 
 exports.getUserCartItem = catchError(async (req, res, next) => {
     const user = req.id
-    db.changeUser({ database: "gohoardi_goh" });
-    const sql = `SELECT * FROM goh_shopping_carts_item WHERE userid = ${user} && isDelete= 0 `;
-    db.query(
-        sql,
-        (err, result) => {
-            if (err) {
-                return res.status(400).json({success:false, message: "Database Error"})
-            } else {
+    const result = await executeQuery(`SELECT * FROM goh_shopping_carts_item WHERE userid = ${user} && isDelete= 0 `,  "gohoardi_goh", next);   
+            if (result) {
                 req.data = result;
                 next();
             }
         }
     );
-})
 
-exports.cartiemfromdb = async (req, res, next) => {
+
+exports.cartiemfromdb = catchError(async (req, res, next) => {
     const arr = req.data;
     var table_name;
     let promises = [];
-    db.changeUser({ database: "gohoardi_goh" });
+    executeQuery('', "gohoardi_goh")
     arr.map((obj) => {
         try {
             switch (obj.mediatype) {
@@ -557,17 +499,15 @@ exports.cartiemfromdb = async (req, res, next) => {
             }
             promises.push(
                 new Promise(async (resolve, reject) => {
-                    db.query(
-                        "SELECT media.*,cart.isDelete FROM  " + table_name + " AS media INNER JOIN goh_shopping_carts_item AS cart ON media.code='" + obj.mediaid + "' && cart.isDelete = 0  WHERE cart.userid = '" + obj.userid + "'",
-                        async (err, result) => {
-                            if (err) {
-                                reject(err);
+                 const result = await executeQuery("SELECT media.*,cart.isDelete FROM  " + table_name + " AS media INNER JOIN goh_shopping_carts_item AS cart ON media.code='" + obj.mediaid + "' && cart.isDelete = 0  WHERE cart.userid = '" + obj.userid + "'","gohoardi_goh",next)
+                     if (!result) {
+                                reject(result);
                             } else {
                                 resolve(result);
                             }
                         }
-                    );
-                })
+                    )
+                
             );
         } catch (err) {
             return res.status(400).json({success:false, message: "Database Error"})
@@ -583,4 +523,4 @@ exports.cartiemfromdb = async (req, res, next) => {
     } catch (err) {
         return res.status(400).json({success:false, message: "Database Error"})
     }
-};
+});

@@ -1,33 +1,26 @@
-const db = require("../conn/conn");
 const catchError = require("../middelware/catchError");
+const {executeQuery} =  require('../conn/conn')
 const redis = require('redis');
 const client = redis.createClient()
     client.connect()
 
 
 exports.allCity = catchError(async (req, res, next) => {
-    const data =  client.get("cities")
+    const data = await client.get("cities")
    if(data){
     return res.send(JSON.parse(data))
    }else{
-    db.changeUser({ database: "gohoardi_goh" });
-    const sql = "SELECT DISTINCT name FROM goh_cities"
-    db.query(sql, (err, result) => {
-        if (err) {
-            return res.status(206).json({success : false, message:"No City Found"})
+    const sql = await executeQuery("SELECT DISTINCT name FROM goh_cities","gohoardi_goh",next)
+      if (sql) {
+            client.setEx("cities", process.env.REDIS_TIMEOUT,JSON.stringify(result))
+            res.send(result)
         };
-        client.setEx("cities", process.env.REDIS_TIMEOUT,JSON.stringify(result))
-        res.send(result)
-    });
-   }
-       
-    
-    })
+    }});
+
+
 
 exports.SiteMapProduct = catchError(async (req, res, next) => {
 const  category_name  = req.query.email
-
-    db.changeUser({ database: "gohoardi_goh" });
     switch (category_name) {
         case "traditional-ooh-media":
             table_name = "goh_media";
@@ -54,17 +47,9 @@ const  category_name  = req.query.email
             table_name = "goh_media";
     }
   
-        const sql = "SELECT DISTINCT meta_title, category_name FROM " + table_name + " WHERE category_name IS NOT NULL" 
-
-        db.query(sql, async (err, result) => {
-            if (err) {
-    
-                return res.status(206).json({ success: false, err: err, message: "Wrong Data" })
-            } else {
-            
+        const sql = await executeQuery("SELECT DISTINCT meta_title, category_name FROM " + table_name + " WHERE category_name IS NOT NULL","gohoardi_goh",next)
+            if (sql) {   
                 return res.send(result)
             }
         })
-    }
- 
-)
+   

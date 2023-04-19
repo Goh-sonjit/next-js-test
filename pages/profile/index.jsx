@@ -24,7 +24,6 @@ const Profile = () => {
   const [invoice, setInvoice] = useState(false);
   const [announce, setAnnounce] = useState(false);
   const [user, setUser] = useState([])
-  const [img,setImage] = useState([])
 
   const value = getCookie("permissions")
   const getData = async() =>{
@@ -97,7 +96,8 @@ useEffect(() =>{
 const getUpdateImage = async(e) =>{
 const data = await updateProfilePic(e)
 if(data.sucess == true){
-  setImage(data)
+  getData()
+  setUser()
 }
 }
 

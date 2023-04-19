@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Dropdown, DropdownButton } from "react-bootstrap";
 import styles from '../../styles/filter.module.scss'
-import { CityNameImage, mediaDataApi, priceSubIllu } from "@/allApi/apis";
+import { CityNameImage, iconFiltersData, mediaDataApi, priceSubIllu } from "@/allApi/apis";
 import {MdSchool, MdOutlineRestaurantMenu } from "react-icons/md";
 import {BiDrink } from "react-icons/bi";
 import {SiHotelsdotcom } from "react-icons/si";
@@ -10,7 +10,7 @@ import {TbMassage } from "react-icons/tb";
 import {CgGym } from "react-icons/cg";
 
 
-const Filters = ({search, setSearch}) => {
+const Filters = ({search, setSearch, setNsearch}) => {
 const [mediaData, setMediadata] = useState([]);
 const [locationData, setlocationData] = useState([]);
 const [query,setQuery]=useState('');
@@ -125,7 +125,6 @@ async function locationFilter(loca) {
 } 
 
 async function mediaTypeFilter(cate) {
-  console.log(cate);
 ILLUMINATION.forEach((el) => {
   if (el === cate && singlemedia.indexOf(el) > -1) {
     singlemedia.splice(singlemedia.indexOf(el), 1);
@@ -139,10 +138,31 @@ const data = await priceSubIllu(categoryArray,  singlemedia, table, city, locati
 setSearch(data)
 }
 
+let uniqueValues = new Set();
+
+search.forEach(el => {
+  uniqueValues.add(el.mp_lat);
+});
 
 useEffect(() => {
   apiforFillters()
 },[search])
+
+const submitfilters = async (datas) => {
+  const value = [...search];
+  const table = value[0].category_name;
+  const city = value[0].city_name;
+  const latitudes = search.map(item => item.latitude);
+const minLatitude = Math.min(...latitudes);
+const maxLatitude = Math.max(...latitudes);
+let array = [...uniqueValues];
+let arrayJJson = JSON.stringify(array);
+let newString = arrayJJson.replace(/\[|\]/g, '');
+
+const data = await iconFiltersData(datas.name, table, city, minLatitude, maxLatitude , newString)
+setNsearch(data)
+}
+
   return (
     <>
     
@@ -223,7 +243,7 @@ useEffect(() => {
         // onSelect={(e) => setUserType(e)}
       >
         {Icons.map((el, i) => (
-        <Dropdown.Item className="p-2 mt-0 ">
+        <Dropdown.Item className="p-2 mt-0 "  onClick={(e) => submitfilters(el)}>
           {el.name.toUpperCase()}
         </Dropdown.Item>
        ))}

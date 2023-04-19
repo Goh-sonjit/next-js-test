@@ -297,8 +297,7 @@ export const userDetails = async () => {
 export const priceSubIllu = async(category_name, illumination, table, city, locations) => {
    const { data } = await instance.post(`filters`, {
         category_name,
-    
-        illumination,
+      illumination,
         table,
         city,
         locations,
@@ -307,16 +306,14 @@ export const priceSubIllu = async(category_name, illumination, table, city, loca
     return data
   };
 
-  export const iconFiltersData =async (distance, datas, table, city, minLatitude, maxLatitude, uniqueValues) =>
-    {
+  export const iconFiltersData = async(datas, table, city, minLatitude, maxLatitude, uniqueValues) =>{
       const { data } = await instance.patch(`filters`, {
-        distance,
         datas,
         table,
         city,
         minLatitude,
         maxLatitude,
-        uniqueValues,
+        uniqueValues
       });
      return data
   };
