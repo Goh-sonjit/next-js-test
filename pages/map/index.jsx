@@ -145,10 +145,10 @@ const Map = () => {
                 />
               ) : (
                 <>
-                <h3 className="text-center">No data found</h3>
-                <h3 className="text-center">Redirect to previous location</h3>
+                {/* <h3 className="text-center">No data found</h3>
+                <h3 className="text-center">Redirect to previous location</h3> */}
                 <Loader/>
-               { myClick()}
+               {/* { myClick()} */}
                 </>
                 
               )
