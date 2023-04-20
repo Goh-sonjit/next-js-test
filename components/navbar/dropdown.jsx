@@ -2,8 +2,8 @@ import Link from "next/link"
 import { useRouter } from 'next/router'
 import { setCookie } from "cookies-next";
 
-const navbarDropdown = () => {
-  const route=useRouter();
+const NavbarDropdown = () => {
+  const route = useRouter();
   const directlink=(e)=>{
     setCookie("category_name",e)
     setCookie("city_name","delhi")
@@ -204,4 +204,4 @@ const navbarDropdown = () => {
   )
 }
 
-export default navbarDropdown
+export default NavbarDropdown
