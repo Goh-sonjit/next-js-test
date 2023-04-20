@@ -274,7 +274,7 @@ const Filters = ({ search, setSearch, setNsearch }) => {
       {/* media type  */}
 
       <DropdownButton
-        title={intrestedvalue?intrestedvalue :"Intrested things"}
+        title={intrestedvalue?intrestedvalue.toUpperCase() :"Intrested things"}
    
         id={styles.select_media_box}
         drop="down-centered"
