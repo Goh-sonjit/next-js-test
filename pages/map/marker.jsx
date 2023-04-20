@@ -34,7 +34,7 @@ const Markers = ({ markers, nsearch, setSearch,removefromCart, addonCart,  More}
       }
     };
   
-
+console.log(combinedArray);
 
   const [activeMarker, setActiveMarker] = useState(null);
 
@@ -255,7 +255,7 @@ const Markers = ({ markers, nsearch, setSearch,removefromCart, addonCart,  More}
             </div>
        {/* <button className={`${styles.this_area} `} onClick={onBoundsChanged} >Search in this area</button> */}
             {!hasmarker ? (
-             <><Loader/></>
+             <Loader/>
             ) : (
               markers.map(
                 ({
@@ -366,7 +366,7 @@ const Markers = ({ markers, nsearch, setSearch,removefromCart, addonCart,  More}
               )
             )}
             {
-              combinedArray.map(({ id, position, name, lat, lng }) => (
+              combinedArray.map(({ id, position,city_name, name,Type, photo}) => (
               <Marker
                 key={id}
                 icon={"../images/web_pics/restaurant.png"}
@@ -377,13 +377,14 @@ const Markers = ({ markers, nsearch, setSearch,removefromCart, addonCart,  More}
                   <InfoWindow onCloseClick={() => setActiveMarker(null)}>
                     <div className={styles.infoWindow}>
                       <p>{name}</p>
-                      <p>
-                        {lat},{lng}
-                      </p>
+                      <p>{city_name}</p>
+                     
+                   <img src={`https://maps.googleapis.com/maps/api/place/photo?photoreference=${photo}&sensor=false&maxheight=100&maxwidth=200&key=AIzaSyDEKx_jLb_baUKyDgkXvzS_o-xlOkvLpeE`}/>
+                      <span>{Type}</span>
                     </div>
                   </InfoWindow>
                 )}
-              </Marker>
+              </Marker> 
             ))
              
             }

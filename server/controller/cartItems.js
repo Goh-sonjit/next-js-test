@@ -450,9 +450,6 @@ exports.useritems = catchError(async (req, res, next) => {
             }
         }
     );
- 
-
-
 
 exports.getUserCartItem = catchError(async (req, res, next) => {
     const user = req.id

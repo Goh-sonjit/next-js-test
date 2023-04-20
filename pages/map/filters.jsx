@@ -285,7 +285,7 @@ const Filters = ({ search, setSearch, setNsearch }) => {
             className="p-2 mt-0 "
             onClick={(e) => submitfilters(el)}
           >
-   {el.value} {el.name.toUpperCase()}
+ <span className="m-2">  {el.value} </span>{el.name.toUpperCase()}
           </Dropdown.Item>
         ))}
       </DropdownButton>

@@ -5,10 +5,10 @@ import { useRouter } from "next/router";
 import Changepassword from "./changepassword";
 import Companyprofile from "./companyprofile";
 import Userprofile from "./userprofile";
-import { Form } from "react-bootstrap";
 import Campign from "./campign";
+import {FcEditImage} from 'react-icons/fc'
 import Profoma from "./profoma";
-import { getCookie, removeCookies } from "cookies-next";
+import { getCookie} from "cookies-next";
 import Invoice from "./invoice";
 import Announcement from "./announcement";
 import Fixednavbar from "@/components/navbar/fixednavbar";
@@ -117,7 +117,7 @@ if(data.sucess == true){
                   onError={(e) =>
                     (e.target.src = "../images/web_pics/user-profile.png")
                   }
-                />
+                  />
                     </div>
               <input
                     className="form-control"
