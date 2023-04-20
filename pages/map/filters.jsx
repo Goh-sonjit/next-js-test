@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { Dropdown, DropdownButton } from "react-bootstrap";
 import styles from "../../styles/filter.module.scss";
+
 import {
   CityNameImage,
   iconFiltersData,
   mediaDataApi,
   priceSubIllu,
 } from "@/allApi/apis";
-import { MdSchool, MdOutlineRestaurantMenu } from "react-icons/md";
+import { MdSchool, MdOutlineRestaurantMenu,MdOutlineLocationOn } from "react-icons/md";
 import { BiDrink } from "react-icons/bi";
 import { SiHotelsdotcom } from "react-icons/si";
 import { RiHospitalFill, RiMovie2Fill } from "react-icons/ri";
@@ -45,42 +46,42 @@ const Filters = ({ search, setSearch, setNsearch }) => {
   let Icons = [
     {
       name: "education",
-      value: <MdSchool className="icons-sizes icon-clr" />,
+      value: <MdSchool className="icon-clr" id={styles.select_location_icon} />,
       id: "cb1",
     },
     {
       name: "bar",
-      value: <BiDrink className="icons-sizes icon-clr" />,
+      value: <BiDrink className="icon-clr" id={styles.select_location_icon} />,
       id: "cb2",
     },
     {
       name: "hotel",
-      value: <SiHotelsdotcom className="icons-sizes icon-clr" />,
+      value: <SiHotelsdotcom className="icon-clr" id={styles.select_location_icon} />,
       id: "cb3",
     },
     {
       name: "restaurant",
-      value: <MdOutlineRestaurantMenu className="icons-sizes icon-clr" />,
+      value: <MdOutlineRestaurantMenu className="icon-clr" id={styles.select_location_icon} />,
       id: "cb4",
     },
     {
       name: "hospital",
-      value: <RiHospitalFill className="icons-sizes icon-clr" />,
+      value: <RiHospitalFill className="icon-clr" id={styles.select_location_icon} />,
       id: "cb5",
     },
     {
       name: "spa",
-      value: <TbMassage className="icons-sizes icon-clr" />,
+      value: <TbMassage className="icon-clr" id={styles.select_location_icon} />,
       id: "cb6",
     },
     {
       name: "cinema",
-      value: <RiMovie2Fill className="icons-sizes icon-clr" />,
+      value: <RiMovie2Fill className="icon-clr" id={styles.select_location_icon} />,
       id: "cb7",
     },
     {
       name: "gym",
-      value: <CgGym className="icons-sizes icon-clr" />,
+      value: <CgGym className="icon-clr" id={styles.select_location_icon} />,
       id: "cb8",
     },
   ];
@@ -170,7 +171,7 @@ const Filters = ({ search, setSearch, setNsearch }) => {
   }, [search]);
 
   const submitfilters = async (datas) => {
-    setintrestedValue(datas)
+    setintrestedValue(datas.name)
     const value = [...search];
     const table = value[0].category_name;
     const city = value[0].city_name;
@@ -207,7 +208,7 @@ const Filters = ({ search, setSearch, setNsearch }) => {
             className="p-2 mt-0 "
             onClick={(e) => locationFilter(el)}
           >
-            {el}
+          <MdOutlineLocationOn className="icon-clr "   id={styles.select_location_icon}/>  {el}
           </Dropdown.Item>
         ))}
       </DropdownButton>
@@ -277,14 +278,14 @@ const Filters = ({ search, setSearch, setNsearch }) => {
    
         id={styles.select_media_box}
         drop="down-centered"
-        // onSelect={(e) => setUserType(e)}
+    
       >
         {Icons.map((el, i) => (
           <Dropdown.Item
             className="p-2 mt-0 "
             onClick={(e) => submitfilters(el)}
           >
-            {el.name.toUpperCase()}
+   {el.value} {el.name.toUpperCase()}
           </Dropdown.Item>
         ))}
       </DropdownButton>
