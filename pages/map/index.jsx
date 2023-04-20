@@ -13,15 +13,9 @@ import {
 } from "@/allApi/apis";
 import { useRouter } from "next/router";
 import {getCookie } from "cookies-next";
-import dynamic from "next/dynamic";
-const Fixednavbar = dynamic(() => import("@/components/navbar/fixednavbar"), {
-  ssr: false,
-});
-const Mapfilter = dynamic(() => import("./mapfilters"), {
-  ssr: false,
-});
 
 import Filters from "./filters";
+import Fixednavbar from "@/components/navbar/fixednavbar";
 
 const Map = () => {
   const router = useRouter();
@@ -128,7 +122,7 @@ const Map = () => {
 
   return (
     <>
-      <Fixednavbar />
+   <Fixednavbar/>
       <div className="container-fluid" id={styles.map_body}>
         <div className={` p-2 ps-4 pe-4 ${styles.filter_section} d-flex map-filter-drop`}>
 
