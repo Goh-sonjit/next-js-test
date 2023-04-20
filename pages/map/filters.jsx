@@ -274,7 +274,7 @@ const Filters = ({ search, setSearch, setNsearch }) => {
       {/* media type  */}
 
       <DropdownButton
-        title={intrestedvalue?intrestedvalue :"Intrested things"}
+        title={intrestedvalue?intrestedvalue.toUpperCase() :"Intrested things"}
    
         id={styles.select_media_box}
         drop="down-centered"
@@ -285,7 +285,7 @@ const Filters = ({ search, setSearch, setNsearch }) => {
             className="p-2 mt-0 "
             onClick={(e) => submitfilters(el)}
           >
-   {el.value} {el.name.toUpperCase()}
+ <span className="m-2">  {el.value} </span>{el.name.toUpperCase()}
           </Dropdown.Item>
         ))}
       </DropdownButton>

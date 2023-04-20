@@ -3,9 +3,11 @@ import { BsFillCircleFill } from "react-icons/bs";
 import { IoIosArrowDown } from "react-icons/io";
 import Fixednavbar from "@/components/navbar/fixednavbar";
 import { goh_faqsApi } from "@/allApi/apis";
-import Footer from "@/components/footer";
+import {MdKeyboardArrowRight } from "react-icons/md";
+import { useRouter } from "next/router";
 
 const Faqs = () => {
+  const route = useRouter()
   const [posts, setPosts] = useState([]);
   const staff = async() =>{
     const data = await goh_faqsApi()
@@ -21,7 +23,9 @@ const Faqs = () => {
       <Fixednavbar />
       <div className="d-hide drop-nd"></div>
       <div className="container-xxl  container-xl container-lg container-md container-faqs pt-4">
-        <h1 className="pt-5 mt-5 mb-4">Frequently Asked Questions</h1>
+
+ <h6 className="mt-5 pt-5"><span  onClick={()=>route.push("/")} className="bredcamp">Home</span><MdKeyboardArrowRight/><span className="bredcamp text-secondary">Frequently Asked Questions</span></h6>
+        <h1 className=" mt-4 mb-4">Frequently Asked Questions</h1>
         <section className="mt-5 mb-5">
           {posts.map((data, index) => {
             let abc = 'a' + data.id;

@@ -34,7 +34,7 @@ const Markers = ({ markers, nsearch, setSearch,removefromCart, addonCart,  More}
       }
     };
   
-
+console.log(combinedArray);
 
   const [activeMarker, setActiveMarker] = useState(null);
 
@@ -255,7 +255,7 @@ const Markers = ({ markers, nsearch, setSearch,removefromCart, addonCart,  More}
             </div>
        {/* <button className={`${styles.this_area} `} onClick={onBoundsChanged} >Search in this area</button> */}
             {!hasmarker ? (
-             <><Loader/></>
+             <Loader/>
             ) : (
               markers.map(
                 ({
@@ -387,7 +387,7 @@ const Markers = ({ markers, nsearch, setSearch,removefromCart, addonCart,  More}
                   </InfoWindow>
                   
                 )}
-              </Marker>
+              </Marker> 
             ))
              
             }

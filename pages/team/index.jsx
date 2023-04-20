@@ -5,9 +5,11 @@ import {FaFacebookSquare, FaLinkedin} from "react-icons/fa";
 import {TiSocialTwitter} from "react-icons/ti"
 import Branding from "@/components/branding";
 import Head from "next/head";
-
+import {MdKeyboardArrowRight } from "react-icons/md";
+import { useRouter } from "next/router";
 
 const Team = () => {
+  const route = useRouter()
   const [posts, setPosts] = useState([])
   const staff = async () => {
     const data = await gohordingStaffAPi()
@@ -54,6 +56,7 @@ const Team = () => {
       <section className="">
         <div className="team-area  pt-0 mb-5 mt-5">
           <div className="container">
+ <h6><span  onClick={()=>route.push("/")} className="bredcamp">Home</span><MdKeyboardArrowRight/><span className="bredcamp text-secondary">Team</span></h6>
             <div className="row">
               {posts.map((person, index) => {
                 return (

@@ -9,6 +9,7 @@ import { Carousel } from "react-responsive-carousel";
 import Loader from "@/components/loader";
 import { useRouter } from "next/router";
 import { setCookie } from "cookies-next";
+import { MdKeyboardArrowRight } from "react-icons/md";
 
 const Details = () => {
   const router = useRouter();
@@ -116,7 +117,6 @@ const Details = () => {
   return (
     <>
       <Fixednavbar />
-      <div className="d-hide drop-nd"></div>
       {markers == 0 ? (
         <>
           <div className=" container-xxl  container-xl container-lg container-md">
@@ -129,9 +129,10 @@ const Details = () => {
         <>
           {markers.map((item, i) => (
             <div
-              className="container-xxl  container-xl container-lg container-md detail-container"
+              className="container-xxl  container-xl container-lg container-md detail-container "
               key={i}
             >
+                <h6><span  onClick={()=>router.push("/")} className="bredcamp">Home</span><MdKeyboardArrowRight/><span className="bredcamp" onClick={()=>router.push("/traditional-ooh-media")}>Medias</span><MdKeyboardArrowRight/><span className="bredcamp text-secondary">Details</span></h6>
               <div className="row mt-3 mt-md-5 ms-md-3 me-md-3 ms-0 me-0 detail-mg p-1 p-md-3 rounded-3">
                 <div className="col-md-6 p-0">
                   <Carousel showThumbs={false} infiniteLoop={true}>
@@ -389,7 +390,7 @@ const Details = () => {
       <style jsx>
         {`
     .detail-container {
-      margin-top: 6%;
+      margin-top: 9%;
     }   
       h2 {
         font-size: 2.1rem;

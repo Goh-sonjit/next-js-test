@@ -22,6 +22,8 @@ const Mapfilter = dynamic(() => import("./mapfilters"), {
 });
 
 import Filters from "./filters";
+import Fixednavbar from "@/components/navbar/fixednavbar";
+import Loader from "@/components/loader";
 
 const Map = () => {
   const router = useRouter();
@@ -96,8 +98,9 @@ const Map = () => {
   function myClick() {
     setTimeout(
       function() {
+
          getData()
-      }, 3000);
+      }, 1000);
   }
 
   const getRelateddata = async () => {
@@ -127,7 +130,7 @@ const Map = () => {
 
   return (
     <>
-      <Fixednavbar />
+   <Fixednavbar/>
       <div className="container-fluid" id={styles.map_body}>
         <div className={` p-2 ps-4 pe-4 ${styles.filter_section} d-flex map-filter-drop`}>
 
@@ -147,8 +150,13 @@ const Map = () => {
                   More={More}
                 />
               ) : (
+                <>
+                {/* <h3 className="text-center">No data found</h3>
+                <h3 className="text-center">Redirect to previous location</h3> */}
+                <Loader/>
+               {/* { myClick()} */}
+                </>
                 
-              myClick()
               )
             ) : (
               <Markers

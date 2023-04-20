@@ -3,7 +3,7 @@ import { AccountContext } from "@/allApi/apicontext";
 import OverView from "./overView";
 import { useRouter } from "next/router";
 import styles from "../../styles/media.module.scss";
-import { MdLocationPin } from "react-icons/md";
+import { MdKeyboardArrowRight } from "react-icons/md";
 import { BsGrid } from "react-icons/bs";
 import { CiGrid2H } from "react-icons/ci";
 import Head from "next/head";
@@ -245,19 +245,23 @@ const Media = (props) => {
       <Medialogo category_name={category_name} city_name={city_name} />
 
       <div className=" container-xxl  container-xl container-lg container-md  mt-5 mb-5 p-0 media-con rounded">
-        <div className={`mt-md-5 pt-md-3  list ${styles.media_choice} d-flex`}>
+        <div className={`mt-md-5 list ${styles.media_choice} `}>
+          <h6><span  onClick={()=>router.push("/")} className="bredcamp">Home</span><MdKeyboardArrowRight/><span className="bredcamp text-secondary">Medias</span></h6>
+          <div className="d-flex mt-3 pt-md-3  "> 
+
           <h2 aria-expanded={listings} onClick={toggle}>
             Listings
           </h2>
           <h2 aria-expanded={overview} onClick={toggle}>
             Overview
           </h2>
+          </div>
         </div>
 
         {overview ? (
           <OverView category_name={category_name} city_name={city_name} />
         ) : (
-          <div className="row my-2 my-md-5 pt-md-3 medias">
+          <div className="row my-2 my-md-3 pt-md-3 medias">
             <div className="col-md-2  " id={styles.hide_fltr}>
               <div className={`${styles.filter_container}rounded`}>
                 <div className={`col ${styles.sub_category_search} ms-3 pt-4`}>
