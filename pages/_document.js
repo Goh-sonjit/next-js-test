@@ -9,7 +9,7 @@ export default function Document() {
           rel="icon"
           href="https://www.gohoardings.com/assets/images/favicon.png"
         />
-        <Script strategy="lazyOnload">
+        <Script strategy="lazyOnload" id="google-code">
           <script>
             {`
           (function(w,d,s,l,i){
@@ -42,7 +42,7 @@ export default function Document() {
             style={{ display: "none", visibility: "hidden" }}
           ></iframe>
         </noscript>
-        <Script strategy="lazyOnload">
+        <Script strategy="lazyOnload" id="tawkto-code">
           {`
             var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
             (function(){
