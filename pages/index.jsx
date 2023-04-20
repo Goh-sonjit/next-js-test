@@ -47,7 +47,7 @@ export default function Home() {
           content="India&#39s Largest Outdoor Advertising Agency,  Hoarding agency, Outdoor Advertising Company, Bus Advertising, Airport Advertising, OOH Media Agency, Train Advertising, Cab and Autorikshaw Advertising, Digital LED Display Ads, DOOH Advertising, Ad Agency India, Hoarding Advertising Agency Nearby, Multiplex Advertising, Gohoardings is india’s largest Outdoor Advertising Agency"
         />
       </Head>
-     <body>
+
      <main>
         
         <NavbarH />
@@ -69,7 +69,7 @@ export default function Home() {
           <Trendingcity />
         </section>
       </main>
-     </body>
+   
     </>
   );
 }

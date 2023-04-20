@@ -236,126 +236,126 @@ return res.send(JSON.parse(data))
 }
 });
 
-exports.mapMarkersData = catchError(async (req, res, next) => {
-  const { NorthLat, SouthLat, NorthLong, SouthLong } = req.body;
-  const cookieData = req.cookies;
-  if (!cookieData) {
-    return res.status(204).json({ message: "No Cookie Found" });
-  }
-  const key = `${ NorthLat+SouthLat+NorthLong+SouthLong}`
-  const value = await client.get(key)
-if(value){
-  return res.send(JSON.parse(data))
-}else{
+// exports.mapMarkersData = catchError(async (req, res, next) => {
+//   const { NorthLat, SouthLat, NorthLong, SouthLong } = req.body;
+//   const cookieData = req.cookies;
+//   if (!cookieData) {
+//     return res.status(204).json({ message: "No Cookie Found" });
+//   }
+//   const key = `${ NorthLat + SouthLat + NorthLong + SouthLong }`
+//   const value = await client.get(key)
+// if(value){
+//   return res.send(JSON.parse(data))
+// }else{
 
-  const positions =
-    "WHERE  media.latitude BETWEEN  '" +
-    SouthLat +
-    "' AND  '" +
-    NorthLat +
-    "' &&  media.longitude BETWEEN  '" +
-    SouthLong +
-    "'  AND  '" +
-    NorthLong +
-    "'";
-  const data =
-    "id, illumination, height, width,ftf,code, latitude, longitude,meta_title,mediaownercompanyname, thumb, category_name, meta_title, subcategory, medianame, price, city_name";
-  const data2 =
-    "media.id, media.illumination, media.height, media.width,media.ftf,media.code, media.latitude, media.longitude,media.meta_title,media.mediaownercompanyname,media.price, media.thumb, media.category_name, media.meta_title, media.subcategory, media.medianame, media.price, media.city_name, media.page_title";
+//   const positions =
+//     "WHERE  media.latitude BETWEEN  '" +
+//     SouthLat +
+//     "' AND  '" +
+//     NorthLat +
+//     "' &&  media.longitude BETWEEN  '" +
+//     SouthLong +
+//     "'  AND  '" +
+//     NorthLong +
+//     "'";
+//   const data =
+//     "id, illumination, height, width,ftf,code, latitude, longitude,meta_title,mediaownercompanyname, thumb, category_name, meta_title, subcategory, medianame, price, city_name";
+//   const data2 =
+//     "media.id, media.illumination, media.height, media.width,media.ftf,media.code, media.latitude, media.longitude,media.meta_title,media.mediaownercompanyname,media.price, media.thumb, media.category_name, media.meta_title, media.subcategory, media.medianame, media.price, media.city_name, media.page_title";
 
-  let sql;
+//   let sql;
 
-  const token = Object.values(cookieData)[0];
-  return jwtToken.verify(token, "thisismysecretejsonWebToken", async (err, user) => {
-    if (err) {
-      sql =
-        "SELECT " +
-        data2 +
-        " FROM goh_media as media " +
-        positions +
-        " UNION SELECT " +
-        data2 +
-        " FROM goh_media_digital as media " +
-        positions +
-        " UNION SELECT " +
-        data2 +
-        " FROM goh_media_transit as media " +
-        positions +
-        " UNION SELECT " +
-        data2 +
-        " FROM goh_media_mall as media " +
-        positions +
-        " UNION SELECT " +
-        data2 +
-        " FROM goh_media_airport as media " +
-        positions +
-        " UNION SELECT " +
-        data2 +
-        " FROM goh_media_inflight as media " +
-        positions +
-        " UNION SELECT " +
-        data2 +
-        " FROM goh_media_office as media " +
-        positions +
-        "";
-    } else {
-      const userID = user.id;
-      const userquery =
-        "AS media LEFT JOIN goh_shopping_carts_item AS cart ON media.code=cart.mediaid AND cart.userid = '" +
-        userID +
-        "'";
-      sql =
-        "SELECT " +
-        data2 +
-        " FROM goh_media " +
-        userquery +
-        " " +
-        positions +
-        " UNION SELECT " +
-        data2 +
-        " FROM goh_media_digital " +
-        userquery +
-        "   " +
-        positions +
-        " UNION SELECT " +
-        data2 +
-        " FROM goh_media_transit " +
-        userquery +
-        "  " +
-        positions +
-        " UNION SELECT " +
-        data2 +
-        " FROM goh_media_mall " +
-        userquery +
-        "  " +
-        positions +
-        " UNION SELECT " +
-        data2 +
-        " FROM goh_media_airport " +
-        userquery +
-        "  " +
-        positions +
-        " UNION SELECT " +
-        data2 +
-        " FROM goh_media_inflight " +
-        userquery +
-        "  " +
-        positions +
-        " UNION SELECT " +
-        data2 +
-        " FROM goh_media_office " +
-        userquery +
-        " " +
-        positions +
-        "";
-    }
-  const data =  await executeQuery(sql,"gohoardi_goh", next)
-      if (data) {
-        client.setEx(key, process.env.REDIS_TIMEOUT,JSON.stringify(data))
-        return res.status(200).json(data);
-      }
-    });
-  }});
+//   const token = Object.values(cookieData)[0];
+//   return jwtToken.verify(token, "thisismysecretejsonWebToken", async (err, user) => {
+//     if (err) {
+//       sql =
+//         "SELECT " +
+//         data2 +
+//         " FROM goh_media as media " +
+//         positions +
+//         " UNION SELECT " +
+//         data2 +
+//         " FROM goh_media_digital as media " +
+//         positions +
+//         " UNION SELECT " +
+//         data2 +
+//         " FROM goh_media_transit as media " +
+//         positions +
+//         " UNION SELECT " +
+//         data2 +
+//         " FROM goh_media_mall as media " +
+//         positions +
+//         " UNION SELECT " +
+//         data2 +
+//         " FROM goh_media_airport as media " +
+//         positions +
+//         " UNION SELECT " +
+//         data2 +
+//         " FROM goh_media_inflight as media " +
+//         positions +
+//         " UNION SELECT " +
+//         data2 +
+//         " FROM goh_media_office as media " +
+//         positions +
+//         "";
+//     } else {
+//       const userID = user.id;
+//       const userquery =
+//         "AS media LEFT JOIN goh_shopping_carts_item AS cart ON media.code=cart.mediaid AND cart.userid = '" +
+//         userID +
+//         "'";
+//       sql =
+//         "SELECT " +
+//         data2 +
+//         " FROM goh_media " +
+//         userquery +
+//         " " +
+//         positions +
+//         " UNION SELECT " +
+//         data2 +
+//         " FROM goh_media_digital " +
+//         userquery +
+//         "   " +
+//         positions +
+//         " UNION SELECT " +
+//         data2 +
+//         " FROM goh_media_transit " +
+//         userquery +
+//         "  " +
+//         positions +
+//         " UNION SELECT " +
+//         data2 +
+//         " FROM goh_media_mall " +
+//         userquery +
+//         "  " +
+//         positions +
+//         " UNION SELECT " +
+//         data2 +
+//         " FROM goh_media_airport " +
+//         userquery +
+//         "  " +
+//         positions +
+//         " UNION SELECT " +
+//         data2 +
+//         " FROM goh_media_inflight " +
+//         userquery +
+//         "  " +
+//         positions +
+//         " UNION SELECT " +
+//         data2 +
+//         " FROM goh_media_office " +
+//         userquery +
+//         " " +
+//         positions +
+//         "";
+//     }
+//   const data =  await executeQuery(sql,"gohoardi_goh", next)
+//       if (data) {
+//         client.setEx(key, process.env.REDIS_TIMEOUT,JSON.stringify(data))
+//         return res.status(200).json(data);
+//       }
+//     });
+//   }});
 
   
 

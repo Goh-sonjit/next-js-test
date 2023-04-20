@@ -16,6 +16,7 @@ import {getCookie } from "cookies-next";
 
 import Filters from "./filters";
 import Fixednavbar from "@/components/navbar/fixednavbar";
+import Loader from "@/components/loader";
 
 const Map = () => {
   const router = useRouter();
@@ -90,8 +91,9 @@ const Map = () => {
   function myClick() {
     setTimeout(
       function() {
+
          getData()
-      }, 3000);
+      }, 1000);
   }
 
   const getRelateddata = async () => {
@@ -142,8 +144,13 @@ const Map = () => {
                   More={More}
                 />
               ) : (
+                <>
+                <h3 className="text-center">No data found</h3>
+                <h3 className="text-center">Redirect to previous location</h3>
+                <Loader/>
+               { myClick()}
+                </>
                 
-              myClick()
               )
             ) : (
               <Markers
