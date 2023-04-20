@@ -17,12 +17,8 @@ import dynamic from "next/dynamic";
 const Fixednavbar = dynamic(() => import("@/components/navbar/fixednavbar"), {
   ssr: false,
 });
-const Mapfilter = dynamic(() => import("./mapfilters"), {
-  ssr: false,
-});
 
 import Filters from "./filters";
-import Fixednavbar from "@/components/navbar/fixednavbar";
 import Loader from "@/components/loader";
 
 const Map = () => {
