@@ -34,7 +34,7 @@ exports.verifyToken = catchError(async (req, res, next) => {
     } else {
         return jwtToken.verify(token,  "thisismysecretejsonWebToken", async (err, user) => {
             if (err) {
-                return res.status(400).json({message: "InValid Token"});
+                return res.status(206).json({message: "InValid Token"});
             } else {
           
                 req.id = user.id;
