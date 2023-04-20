@@ -7,6 +7,7 @@ import Searchmedia from "@/components/searchMedia";
 import dynamic from "next/dynamic";
 import NavbarH from "@/components/navbar/navbar";
 
+
 const Trendingcity = dynamic(() => import("@/components/trendingcity"), {
   ssr: false,
 });
@@ -17,6 +18,7 @@ const Floatingnavbar = dynamic(
     ssr: false,
   }
 );
+
 
 export default function Home() {
   return (
@@ -45,7 +47,9 @@ export default function Home() {
           content="India&#39s Largest Outdoor Advertising Agency,  Hoarding agency, Outdoor Advertising Company, Bus Advertising, Airport Advertising, OOH Media Agency, Train Advertising, Cab and Autorikshaw Advertising, Digital LED Display Ads, DOOH Advertising, Ad Agency India, Hoarding Advertising Agency Nearby, Multiplex Advertising, Gohoardings is india’s largest Outdoor Advertising Agency"
         />
       </Head>
-      <main>
+     <body>
+     <main>
+        
         <NavbarH />
       
         <Floatingnavbar />
@@ -65,6 +69,7 @@ export default function Home() {
           <Trendingcity />
         </section>
       </main>
+     </body>
     </>
   );
 }

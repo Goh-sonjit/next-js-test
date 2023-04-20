@@ -242,7 +242,7 @@ exports.mapMarkersData = catchError(async (req, res, next) => {
   if (!cookieData) {
     return res.status(204).json({ message: "No Cookie Found" });
   }
-  const key = `${ NorthLat + SouthLat + NorthLong + SouthLong }`
+  const key = `${ NorthLat+SouthLat+NorthLong+SouthLong}`
   const value = await client.get(key)
 if(value){
   return res.send(JSON.parse(data))
