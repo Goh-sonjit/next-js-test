@@ -1,14 +1,19 @@
 import React from 'react';
-import Branding from "../../components/branding";
 import Fixednavbar from "../../components/navbar/fixednavbar";
+import Branding from "@/components/branding";
+import {MdKeyboardArrowRight } from "react-icons/md";
+import { useRouter } from 'next/router';
 const Privacy = () => {
+    const route = useRouter()
   return (
     <section>
           <Fixednavbar/>
      
       <Branding title="Privacy Policy"/>
         <div className="container-xxl  container-xl container-lg container-md">
+ <h6 className="mt-5 pt-5"><span  onClick={()=>route.push("/")} className="bredcamp">Home</span><MdKeyboardArrowRight/><span className="bredcamp text-secondary">Privacy Policy</span></h6>
             <div className="row my-5 py-3">
+
                 <div className="col-md-12">
                     <div className="page-about pad-bot-red-40">
                         <p>This privacy policy (the “Privacy Policy”) informs you of GoHoarding and its affiliates’ policy with respect to the online collection, use, and disclosure of personal information on websites owned or managed by GoHoarding Media Corp. or its Affiliates (“GoHoarding”) and that link to or reference the Privacy Policy (each individually a “Website” and collectively the “Websites”). As used in the Agreement, the term “Affiliates” means, any other Person that directly or indirectly controls, is controlled by, or is under common control with GoHoarding Media Corp. The term “control” (including, with correlative meanings, the terms “controlled by” and “under common control with”) as applied to any Person means the possession, direct or indirect, of the power to direct or cause the direction of the management and policies of such Person, whether through the ownership of voting securities or other ownership interest. The term “Person” means any individual, partnership, corporation, limited liability company, unincorporated organization or association, any trust, or any other business entity.</p>

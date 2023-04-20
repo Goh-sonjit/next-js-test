@@ -117,7 +117,6 @@ const Details = () => {
   return (
     <>
       <Fixednavbar />
-
       {markers == 0 ? (
         <>
           <div className=" container-xxl  container-xl container-lg container-md">
@@ -133,7 +132,7 @@ const Details = () => {
               className="container-xxl  container-xl container-lg container-md detail-container "
               key={i}
             >
-                <h6><span  onClick={()=>router.push("/")} className="bredcamp">Home</span><MdKeyboardArrowRight/><span className="bredcamp" onClick={()=>router.push("/traditional-ooh-media")}>Medias</span><MdKeyboardArrowRight/><span className="bredcamp"onClick={()=>router.push(`/seedetails/${category_name}/${meta_title}`)}>Details</span></h6>
+                <h6><span  onClick={()=>router.push("/")} className="bredcamp">Home</span><MdKeyboardArrowRight/><span className="bredcamp" onClick={()=>router.push("/traditional-ooh-media")}>Medias</span><MdKeyboardArrowRight/><span className="bredcamp text-secondary">Details</span></h6>
               <div className="row mt-3 mt-md-5 ms-md-3 me-md-3 ms-0 me-0 detail-mg p-1 p-md-3 rounded-3">
                 <div className="col-md-6 p-0">
                   <Carousel showThumbs={false} infiniteLoop={true}>

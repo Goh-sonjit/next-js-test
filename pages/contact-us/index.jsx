@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { emailformate, enquiryApi } from "@/allApi/apis";
 import { toast, ToastContainer } from "react-toastify";
-import { MdEmail, MdLocationPin, MdOutlineError } from "react-icons/md";
-import { ImMobile } from "react-icons/im";
+import {MdKeyboardArrowRight } from "react-icons/md";
+import { useRouter } from "next/router";
 import Fixednavbar from "@/components/navbar/fixednavbar";
 import styles from '../../styles/contactUs.module.scss'  ;
 
 const Contact = () => {
   const [name, setName] = useState(""); 
+  const route = useRouter()
   const [phone, setphone] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
@@ -56,7 +57,7 @@ const Contact = () => {
   return (
     <>
    <Fixednavbar/>
-      <div className="d-hide drop-nd"></div>
+
       <section>
         <div className={`container-xxl  container-xl container-lg container-md  my-5 ${styles.main_contact_all} contUs `}>
           <h1 className="text-center pt-4">Contact Us</h1>
@@ -64,6 +65,7 @@ const Contact = () => {
             Any question or remarks? Just write us a message or <br />
             visit our nearest office.
           </h5>
+   <h6><span  onClick={()=>route.push("/")} className="bredcamp">Home</span><MdKeyboardArrowRight/><span className="bredcamp text-secondary">Contact-Us</span></h6>
           <div className={`row p-3 mt-5 rounded-3 ${styles.main_contact}`}>
             <div className="col-md-6 p-0">
               <h3>

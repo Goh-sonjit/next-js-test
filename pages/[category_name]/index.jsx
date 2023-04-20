@@ -246,7 +246,7 @@ const Media = (props) => {
 
       <div className=" container-xxl  container-xl container-lg container-md  mt-5 mb-5 p-0 media-con rounded">
         <div className={`mt-md-5 list ${styles.media_choice} `}>
-          <h6><span  onClick={()=>router.push("/")} className="bredcamp">Home</span><MdKeyboardArrowRight/><span className="bredcamp">Medias</span></h6>
+          <h6><span  onClick={()=>router.push("/")} className="bredcamp">Home</span><MdKeyboardArrowRight/><span className="bredcamp text-secondary">Medias</span></h6>
           <div className="d-flex mt-3 pt-md-3  "> 
 
           <h2 aria-expanded={listings} onClick={toggle}>

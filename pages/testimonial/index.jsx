@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
-
+import { useRouter } from "next/router";
+import {MdKeyboardArrowRight } from "react-icons/md";
 import Fixednavbar from "../../components/navbar/fixednavbar";
 import { BsStar, BsStarFill, BsStarHalf } from "react-icons/bs";
 import Branding from "@/components/branding";
 import { goh_testimonialsApi } from "@/allApi/apis";
 
 const Testimonial = () => {
+  const route = useRouter()
   const [posts, setPosts] = useState([]);
 
   const staff = async () => {
@@ -22,14 +24,11 @@ const Testimonial = () => {
       <Fixednavbar />
       <Branding title="Testimonials" />
       <div className="container  mt-5">
+ <h6><span  onClick={()=>route.push("/")} className="bredcamp">Home</span><MdKeyboardArrowRight/><span className="bredcamp text-secondary">Testimonial</span></h6>
+
         <div className="row testimonial-row mt-5">
-          {!posts ? (
-            <>
-              <h1>Loading Please wait</h1>
-            </>
-          ) : (
-            <>
-              {posts.map((el, i) => (
+         
+              {posts && posts.map((el, i) => (
                 <div className="col-md-4" key={i}>
                   <div className="testimonials">
                     <img
@@ -52,8 +51,7 @@ const Testimonial = () => {
                   </div>
                 </div>
               ))}
-            </>
-          )}
+          
         </div>
       </div>
       <style jsx>

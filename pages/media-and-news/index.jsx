@@ -2,8 +2,11 @@ import React, {useEffect, useState} from "react";
 import Branding from "@/components/branding";
 import Fixednavbar from "@/components/navbar/fixednavbar";
 import { goh_media_and_newsApi } from "@/allApi/apis";
+import {MdKeyboardArrowRight } from "react-icons/md";
+import { useRouter } from "next/router";
 
 const Newsmedia = () => {
+  const route = useRouter()
   const [posts, setPosts] = useState([])
   const staff = async() =>{
     const data = await goh_media_and_newsApi()
@@ -22,12 +25,11 @@ const Newsmedia = () => {
       <Branding title="News & Media" />
       <section className="mt-5">
         <div className="container-fluid px-5 news pt-3">
+ <h6><span  onClick={()=>route.push("/")} className="bredcamp">Home</span><MdKeyboardArrowRight/><span className="bredcamp text-secondary">Media-And-News</span></h6>
           <h5 className=" p-2 ps-3 news-heading ">Latest News</h5>
           <div className="card mb-3">
-          {!posts ? <>
-          <h1>Loadin Please Wait...</h1>
-          </>:<>
-          {posts.map((el,i) =>(
+          
+          {posts && posts.map((el,i) =>(
             <>
              <div className="row" key={i}>
              <div className="col-md-4">
@@ -59,7 +61,7 @@ const Newsmedia = () => {
            <hr/>
             </>
            ))}
-          </>}
+        
           </div>
         </div>
       </section>

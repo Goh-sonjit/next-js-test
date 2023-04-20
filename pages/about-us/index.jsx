@@ -1,10 +1,11 @@
-
+import { MdKeyboardArrowRight } from "react-icons/md";
 import React, { useState } from "react";
 import Head from "next/head";
 import Branding from "../../components/branding";
 import clientslogo from "./clients";
-import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
+import dynamic from "next/dynamic";
+
 
  
 const About = () => {
@@ -65,6 +66,7 @@ const About = () => {
 
       <Branding title="About Us" />
       </section>
+
       <section>
         <div className="container mt-2">
           <div className="row">
@@ -382,6 +384,8 @@ const About = () => {
 }
 
       </style>
+      <h6><span  onClick={()=>route.push("/")} className="bredcamp">Home</span><MdKeyboardArrowRight/><span className="bredcamp text-secondary">About</span></h6>
+
     </>
   );
 };
