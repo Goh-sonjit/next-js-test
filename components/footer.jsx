@@ -36,10 +36,13 @@ const Footer = () => {
       }
     }
   };
-  const directlink=(e)=>{
+  const direactCity=(e)=>{
     setCookie("category_name","traditional-media")
     setCookie("city_name",e)
-
+  }
+  const direactMedia=(e)=>{
+    setCookie("category_name",e)
+    setCookie("city_name","delhi")
   }
   const logo = [
     {
@@ -217,7 +220,7 @@ const Footer = () => {
                     className="text-decoration-none "
                   >
                  
-                    <li className=" py-md-2  text-decoration-none f-heading-clr ">
+                    <li className=" py-md-2  text-decoration-none f-heading-clr"onClick={(e) => direactMedia(el.value)}>
                       {el.label}
                     </li>
                   </Link>
@@ -235,7 +238,7 @@ const Footer = () => {
                     href={`/${el.city}`}
                     className="text-decoration-none "
                   >
-                    <li className=" py-md-2  text-decoration-none f-heading-clr " onClick={(e) => directlink(el.city)}>
+                    <li className=" py-md-2  text-decoration-none f-heading-clr " onClick={(e) => direactCity(el.city)}>
                       {el.name}
                     </li>
                   </Link>
