@@ -205,6 +205,7 @@ const Filters = ({ search, setSearch, setNsearch }) => {
       >
         {locations.map((el, i) => (
           <Dropdown.Item
+          key={i}
             className="p-2 mt-0 "
             onClick={(e) => locationFilter(el)}
           >
@@ -237,6 +238,7 @@ const Filters = ({ search, setSearch, setNsearch }) => {
       >
         {ILLUMINATION.map((el, i) => (
           <Dropdown.Item
+          key={i}
             className="p-2 mt-0 "
             onClick={(e) => mediaTypeFilter(el)}
           >
@@ -263,6 +265,7 @@ const Filters = ({ search, setSearch, setNsearch }) => {
           })
           .map((cate, i) => (
             <Dropdown.Item
+            key={i}
               className="p-2 mt-0 "
               onClick={(e) => categoryFilter(cate)}
             >
@@ -282,6 +285,7 @@ const Filters = ({ search, setSearch, setNsearch }) => {
       >
         {Icons.map((el, i) => (
           <Dropdown.Item
+          key={i}
             className="p-2 mt-0 "
             onClick={(e) => submitfilters(el)}
           >
