@@ -5,9 +5,9 @@ export default function Document() {
   return (
     <Html lang="en">
       <Head>
-        <link
+      <link
           rel="icon"
-          href="https://www.gohoardings.com/assets/images/favicon.png"
+          href="../images/web_pics/favicon.png"  
         />
         <Script strategy="lazyOnload">
           <script>

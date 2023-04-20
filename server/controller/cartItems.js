@@ -18,7 +18,7 @@ async function planMail(data, email, next) {
     const message = `Your Media add on a Campaingn your Campain id is campaign-TEST`;
     await sendEmail({
       email: email,
-      subject: "Gohoadings Solutions : India's Largest Outdoor Advertising Company",
+      subject: "Download Plan-Your Campaign Planned with Gohoardings.com is ready",
       message: message,
       attachments: [
         { fileName: "test-1", path: excelPath },
