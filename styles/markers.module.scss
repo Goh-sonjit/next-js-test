@@ -17,7 +17,10 @@
   box-shadow: rgb(0 0 0 / 30%) 0px 1px 4px -1px;
 }
 .media_image {
-  height: 120px;
+  max-height: 120px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
 }
 .this_area {
   z-index: 5;

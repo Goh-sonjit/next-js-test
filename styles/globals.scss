@@ -188,11 +188,14 @@ display: none;
   .dropdown-menu {
     background-color: #ffffff;
     color: white;
+    font-size: 14px;
     border-radius: 0px;
-    // left: -75% !important;
+    max-height: 260px;
+    max-width: fit-content;
+    overflow: scroll;
     padding: 0%;
+    overflow-x: hidden;
     cursor: pointer;
-    // opacity: 89%;
     --bs-dropdown-link-active-bg: rgb(228, 228, 228);
     --bs-dropdown-link-hover-bg: rgb(228, 228, 228);
   }

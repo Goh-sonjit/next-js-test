@@ -5,7 +5,12 @@ import { IoIosArrowDown } from "react-icons/io";
 import  Link from "next/link";
 import styles from '../../styles/campaign.module.scss';
 import { toast, ToastContainer } from "react-toastify";
+import { useRouter } from "next/router";
+import instance from "@/allApi/axios";
+
+
 const Campign = ({ posts }) => {
+  const router = useRouter();
   const [campings, setCampings] = useState();
   const [campingid, setCampingid] = useState();
   const campaigns = posts.map((el) => el.campaign_name);
@@ -16,7 +21,7 @@ const Campign = ({ posts }) => {
     try {
       // Make a request to the server to download the file
       let response;
-      await fetch(`http://localhost:3000/api/excel`, {
+      await fetch(`/api/excel`, {
         method: "POST",
         headers: {
           'Accept': 'application/json',
@@ -56,7 +61,7 @@ const Campign = ({ posts }) => {
     try {
       // Make a request to the server to download the file
       let response;
-      await fetch(`http://localhost:3000/api/ppt`, {
+      await fetch(`/api/ppt`, {
         method: "POST",
         headers: {
           Accept: "application/json",
@@ -88,6 +93,11 @@ const Campign = ({ posts }) => {
       return false;
     }
   };
+
+  const editCart = async () => {
+    const {data} = await instance.put("medias",{campingid , posts});
+    router.push("/cart");
+  }
 
   const getData = (text) => {
     setCampings(text);
@@ -133,6 +143,9 @@ const Campign = ({ posts }) => {
                         </button> 
                         <button className="btn btn-danger" onClick={powerpoint}>
                           PPT
+                        </button>
+                        <button className="btn btn-warning ms-4" onClick={editCart}>
+                          EDIT
                         </button>
                         <ToastContainer />
                       </div> 

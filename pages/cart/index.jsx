@@ -141,7 +141,6 @@ const Cart = () => {
     0
   );
 
-  // console.log(moment(obj.endDate).format('L'));
 
   return (
     <>

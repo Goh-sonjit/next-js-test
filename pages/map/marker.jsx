@@ -366,7 +366,7 @@ const Markers = ({ markers, nsearch, setSearch,removefromCart, addonCart,  More}
               )
             )}
             {
-              combinedArray.map(({ id, position, name, lat, lng }) => (
+              combinedArray.map(({ id, position, name, Type, city_name , photo}) => (
               <Marker
                 key={id}
                 icon={"../images/web_pics/restaurant.png"}
@@ -376,12 +376,16 @@ const Markers = ({ markers, nsearch, setSearch,removefromCart, addonCart,  More}
                 {activeMarker === id && (
                   <InfoWindow onCloseClick={() => setActiveMarker(null)}>
                     <div className={styles.infoWindow}>
-                      <p>{name}</p>
-                      <p>
-                        {lat},{lng}
-                      </p>
+                      <div className={styles.media_image}>
+                      <img src={`https://maps.googleapis.com/maps/api/place/photo?photoreference=`+photo+`&sensor=false&maxheight=210&maxwidth=330&key=AIzaSyDEKx_jLb_baUKyDgkXvzS_o-xlOkvLpeE`} alt="" srcset="" onError={(e) => (e.target.src ="../../images/web_pics/alter-img.png")} />
+                      </div>
+                      <br />
+                      <p className="mb-2" >Name : {name}</p>
+                      <p className="mb-2" >Type : {Type}</p>
+                      <p className="mb-2" >City : {city_name}</p>
                     </div>
                   </InfoWindow>
+                  
                 )}
               </Marker>
             ))

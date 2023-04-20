@@ -6,20 +6,13 @@ import Markers from "./marker";
 import {
   addItem,
   markersPosition,
-  mediawithcity,
   mediaDataApi,
   nearProduct,
   singlemnedia,
   removeItem,
 } from "@/allApi/apis";
-import {
-  MdAddLocationAlt,
-  MdArrowUpward,
-  MdOutlineArrowDownward,
-} from "react-icons/md";
-import { FaFilter, FaRupeeSign, FaMapMarked } from "react-icons/fa";
 import { useRouter } from "next/router";
-import { setCookie, getCookie } from "cookies-next";
+import {getCookie } from "cookies-next";
 import dynamic from "next/dynamic";
 const Fixednavbar = dynamic(() => import("@/components/navbar/fixednavbar"), {
   ssr: false,
@@ -45,14 +38,14 @@ const Map = () => {
   const category_name = getCookie("category_name");
   const meta_title = getCookie("meta_title");
   const getData = async () => {
-    if (!meta_title) {
+    if (meta_title) {
+      const data = await singlemnedia(meta_title, category_name);
+      setSearch(data);
+    } else if (category_name) {
       const data = await mediaDataApi(category_name, city_name);
       setSearch(data);
-    } else if (!category_name) {
-      const data = await mediaDataApi("tradition-ooh-media", "delhi");
-      setSearch(data);
     } else {
-      const data = await mediaDataApi(meta_title, category_name);
+      const data = await mediaDataApi("tradition-ooh-media", "delhi");
       setSearch(data);
     }
   };
@@ -118,7 +111,6 @@ const Map = () => {
   };
 
   const More = async () => {
-    console.log("hii");
     if (search.length >= noOfLogo) {
       await setnoOfLogo(noOfLogo + 6);
     }
@@ -139,7 +131,7 @@ const Map = () => {
       <div className="container-fluid" id={styles.map_body}>
         <div className={` p-2 ps-4 pe-4 ${styles.filter_section} d-flex map-filter-drop`}>
 
-         <Filters search={search} setSearch={setSearch}/>
+         <Filters search={slice} setSearch={setSearch} setNsearch={setNsearch}/>
 
         </div>
         <div className="row" id={styles.map_view_row}>
