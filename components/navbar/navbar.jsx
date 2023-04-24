@@ -41,7 +41,7 @@ const NavbarH = () => {
               </Nav.Link>
               <Nav.Link
                 className={`me-2  me-md-0   ${styles.nav_text_btn}  text-center`}
-                href="https://www.gohoardings.com/blog/"
+                href="https://blog.gohoardings.com/"
                 target="_blank"
               >
                 Blog

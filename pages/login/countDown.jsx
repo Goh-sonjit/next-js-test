@@ -38,7 +38,7 @@ const Countdown = ({initialTime, email, setSendOtp}) => {
       }
     }     
     setTme(!tme)
-    setTime(60)
+    setTime(120)
     }
   
   
