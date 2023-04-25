@@ -26,12 +26,12 @@ const Mobilenav = () => {
         />
 
         <div className="float-end mt-1 d-flex">
-          <div className="m-1">
+          {/* <div className="m-1">
             <MdOutlineSearch
               className={`${styles.search_logo} `}
               onClick={() => route.push("/")}
             />
-          </div>
+          </div> */}
           <div className="m-1">
             <Userdetail />
           </div>
