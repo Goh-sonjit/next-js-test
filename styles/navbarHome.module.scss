@@ -1,5 +1,24 @@
 @import "../assets/scss/variables";
 
+.userDetail2_mbil {
+  display: none;
+}
+#login_profifgtle {
+  display: none;
+}
+
+@media screen and (max-width: 425px) {
+  .userDetail2_dekstopp {
+    display: none;
+  }
+  .userDetail2_dekstop {
+    display: none;
+  }
+  .userDetail2_mbil {
+    display: block;
+  }
+}
+
 .login-profile .drop-item button {
   box-shadow: none !important;
 }
@@ -22,12 +41,12 @@
 }
 
 .nav_text_btn::after {
-  content: "" ;
-  display: block ;
-  width: 0 ;
+  content: "";
+  display: block;
+  width: 0;
   height: 3px;
   background: #f8eb00;
-  transition: width .3s;
+  transition: width 0.3s;
 }
 
 .nav_text_btn:hover::after {
@@ -35,22 +54,33 @@
 }
 
 .login_profile {
-  
-  .drop_togel[aria-expanded=true]{
+  .drop_togel[aria-expanded="true"] {
     margin-top: -4px !important;
     margin-left: 8px;
     border: transparent !important;
-      color: #f2f2f2 !important;
-      font-weight: 600 !important;
+    color: #f2f2f2 !important;
+    font-weight: 600 !important;
   }
-  .login_icon[aria-expanded=true] {
+  .login_icon[aria-expanded="true"] {
     background-color: rgb(255, 255, 255);
     border-radius: 50%;
     font-size: 34px;
     transition: 0.2s;
   }
-  .drop_togel[aria-expanded=true]:hover .login_icon{
-    color: #d8d8d8!important ;
+  .drop_togel[aria-expanded="true"]:hover .login_icon {
+    color: #d8d8d8 !important ;
+  }
+
+  @media screen and (max-width: 425px) {
+    .drop_togel {
+      margin-top: -6px !important;
+      margin-left: 0px;
+      font-weight: 500 !important;
+    }
+    .login_icon {
+      background-color: #373435;
+      font-size: 6vw;
+    }
   }
 
   @media screen and (max-width: 1366px) {
@@ -65,64 +95,66 @@
     font-weight: 500 !important;
     span {
       padding: 0px !important;
-font-size: 17px !important;
+      font-size: 17px !important;
       color: #ffffff !important;
-    font-weight: 500 !important;
+      font-weight: 500 !important;
     }
   }
-
 }
-  .drop_togel{
-    margin-top: 6px;
-    border: transparent ;
-      color: #ffffff ;
-      font-weight: 500 ;
-  }
+.drop_togel {
+  margin-top: 6px;
+  border: transparent;
+  color: #ffffff;
+  font-weight: 500;
+}
+.login_icon {
+  background-color: #565656;
+  border-radius: 50%;
+  font-size: 34px;
+  transition: 0.2s;
+}
+@media screen and (max-width: 425px) {
   .login_icon {
-    background-color: #565656;
-    border-radius: 50%;
-    font-size: 34px;
-    transition: 0.2s;
-  }
-  
-  .drop_togel[aria-expanded=true]{
-    margin-top: 2.4px;
-    margin-left: 10px !important;
-    border: transparent !important;
-    color: #373435;
-    font-size: 1.1rem !important;
-    font-weight: 400 !important;
-  }
-  .login_icon[aria-expanded=true] {
     background-color: rgb(255, 255, 255);
-    border-radius: 50%;
-    font-size: 34px;
-    transition: 0.2s;
+    font-size: 6vw;
   }
-  .drop_togel[aria-expanded=true]:hover{
-    cursor: pointer;
-    color: #636363!important ;
-  }
-  .drop_togel[aria-expanded=true]:hover .login_icon{
-    color: #636363!important ;
-  }
+}
 
+.drop_togel[aria-expanded="true"] {
+  margin-top: 2.4px;
+  margin-left: 10px !important;
+  border: transparent !important;
+  color: #373435;
+  font-size: 1.1rem !important;
+  font-weight: 400 !important;
+}
+.login_icon[aria-expanded="true"] {
+  background-color: rgb(255, 255, 255);
+  border-radius: 50%;
+  font-size: 34px;
+  transition: 0.2s;
+}
 
-  .drop_togel:hover{
-    cursor: pointer;
-    color: #d8d7d7!important ;
-  }
-  .drop_togel:hover .login_icon{
-    color: #d8d7d7!important ;
-  }
+.drop_togel[aria-expanded="true"]:hover {
+  cursor: pointer;
+  color: #636363 !important ;
+}
+.drop_togel[aria-expanded="true"]:hover .login_icon {
+  color: #636363 !important ;
+}
 
-  .drop_item {
-    color: #373435 !important;
-    font-weight: 600 !important;
-  }
+.drop_togel:hover {
+  cursor: pointer;
+  color: #d8d7d7 !important ;
+}
+.drop_togel:hover .login_icon {
+  color: #d8d7d7 !important ;
+}
 
-
-
+.drop_item {
+  color: #373435 !important;
+  font-weight: 600 !important;
+}
 
 .font_map_btn {
   color: #373435 !important;
@@ -143,10 +175,10 @@ font-size: 17px !important;
 .login_icon_cart {
   margin-top: 8px;
   height: 45px;
-  
+
   cursor: pointer;
 }
-.login_icon_cart[aria-expanded=true] {
+.login_icon_cart[aria-expanded="true"] {
   margin-top: -2px;
   cursor: pointer;
 
@@ -161,8 +193,8 @@ font-size: 17px !important;
   top: 1.4px;
   left: -26.5px;
 }
-  
-.cart span:nth-child(2)[aria-expanded=true] {
+
+.cart span:nth-child(2)[aria-expanded="true"] {
   color: #565656;
   font-size: 15px;
   cursor: pointer;
@@ -172,6 +204,21 @@ font-size: 17px !important;
   left: -27px;
 }
 
+@media screen and (max-width: 425px) {
+  .login_icon_cart {
+    margin-top: -6px !important;
+    height: 4.5vh !important;
+
+    cursor: pointer;
+  }
+  .cart span:nth-child(2) {
+    color: #565656;
+    font-size: 13px !important;
+
+    top: -20% !important;
+    left: -22.5px !important;
+  }
+}
 @media screen and (max-width: 1366px) {
   .fixd_nabar {
     .brand_logo {
@@ -188,12 +235,11 @@ font-size: 17px !important;
   .font_map_logo {
     height: 21px !important;
   }
-  .drop_togel[aria-expanded=true]{
-    margin-top: .7px;
+  .drop_togel[aria-expanded="true"] {
+    margin-top: 0.7px;
     margin-left: 10px;
-   
   }
-  .login_icon[aria-expanded=true] {
+  .login_icon[aria-expanded="true"] {
     background-color: rgb(255, 255, 255);
     border-radius: 50%;
     font-size: 34px;
@@ -201,9 +247,14 @@ font-size: 17px !important;
   }
 }
 
-@media screen and (max-width:425px) {
+@media screen and (max-width: 425px) {
+  .login_profile {
+    text-align: center !important;
+    max-width: 45px !important;
+    margin: 0px !important;
+    margin-right: 10px !important;
+  }
   .fixd_nabar {
     display: none;
-
   }
 }

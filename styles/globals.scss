@@ -269,6 +269,9 @@ display: none;
     -moz-osx-font-smoothing: grayscale;
   }
   @media screen and (max-width: 425px) {
+    .slick-next {
+    display: none !important ;
+  }
     .slick-prev:before,
     .slick-next:before {
 display: none;

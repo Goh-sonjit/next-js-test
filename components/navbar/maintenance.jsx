@@ -3,7 +3,7 @@ import React from "react";
 const Maintenance = () => {
   return (
     <>
-      <h6 className="text-center text-light fixed-top fw-bold">
+      <h6 className="text-center text-light fixed-top fw-bold d-none">
         {" "}
         We are upgrading our website. If you have any query please contact us
         on : <span><a href="tel:123-456-7890">9599742108</a></span>

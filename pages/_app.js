@@ -12,7 +12,8 @@ import "react-toastify/dist/ReactToastify.css";
 import { SSRProvider } from "react-bootstrap";
 import {SessionProvider} from 'next-auth/react'
 import AccountProvider from "@/allApi/apicontext";
-import Footer from "@/components/footer";
+// import Footer from "@/components/footer";
+import Mobilenav from "@/components/navbar/mobilenav";
 
 // const Feedback = dynamic(() => import("@/components/feedback"), {
 //   ssr: false,
@@ -30,11 +31,12 @@ function App({ Component, pageProps, session }) {
       <SSRProvider>
         <AccountProvider>
           <SessionProvider session={session}>
+            <Mobilenav/>
           <Component {...pageProps} />
           </SessionProvider>
   
           {/* <Feedback/> */}
-          <Footer />
+          {/* <Footer /> */}
         </AccountProvider>
       </SSRProvider>
      
