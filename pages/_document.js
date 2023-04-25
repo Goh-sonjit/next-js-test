@@ -43,7 +43,7 @@ export default function Document() {
             style={{ display: "none", visibility: "hidden" }}
           ></iframe>
         </noscript>
-        <Script strategy="lazyOnload">
+        <Script strategy="lazyOnload" id="tawkto-code">
           {`
             var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
             (function(){

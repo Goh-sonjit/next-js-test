@@ -1,22 +1,26 @@
+import { latLongApi } from "@/allApi/apis";
 import React,{useState} from "react";
 import PlacesAutocomplete, {
   geocodeByAddress,
   getLatLng
 } from "react-places-autocomplete";
 
-function SearchGoogle({setSearch})  {
+function SearchGoogle({setSearch, search})  {
   const [address, setAddress] = useState("");
-  const [coordinates, setCoordinates] = useState({
-    lat: null,
-    lng: null
-  });
+ 
 
   const handleSelect = async(value) => {
     const results = await geocodeByAddress(value);
     const latLng = await getLatLng(results[0]);
-    setAddress(value);
-    console.log(value, latLng);
-    setCoordinates(latLng);
+    const latitude = latLng.lat
+    const longitude = latLng.lng
+    if(latitude && longitude){
+
+      const data = await latLongApi(latitude,longitude)
+     setSearch()
+      setSearch(data);
+    }
+
   };
 
   return (
@@ -28,12 +32,9 @@ function SearchGoogle({setSearch})  {
       >
         {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
           <div>
-
             <input className="w-100" {...getInputProps({ placeholder: "Type address" })} />
-
             <div>
               {loading ? <div>...loading</div> : null}
-
               {suggestions.map(suggestion => {
                 const style = {
                   backgroundColor: suggestion.active ? "#41b6e6" : "#fff"

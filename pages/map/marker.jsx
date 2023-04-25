@@ -57,7 +57,9 @@ const Markers = ({ markers, nsearch, setSearch,removefromCart, addonCart,  More}
       const ne = bounds.getNorthEast()
       const sw = bounds.getSouthWest()
       const data = await  markersPosition(ne.lat(), sw.lat(),  ne.lng(), sw.lng())
-      setSearch(data)
+      if (data.length > 0) {
+        setSearch(data)
+      }
     };
   };
   const customMapStyle = [

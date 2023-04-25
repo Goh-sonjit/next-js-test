@@ -43,10 +43,7 @@ const Map = () => {
     } else if (category_name) {
       const data = await mediaDataApi(category_name, city_name);
       setSearch(data);
-    } else {
-      const data = await mediaDataApi("tradition-ooh-media", "delhi");
-      setSearch(data);
-    }
+    } 
   };
 
   const [mapMarker, setPosts] = useState([]);
@@ -126,6 +123,7 @@ const Map = () => {
     getData();
   }, [city_name, category_name]);
 
+
   return (
     <>
    <Fixednavbar/>
@@ -133,7 +131,7 @@ const Map = () => {
         <div className={` p-2 ps-4 pe-4 ${styles.filter_section} d-flex map-filter-drop`}>
 
          <Filters search={slice} setSearch={setSearch} setNsearch={setNsearch}/>
-         <SearchGoogle  setSearch={setSearch} isLoaded={isLoaded}/>
+         <SearchGoogle  setSearch={setSearch} search={search}/>
         </div>
         <div className="row" id={styles.map_view_row}>
           <div className=" p-4 pt-2" id={styles.map_view}>

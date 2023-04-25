@@ -150,13 +150,10 @@ const data = await client.get(key)
 
 exports.latlongdata = catchError(async (req, res, next) => {
 const {lat, long} = req.body;
-const latitude = parseFloat(lat + parseFloat(`0.2`))
-const longitude = parseFloat(long + parseFloat(`0.2`))
-const positions = " WHERE  latitude BETWEEN  '" + lat + "' AND  '" + latitude + "' ||  longitude BETWEEN  '" + longitude + "'  AND  '" + long + "'"
-const data2 = "media.id, media.illumination, media.height, media.width,media.ftf, media.code, media.latitude, media.longitude,media.meta_title,media.mediaownercompanyname,media.price, media.thumb, media.category_name, media.meta_title, media.subcategory, media.medianame, media.price, media.city_name, media.page_title" 
-const  sql = await executeQuery("SELECT "+data2+" FROM goh_media as media "+positions+" UNION SELECT "+data2+" FROM goh_media_digital as media "+positions+" UNION SELECT "+data2+" FROM goh_media_transit as media "+positions+" UNION SELECT "+data2+" FROM goh_media_mall as media "+positions+" UNION SELECT "+data2+" FROM goh_media_airport as media "+positions+" UNION SELECT "+data2+" FROM goh_media_inflight as media "+positions+" UNION SELECT "+data2+" FROM goh_media_office as media "+positions+"","gohoardi_goh",next)
-    if (sql) {
-        return res.send(sql);
-    }
-    }
+const data = `id,illumination,height, width,ftf,code, latitude, longitude,meta_title,mediaownercompanyname,price, thumb, category_name, meta_title, subcategory, medianame,price,city_name,page_title,  ( 3959 * acos(cos( radians( ${lat} ) ) *cos( radians( latitude ) ) *cos(radians( longitude ) - radians( ${long} )) +sin(radians(${lat})) *sin(radians(latitude)))) distance` 
+const  sql = await executeQuery("SELECT "+data+" FROM goh_media HAVING distance < 3 UNION SELECT "+data+" FROM goh_media_digital HAVING distance < 3 UNION SELECT "+data+" FROM goh_media_transit HAVING distance < 3 UNION SELECT "+data+" FROM goh_media_mall HAVING distance < 3 UNION SELECT "+data+" FROM goh_media_airport HAVING distance < 3 UNION SELECT "+data+" FROM goh_media_inflight HAVING distance < 3 UNION SELECT "+data+" FROM goh_media_office HAVING distance < 3","gohoardi_goh",next)
+          if (sql) {
+            return  res.status(200).json(sql)
+          }
+        }
 )
