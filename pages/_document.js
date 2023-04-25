@@ -9,6 +9,7 @@ export default function Document() {
           rel="icon"
           href="../images/web_pics/favicon.png"  
         />
+         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAYkchdPoe5HqvV7RhgrXdC81-d8Mo-uC0&libraries=places"></script>
         <Script strategy="lazyOnload">
           <script>
             {`

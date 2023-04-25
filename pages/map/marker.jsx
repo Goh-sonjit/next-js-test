@@ -8,10 +8,8 @@ import Loader from "@/components/loader";
 
 
 const Markers = ({ markers, nsearch, setSearch,removefromCart, addonCart,  More}) => {
-
   const [map, setMap] = useState(null);
   const [hasmarker, sethasmarker] = useState(false);
-  const [iconfilter] = useState([]);
   const [combinedArray, setCombinedArray] = useState([]);
 
   markers.forEach((e) => {
@@ -34,7 +32,7 @@ const Markers = ({ markers, nsearch, setSearch,removefromCart, addonCart,  More}
       }
     };
   
-console.log(combinedArray);
+
 
   const [activeMarker, setActiveMarker] = useState(null);
 

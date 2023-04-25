@@ -15,10 +15,9 @@ const Changepassword = () => {
   const sumbithandle = async (e) => {
     e.preventDefault();
     const data = await updatePassword(state);
-
-    if (data.success === true) {
-      toast(data.message);
+    if (data.success == true) {
       setState("");
+      toast(data.message);
     } else {
       toast(data.message);
     }

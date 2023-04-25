@@ -358,4 +358,9 @@ export const priceSubIllu = async(category_name, illumination, table, city, loca
      return data
   };
 
-
+export const latLongApi = async(lat, long) =>{
+  const {data} = await instance.patch('linkedin',{
+    lat, long
+  })
+  return data
+}

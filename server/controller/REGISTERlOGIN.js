@@ -226,8 +226,6 @@ exports.companyDetails =  catchError(async (req,res, next) =>{
         } else {
             return res.status(200).json({sucess: true, message: "Company Data Updated"})
         }
-
-
 })
 
 exports.resetPasswordEmail = catchError(async (req, res, next) => {
@@ -253,8 +251,7 @@ exports.resetPasswordEmail = catchError(async (req, res, next) => {
                             if (sql) {  
                                 return res.status(200).json({message: result})
                             }
-                  
-                    } else {
+                   } else {
                         return res.status(206).json({success:false,message: "Password not matched"})
                     }
                 }
@@ -281,16 +278,14 @@ exports.changepasswoed = catchError(async (req, res, next) => {
         } else {
          
             const sql = await executeQuery("UPDATE tblcontacts SET password = '" + finalPassword + "' WHERE userid='" + userId + "'", "gohoardi_crmapp",next);
-                if (!sql) {
+                if (sql) {
                     return res.status(200).json({success:true, message: "Password Change Successfully"})
                 }
        }
 
     } else {
         return res.status(206).json({success:false,message: "Your Password Not Matched"})
-
-    }
-    
+    }  
 }else{
     return res.status(206).json({success:false,message: "Empty Field"}) 
 }

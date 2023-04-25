@@ -147,3 +147,16 @@ const data = await client.get(key)
    
   }
 })
+
+exports.latlongdata = catchError(async (req, res, next) => {
+const {lat, long} = req.body;
+const latitude = parseFloat(lat + parseFloat(`0.2`))
+const longitude = parseFloat(long + parseFloat(`0.2`))
+const positions = " WHERE  latitude BETWEEN  '" + lat + "' AND  '" + latitude + "' ||  longitude BETWEEN  '" + longitude + "'  AND  '" + long + "'"
+const data2 = "media.id, media.illumination, media.height, media.width,media.ftf, media.code, media.latitude, media.longitude,media.meta_title,media.mediaownercompanyname,media.price, media.thumb, media.category_name, media.meta_title, media.subcategory, media.medianame, media.price, media.city_name, media.page_title" 
+const  sql = await executeQuery("SELECT "+data2+" FROM goh_media as media "+positions+" UNION SELECT "+data2+" FROM goh_media_digital as media "+positions+" UNION SELECT "+data2+" FROM goh_media_transit as media "+positions+" UNION SELECT "+data2+" FROM goh_media_mall as media "+positions+" UNION SELECT "+data2+" FROM goh_media_airport as media "+positions+" UNION SELECT "+data2+" FROM goh_media_inflight as media "+positions+" UNION SELECT "+data2+" FROM goh_media_office as media "+positions+"","gohoardi_goh",next)
+    if (sql) {
+        return res.send(sql);
+    }
+    }
+)
