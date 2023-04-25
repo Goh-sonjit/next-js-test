@@ -160,9 +160,9 @@ const Footer = () => {
                       Odoads
                     </a>
                   </li>
-                  <li className="py-md-2">
+              
                   <li
-                      className=" text-decoration-none f-heading-clr mb-0"
+                      className=" text-decoration-none f-heading-clr mb-0 py-md-2"
                   >
                     <a href="https://blog.gohoardings.com/"
                       target="_blank"
@@ -171,8 +171,8 @@ const Footer = () => {
                         Blog
                       </a>
                       
-                      </li>
-                  </li>
+                      </li> 
+         
                   <li className="py-md-2">
                     <p
                       onClick={() => route.push("/about-us")}
