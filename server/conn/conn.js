@@ -22,10 +22,9 @@ return new Promise((resolve,reject) => {
         }
         return resolve(data)
       })
-      conn.release();
+      conn.end();
       }
     })
-  
   })
 }
 

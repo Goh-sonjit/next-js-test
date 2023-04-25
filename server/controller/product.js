@@ -9,7 +9,6 @@ exports.Nearproduct = catchError(async (req, res, next) => {
     const { code, category_name } = req.body
     const key = `${code + category_name}`
     const noOfLogo = 2
-    executeQuery('',"gohoardi_goh", next);
     switch (category_name) {
         case "traditional-ooh-media":
             table_name = "goh_media";
@@ -64,7 +63,6 @@ exports.NearproductByLocation = catchError(async (req, res, next) => {
         loca,
         noOfLogo } = req.body
         const key = `${category_name + city_name + loca + noOfLogo}`
-        executeQuery('',"gohoardi_goh", next);
     switch (category_name) {
         case "traditional-ooh-media":
             table_name = "goh_media";
@@ -109,7 +107,6 @@ exports.NearproductByLocation = catchError(async (req, res, next) => {
 exports.product = catchError(async (req, res, next) => {
     const { meta_title, category_name } = req.body
     const key = `${meta_title + category_name}`
-    executeQuery('',"gohoardi_goh", next);
     switch (category_name) {
         case "traditional-ooh-media":
             table_name = "goh_media";

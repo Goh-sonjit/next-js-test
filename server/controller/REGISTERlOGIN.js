@@ -310,11 +310,13 @@ exports.updateImage = catchError(async(req,res, next) => {
     const {filename} = req.file;
     const userId = req.id;
     let sql; 
-    if(filename != undefined){
+    if(filename){
         const image = `http://${req.headers.host}/images/profile_image/${filename}`
         sql = await executeQuery("UPDATE tblcontacts SET  profile_image='" + image + "' WHERE userid=" + userId + "","gohoardi_crmapp",next);
         if (sql) {
             return res.status(200).json({sucess: true, message: " Updated"})
         }
+    }else{
+        return res.status(204).json({success:false, message:"Please Select Image"})
     }
 })
