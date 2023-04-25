@@ -206,8 +206,8 @@
 
 @media screen and (max-width: 425px) {
   .login_icon_cart {
-    margin-top: -6px !important;
-    height: 4.5vh !important;
+    margin-top: -4px !important;
+    height: 34px !important;
 
     cursor: pointer;
   }
@@ -215,8 +215,8 @@
     color: #565656;
     font-size: 13px !important;
 
-    top: -20% !important;
-    left: -22.5px !important;
+    top: -18% !important;
+    left: -21px !important;
   }
 }
 @media screen and (max-width: 1366px) {
@@ -250,7 +250,10 @@
 @media screen and (max-width: 425px) {
   .login_profile {
     text-align: center !important;
-    max-width: 45px !important;
+    display: flex;
+    justify-content: center;
+    max-width: 38px !important;
+    align-items: center;
     margin: 0px !important;
     margin-right: 10px !important;
   }

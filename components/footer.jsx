@@ -17,14 +17,13 @@ import {
 const Footer = () => {
   const route = useRouter();
   const [email, setEmail] = useState([]);
-  const {handleShow } = useContext(AccountContext);
+  const { handleShow } = useContext(AccountContext);
 
   const handelSubmit = async (e) => {
     let count = 0;
     e.preventDefault();
     if (!emailformate.test(email)) {
       count = +1;
-    
     } else if (count === 0) {
       const data = await enquiryApi(email);
       if (data.success == true) {
@@ -32,18 +31,17 @@ const Footer = () => {
         toast(
           "Thank for becoming our member, You will get best deals from us."
         );
-
       }
     }
   };
-  const direactCity=(e)=>{
-    setCookie("category_name","traditional-media")
-    setCookie("city_name",e)
-  }
-  const direactMedia=(e)=>{
-    setCookie("category_name",e)
-    setCookie("city_name","delhi")
-  }
+  const direactCity = (e) => {
+    setCookie("category_name", "traditional-media");
+    setCookie("city_name", e);
+  };
+  const direactMedia = (e) => {
+    setCookie("category_name", e);
+    setCookie("city_name", "delhi");
+  };
   const logo = [
     {
       id: 1,
@@ -121,8 +119,8 @@ const Footer = () => {
               India&#39;s Largest Outdoor Advertising Company
             </h4>
             <h6 className="f-second-heading pt-1">
-              It&#39;s advertising network spread across 130 cities with more than
-              1.2 lakh OOH and DOOH sites offering hassle free branding
+              It&#39;s advertising network spread across 130 cities with more
+              than 1.2 lakh OOH and DOOH sites offering hassle free branding
               experiences at an unmatched price.
             </h6>
           </div>
@@ -136,7 +134,7 @@ const Footer = () => {
                   {" "}
                   <a
                     className=" text-decoration-none f-heading-clr  mb-0"
-                     href="https://odoads.com/register"
+                    href="https://odoads.com/register"
                     target="_blank"
                   >
                     Login As Media Owner
@@ -160,19 +158,17 @@ const Footer = () => {
                       Odoads
                     </a>
                   </li>
-              
-                  <li
-                      className=" text-decoration-none f-heading-clr mb-0 py-md-2"
-                  >
-                    <a href="https://blog.gohoardings.com/"
+
+                  <li className=" text-decoration-none f-heading-clr mb-0 py-md-2">
+                    <a
+                      href="https://blog.gohoardings.com/"
                       target="_blank"
                       className=" text-decoration-none f-heading-clr mb-0"
-                      >
-                        Blog
-                      </a>
-                      
-                      </li> 
-         
+                    >
+                      Blog
+                    </a>
+                  </li>
+
                   <li className="py-md-2">
                     <p
                       onClick={() => route.push("/about-us")}
@@ -221,8 +217,10 @@ const Footer = () => {
                     href={el.value}
                     className="text-decoration-none "
                   >
-                 
-                    <li className=" py-md-2  text-decoration-none f-heading-clr"onClick={(e) => direactMedia(el.value)}>
+                    <li
+                      className=" py-md-2  text-decoration-none f-heading-clr"
+                      onClick={(e) => direactMedia(el.value)}
+                    >
                       {el.label}
                     </li>
                   </Link>
@@ -240,7 +238,10 @@ const Footer = () => {
                     href={`/${el.city}`}
                     className="text-decoration-none "
                   >
-                    <li className=" py-md-2  text-decoration-none f-heading-clr " onClick={(e) => direactCity(el.city)}>
+                    <li
+                      className=" py-md-2  text-decoration-none f-heading-clr "
+                      onClick={(e) => direactCity(el.city)}
+                    >
                       {el.name}
                     </li>
                   </Link>
@@ -286,7 +287,7 @@ const Footer = () => {
         </div>
         <div className="row  payment-footer-section ">
           <div className="col text-light d-none d-md-block" id="letHide"></div>
-          <div className="col text-light  mt-md-0 d-none d-md-block" ></div>
+          <div className="col text-light  mt-md-0 d-none d-md-block"></div>
           <div className="col text-light  offset-md-3 d-none d-md-block">
             <h4 className="f-heading  text-nowrap  ">
               Best deals in your inbox

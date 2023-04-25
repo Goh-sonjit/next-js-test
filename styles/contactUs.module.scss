@@ -89,3 +89,22 @@
       }
     }
   }
+
+  @media screen and (max-width: 425px) {
+    .main_contact_all {
+      h1 {
+        font-size: 1.4rem;
+      }
+      h5 {
+        display: none;
+      }
+  
+      h6 {
+        font-size: 0.9rem;
+      }
+      .google_map {
+        height: 60vh;
+        width: 100%;
+      }
+    }
+  }

@@ -170,7 +170,11 @@ display: none;
   }
 }
 
-
+.mbilview{
+  .offcanvas{
+    max-width: 58% !important;
+}
+}
 .usrdtl {
   .dropdown-toggle::after {
     display: none;

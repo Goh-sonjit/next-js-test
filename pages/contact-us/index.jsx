@@ -60,13 +60,13 @@ const Contact = () => {
 
       <section>
         <div className={`container-xxl  container-xl container-lg container-md  my-5 ${styles.main_contact_all} contUs `}>
-          <h1 className="text-center pt-4">Contact Us</h1>
+          <h1 className="text-center pt-2 pt-md-4">Contact Us</h1>
           <h5 className="text-center">
             Any question or remarks? Just write us a message or <br />
             visit our nearest office.
           </h5>
    <h6><span  onClick={()=>route.push("/")} className="bredcamp">Home</span><MdKeyboardArrowRight/><span className="bredcamp text-secondary">Contact-Us</span></h6>
-          <div className={`row p-3 mt-5 rounded-3 ${styles.main_contact}`}>
+          <div className={`row p-3 mt-md-5 rounded-3 ${styles.main_contact}`}>
             <div className="col-md-6 p-0">
               <h3>
                 Support and Contact <br />
@@ -77,7 +77,7 @@ const Contact = () => {
                 <br />
                 question and set up a meeting with you.
               </h6>
-              <div className={`${styles.contact_form} pe-5`}>
+              <div className={`${styles.contact_form} pe-md-5`}>
                 <form className='mt-4 "position-relative' onSubmit={onSubmit}>
                   <div className="form-group py-3 ">
                     <label htmlFor="formGroupExampleInput">Name*</label>

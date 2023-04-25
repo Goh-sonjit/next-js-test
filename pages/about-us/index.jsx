@@ -380,6 +380,33 @@ const About = () => {
       padding-top: 30px;
     }
   }
+  @media screen and (max-width: 425px) {
+    .about-cards {
+      h6 {
+        font-size: 8px;
+        padding-bottom: 3px;
+      }
+      .descrption {
+        font-size: small;
+      }
+    }
+    .vision {
+      margin-top: 1.2%;
+    }
+    .logo-img {
+      height: 60px;
+      width: 110px;
+    }
+    #map-img {
+      
+      padding-top: 0px;
+      padding-left: 0px;
+      margin-left: 0px;
+    }
+    #care-img {
+      display:none;
+    }
+  }
   `
 }
 
