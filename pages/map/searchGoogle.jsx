@@ -34,7 +34,7 @@ function SearchGoogle({setSearch, search})  {
       >
         {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
           <div>
-            <input className="w-100 "   id={styles.select_media_box} {...getInputProps({ placeholder: "Type address" })} />
+            <input className="w-100 "   id={styles.select_media_box} {...getInputProps({ placeholder: "Type location" })} />
             <div>
 
               <div className={address ? "dropdown-menu show ms-2 text-dark" :"dropdown-menu"  }>

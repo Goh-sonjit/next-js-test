@@ -6,8 +6,6 @@ const pool = createPool({
   host: "localhost",
   password: "",
   database: "gohoardi_goh",
-  connectionLimit: 200,
-  idleTimeoutMillis: 30000
 });
 
 
@@ -17,16 +15,16 @@ const executeQuery = (query, arraParms, next) => {
       if (err) {
         // handle error
         reject(err);
-      } else {
+      } else if(query){
         conn.changeUser({ database: arraParms });
         conn.query(query, async (err, data) => {
           if (err) {
             // handle error
             next(new ErrorHandle(err, `The query in which error occurred ${query}`, 206));
-            reject(err);
+           return reject(err);
           } else {
             // handle success
-            resolve(data);
+           return resolve(data);
           }
           conn.release();
         });

@@ -123,15 +123,15 @@ const Userdetail = () => {
 
               <Dropdown.Menu className={`pt-0 pb-0 `}>
                 <Dropdown.Item
+                onClick={() => route.push("/profile")}
                   className={`${styles.drop_item} rounded-top  ps-2 pt-2 pb-2 text-light`}
-                  disabled={true}
-                >
+                  >
                   <CgUserlane className={`mb-1 } text-light`} />
                   {user && user.map((el) => el.firstname.toUpperCase())}
                 </Dropdown.Item>
                 <hr className=" m-0" />
                 <Dropdown.Item
-                  onClick={() => route.push("/profile")}
+                  onClick={() => route.push("/mydashboard")}
                   className={`${styles.drop_item}  ps-2 pt-2 pb-2 text-light`}
                 >
                   {" "}
@@ -163,8 +163,8 @@ const Userdetail = () => {
         </div>
       {/* for mobile */}
         <div className={styles.userDetail2_mbil}>
-          <div className={`p-0 m-0  d-flex ${styles.userDetail2}    usrdtl`}>
-            <Dropdown className={`${styles.login_profile}  `}>
+          <div className={`p-0 m-0  d-flex ${styles.userDetail2} usrdtl`}>
+            <Dropdown className={`${styles.login_profile}`}>
               <Dropdown.Toggle
                 variant="transparent"
                 className={styles.drop_togel}
@@ -174,15 +174,15 @@ const Userdetail = () => {
 
               <Dropdown.Menu className={`pt-0 pb-0 `}>
                 <Dropdown.Item
+                onClick={() => route.push("/profile")}
                   className={`${styles.drop_item} rounded-top  ps-2 pt-2 pb-2 text-light`}
-                  disabled={true}
-                >
-                  <CgUserlane className={`mb-1 } text-light`} />
-                  {" "}{user && user.map((el) => el.firstname.toUpperCase())}
+                  >
+                  <CgUserlane className={`mb-1  text-light `} />
+                  {"  "}{user && user.map((el) => el.firstname.toUpperCase())}
                 </Dropdown.Item>
                 <hr className=" m-0" />
                 <Dropdown.Item
-                  onClick={() => route.push("/profile")}
+                  onClick={() => route.push("/mydashboard")}
                   className={`${styles.drop_item}  ps-2 pt-2 pb-2 text-light`}
                 >
                   {" "}
