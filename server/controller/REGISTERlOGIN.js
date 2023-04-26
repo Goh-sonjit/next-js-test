@@ -320,6 +320,8 @@ exports.updateImage = catchError(async(req,res, next) => {
         sql = await executeQuery("UPDATE tblcontacts SET  profile_image='" + image + "' WHERE userid=" + userId + "","gohoardi_crmapp",next);
         if (sql) {
             return res.status(200).json({sucess: true, message: " Updated"})
+        } else {
+            return res.status(200).json({ success: false, message: 'Please select an image' });
         }
     }
 })
