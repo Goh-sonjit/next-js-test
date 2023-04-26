@@ -178,7 +178,7 @@ const Userdetail = () => {
                   disabled={true}
                 >
                   <CgUserlane className={`mb-1 } text-light`} />
-                  {user && user.map((el) => el.firstname.toUpperCase())}
+                  {" "}{user && user.map((el) => el.firstname.toUpperCase())}
                 </Dropdown.Item>
                 <hr className=" m-0" />
                 <Dropdown.Item

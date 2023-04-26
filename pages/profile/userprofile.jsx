@@ -22,7 +22,6 @@ const Userprofile = () => {
 
   const { firstname, phonenumber, email } = state;
 
-
   const handelSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData();
@@ -53,9 +52,8 @@ const Userprofile = () => {
           <div className="row">
             <form onSubmit={handelSubmit}>
               <div className="col-md-12">
-                <div className="form-group">
-                  
-                  <label for="firstname">First Name</label>
+                <div className="form-group ">
+                  <label for="firstname" className="ps-2">Name</label>
                   <Form.Control
                     type="text"
                     className="form-control"
@@ -66,8 +64,8 @@ const Userprofile = () => {
                     onChange={handleChange}
                   />
                 </div>
-                <div className="form-group">
-                  <label for="email">Email</label>
+                <div className="form-group my-3">
+                  <label for="email" className="ps-2">E-mail</label>
                   <Form.Control
                     type="text"
                     className="form-control"
@@ -78,8 +76,8 @@ const Userprofile = () => {
                   />
                 </div>
 
-                <div className="form-group">
-                  <label for="phonenumber">Phone</label>
+                <div className="form-group my-3">
+                  <label for="phonenumber" className="ps-2">Phone No.</label>
                   <Form.Control
                     type="number"
                     className="form-control"
@@ -89,17 +87,39 @@ const Userprofile = () => {
                     onChange={handleChange}
                   />
                 </div>
+                <div className="form-group my-3">
+                  <label for="Newpassword" className="ps-2">New Password</label>
+                  <Form.Control
+                    type="password"
+                    className="form-control"
+                    id="Newpassword"
+                    name="Newpassword"
+                    // value={firstname}
+                    // onChange={handleChange}
+                  />
+                </div>
+                <div className="form-group my-3">
+                  <label for="firstname" className="ps-2">Confirm Password</label>
+                  <Form.Control
+                    type="password"
+                    className="form-control"
+                    id="Confirmpassword"
+                    name="Confirmpassword"
+                    // value={firstname}
+                    // onChange={handleChange}
+                  />
+                </div>
               </div>
-              <div className="row ">
-                <div className="col-md-12 text-right">
-                  <div className="form-group mb-0 update-btn mt-3 rounded">
-                    <Form.Control
-                      type="submit"
-                      value="UPDATE"
-                      className="btn  text-light"
-                    />
-                    <ToastContainer />
-                  </div>
+
+              <div className="col-md-12 ">
+                <div className="form-group mb-0 text-center my-3 rounded">
+                  <button
+                    type="submit"
+                    className="btn update-btn w-50"
+                    onClick={handelSubmit}
+                  >
+                    Update
+                  </button>
                 </div>
               </div>
             </form>
@@ -108,7 +128,7 @@ const Userprofile = () => {
         <style jsx>
           {`
             .update-btn {
-              background-color: #212529 !important;
+              background-color: #393939 !important;
               color: white !important;
             }
             .campaign-box {
@@ -222,138 +242,135 @@ const Userprofile = () => {
             // .profile-detail {
             //   height: 605px !important;
             // }
-              .panel_s .panel-body {
-                background: #fff;
-                border: 1px solid #e4e5e7;
-                border-radius: 4px;
-                padding: 20px;
-                position: relative;
-              }
-              p,
-              a,
-              li,
-              span,
-              label,
-              tr,
-              td,
-              th,
-              input {
-                color: #636363;
-                font-size: 15px;
-            
-                font-weight: 400;
-              }
-     
-              table.dataTable thead tr > th {
-                color: #4e75ad;
-              }
+            .panel_s .panel-body {
+              background: #fff;
+              border: 1px solid #e4e5e7;
+              border-radius: 4px;
+              padding: 20px;
+              position: relative;
+            }
+            p,
+            a,
+            li,
+            span,
+            label,
+            tr,
+            td,
+            th,
+            input {
+              color: #636363;
+              font-size: 15px;
 
-              table.table tr th {
-                padding: 0;
-                text-align: left;
-                height: 25px;
-              }
-              .table thead tr th {
-                border: 1px solid #f0f0f0 !important;
-                border-left: 0 !important;
-                border-right: 0 !important;
-              }
-              a,
-              abbr,
-              acronym,
-              address,
-              applet,
-              article,
-              aside,
-              audio,
-              b,
-              big,
-              blockquote,
-              body,
-              canvas,
-              caption,
-              center,
-              cite,
-              code,
-              dd,
-              del,
-              details,
-              dfn,
-              div,
-              dl,
-              dt,
-              em,
-              embed,
-              fieldset,
-              figcaption,
-              figure,
-              footer,
-              form,
-              h1,
-              h2,
-              h3,
-              h4,
-              h5,
-              h6,
-              header,
-              hgroup,
-              html,
-              i,
-              iframe,
-              img,
-              ins,
-              kbd,
-              label,
-              legend,
-              li,
-              mark,
-              menu,
-              nav,
-              object,
-              ol,
-              output,
-              p,
-              pre,
-              q,
-              ruby,
-              s,
-              samp,
-              section,
-              small,
-              span,
-              strike,
-              strong,
-              sub,
-              summary,
-              sup,
-              table,
-              tbody,
-              td,
-              tfoot,
-              th,
-              thead,
-              time,
-              tr,
-              tt,
-              u,
-              ul,
-              var,
-              video {
-                margin: 0;
-                padding: 0;
-                border: 0;
-                font-size: 100%;
-                font: inherit;
-                vertical-align: baseline;
-              }
-           
+              font-weight: 400;
+            }
 
-              .text-right {
-            
-                text-align: right;
-              }
-            
-           
+            table.dataTable thead tr > th {
+              color: #4e75ad;
+            }
+
+            table.table tr th {
+              padding: 0;
+              text-align: left;
+              height: 25px;
+            }
+            .table thead tr th {
+              border: 1px solid #f0f0f0 !important;
+              border-left: 0 !important;
+              border-right: 0 !important;
+            }
+            a,
+            abbr,
+            acronym,
+            address,
+            applet,
+            article,
+            aside,
+            audio,
+            b,
+            big,
+            blockquote,
+            body,
+            canvas,
+            caption,
+            center,
+            cite,
+            code,
+            dd,
+            del,
+            details,
+            dfn,
+            div,
+            dl,
+            dt,
+            em,
+            embed,
+            fieldset,
+            figcaption,
+            figure,
+            footer,
+            form,
+            h1,
+            h2,
+            h3,
+            h4,
+            h5,
+            h6,
+            header,
+            hgroup,
+            html,
+            i,
+            iframe,
+            img,
+            ins,
+            kbd,
+            label,
+            legend,
+            li,
+            mark,
+            menu,
+            nav,
+            object,
+            ol,
+            output,
+            p,
+            pre,
+            q,
+            ruby,
+            s,
+            samp,
+            section,
+            small,
+            span,
+            strike,
+            strong,
+            sub,
+            summary,
+            sup,
+            table,
+            tbody,
+            td,
+            tfoot,
+            th,
+            thead,
+            time,
+            tr,
+            tt,
+            u,
+            ul,
+            var,
+            video {
+              margin: 0;
+              padding: 0;
+              border: 0;
+              font-size: 100%;
+              font: inherit;
+              vertical-align: baseline;
+            }
+
+            .text-right {
+              text-align: right;
+            }
+
             .password-data {
               .panel_s .panel-body {
                 background: #fff;
@@ -397,7 +414,6 @@ const Userprofile = () => {
                 font-size: 12px;
               }
             }
-        
           `}
         </style>
       </div>
