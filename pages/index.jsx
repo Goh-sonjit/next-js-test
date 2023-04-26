@@ -52,7 +52,7 @@ export default function Home() {
         <section>
           <Searchmedia />
         </section>
-        <section>
+        <section> 
           <Ourservices />
         </section>
         <section>

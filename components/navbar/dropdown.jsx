@@ -115,7 +115,7 @@ const NavbarDropdown = () => {
               </li>
                 <li>
                 
-                  <Link  href="https://www.gohoardings.com/blog/"
+                  <Link  href="https://blog.gohoardings.com/"
                     className="text-decoration-none text-light"
                     target="_blank"
                   >
