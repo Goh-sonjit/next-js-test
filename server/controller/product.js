@@ -9,7 +9,6 @@ exports.Nearproduct = catchError(async (req, res, next) => {
     const { code, category_name } = req.body
     const key = `${code + category_name}`
     const noOfLogo = 2
-    executeQuery('',"gohoardi_goh", next);
     switch (category_name) {
         case "traditional-ooh-media":
             table_name = "goh_media";
@@ -64,7 +63,6 @@ exports.NearproductByLocation = catchError(async (req, res, next) => {
         loca,
         noOfLogo } = req.body
         const key = `${category_name + city_name + loca + noOfLogo}`
-        executeQuery('',"gohoardi_goh", next);
     switch (category_name) {
         case "traditional-ooh-media":
             table_name = "goh_media";
@@ -109,7 +107,6 @@ exports.NearproductByLocation = catchError(async (req, res, next) => {
 exports.product = catchError(async (req, res, next) => {
     const { meta_title, category_name } = req.body
     const key = `${meta_title + category_name}`
-    executeQuery('',"gohoardi_goh", next);
     switch (category_name) {
         case "traditional-ooh-media":
             table_name = "goh_media";
@@ -147,3 +144,13 @@ const data = await client.get(key)
    
   }
 })
+
+exports.latlongdata = catchError(async (req, res, next) => {
+const {lat, long} = req.body;
+const data = `id,illumination,height, width,ftf,code, latitude, longitude,meta_title,mediaownercompanyname,price, thumb, category_name, meta_title, subcategory, medianame,price,city_name,page_title,  ( 3959 * acos(cos( radians( ${lat} ) ) *cos( radians( latitude ) ) *cos(radians( longitude ) - radians( ${long} )) +sin(radians(${lat})) *sin(radians(latitude)))) distance` 
+const  sql = await executeQuery("SELECT "+data+" FROM goh_media HAVING distance < 3 UNION SELECT "+data+" FROM goh_media_digital HAVING distance < 3 UNION SELECT "+data+" FROM goh_media_transit HAVING distance < 3 UNION SELECT "+data+" FROM goh_media_mall HAVING distance < 3 UNION SELECT "+data+" FROM goh_media_airport HAVING distance < 3 UNION SELECT "+data+" FROM goh_media_inflight HAVING distance < 3 UNION SELECT "+data+" FROM goh_media_office HAVING distance < 3","gohoardi_goh",next)
+          if (sql) {
+            return  res.status(200).json(sql)
+          }
+        }
+)

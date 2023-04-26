@@ -368,20 +368,24 @@ exports.addOnCart = catchError(async (req, res, next) => {
         } else {
             const userid = user.id
             const { mediaid, mediatype } = req.body;
-         
-         const result = await  executeQuery("INSERT INTO goh_shopping_carts_item (userid, mediaid, campaigid, mediatype, status) VALUES ('" +
-                userid +
-                "','" +
-                mediaid +
-                "','" +
-                userid +
-                "','" +
-                mediatype +
-                "',0)","gohoardi_goh",next)
-                    if (result) {
-                     
-                        return res.send(result);
-                    }
+         const checkData = await executeQuery("SELECT * From goh_shopping_carts_item WHERE userid='"+userid+"'&& mediaid = '"+mediaid+"' && campaigid='"+userid+"' && mediatype='"+mediatype+"' && isDelete=0 ","gohoardi_goh",next)
+        if(checkData.length == 0){
+            const result = await  executeQuery("INSERT INTO goh_shopping_carts_item (userid, mediaid, campaigid, mediatype, status) VALUES ('" +
+            userid +
+            "','" +
+            mediaid +
+            "','" +
+            userid +
+            "','" +
+            mediatype +
+            "',0)","gohoardi_goh",next)
+                if (result) {
+                 
+                    return res.status(200).json({success:true, message:"This Media added successfully "})
+                }
+        }else{
+            return res.status(200).json({success:true, message:"This Media you already selected "})
+        }
                 }
             })})
 
@@ -530,7 +534,6 @@ exports.cartiemfromdb = catchError(async (req, res, next) => {
     const arr = req.data;
     var table_name;
     let promises = [];
-    executeQuery('', "gohoardi_goh")
     arr.map((obj) => {
         try {
             switch (obj.mediatype) {

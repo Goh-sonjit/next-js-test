@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Dropdown, DropdownButton } from "react-bootstrap";
 import styles from "../../styles/filter.module.scss";
-
+import dynamic from "next/dynamic";
 import {
   CityNameImage,
   iconFiltersData,
@@ -14,6 +14,7 @@ import { SiHotelsdotcom } from "react-icons/si";
 import { RiHospitalFill, RiMovie2Fill } from "react-icons/ri";
 import { TbMassage } from "react-icons/tb";
 import { CgGym } from "react-icons/cg";
+
 
 const Filters = ({ search, setSearch, setNsearch }) => {
   const [mediaData, setMediadata] = useState([]);
@@ -293,6 +294,10 @@ const Filters = ({ search, setSearch, setNsearch }) => {
           </Dropdown.Item>
         ))}
       </DropdownButton>
+
+      {/* search location */}
+
+
     </>
   );
 };

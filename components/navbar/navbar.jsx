@@ -1,21 +1,32 @@
-import React from "react";
+import React,{useContext} from "react";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { useRouter } from "next/router";
+import { AccountContext } from "@/allApi/apicontext";
 import styles from "../../styles/navbarHome.module.scss";
 import dynamic from "next/dynamic";
 import { removeCookies, setCookie } from "cookies-next";
 import Maintenance from "./maintenance";
+import { useState } from "react";
+import { useEffect } from "react";
+import instance from "@/allApi/axios";
 
 const NavbarH = () => {
   const route = useRouter();
-  const getMap = () => {
-    removeCookies("meta_title");
-    route.push("/map");
+  const { handleClose, handleShow } = useContext(AccountContext);
+  const getMap = async() => {
+    const { data } = await instance.get(`forgetPass`)
+    if(data.message == "InValid Token"){
+      handleShow()
+    }else{
+      removeCookies("meta_title");
+      route.push("/map");    
+    }
   };
   const Userdetail  = dynamic(() => import("./userdetail"),{
     ssr:false
   });
+
 
   return (
     <div>
@@ -53,7 +64,7 @@ const NavbarH = () => {
                 Contact
               </Nav.Link>
 
-              <Nav.Link
+             <Nav.Link
                 className={`ms-2  me-md-0   ${styles.nav_text_btn}  text-center`}
                 onClick={getMap}
               >
