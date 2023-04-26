@@ -4,6 +4,8 @@ import PlacesAutocomplete, {
   geocodeByAddress,
   getLatLng
 } from "react-places-autocomplete";
+import styles from "../../styles/filter.module.scss";
+import {MdOutlineLocationOn } from "react-icons/md";
 
 function SearchGoogle({setSearch, search})  {
   const [address, setAddress] = useState("");
@@ -32,20 +34,21 @@ function SearchGoogle({setSearch, search})  {
       >
         {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
           <div>
-            <input className="w-100" {...getInputProps({ placeholder: "Type address" })} />
+            <input className="w-100 "   id={styles.select_media_box} {...getInputProps({ placeholder: "Type address" })} />
             <div>
-              {loading ? <div>...loading</div> : null}
-              {suggestions.map(suggestion => {
-                const style = {
-                  backgroundColor: suggestion.active ? "#41b6e6" : "#fff"
-                };
 
-                return (
-                  <div {...getSuggestionItemProps(suggestion, { style })}>
-                    {suggestion.description}
+              <div className={address ? "dropdown-menu show ms-2 text-dark" :"dropdown-menu"  }>
+              {/* {loading ? <div>...loading</div> : null} */}
+
+              {suggestions.map(suggestion => (
+      
+                  <div {...getSuggestionItemProps(suggestion)} >
+                   <MdOutlineLocationOn className="icon-clr "   id={styles.select_location_icon}/>   {suggestion.description}
                   </div>
-                );
-              })}
+                   ))}
+                   </div>
+                   
+                
             </div>
           </div>
         )}

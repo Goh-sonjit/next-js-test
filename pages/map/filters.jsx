@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Dropdown, DropdownButton } from "react-bootstrap";
 import styles from "../../styles/filter.module.scss";
-import dynamic from "next/dynamic";
+import SearchGoogle from "./searchGoogle";
 import {
   CityNameImage,
   iconFiltersData,
@@ -196,9 +196,11 @@ const Filters = ({ search, setSearch, setNsearch }) => {
 
   return (
     <>
+
+
       {/* media type  */}
 
-      <DropdownButton
+      {/* <DropdownButton
         title="Location"
         id={styles.select_media_box}
         // onSelect={(e) => setUserType(e)}
@@ -213,7 +215,7 @@ const Filters = ({ search, setSearch, setNsearch }) => {
           <MdOutlineLocationOn className="icon-clr "   id={styles.select_location_icon}/>  {el}
           </Dropdown.Item>
         ))}
-      </DropdownButton>
+      </DropdownButton> */}
 
       {/* <DropdownButton
            title={filtervalue?filtervalue:"Illumination" }
@@ -297,6 +299,7 @@ const Filters = ({ search, setSearch, setNsearch }) => {
 
       {/* search location */}
 
+         <SearchGoogle  setSearch={setSearch} search={search}/>
 
     </>
   );

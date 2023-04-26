@@ -3,7 +3,7 @@ import { AccountContext } from "@/allApi/apicontext";
 import styles from "../../styles/map.module.scss";
 import { useJsApiLoader } from "@react-google-maps/api";
 import Markers from "./marker";
-import SearchGoogle from "./searchGoogle";
+
 import {
   addItem,
   markersPosition,
@@ -131,7 +131,6 @@ const Map = () => {
         <div className={` p-2 ps-4 pe-4 ${styles.filter_section} d-flex map-filter-drop`}>
 
          <Filters search={slice} setSearch={setSearch} setNsearch={setNsearch}/>
-         <SearchGoogle  setSearch={setSearch} search={search}/>
         </div>
         <div className="row" id={styles.map_view_row}>
           <div className=" p-4 pt-2" id={styles.map_view}>
