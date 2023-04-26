@@ -28,7 +28,7 @@ const executeQuery = (query, arraParms, next) => {
             // handle success
             resolve(data);
           }
-          conn.end();
+          conn.release();
         });
       }
     });
