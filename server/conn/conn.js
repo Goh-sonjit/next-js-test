@@ -9,20 +9,25 @@ const db_config = createPool({
 });
 
 
-const executeQuery = (query, arraParms, next) =>{
-return new Promise((resolve,reject) => {
-    db_config.getConnection((err, conn) =>{
-      if(err){
-      }else if(query){
-      conn.changeUser({ database: arraParms });
-      conn.query(query,async(err, data) => {
-        if(err){
-          next(new ErrorHandle(err, `The query in which error occurred ${query}`,206))
-        return reject(err)
-        }
-        return resolve(data)
-      })
-      conn.release();
+const executeQuery = (query, arraParms, next) => {
+  return new Promise((resolve, reject) => {
+    pool.getConnection((err, conn) => {
+      if (err) {
+        // handle error
+        reject(err);
+      } else if(query){
+        conn.changeUser({ database: arraParms });
+        conn.query(query, async (err, data) => {
+          if (err) {
+            // handle error
+            next(new ErrorHandle(err, `The query in which error occurred ${query}`, 206));
+           return reject(err);
+          } else {
+            // handle success
+           return resolve(data);
+          }
+          conn.release();
+        });
       }
     })
   })

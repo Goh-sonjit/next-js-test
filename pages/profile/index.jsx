@@ -15,7 +15,7 @@ import Fixednavbar from "@/components/navbar/fixednavbar";
 
 const Profile = () => {
   const route = useRouter();
-  const [profile, setProfile] = useState(true);
+  const [profile, setProfile] = useState(false);
   const [companey, setCompaney] = useState(false);
 
   const [user, setUser] = useState([]);
