@@ -11,7 +11,7 @@ const db_config = createPool({
 
 const executeQuery = (query, arraParms, next) => {
   return new Promise((resolve, reject) => {
-    pool.getConnection((err, conn) => {
+    db_config.getConnection((err, conn) => {
       if (err) {
         // handle error
         reject(err);
@@ -26,8 +26,8 @@ const executeQuery = (query, arraParms, next) => {
             // handle success
            return resolve(data);
           }
-          conn.release();
         });
+        conn.release();
       }
     })
   })

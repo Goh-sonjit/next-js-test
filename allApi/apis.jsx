@@ -373,3 +373,7 @@ export const latLongApi = async(lat, long) =>{
   })
   return data
 }
+export const mediaApi = async(category_name) =>{
+  const {data} = await instance.patch('excel',{ category_name})
+  return data
+}

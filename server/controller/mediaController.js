@@ -88,4 +88,63 @@ exports.SearchData = catchError(async (req, res, next) => {
 })
 
 
+exports.mediaData = catchError(async (req, res, next) => {
+
+    const { category_name } = req.body
+    const cookieData = req.cookies
+    const key = `${category_name}`
+    if (!cookieData) {
+        return res.status(204).json({ message: "No Cookie Found" })
+    }
+    switch (category_name) {
+        case "traditional-ooh-media":
+            table_name = "goh_media";
+            break;
+        case "digital-media":
+            table_name = "goh_media_digital";
+            break;
+        case "transit-media":
+            table_name = "goh_media_transit";
+            break;
+        case "mall-media":
+            table_name = "goh_media_mall";
+            break;
+        case "airport-media":
+            table_name = "goh_media_airport";
+            break;
+        case "inflight-media":
+            table_name = "goh_media_inflight";
+            break;
+        case "office-media":
+            table_name = "goh_media_office";
+            break;
+        default:
+            table_name = "goh_media";
+    }
+    let sql;
+    const token = Object.values(cookieData)[0];
+    return jwtToken.verify(token, "thisismysecretejsonWebToken", async (err, user) => {
+        if (err) {
+       
+            sql = "SELECT DISTINCT * FROM " + table_name + "";
+        } else {
+            const userID = user.id;
+            sql = "SELECT DISTINCT media.*, cart.campaigid, cart.userid, cart.isDelete FROM " + table_name + " AS media LEFT JOIN goh_shopping_carts_item AS cart ON media.code=cart.mediaid AND cart.userid = '" + userID + "' ORDER BY `cart`.`userid` DESC ";
+         }
+        const data = await client.get(key)
+    if (data) {
+    
+       return  res.status(200).json(JSON.parse(data))
+    } else {
+      const dataLimit = await executeQuery(sql,"gohoardi_goh", next)
+            if (dataLimit) {
+                client.setEx(key,   process.env.REDIS_TIMEOUT,JSON.stringify(dataLimit))
+                return res.status(200).json(dataLimit)
+            }
+    }    
+    }
+    )
+})
+
+
 

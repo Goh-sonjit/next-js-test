@@ -1,10 +1,15 @@
 import Fixednavbar from '@/components/navbar/fixednavbar';
-import React,{useState} from 'react';
+import React,{useState, useEffect} from 'react';
+import { useRouter } from 'next/router';
 import styles from '../../../styles/mediaN.module.scss'
 import { Dropdown, DropdownButton } from "react-bootstrap";
-import { CityNameImage } from "@/allApi/apis";
+import { CityNameImage, mediaApi } from "@/allApi/apis";
+
 const Media = () => {
+  const router = useRouter()
   const [serviceIcon, setServiceIcon] = useState(CityNameImage);
+  const [data,setData] = useState([])
+  const {category_name} = router.query;
   const SelectServc = async(id) =>{
     const services =[...serviceIcon];
     services.map((el)=>{
@@ -18,8 +23,22 @@ const Media = () => {
       }
     })
     setServiceIcon(services);
-    console.log(services)
+
   }
+  let slice;
+  if (data) {
+    slice = data.slice(0, 16);
+  }
+console.log(slice);
+  const getData = async() =>{
+    const data =  await mediaApi(category_name)
+
+    setData(data)
+  }
+
+  useEffect(() =>{
+getData()
+  },[category_name])
   return (
     <>
     <Fixednavbar/>
