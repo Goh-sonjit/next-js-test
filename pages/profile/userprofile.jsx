@@ -2,35 +2,27 @@ import React, { useEffect, useState } from "react";
 import { Form } from "react-bootstrap";
 import { updateProfile } from "@/allApi/apis";
 import { toast, ToastContainer } from "react-toastify";
-import instance from "@/allApi/axios";
 
 const initalState = {
   firstname: "",
   phonenumber: "",
   email: "",
+  newPassword: "",
+  confirmPassword: ""
 };
-const Userprofile = () => {
-  const [posts, setPosts] = useState([]);
-  const getUser = async () => {
-    const { data } = await instance.get("loginApis");
-    setPosts(data);
-  };
-  useEffect(() => {
-    getUser();
-  }, []);
+const Userprofile = ({user}) => {
   const [state, setState] = useState(initalState);
-
+  const [newPassword, setNewPassword] = useState('')
+  const [confirmPassword, setConfirmPassword] = useState('')
+ 
   const { firstname, phonenumber, email } = state;
 
   const handelSubmit = async (e) => {
     e.preventDefault();
-    const formData = new FormData();
-    formData.append("firstname", firstname);
-    formData.append("phonenumber", phonenumber);
-    const data = await updateProfile(firstname, phonenumber);
+    const data = await updateProfile(firstname, phonenumber,newPassword, confirmPassword);
     if (data.sucess == true) {
       toast(data.message);
-      // window.location.reload();
+      window.location.reload();
     } else {
       toast(data.message);
     }
@@ -42,12 +34,12 @@ const Userprofile = () => {
   };
 
   useEffect(() => {
-    setState({ ...posts[0] });
-  }, [posts]);
+    setState({ ...user[0] });
+  }, [user]);
 
   return (
     <>
-      <div className="card profile-detail p-3">
+     <div className="card profile-detail p-3">
         <div className="panel-body">
           <div className="row">
             <form onSubmit={handelSubmit}>
@@ -88,25 +80,25 @@ const Userprofile = () => {
                   />
                 </div>
                 <div className="form-group my-3">
-                  <label for="Newpassword" className="ps-2">New Password</label>
+                  <label for="newPassword" className="ps-2">New Password</label>
                   <Form.Control
                     type="password"
                     className="form-control"
-                    id="Newpassword"
-                    name="Newpassword"
-                    // value={firstname}
-                    // onChange={handleChange}
+                    id="newPassword"
+                    name="newPassword"
+                    value={newPassword}
+                    onChange={(e) =>setNewPassword(e.target.value)}
                   />
                 </div>
                 <div className="form-group my-3">
-                  <label for="firstname" className="ps-2">Confirm Password</label>
+                  <label for="confirmPassword" className="ps-2">Confirm Password</label>
                   <Form.Control
                     type="password"
                     className="form-control"
-                    id="Confirmpassword"
-                    name="Confirmpassword"
-                    // value={firstname}
-                    // onChange={handleChange}
+                    id="confirmPassword"
+                    name="confirmPassword"
+                    value={confirmPassword}
+                    onChange={(e) =>setConfirmPassword(e.target.value)}
                   />
                 </div>
               </div>
@@ -416,7 +408,7 @@ const Userprofile = () => {
             }
           `}
         </style>
-      </div>
+      </div> 
     </>
   );
 };

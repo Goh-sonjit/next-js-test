@@ -76,7 +76,8 @@ const Profile = () => {
           <div className="col-md-3 p-2 pt-0 text-center">
    
             
-                <div className="img-wrap img-upload">
+               <label>
+               <div className="img-wrap img-upload">
                   <img
                     src={user && user.map((el) => el.profile_image)}
                     className="card-img-top"
@@ -86,15 +87,16 @@ const Profile = () => {
                     }
                   />
                 </div>
-                {/* <input
+                <input
                   className="form-control"
                   type="file"
                   accept="image/png, image/jpg, image/jpeg"
                   name="photo"
                   id="photo-upload"
                   onChange={(e) => getUpdateImage(e.target.files[0])}
-                /> */}
+                />
      
+               </label>
             
    <div className="my-4">
 
@@ -111,7 +113,7 @@ const Profile = () => {
             <div className="card ">
               {profile ? (
                 <>
-                  <Userprofile />
+                  <Userprofile user={user}/>
                 </>
               ) : (
                 <>
@@ -140,6 +142,9 @@ const Profile = () => {
         .prf-btn[aria-expanded="true"]{
        background-color:#393939;
        color:white;
+        }
+        #photo-upload[type="file"] {
+          display: none;
         }
         `}
       </style>

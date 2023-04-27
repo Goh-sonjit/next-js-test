@@ -1,7 +1,7 @@
 const {createPool} = require("mysql");
 const ErrorHandle = require("../utils/Errorhandler");
 
-const pool = createPool({
+const db_config = createPool({
   user: "root",
   host: "localhost",
   password: "",
@@ -29,11 +29,8 @@ const executeQuery = (query, arraParms, next) => {
           conn.release();
         });
       }
-    });
+    })
   })
-  .catch((err) => {
-    console.error(err);
-  });
-};
+}
 
 module.exports = {executeQuery};
