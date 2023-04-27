@@ -263,46 +263,25 @@ exports.resetPasswordEmail = catchError(async (req, res, next) => {
     }
 })
 
-exports.changepasswoed = catchError(async (req, res, next) => {
-    const userId = req.id;
-    if (!userId) {
-        return res.status(206).json({success:false, message: "User not found"})
-    }
-    const {newPassword, confirmPassword} = req.body;
-    if(newPassword !== undefined || confirmPassword !== undefined){
-        if (newPassword === confirmPassword ) {
-     
-        const finalPassword = bcrypt.hashSync(newPassword, 8)
-        if (!finalPassword) {
-            return res.status(206).json({success:false, message: "Password Error"})
-        } else {
-         
-            const sql = await executeQuery("UPDATE tblcontacts SET password = '" + finalPassword + "' WHERE userid='" + userId + "'", "gohoardi_crmapp",next);
-                if (sql) {
-                    return res.status(200).json({success:true, message: "Password Change Successfully"})
-                }
-       }
 
-    } else {
-        return res.status(206).json({success:false,message: "Your Password Not Matched"})
-    }  
-}else{
-    return res.status(206).json({success:false,message: "Empty Field"}) 
-}
-})
 
 exports.updateProfile = catchError(async (req, res, next) => { 
-    const {firstname, phonenumber} = req.body
+    const {firstname, phonenumber, newPassword, confirmPassword} = req.body
     const userId = req.id;
     if (!userId) {
         return res.status(404).json({message: "Token Valid"})
     } else {
-        let sql = await executeQuery("UPDATE tblcontacts SET firstname='" + firstname + "', phonenumber=" + phonenumber + " WHERE userid=" + userId + "","gohoardi_crmapp",next)
+        let changePassword = "";
+        if(newPassword == confirmPassword){
+            const finalPassword = bcrypt.hashSync(confirmPassword, 8)
+            changePassword = ", password = '" + finalPassword + "'"
+        }else{
+            return res.status(206).json({success:false,message: "Your Password Not Matched"}) 
+        }
+        let sql = await executeQuery("UPDATE tblcontacts SET firstname='" + firstname + "', phonenumber=" + phonenumber + " " + changePassword +" WHERE userid=" + userId + "","gohoardi_crmapp",next)
             if (sql) {
-
                 return res.status(200).json({sucess: true, message: "Profile Updated"})
             }
-      
     }
 })
 

@@ -143,8 +143,8 @@ export const profileDetails = async () => {
   return data
 }
 
-export const updateProfile = async ( firstname, phonenumber) => {
-  const { data } = await instance.post("profile", { firstname, phonenumber });
+export const updateProfile = async (firstname, phonenumber,newPassword, confirmPassword) => {
+  const { data } = await instance.post("profile", {firstname, phonenumber, newPassword, confirmPassword});
   return data
 }
 
@@ -197,13 +197,6 @@ export const goh_media_and_newsApi = async () => {
 
 export const goh_testimonialsApi = async () => {
   const { data } = await instance.get("testmonials");
-  return data
-}
-
-export const updatePassword = async (state) => {
-  const { data } = await instance.put("linkedin", {
-    newPassword: state.newPassword, confirmPassword: state.confirmPassword
-  });
   return data
 }
 
