@@ -10,22 +10,28 @@ export const emailformate = /^\w+([-,.]?\w+)*@\w+(.-]?\w+)*(\.\w{2,3})+$/;
 export const clientId = '85378901999-efhrgq7ltamh5730qq1776fatpm0mhd0.apps.googleusercontent.com';
 
 export const CityNameImage = [
-  // {
-  //   label: "InFlight Branding",
-  //   value: "inflight-media",
-  //   value2: "InFlight-Media",
-  //   srcImg: "../images/web_pics/airport.jpg",
-  //   icon: <GiCommercialAirplane/>,  
-  //   link: "inflight-media/",
-  //   city: "delhi",
-  //   page_titel:'',
-  //   page_decri:'',
-  //   meta_keyword:''
-  // },
   {
+    id: 1,
+    label: "InFlight Branding",
+    value: "inflight-media",
+    value2: false,
+    srcImgCtSlc: "../images/web_pics/final/flight.png",
+    srcImgCt: "../images/web_pics/final/Grey/flight.png",
+    srcImg: "../images/web_pics/tr.jpg",
+    srcImgM: "../images/web_pics/tr.jpg",
+    icon: <GiCommercialAirplane/>,  
+    link: "inflight-media/",
+    city: "delhi",
+
+  },
+
+  {
+    id: 2,
     label: "Traditional OOH Media ",
-    value2: "Traditional-OOH-Media",
+    value2: false,
     value: "traditional-ooh-media",
+    srcImgCtSlc: "../images/web_pics/final/Tradition_OOH_01.png",
+    srcImgCt: "../images/web_pics/final/Grey/Tradition_OOH.png",
     srcImg: "../images/web_pics/traditional-ooh-media-advertising-near-me.jpg",
     srcImgM: "../images/web_pics/traditional-ooh-media-advertising.jpg",
     Link: `/traditional-ooh-media/delhi`,
@@ -34,9 +40,12 @@ export const CityNameImage = [
     
   },
   {
+    id: 3,
     label: "Digital Media",
     value: "digital-media",
-    value2: "Digital-Media",
+    value2: false,
+    srcImgCtSlc: "../images/web_pics/final/Digital_OOH_Media.png",
+    srcImgCt: "../images/web_pics/final/Grey/Digital_OOH_Media.png",
     srcImg: "../images/web_pics/digital-media-hoardings-near-me.jpg",
     srcImgM: "../images/web_pics/digital-media-hoardings-digital-hoardings.jpg",
     Link: `/digital-media/delhi`,
@@ -45,21 +54,26 @@ export const CityNameImage = [
     
   },
   {
+    id: 4,
     label: "Mall Media",
     value: "mall-media",
-    value2: "Mall-Media",
+    value2: false,
+    srcImgCtSlc: "../images/web_pics/final/Mall_Media_01.png",
+    srcImgCt: "../images/web_pics/final/Grey/Mall_Media.png",
     srcImg: "../images/web_pics/mall-media-advertising-company.jpg",
     srcImgM: "../images/web_pics/mall-media-advertising-near-me.jpg",
     Link: `/mall-media/delhi`,
     icon: <TbBuildingCommunity />,
     city: "bengaluru",
-   
   },
 
   {
+    id: 5,
     label: "Office Branding",
     value: "office-media",
-    value2: "Office-Media",
+    value2: false,
+    srcImgCtSlc: "../images/web_pics/final/Office_Branding.png",
+    srcImgCt: "../images/web_pics/final/Grey/Office_Branding.png",
     srcImg: "../images/web_pics/office-branding-advertising-company.jpg",
     srcImgM: "../images/web_pics/office-branding-media-near-me.jpg",
     Link: `/office-branding/delhi`,
@@ -68,9 +82,12 @@ export const CityNameImage = [
     
   },
   {
+    id: 6,
     label: "Transit Media",
     value: "transit-media",
-    value2: "Transit-Media",
+    value2: false,
+    srcImgCtSlc: "../images/web_pics/final/Transit_Media.png",
+    srcImgCt: "../images/web_pics/final/Grey/Transit_Media.png",
     srcImg: "../images/web_pics/transit-media-advertising-in-delhi.jpg",
     srcImgM: "../images/web_pics/transit-media-advertising-near-me.jpg",
     Link: `/transit-media/delhi`,
@@ -79,9 +96,12 @@ export const CityNameImage = [
   
   },
   {
+    id: 7,
     label: "Airport Branding",
     value: "airport-media",
-    value2: "Airport-Media",
+    value2: false,
+    srcImgCtSlc: "../images/web_pics/final/Airport_Branding.png",
+    srcImgCt: "../images/web_pics/final/Grey/Airport_Branding_01.png",
     srcImg: "../images/web_pics/airport-media-hoardings-near-me.jpg",
     srcImgM: "../images/web_pics/airport-media-digital-hoardings.jpg",
     Link: `/airport-media/delhi`,

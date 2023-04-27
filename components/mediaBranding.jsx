@@ -1,5 +1,4 @@
 import React from "react";
-import Head from "next/head";
 import { CityNameImage } from "@/allApi/apis";
 const Medialogo = ({ category_name, city_name }) => {
 
