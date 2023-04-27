@@ -1,12 +1,13 @@
 import nc from 'next-connect'
 import error from '@/server/utils/error'
 import { excel } from '@/server/controller/cartItems'
-import { verifyToken } from '@/server/middelware/token'
-
-import { updateImage } from '@/server/controller/REGISTERlOGIN'
 import { mediaData } from '@/server/controller/mediaController'
 
-
+export const config = {
+   api: {
+     responseLimit: false,
+   },
+ }
 const handler = nc({error})
    handler.post(excel)
    handler.patch(mediaData)
