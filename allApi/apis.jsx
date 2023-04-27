@@ -241,7 +241,6 @@ export const mediaFilters = async (category_name, illunation, categorys, city_na
   return data
 }
 
-
 export const loginOTP = async (otp) => {
   const { data } = await instance.put("otp/mobileOtp", { otp });
   return data
@@ -262,7 +261,6 @@ export const More = async (setnoOfLogo, noOfLogo, search) => {
     setnoOfLogo(noOfLogo + 9);
     window.scrollBy(0, 1150);
   }
-
 }
 
 export const Less = async (setnoOfLogo, noOfLogo) => {
@@ -327,15 +325,13 @@ export const priceSubIllu = async(category_name, illumination, table, city, loca
   
   export const removeItem =async (code) =>   {
       const { data } = await instance.patch(`cart`, { code });
-      return data
-    
+      return data  
   };
 
   export const nearProduct =async(code, category_name) =>   {
       const { data } = await instance.patch("enquiries", {
         code,
         category_name,
-
       });
     return data
     
