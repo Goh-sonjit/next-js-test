@@ -65,7 +65,7 @@ const Profile = () => {
   return (
     <>
       <Fixednavbar />
-      <div className=" container-xxl  container-xl container-lg container-md my-5 prf-content">
+      <div className=" container-xxl  container-xl container-lg container-md my-5 prf-content animate__animated  animate__fadeIn">
         <div className="row  p-5 ">
         <div className="col-md-3 p-2 pt-0">
           </div>

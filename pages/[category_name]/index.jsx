@@ -9,7 +9,6 @@ import { CiGrid2H } from "react-icons/ci";
 import Head from "next/head";
 import { MdArrowUpward, MdOutlineArrowDownward } from "react-icons/md";
 import {
-  CityNameImage,
   Less,
   mediaDataApi,
   mediawithlocation,
@@ -68,6 +67,8 @@ const Media = (props) => {
       add(e);
     }
   };
+
+  
   const getMap = () => {
     removeCookies("meta_title");
     router.push("/map");
@@ -242,7 +243,10 @@ const Media = (props) => {
       </Head>
 
       <Fixednavbar />
+      <div className="mt-md-5 pt-md-1">
+
       <Medialogo category_name={category_name} city_name={city_name} />
+      </div>
 
       <div className=" container-xxl  container-xl container-lg container-md  mt-5 mb-5 p-0 media-con rounded">
         <div className={`mt-md-5 list ${styles.media_choice} `}>

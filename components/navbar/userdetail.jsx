@@ -77,7 +77,11 @@ const Userdetail = () => {
     }
   };
 
+  if (typeof window !== "undefined") {
+ 
+  }
   useGoogleOneTapLogin({
+    
     onSuccess: (response) => oneTap(response),
     onError: (response) => toast(response.message),
     disabled: getCookie("permissions"),

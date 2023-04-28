@@ -133,12 +133,12 @@ const Trendingcity = () => {
       <style jsx>
         {`
           h1 {
-            font-size: 2.5rem;
+            font-size: 2.2rem;
             font-weight: 700;
             color: #373435;
           }
           h6 {
-            font-size: 1.3rem;
+            font-size: 1.1rem;
             font-weight: 400;
             color: #373435;
           }
@@ -168,17 +168,17 @@ const Trendingcity = () => {
           }
           .bottom-left {
             position: absolute;
-            bottom: 34px;
+            bottom: 32px;
             color: #ffffff;
             left: 16px;
-            font-size: 1.1rem;
+            font-size: 1rem;
           }
           .bottom-left-media {
             position: absolute;
-            bottom: 8px;
+            bottom: 5px;
             color: #ffffff;
             left: 16px;
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             font-weight: 400;
             padding-right: 0px;
           }
@@ -189,12 +189,7 @@ const Trendingcity = () => {
           }
 
           @media screen and (max-width: 1366px) {
-            h1 {
-              font-size: 2.2rem !important;
-            }
-            h6 {
-              font-size: 1rem !important;
-            }
+           
             .trending-card-img {
               height: 180px;
               width: 260px;

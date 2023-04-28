@@ -127,13 +127,13 @@ const City = () => {
           background-color: #ececec;
         }
         h1 {
-          font-size: 2.5rem;
+          font-size: 2.2rem;
           font-weight: 700;
           color: #373435;
         }
 
         h6 {
-          font-size: 1.3rem;
+          font-size: 1.1rem;
           font-weight: 400;
           color: #373435;
         }
@@ -172,7 +172,7 @@ const City = () => {
           bottom: 42px;
           color: #ffffff;
           left: 16px;
-          font-size: 1.2rem;
+          font-size: 1.1rem;
         }
 
         .bottom-left-media {
@@ -180,7 +180,7 @@ const City = () => {
           bottom: 8px;
           color: #ffffff;
           left: 16px;
-          font-size: 1.8rem;
+          font-size: 1.6rem;
           font-weight: 700;
           padding-right: 0px;
         }
@@ -188,7 +188,7 @@ const City = () => {
         .bottom-left-media-text {
           color: #ffffff;
 
-          font-size: 1.2rem;
+          font-size: 1.1rem;
           font-weight: 400 !important;
         }
 
@@ -199,12 +199,7 @@ const City = () => {
 
 
         @media screen and (max-width: 1366px) {
-          h1 {
-            font-size: 2.2rem;
-          }
-          h6 {
-            font-size: 1rem;
-          }
+        
           .iimmgg {
             width: 300px;
             height: 200px;
@@ -217,12 +212,8 @@ const City = () => {
             .bottom-left {
               font-size: 1.1rem;
             }
-            .bottom-left-media {
-              font-size: 1.7rem;
-            }
-            .bottom-left-media-text {
-              font-size: 1.1rem;
-            }
+        
+          
           
         }
         @media screen and (max-width: 425px) {

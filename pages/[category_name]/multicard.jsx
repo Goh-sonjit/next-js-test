@@ -6,7 +6,7 @@ import styles from "../../styles/media.module.scss";
 import { HiOutlineCurrencyRupee } from "react-icons/hi";
 import Loader from "@/components/loader";
 
-const Multicard = ({ slice, loading, addonCart, removefromCart }) => {
+const Multicard = ({ slice,addonCart, removefromCart }) => {
   return (
     <>
    

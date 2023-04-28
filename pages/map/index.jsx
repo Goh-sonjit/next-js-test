@@ -127,7 +127,7 @@ const Map = () => {
   return (
     <>
    <Fixednavbar/>
-      <div className="container-fluid" id={styles.map_body}>
+      <div className="container-fluid animate__animated  animate__fadeIn" id={styles.map_body}>
         <div className={` p-2 ps-4 pe-4 ${styles.filter_section} d-flex map-filter-drop`}>
          <Filters search={slice} setSearch={setSearch} setNsearch={setNsearch}/>
         </div>

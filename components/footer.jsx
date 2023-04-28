@@ -366,21 +366,21 @@ const Footer = () => {
             border-bottom: 2px solid rgb(211, 211, 211);
           }
           .brand-logo-footer {
-            width: 250px;
+            width: 240px;
           }
           .f-heading {
             color: #ffff;
-            font-size: 1.6rem;
+            font-size: 1.5rem;
             font-weight: 600;
           }
           .f-second-heading {
             color: rgb(220, 220, 220);
-            font-size: 1.1rem;
+            font-size: 1rem;
             font-weight: 400;
           }
           .f-heading-clr {
             color: rgb(220, 220, 220);
-            font-size: 1.1rem;
+            font-size: 1rem;
             cursor: pointer;
           }
 
@@ -389,7 +389,7 @@ const Footer = () => {
           }
           .reach-clr {
             color: rgb(220, 220, 220);
-            font-size: 1.1rem;
+            font-size: 1rem;
           }
           li {
             list-style-type: none;
@@ -422,17 +422,13 @@ const Footer = () => {
 
           @media screen and (max-width: 1366px) {
             .brand-logo-footer {
-              width: 200px !important;
+              width: 190px !important;
             }
             .f-heading {
               font-size: 1.5rem;
             }
-            .f-second-heading {
-              font-size: 1.1rem;
-            }
-            .f-heading-clr {
-              font-size: 1.1rem;
-            }
+          
+           
             .reach-clr {
               font-size: 1.1rem;
             }
@@ -450,7 +446,7 @@ const Footer = () => {
 
           @media screen and (max-width: 1024px) {
             .brand-logo-footer {
-              width: 140px !important;
+              width: 130px !important;
             }
             .f-heading {
               font-size: 1rem;

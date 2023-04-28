@@ -1,13 +1,30 @@
+import React, { useState, useEffect } from "react";
 import { CityNameImage } from "../allApi/apis";
 import Slider from "react-slick";
 import { setCookie } from "cookies-next";
 import styles from "../styles/ourServices.module.scss";
 import { HiOutlineArrowNarrowRight } from "react-icons/hi";
 import Link from "next/link";
+
 const Ourservices = () => {
+  const [serviceIcon, setServiceIcon] = useState(CityNameImage);
   const directlink=(e)=>{
-    setCookie("category_name",e)
-    setCookie("city_name","delhi")
+
+    const services = [...serviceIcon];
+    services.map((el) => {
+      if (el.id == e.id) {
+        el.value2 = true;
+      
+      }
+      if (el.id !== e.id) {
+        el.value2 = false;
+      }
+    });
+    
+    setServiceIcon(services);
+    
+    setCookie("category_name",e.value)
+    setCookie("categorytag",e.label)
 
   }
   
@@ -59,7 +76,7 @@ const Ourservices = () => {
         </h6>
         <div>
           <Slider {...settings}>
-            {CityNameImage.map((pos, i) => (
+            {serviceIcon.map((pos, i) => (
               <div className="container pt-4 " key={i}>
                 <div
                   className={`row bg-light rounded-2 ${styles.service_card} me-2 ms-2 "`}
@@ -83,7 +100,7 @@ const Ourservices = () => {
                       <p
                         className={`position-absolute bottom-0  pb-3  mb-0 text-muted w-100 ${styles.View_Detail}`}
                 
-                      onClick={(e) =>directlink(pos.value)}
+                      onClick={() =>directlink(pos)}
                       >
                         {" "}
                         View Detail{" "}

@@ -129,7 +129,7 @@ const Details = () => {
         <>
           {markers.map((item, i) => (
             <div
-              className="container-xxl  container-xl container-lg container-md detail-container "
+              className="container-xxl  container-xl container-lg container-md detail-container animate__animated  animate__fadeIn"
               key={i}
             >
                 <h6><span  onClick={()=>router.push("/")} className="bredcamp">Home</span><MdKeyboardArrowRight/><span className="bredcamp" onClick={()=>router.push("/traditional-ooh-media")}>Medias</span><MdKeyboardArrowRight/><span className="bredcamp text-secondary">Details</span></h6>
