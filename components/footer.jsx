@@ -427,8 +427,7 @@ const Footer = () => {
             .f-heading {
               font-size: 1.5rem;
             }
-          
-           
+
             .reach-clr {
               font-size: 1.1rem;
             }
