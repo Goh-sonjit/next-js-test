@@ -5,13 +5,14 @@ import styles from "../../../styles/mediaN.module.scss";
 import { AccountContext } from "@/allApi/apicontext";
 import { Dropdown, DropdownButton } from "react-bootstrap";
 import { setCookie, getCookie } from "cookies-next";
-import { CityNameImage, mediaApi, addItem, removeItem } from "@/allApi/apis";
+import { CityNameImage, mediaApi, addItem, removeItem, getAllCity } from "@/allApi/apis";
 import Mediacard from "./cards";
 import Medialogo from "@/components/mediaBranding";
 import OverView from "@/pages/[category_name]/overView";
 
 const Media = () => {
   const router = useRouter();
+  const [city, setCity] = useState([]);
   const [serviceIcon, setServiceIcon] = useState(CityNameImage);
   const [data, setData] = useState([]);
   const { addRemove } = useContext(AccountContext);
@@ -41,6 +42,12 @@ const Media = () => {
   const getData = async () => {
     const data = await mediaApi(category_name);
     setData(data);
+  };
+
+  const onChange = async (e) => {
+    const cities = e.target.value;
+    const data = await getAllCity(cities);
+    setCity(data);
   };
 
   useEffect(() => {
@@ -133,7 +140,15 @@ const Media = () => {
               className={styles.nosubmit}
               type="search"
               placeholder="Search Cities"
+              onChange={(e) => onChange(e)}
             />
+              <div className={city ? "dropdown-menu show ms-2 text-dark" :"dropdown-menu"  }>
+                {city.map((el) =>(
+<div>
+{el.name}
+</div>
+                ))}
+              </div>
           </form>
 
           {/* Illumination type  */}

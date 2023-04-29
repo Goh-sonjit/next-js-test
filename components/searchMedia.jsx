@@ -13,9 +13,9 @@ const Searchmedia = () => {
     const [focus, setFocus] = useState(false);
     const [userType, setUserType] = useState("");
     const route=useRouter();
-    const onChange = async (event) => {
-      setValue(event.target.value); 
-      const cities = event.target.value;
+    const onChange = async (e) => {
+      setValue(e.target.value); 
+      const cities = e.target.value;
       const data = await getAllCity(cities);
       setCity(data);
     };
@@ -82,7 +82,7 @@ const Searchmedia = () => {
                           autoComplete="off"
                           placeholder="Search your location"
                           aria-describedby="basic-addon1"
-                          onChange={onChange}
+                          onChange={(e) => onChange(e)}
                           value={value}
                           onFocus={() => setFocus(true)}
                           // onBlur={() => setFocus(false)}
