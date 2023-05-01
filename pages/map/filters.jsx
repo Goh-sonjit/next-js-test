@@ -5,8 +5,10 @@ import SearchGoogle from "./searchGoogle";
 import {
   CityNameImage,
   iconFiltersData,
+  illuminationFilterApi,
   mediaDataApi,
   priceSubIllu,
+  subCategoryFilterApi
 } from "@/allApi/apis";
 import { MdSchool, MdOutlineRestaurantMenu,MdOutlineLocationOn } from "react-icons/md";
 import { BiDrink } from "react-icons/bi";
@@ -14,6 +16,7 @@ import { SiHotelsdotcom } from "react-icons/si";
 import { RiHospitalFill, RiMovie2Fill } from "react-icons/ri";
 import { TbMassage } from "react-icons/tb";
 import { CgGym } from "react-icons/cg";
+
 
 
 const Filters = ({ search, setSearch, setNsearch }) => {
@@ -101,63 +104,41 @@ const Filters = ({ search, setSearch, setNsearch }) => {
 
   async function categoryFilter(cate) {
     setcategoryValue(cate);
-    category.forEach(async (el) => {
-      if (el === cate && categoryArray.indexOf(el) > -1) {
-        categoryArray.splice(categoryArray.indexOf(el), 1);
-        setCategoryArray(categoryArray);
-      } else if (el === cate && !categoryArray.indexOf(el) > -1) {
-        categoryArray.push(cate);
-        setCategoryArray(categoryArray);
-      }
-    });
-    const data = await priceSubIllu(
-      categoryArray,
-      singlemedia,
+    const data = await subCategoryFilterApi(
       table,
-      city,
-      locationCkheckbox
+      cate,
+      city, 
     );
     setSearch(data);
   }
 
-  async function locationFilter(loca) {
-    locations.forEach((el) => {
-      if (el === loca && locationCkheckbox.indexOf(el) > -1) {
-        locationCkheckbox.splice(locationCkheckbox.indexOf(el), 1);
-        setLocationCkheckbox(locationCkheckbox);
-      } else if (el === loca && !locationCkheckbox.indexOf(el) > -1) {
-        locationCkheckbox.push(loca);
-        setLocationCkheckbox(locationCkheckbox);
-      }
-    });
-    const data = await priceSubIllu(
-      categoryArray,
-      singlemedia,
-      table,
-      city,
-      locationCkheckbox
-    );
-    setSearch(data);
-  }
+  // async function locationFilter(loca) {
+  //   locations.forEach((el) => {
+  //     if (el === loca && locationCkheckbox.indexOf(el) > -1) {
+  //       locationCkheckbox.splice(locationCkheckbox.indexOf(el), 1);
+  //       setLocationCkheckbox(locationCkheckbox);
+  //     } else if (el === loca && !locationCkheckbox.indexOf(el) > -1) {
+  //       locationCkheckbox.push(loca);
+  //       setLocationCkheckbox(locationCkheckbox);
+  //     }
+  //   });
+  //   const data = await priceSubIllu(
+  //     categoryArray,
+  //     singlemedia,
+  //     table,
+  //     city,
+  //     locationCkheckbox
+  //   );
+  //   setSearch(data);
+  // }
 
   async function mediaTypeFilter(cate) {
     setFilterValue(cate);
-    ILLUMINATION.forEach((el) => {
-      if (el === cate && singlemedia.indexOf(el) > -1) {
-        singlemedia.splice(singlemedia.indexOf(el), 1);
-        setsingleMedia(singlemedia);
-      } else if (el === cate && !singlemedia.indexOf(el) > -1) {
-        singlemedia.push(cate);
-        setsingleMedia(singlemedia);
-      }
-    });
-    const data = await priceSubIllu(
-      categoryArray,
-      singlemedia,
+    const data = await illuminationFilterApi(
       table,
-      city,
-      locationCkheckbox
-    );
+      cate,
+      city
+      );
     setSearch(data);
   }
 
@@ -259,13 +240,6 @@ const Filters = ({ search, setSearch, setNsearch }) => {
       
       >
         {category
-          .filter((obj) => {
-            if (query == "") {
-              return obj;
-            } else if (obj.toLowerCase().includes(query.toLowerCase())) {
-              return obj;
-            }
-          })
           .map((cate, i) => (
             <Dropdown.Item
             key={i}

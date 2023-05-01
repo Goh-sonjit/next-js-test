@@ -6,9 +6,7 @@ import Markers from "./marker";
 
 import {
   addItem,
-  markersPosition,
   mediaDataApi,
-  nearProduct,
   singlemnedia,
   removeItem,
 } from "@/allApi/apis";
@@ -43,7 +41,10 @@ const Map = () => {
     } else if (category_name) {
       const data = await mediaDataApi(category_name, city_name);
       setSearch(data);
-    } 
+    } else {
+      const data = await mediaDataApi("tradition-ooh-media", "delhi");
+      setSearch(data);
+    }
   };
 
   const [mapMarker, setPosts] = useState([]);
@@ -89,34 +90,34 @@ const Map = () => {
   const { isLoaded } = useJsApiLoader({
     googleMapsApiKey: "AIzaSyDEKx_jLb_baUKyDgkXvzS_o-xlOkvLpeE",
   });
-  function myClick() {
-    setTimeout(
-      function() {
+  // function myClick() {
+  //   setTimeout(
+  //     function() {
 
-         getData()
-      }, 1000);
-  }
+  //        getData()
+  //     }, 1000);
+  // }
 
-  const getRelateddata = async () => {
-    // if (slice.length == 1) {
-      const value = [...search];
-      const code = value[0].code;
-      const category_name = value[0].category_name;
-      const data = await nearProduct(code, category_name);
-      setSearch(data);
-    // }
-  };
+  // const getRelateddata = async () => {
+  //   // if (slice.length == 1) {
+  //     const value = [...search];
+  //     const code = value[0].code;
+  //     const category_name = value[0].category_name;
+  //     const data = await nearProduct(code, category_name);
+  //     setSearch(data);
+  //   // }
+  // };
 
   const More = async () => {
     if (search.length >= noOfLogo) {
       await setnoOfLogo(noOfLogo + 6);
     }
   };
-  const Less = async () => {
-    if (noOfLogo >= 2) {
-      await setnoOfLogo(noOfLogo - 6);
-    }
-  };
+  // const Less = async () => {
+  //   if (noOfLogo >= 2) {
+  //     await setnoOfLogo(noOfLogo - 6);
+  //   }
+  // };
 
 
   useEffect(() => {

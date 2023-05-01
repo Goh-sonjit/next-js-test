@@ -5,21 +5,30 @@ import styles from "../../../styles/mediaN.module.scss";
 import { AccountContext } from "@/allApi/apicontext";
 import { Dropdown, DropdownButton } from "react-bootstrap";
 import { setCookie, getCookie } from "cookies-next";
-import { CityNameImage, mediaApi, addItem, removeItem, getAllCity } from "@/allApi/apis";
+import { CityNameImage, mediaApi, addItem, removeItem, priceSubIllu, LocationFilterApi, illuminationFilterApi, subCategoryFilterApi } from "@/allApi/apis";
 import Mediacard from "./cards";
 import Medialogo from "@/components/mediaBranding";
 import OverView from "@/pages/[category_name]/overView";
 
 const Media = () => {
   const router = useRouter();
-  const [city, setCity] = useState([]);
   const [serviceIcon, setServiceIcon] = useState(CityNameImage);
-  const [data, setData] = useState([]);
+  const [value, setValue] = useState([]);
   const { addRemove } = useContext(AccountContext);
   const { handleShow } = useContext(AccountContext);
   const [noOfLogo, setnoOfLogo] = useState(16);
   const { category_name } = router.query;
+  const [mediaData, setMediadata] = useState([]);
+  const [locationData, setlocationData] = useState([]);
+  const [categoryData, setcategoryData] = useState([]);
 
+
+  const [filtervalue, setFilterValue] = useState("");
+  const [categoryvalue, setcategoryValue] = useState("");
+
+
+
+  let city_name="delhi"
   const SelectServc = async (obj) => {
     const services = [...serviceIcon];
     services.map((el) => {
@@ -35,23 +44,61 @@ const Media = () => {
     setServiceIcon(services);
   };
   let slice;
-  if (data) {
-    slice = data.slice(0, noOfLogo);
+  if (value) {
+    slice = value.slice(0, noOfLogo);
   }
 
   const getData = async () => {
     const data = await mediaApi(category_name);
-    setData(data);
+    setValue(data);
+  };
+  const apiforFillters = async () => {
+      const data = await mediaApi(category_name);
+      setMediadata(data);
+      setlocationData(data);
+      setcategoryData(data);
   };
 
-  const onChange = async (e) => {
-    const cities = e.target.value;
-    const data = await getAllCity(cities);
-    setCity(data);
-  };
+  let locations;
+  const allLocations = locationData.map((locate) => locate.location);
+  locations = [...new Set(allLocations)];
+
+  let category;
+  const allSubcategory = categoryData.map((category) => category.subcategory);
+  category = [...new Set(allSubcategory)];
+
+  let ILLUMINATION;
+  const allIllumations = mediaData.map((illumation) => illumation.illumination);
+  ILLUMINATION = [...new Set(allIllumations)];
+  async function categoryFilter(cate) {
+    setcategoryValue(cate);
+    const data = await subCategoryFilterApi(
+      category_name,
+      cate,
+    );
+    setValue(data);
+  }
+
+  async function locationFilter(loca) {
+    const data = await LocationFilterApi(
+      category_name,
+      loca
+    );
+    setValue(data);
+  }
+
+  async function mediaTypeFilter(cate) {
+    setFilterValue(cate);
+    const data = await illuminationFilterApi(
+      category_name,
+      cate
+       );
+    setValue(data);
+  }
 
   useEffect(() => {
     getData();
+    apiforFillters()
   }, [category_name]);
 
   // const categorytag = getCookie("categorytag");
@@ -83,7 +130,7 @@ const Media = () => {
   };
 
   const remove = (event) => {
-    let dataa = [...data];
+    let dataa = [...value];
     dataa.forEach((element) => {
       if (element.code == event.code) {
         element.isDelete = 1;
@@ -94,7 +141,7 @@ const Media = () => {
 
 
   const More = async () => {
-    if (data.length >= noOfLogo) {
+    if (value.length >= noOfLogo) {
       setnoOfLogo(noOfLogo + 16);
       window.scrollBy(0, 1150);
     }
@@ -107,7 +154,7 @@ const Media = () => {
     }
   };
 
-  let city_name="Delhi"
+
   return (
     <>
       <Fixednavbar />
@@ -140,37 +187,52 @@ const Media = () => {
               className={styles.nosubmit}
               type="search"
               placeholder="Search Cities"
-              onChange={(e) => onChange(e)}
             />
-              <div className={city ? "dropdown-menu show ms-2 text-dark" :"dropdown-menu"  }>
-                {city.map((el) =>(
-<div>
-{el.name}
-</div>
-                ))}
-              </div>
           </form>
 
           {/* Illumination type  */}
 
           <DropdownButton
-            title="Select Type"
+            title="Illumination"
             id={styles.select_media_box}
             // onSelect={(e) => setUserType(e)}
             drop="down-centered"
           >
             {/* {ILLUMINATION.map((el, i) => ( */}
-            <Dropdown.Item
-              // key={i}
-              className="p-2 mt-0 "
-              // onClick={(e) => mediaTypeFilter(el)}
-            >
-              {/* {el} */}
-            </Dropdown.Item>
+            {ILLUMINATION.map((el, i) => (
+          <Dropdown.Item
+          key={i}
+            className="p-2 mt-0 "
+            onClick={(e) => mediaTypeFilter(el)}
+          >
+            {el}
+          </Dropdown.Item>
+        ))}
+            
             {/* ))} */}
           </DropdownButton>
 
-          {/* City */}
+          {/* Category */}
+
+          <DropdownButton
+            title="Category"
+            id={styles.select_media_box}
+            // onSelect={(e) => setUserType(e)}
+            drop="down-centered"
+          >
+            {/* {ILLUMINATION.map((el, i) => ( */}
+            {category.map((cate, i) => (
+            <Dropdown.Item
+            key={i}
+              className="p-2 mt-0 "
+              onClick={(e) => categoryFilter(cate)}
+            >
+              {cate.substring(0, 13)}
+            </Dropdown.Item>
+          ))}
+          </DropdownButton>
+
+          {/* Location */}
 
           <DropdownButton
             title="Location"
@@ -179,32 +241,15 @@ const Media = () => {
             drop="down-centered"
           >
             {/* {ILLUMINATION.map((el, i) => ( */}
-            <Dropdown.Item
-              // key={i}
-              className="p-2 mt-0 "
-              // onClick={(e) => mediaTypeFilter(el)}
-            >
-              {/* {el} */}
-            </Dropdown.Item>
-            {/* ))} */}
-          </DropdownButton>
-
-          {/* Media type */}
-
-          <DropdownButton
-            title="Media Type"
-            id={styles.select_media_box}
-            // onSelect={(e) => setUserType(e)}
-            drop="down-centered"
+            {locations.map((el, i) => (
+          <Dropdown.Item
+          key={i}
+            className="p-2 mt-0 "
+            onClick={(e) => locationFilter(el)}
           >
-            {/* {ILLUMINATION.map((el, i) => ( */}
-            <Dropdown.Item
-              // key={i}
-              className="p-2 mt-0 "
-              // onClick={(e) => mediaTypeFilter(el)}
-            >
-              {/* {el} */}
-            </Dropdown.Item>
+              {el}
+          </Dropdown.Item>
+        ))}
             {/* ))} */}
           </DropdownButton>
         </section>
@@ -218,23 +263,18 @@ const Media = () => {
             <>
               <div className=" my-3 text-center">
                 <div className=" ">
-                  {slice.length == data.length ? (
-                    <> </>
-                  ) : (
+                  {slice.length !== value.length && (
                     <button className={`${styles.load_button} `} onClick={More}>
                       View More
                     </button>
                   )}
-                  {slice.length <= 16 ? (
-                    <> </>
-                  ) : (
-                    <button
+                  {!slice.length <= 16 && <button
                       className={`${styles.load_button}  ms-5`}
                       onClick={Less}
                     >
                       View Less
                     </button>
-                  )}
+                  }
                 </div>
               </div>
             </>

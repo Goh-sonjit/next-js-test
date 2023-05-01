@@ -37,71 +37,72 @@ if(data){
     }
   });
 
-exports.locationFilter = catchError(async (req, res, next) => {
-  const { category_name,  illumination, table, city, locations } = req.body;
-  const SubCategory = category_name.toString();
-  const newSubCate = SubCategory.replace(/,/g, "','");
+// exports.locationFilter = catchError(async (req, res, next) => {
+//   const { category_name,  illumination, table, city, locations } = req.body;
+//   // const SubCategory = category_name.toString();
+//   // const newSubCate = SubCategory.replace(/,/g, "','");
  
-  const illumantios = illumination.toString();
-  const newIllumantion = illumantios.replace(/,/g, "','");
-  const makeStringfylocation = JSON.stringify(locations);
-  const newLocation = makeStringfylocation.substring(
-    1,
-    makeStringfylocation.length - 1
-  );
-  const key = `${category_name +  illumination + table + city + locations}`
-  const data = await client.get(key)
-  if(data){
-    return res.send(JSON.parse(data))
-  }
-  switch (table) {
-    case "traditional-ooh-media":
-      table_name = "goh_media";
-      break;
-    case "digital-media":
-      table_name = "goh_media_digital";
-      break;
-    case "transit-media":
-      table_name = "goh_media_transit";
-      break;
-    case "mall-media":
-      table_name = "goh_media_mall";
-      break;
-    case "airport-media":
-      table_name = "goh_media_airport";
-      break;
-    case "inflight-media":
-      table_name = "goh_media_inflight";
-      break;
-    case "office-media":
-      table_name = "goh_media_office";
-      break;
-    default:
-      table_name = "goh_media";
-  }
-  let addsubcategoryQuery = "";
-  let addillumantionQuery = "";
-  let addlovationQuery = "";
-  if (newSubCate) {
-    addsubcategoryQuery = "&& subcategory IN ('" + newSubCate + "')";
-  }
-  if (newIllumantion) {
-    addillumantionQuery = "&& illumination IN ('" + newIllumantion + "')";
-  }
-  if (newLocation) {
-    addlovationQuery = "&& location IN (" + newLocation + ")";
-  }
+//   // const illumantios = illumination.toString();
+//   // const newIllumantion = illumantios.replace(/,/g, "','");
+//   const makeStringfylocation = JSON.stringify(locations);
+//   const newLocation = makeStringfylocation.substring(
+//     1,
+//     makeStringfylocation.length - 1
+//   );
+//   const key = `${category_name +  illumination + table + city + locations}`
+//   const data = await client.get(key)
+//   if(data){
+//     return res.send(JSON.parse(data))
+//   }
+//   switch (table) {
+//     case "traditional-ooh-media":
+//       table_name = "goh_media";
+//       break;
+//     case "digital-media":
+//       table_name = "goh_media_digital";
+//       break;
+//     case "transit-media":
+//       table_name = "goh_media_transit";
+//       break;
+//     case "mall-media":
+//       table_name = "goh_media_mall";
+//       break;
+//     case "airport-media":
+//       table_name = "goh_media_airport";
+//       break;
+//     case "inflight-media":
+//       table_name = "goh_media_inflight";
+//       break;
+//     case "office-media":
+//       table_name = "goh_media_office";
+//       break;
+//     default:
+//       table_name = "goh_media";
+//   }
+//   let addsubcategoryQuery = "";
+//   let addillumantionQuery = "";
+//   let addlovationQuery = "";
+//   if (category_name) {
+//     addsubcategoryQuery = "&& subcategory = '" + category_name + "'";
+//   }
+//   if (illumination) {
+//     addillumantionQuery = "&& illumination = '" + illumination + "'";
+//   }
+//   if (locations) {
+//     addlovationQuery = "&& location = " + locations + "";
+//   }
 
 
-  const sql = "SELECT * FROM " + table_name +" WHERE city_name='" +city + "'" + addsubcategoryQuery +" " + addillumantionQuery +" " +
-    addlovationQuery +
-    " ";
-     const result = await executeQuery( sql,"gohoardi_goh",next);
-    if (result) {
-        client.setEx(key, process.env.REDIS_TIMEOUT,JSON.stringify(result))
-        return res.status(200).json(result);
-    } 
-  });
+//   const sql = "SELECT * FROM " + table_name +" WHERE city_name='" +city + "'" + addsubcategoryQuery +" " + addillumantionQuery +" " +
+//     addlovationQuery +
+//     " ";
+//     console.log(sql);
+//      const result = await executeQuery( sql,"gohoardi_goh",next);
+//     if (result) {
+//         client.setEx(key, process.env.REDIS_TIMEOUT,JSON.stringify(result))
+//         return res.status(200).json(result);
+//     } 
+//   });
 
 
 exports.iconFilter = catchError(async (req, res, next) => {
@@ -177,10 +178,10 @@ exports.iconFilter = catchError(async (req, res, next) => {
 exports.filterData = catchError(async (req, res, next) => {
   const { category_name, illunation, categorys, city_name, locationCkheckbox } =
     req.body;
-  const SubCategory = categorys.toString();
-  const illumantios = illunation.toString();
-  const newIllumantion = illumantios.replace(/,/g, "','");
-  const newSubCate = SubCategory.replace(/,/g, "','");
+  // const SubCategory = categorys.toString();
+  // const illumantios = illunation.toString();
+  // const newIllumantion = illumantios.replace(/,/g, "','");
+  // const newSubCate = SubCategory.replace(/,/g, "','");
   const makeStringfylocation = JSON.stringify(locationCkheckbox);
   const newLocation = makeStringfylocation.substring(
     1,
@@ -219,16 +220,18 @@ return res.send(JSON.parse(data))
   let addsubcategoryQuery = "";
   let addillumantionQuery = "";
   let addlovationQuery = "";
-  if (newSubCate) {
-    addsubcategoryQuery = "&& subcategory IN ('" + newSubCate + "')";
+  if (categorys) {
+    addsubcategoryQuery = "|| subcategory = '" + categorys + "'";
   }
-  if (newIllumantion) {
-    addillumantionQuery = "&& illumination IN ('" + newIllumantion + "')";
+  if (illunation) {
+    addillumantionQuery = "|| illumination = '" + illunation + "'";
   }
-  if (newLocation) {
-    addlovationQuery = "&& location IN (" + newLocation + ")";
+  if (locationCkheckbox) {
+    addlovationQuery = "|| location = " + locationCkheckbox + "";
   }
-    const sql =await  executeQuery("SELECT * FROM " + table_name + " WHERE  city_name='"+city_name+"' "+addsubcategoryQuery+" "+addillumantionQuery+" "+addlovationQuery+"","gohoardi_goh", next)
+  const media = "SELECT * FROM " + table_name + " WHERE  city_name='"+city_name+"' "+addsubcategoryQuery+" "+addillumantionQuery+" "+addlovationQuery+""
+  console.log(media); 
+  const sql =await  executeQuery(media,"gohoardi_goh", next)
     if (sql) {
       client.setEx(key, process.env.REDIS_TIMEOUT,JSON.stringify(sql))
       return res.status(200).json(sql);
@@ -380,3 +383,129 @@ exports.mapMarkersData = catchError(async(req,res, next) => {
   
 
 
+exports.subcategoryFilter = catchError(async(req, res, next) =>{
+  const { category_name, subcategory, city} = req.body;
+  const key = `${city+category_name+subcategory}`
+  const value = await client.get(key)
+  if(value){
+    return res.send(JSON.parse(value))
+  }else{
+    switch (category_name) {
+      case "traditional-ooh-media":
+        table_name = "goh_media";
+        break;
+      case "digital-media":
+        table_name = "goh_media_digital";
+        break;
+      case "transit-media":
+        table_name = "goh_media_transit";
+        break;
+      case "mall-media":
+        table_name = "goh_media_mall";
+        break;
+      case "airport-media":
+        table_name = "goh_media_airport";
+        break;
+      case "inflight_media":
+        table_name = "goh_media_inflight";
+        break;
+      case "office-media":
+        table_name = "goh_media_office";
+        break;
+      default:
+        table_name = "goh_media";
+    }
+    if(city){
+      cityData = " && city_name='"+city+"' "
+    }
+    const sql = "SELECT *  FROM "+table_name+" WHERE  subcategory = '"+subcategory+"' "+cityData+""
+const data = await executeQuery(sql, "gohoardi_goh",next)
+client.setEx(key, process.env.REDIS_TIMEOUT,JSON.stringify(data))
+return  res.status(200).json(data) 
+}
+}) 
+
+exports.LocationFilter = catchError(async(req, res, next) =>{
+  const { category_name, location, city} = req.body;
+  const key = `${city+category_name+location}`
+  const value = await client.get(key)
+  if(value){
+    return res.send(JSON.parse(value))
+  }else{
+    switch (category_name) {
+      case "traditional-ooh-media":
+        table_name = "goh_media";
+        break;
+      case "digital-media":
+        table_name = "goh_media_digital";
+        break;
+      case "transit-media":
+        table_name = "goh_media_transit";
+        break;
+      case "mall-media":
+        table_name = "goh_media_mall";
+        break;
+      case "airport-media":
+        table_name = "goh_media_airport";
+        break;
+      case "inflight_media":
+        table_name = "goh_media_inflight";
+        break;
+      case "office-media":
+        table_name = "goh_media_office";
+        break;
+      default:
+        table_name = "goh_media";
+    }
+    let cityData = ''
+    if(city){
+      cityData = " && city_name='"+city+"' "
+    }
+    const sql = "SELECT *  FROM "+table_name+" WHERE location = '"+location+"' "+cityData+""
+
+const data = await executeQuery(sql, "gohoardi_goh",next)
+client.setEx(key, process.env.REDIS_TIMEOUT,JSON.stringify(data))
+return  res.status(200).json(data) 
+}
+}) 
+exports.illuminationfilter = catchError(async(req, res, next) =>{
+  const {category_name, illumination, city} = req.body;
+  const key = `${city+category_name+illumination}`
+  const value = await client.get(key)
+  if(value){
+    return res.send(JSON.parse(value))
+  }else{
+    switch (category_name) {
+      case "traditional-ooh-media":
+        table_name = "goh_media";
+        break;
+      case "digital-media":
+        table_name = "goh_media_digital";
+        break;
+      case "transit-media":
+        table_name = "goh_media_transit";
+        break;
+      case "mall-media":
+        table_name = "goh_media_mall";
+        break;
+      case "airport-media":
+        table_name = "goh_media_airport";
+        break;
+      case "inflight_media":
+        table_name = "goh_media_inflight";
+        break;
+      case "office-media":
+        table_name = "goh_media_office";
+        break;
+      default:
+        table_name = "goh_media";
+    }
+    if(city){
+      cityData = " && city_name='"+city+"' "
+    }
+    const sql = "SELECT *  FROM "+table_name+" WHERE illumination = '"+illumination+"' "+cityData+""
+const data = await executeQuery(sql, "gohoardi_goh",next)
+client.setEx(key, process.env.REDIS_TIMEOUT,JSON.stringify(data))
+return  res.status(200).json(data) 
+}
+}) 

@@ -377,3 +377,17 @@ export const mediaApi = async(category_name) =>{
   const {data} = await instance.patch('excel',{ category_name})
   return data
 }
+export const subCategoryFilterApi = async(category_name, subcategory, city) =>{
+  const {data} = await instance.patch('newFilters',{ category_name, subcategory, city})
+  return data
+}
+export const LocationFilterApi = async( category_name, location, city) =>{
+  const {data} = await instance.put('newFilters',{  category_name, location, city})
+  return data
+}
+export const illuminationFilterApi = async( category_name, illumination, city) =>{
+  const {data} = await instance.post('newFilters',{  category_name, illumination, city})
+  return data
+}
+
+

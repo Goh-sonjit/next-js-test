@@ -89,7 +89,6 @@ exports.SearchData = catchError(async (req, res, next) => {
 
 
 exports.mediaData = catchError(async (req, res, next) => {
-
     const { category_name } = req.body
     const cookieData = req.cookies
     const key = `${category_name}`
@@ -133,12 +132,11 @@ exports.mediaData = catchError(async (req, res, next) => {
          }
         const data = await client.get(key)
     if (data) {
-    
        return  res.status(200).json(JSON.parse(data))
     } else {
       const dataLimit = await executeQuery(sql,"gohoardi_goh", next)
             if (dataLimit) {
-                client.setEx(key,   process.env.REDIS_TIMEOUT,JSON.stringify(dataLimit))
+                client.setEx(key,process.env.REDIS_TIMEOUT,JSON.stringify(dataLimit))
                 return res.status(200).json(dataLimit)
             }
     }    
