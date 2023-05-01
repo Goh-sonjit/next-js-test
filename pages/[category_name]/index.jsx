@@ -161,13 +161,13 @@ const Media = (props) => {
       category_name,
       singlemedia,
       categoryArray,
-      city_name,
-      locationCkheckbox
+      city_name
     );
     setSearch(data);
   }
 
   const locationFilter = async (loca) => {
+    setLocationCkheckbox(loca)
     locationData.map((data, i) => {
       if (data.id == loca.id) {
         data.select = true;
@@ -200,8 +200,7 @@ const Media = (props) => {
       category_name,
       singlemedia,
       categoryArray,
-      city_name,
-      locationCkheckbox
+      city_name
     );
     setSearch(data);
   }

@@ -250,13 +250,12 @@ export const mediawithlocation = async (category_name, city_name, loca) => {
   return data
 }
 
-export const mediaFilters = async (category_name, illunation, categorys, city_name, locationCkheckbox) => {
+export const mediaFilters = async (category_name, illunation, categorys, city_name) => {
   const { data } = await instance.put(`filters`, {
     category_name,
     illunation,
     categorys,
-    city_name,
-    locationCkheckbox,
+    city_name
   });
   return data
 }
