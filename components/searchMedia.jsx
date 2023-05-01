@@ -11,6 +11,7 @@ const Searchmedia = () => {
     const [city, setCity] = useState([]);
     const [value, setValue] = useState("");
     const [focus, setFocus] = useState(false);
+    
     const [userType, setUserType] = useState("");
     const route=useRouter();
     const onChange = async (e) => {
@@ -34,6 +35,7 @@ const Searchmedia = () => {
       setValue(searchTerm);
       setFocus(false);
     };
+    console.log(value);
   return (
     <>
       <div className={`${styles.search_media_content} container-xxl  container-xl container-lg container-md mb-4  ms-xs-3`}>

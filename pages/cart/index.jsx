@@ -44,7 +44,7 @@ const Cart = () => {
     const value = getCookie("permissions");
     if (value) {
       const data = await cartitems();
-
+console.log(data);
       if (data) {
         data.map((obj, i) => {
           obj["days"] = 5;
@@ -144,7 +144,7 @@ const Cart = () => {
       <Fixednavbar />
 
       <div
-        className={`container-xxl  container-xl container-lg container-md  ${styles.cart_content} cart-content`}
+        className={`container-xxl  container-xl container-lg container-md  ${styles.cart_content} cart-content animate__animated  animate__fadeIn`}
       >
         <div className="row mt-4 ">
           {posts ? (
