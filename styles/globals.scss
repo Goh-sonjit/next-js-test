@@ -19,7 +19,7 @@ body {
    
 //Global scrollbar
 ::-webkit-scrollbar {
-  width: 7px;
+  width: 5px;
 }
 
 /* Track */
@@ -196,16 +196,16 @@ display: none;
   .dropdown-toggle::after {
     margin-top: 2px;
     font-size: 18px;
-    color: rgb(210, 209, 214);
+    color: rgb(147, 146, 152);
     float: right;
   }
   .dropdown-menu {
     background-color: #ffffff;
     color: white;
-    font-size: 14px;
+    font-size: 16px;
     border-radius: 0px;
     max-height: 260px;
-    max-width: fit-content;
+    max-width:300px;
     overflow: scroll;
     padding: 0%;
     overflow-x: hidden;

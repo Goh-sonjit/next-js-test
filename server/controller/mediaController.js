@@ -69,7 +69,7 @@ exports.SearchData = catchError(async (req, res, next) => {
             sql = "SELECT DISTINCT * FROM " + table_name + " WHERE city_name='" + city_name + "'";
         } else {
             const userID = user.id;
-            sql = "SELECT DISTINCT media.*, cart.campaigid, cart.userid, cart.isDelete FROM " + table_name + " AS media LEFT JOIN goh_shopping_carts_item AS cart ON media.code=cart.mediaid AND cart.userid = '" + userID + "' WHERE media.city_name LIKE '" + city_name + "%' ORDER BY `cart`.`userid` DESC ";
+            sql = "SELECT DISTINCT media.*, cart.campaigid, cart.userid, cart.isDelete FROM " + table_name + " AS media LEFT JOIN goh_shopping_carts_item AS cart ON media.code=cart.mediaid AND cart.userid = '" + userID + "' WHERE media.city_name = '" + city_name + "' ORDER BY `cart`.`userid` DESC ";
          }
         const data = await client.get(key)
     if (data) {

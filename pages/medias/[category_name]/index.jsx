@@ -1,7 +1,6 @@
 import Fixednavbar from "@/components/navbar/fixednavbar";
 import React, {  useContext,useState, useEffect } from "react";
 import { useRouter } from "next/router";
-import styles from "../../../styles/mediaN.module.scss";
 import { AccountContext } from "@/allApi/apicontext";
 import { Dropdown, DropdownButton } from "react-bootstrap";
 import {MdOutlineLocationOn } from "react-icons/md";
@@ -10,6 +9,7 @@ import { CityNameImage, mediaApi, addItem, removeItem, LocationFilterApi, illumi
 import Mediacard from "./cards";
 import Medialogo from "@/components/mediaBranding";
 import OverView from "@/pages/[category_name]/overView";
+import styles from "../../../styles/mediaN.module.scss";
 
 const Media = () => {
   const router = useRouter();
@@ -26,7 +26,7 @@ const Media = () => {
   const [locationData, setlocationData] = useState([]);
   const [categoryData, setcategoryData] = useState([]);
 
-
+  const [ ilocationvalue, setilocationValue] = useState("");
   const [filtervalue, setFilterValue] = useState("");
   const [categoryvalue, setcategoryValue] = useState("");
 
@@ -53,9 +53,11 @@ const Media = () => {
   }
 
   const getData = async () => {
+   
     const data = await mediaApi(category_name);
     setSearch(data);
   };
+  
   const apiforFillters = async () => {
       const data = await mediaApi(category_name);
       setMediadata(data);
@@ -75,20 +77,28 @@ const Media = () => {
   let ILLUMINATION;
   const allIllumations = mediaData.map((illumation) => illumation.illumination);
   ILLUMINATION = [...new Set(allIllumations)];
+
+ 
   async function categoryFilter(cate) {
     setcategoryValue(cate);
     const data = await subCategoryFilterApi(
       category_name,
       cate,
     );
+    setilocationValue("")
+    setFilterValue("")
     setSearch(data);
   }
 
+
   async function locationFilter(loca) {
+    setilocationValue(loca)
     const data = await LocationFilterApi(
       category_name,
       loca
     );
+    setcategoryValue("");
+    setFilterValue("")
     setSearch(data);
   }
 
@@ -98,6 +108,8 @@ const Media = () => {
       category_name,
       cate
        );
+       setilocationValue("")
+       setcategoryValue("");
        setSearch(data);
   }
   const onChange = async (e) => {
@@ -109,12 +121,10 @@ const Media = () => {
 
   useEffect(() => {
     getData();
-    // apiforFillters()
-  }, [category_name, value]);
-  useEffect(() => {
     apiforFillters()
-  }, [category_name, value]);
-
+    // apiforFillters()
+  }, []);
+  
   // const categorytag = getCookie("categorytag");
 
   const addonCart = async (e) => {
@@ -168,12 +178,13 @@ const Media = () => {
     }
   };
 
-console.log(noOfLogo);
+
   const onSearch = async(searchCity) => {
     setValue(searchCity);
     const data = await mediaDataApi(category_name, searchCity)
    setSearch(data);
     setFocus(false);
+    router.push(`/medias/${value}`);
   };
 
   return (
@@ -211,6 +222,7 @@ console.log(noOfLogo);
               placeholder="Search Cities"
               onChange={(e) => onChange(e.target.value)}
               value={value}
+              
               // onBlur={() => setFocus(false)}
               autoComplete="off"
               
@@ -222,10 +234,13 @@ console.log(noOfLogo);
             </div>
           </form>
 
+
           {/* Illumination type  */}
 
           <DropdownButton
-            title="Illumination"
+          className="map-filter-drop"
+            title={filtervalue? filtervalue : "Media type"}
+            
             id={styles.select_media_box}
             // onSelect={(e) => setUserType(e)}
             drop="down-centered"
@@ -247,7 +262,8 @@ console.log(noOfLogo);
           {/* Category */}
 
           <DropdownButton
-            title="Category"
+            title={categoryvalue ? categoryvalue : "Category type"}
+            className="map-filter-drop"
             id={styles.select_media_box}
             // onSelect={(e) => setUserType(e)}
             drop="down-centered"
@@ -267,9 +283,11 @@ console.log(noOfLogo);
           {/* Location */}
 
           <DropdownButton
-            title="Location"
+  
+            className="map-filter-drop"
             id={styles.select_media_box}
-            // onSelect={(e) => setUserType(e)}
+            title={ilocationvalue?ilocationvalue.toUpperCase() :"Location"}
+   
             drop="down-centered"
           >
             {/* {ILLUMINATION.map((el, i) => ( */}
@@ -285,9 +303,9 @@ console.log(noOfLogo);
             {/* ))} */}
           </DropdownButton>
 
-
+     
         </section>
-        <section className="my-2 p-2">
+        <section className="my-2 my-md-2 p-2">
           <Mediacard slice={slice} addonCart={addonCart} removefromCart={removefromCart} />
         </section>
         <section>
