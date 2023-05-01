@@ -66,7 +66,7 @@ form.nosubmit {
 
 input.nosubmit {
   border-radius: 6px;
-  background-color: #E9E9E9 !important;
+  background-color: #e9e9e9 !important;
   width: 18vw;
   height: 36px;
   font-size: 1rem;
@@ -81,9 +81,9 @@ input.nosubmit {
 
 .card_media {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr ;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  box-sizing: border-box;
   .project {
-    
     width: 19.5vw;
     margin-bottom: 10px;
     vertical-align: top;
@@ -98,7 +98,7 @@ input.nosubmit {
     position: relative;
     display: inline-block;
     width: 19vw;
-  margin: 0px 10px;
+    margin: 0px 10px;
     border-radius: 6px;
   }
   .project .figure:hover {
@@ -121,14 +121,12 @@ input.nosubmit {
     border: 0;
     width: 100%;
   }
- 
 
   figcaption .project_details {
     display: block;
-    font-size: .9rem;
+    font-size: 0.9rem;
     font-weight: 400;
     color: #000000;
-
     width: 100%;
     margin-bottom: 4px;
     overflow: hidden;
@@ -145,7 +143,7 @@ input.nosubmit {
   }
 
   figcaption .project_creator {
-    font-size: .9rem;
+    font-size: 0.9rem;
     color: #20344d;
     display: block;
   }
@@ -171,31 +169,6 @@ input.nosubmit {
     height: 5vh;
     width: 5vw;
   }
-
-  // @media screen and (max-width: 1366px) {
-  //   .project {
-  //     margin: 8px 16px;
-  //     width: 285px;
-  //   }
-
-  //   .project .figure {
-  //     width: 308px;
-  //   }
-  //   .img_responsive_media {
-  //     height: 168px;
-  //   }
-  // }
-  // @media screen and (max-width: 1024px) {
-  //   .project {
-    
-  //     width: 250px;
-  //   }
-
-  //   .project .figure {
-  //     width: 250px;
-  //   }
-  
-  // }
 }
 .load_button {
   width: 140px;
@@ -214,4 +187,66 @@ input.nosubmit {
   background-color: #212121 !important;
   --moz-transition: all 0.4s ease-in-out;
   transition: all 0.4s ease-in-out;
+}
+#select_location_icon {
+  margin-bottom: 3px;
+  font-size: 18px;
+}
+
+@media screen and (max-width: 600px) {
+  #select_media_box {
+    display: none;
+  }
+  input.nosubmit {
+  
+    width: 90vw;
+    height: 25px;
+    font-size: .9rem;
+
+    padding: 9px 4px 9px 40px;
+   
+  }
+  
+  .service {
+    overflow: scroll;
+    scroll-behavior: smooth;
+    h6 {
+      font-size: 0.5rem;
+    }
+
+    .service_Icon_cnt {
+      padding: 0px;
+    }
+    .service_Icon {
+      height: 2.7vh;
+    }
+  }
+  .card_media {
+    grid-template-columns: repeat(1, 1fr);
+
+    .project {
+      width: 88vw;
+      margin-bottom: 5px;
+    }
+
+    .project .figure {
+      width: 88vw;
+      margin: 0px 5px;
+    }
+
+    .img_responsive_media {
+      height: 15vh;
+    }
+
+    .project .figure figcaption {
+      position: relative;
+      padding: 3px 8px 6px;
+    }
+
+    .addonCart {
+      margin-top: -10px;
+      height: 4vh;
+      width: 5vw;
+    }
+  }
 }
