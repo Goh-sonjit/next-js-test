@@ -6,7 +6,7 @@ import { AccountContext } from "@/allApi/apicontext";
 import { Dropdown, DropdownButton } from "react-bootstrap";
 import {MdOutlineLocationOn } from "react-icons/md";
 import { setCookie, getCookie } from "cookies-next";
-import { CityNameImage, mediaApi, addItem, removeItem, priceSubIllu, LocationFilterApi, illuminationFilterApi, subCategoryFilterApi } from "@/allApi/apis";
+import { CityNameImage, mediaApi, addItem, removeItem, LocationFilterApi, illuminationFilterApi, subCategoryFilterApi, getAllCity, mediaDataApi } from "@/allApi/apis";
 import Mediacard from "./cards";
 import Medialogo from "@/components/mediaBranding";
 import OverView from "@/pages/[category_name]/overView";
@@ -109,8 +109,11 @@ const Media = () => {
 
   useEffect(() => {
     getData();
+    // apiforFillters()
+  }, [category_name, value]);
+  useEffect(() => {
     apiforFillters()
-  }, [category_name]);
+  }, [category_name, value]);
 
   // const categorytag = getCookie("categorytag");
 
@@ -125,7 +128,7 @@ const Media = () => {
   };
 
   const add = (event) => {
-    data.forEach((element) => {
+    search.forEach((element) => {
       if (element.code == event.code) {
         element.isDelete = 0;
       }
@@ -166,10 +169,13 @@ const Media = () => {
   };
 
 
-  const onSearch = (searchTerm) => {
-    setValue(searchTerm);
+  const onSearch = async(searchCity) => {
+    setValue(searchCity);
+    const data = await mediaDataApi(category_name, searchCity)
+   setSearch(data);
     setFocus(false);
   };
+
   return (
     <>
       <Fixednavbar />
@@ -279,7 +285,7 @@ const Media = () => {
             {/* ))} */}
           </DropdownButton>
         </section>
-        <section className={`my-2 p-2  `}>
+        <section className="my-2 p-2">
           <Mediacard slice={slice} addonCart={addonCart} removefromCart={removefromCart} />
         </section>
         <section>

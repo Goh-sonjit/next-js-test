@@ -18,7 +18,7 @@ exports.city = catchError(async (req, res, next) => {
     if (data) {
      return   res.send(JSON.parse(data))
     } else {
-        const sql = await executeQuery("SELECT DISTINCT name FROM goh_cities " + citystart + "  LIMIT 4", "gohoardi_goh", next)
+        const sql = await executeQuery("SELECT DISTINCT name FROM goh_cities " + citystart + "  LIMIT 8", "gohoardi_goh", next)
         if(sql) {
             client.setEx(`cities${citystart}`, process.env.REDIS_TIMEOUT, JSON.stringify(sql))
             return  res.status(200).json(sql)
@@ -30,9 +30,9 @@ exports.city = catchError(async (req, res, next) => {
 
 exports.SearchData = catchError(async (req, res, next) => {
     const { category_name, city_name } = req.body
-    const city = city_name ? city_name : "delhi";
+
     const cookieData = req.cookies
-    const key = `${category_name + city}`
+    const key = `${category_name + city_name}`
     if (!cookieData) {
         return res.status(204).json({ message: "No Cookie Found" })
     }
@@ -66,10 +66,10 @@ exports.SearchData = catchError(async (req, res, next) => {
     return jwtToken.verify(token, "thisismysecretejsonWebToken", async (err, user) => {
         if (err) {
        
-            sql = "SELECT DISTINCT * FROM " + table_name + " WHERE city_name='" + city + "'";
+            sql = "SELECT DISTINCT * FROM " + table_name + " WHERE city_name='" + city_name + "'";
         } else {
             const userID = user.id;
-            sql = "SELECT DISTINCT media.*, cart.campaigid, cart.userid, cart.isDelete FROM " + table_name + " AS media LEFT JOIN goh_shopping_carts_item AS cart ON media.code=cart.mediaid AND cart.userid = '" + userID + "' WHERE media.city_name = '" + city + "' ORDER BY `cart`.`userid` DESC ";
+            sql = "SELECT DISTINCT media.*, cart.campaigid, cart.userid, cart.isDelete FROM " + table_name + " AS media LEFT JOIN goh_shopping_carts_item AS cart ON media.code=cart.mediaid AND cart.userid = '" + userID + "' WHERE media.city_name LIKE '" + city_name + "%' ORDER BY `cart`.`userid` DESC ";
          }
         const data = await client.get(key)
     if (data) {
@@ -78,7 +78,6 @@ exports.SearchData = catchError(async (req, res, next) => {
     } else {
       const dataLimit = await executeQuery(sql,"gohoardi_goh", next)
             if (dataLimit) {
-          
                 client.setEx(key,   process.env.REDIS_TIMEOUT,JSON.stringify(dataLimit))
                 return res.status(200).json(dataLimit)
             }
@@ -143,6 +142,5 @@ exports.mediaData = catchError(async (req, res, next) => {
     }
     )
 })
-
 
 

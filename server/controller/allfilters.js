@@ -415,6 +415,7 @@ exports.subcategoryFilter = catchError(async(req, res, next) =>{
       default:
         table_name = "goh_media";
     }
+    let cityData = ''
     if(city){
       cityData = " && city_name='"+city+"' "
     }
@@ -500,6 +501,7 @@ exports.illuminationfilter = catchError(async(req, res, next) =>{
       default:
         table_name = "goh_media";
     }
+    let cityData = ''
     if(city){
       cityData = " && city_name='"+city+"' "
     }
