@@ -168,7 +168,7 @@ const Media = () => {
     }
   };
 
-
+console.log(noOfLogo);
   const onSearch = async(searchCity) => {
     setValue(searchCity);
     const data = await mediaDataApi(category_name, searchCity)
@@ -181,7 +181,7 @@ const Media = () => {
       <Fixednavbar />
       <div className=" container-xxl  container-xl container-lg container-md my-5 pt-4 animate__animated  animate__fadeIn ">
         <section
-          className={`my-4 mt-5 p-2 ${styles.service} d-flex text-center`}
+          className={`my-md-4 mt-md-5 p-2 ${styles.service} d-flex text-center`}
         >
           {serviceIcon.map((el, i) => (
             <span
@@ -200,10 +200,10 @@ const Media = () => {
         </section>
         {/* <h1 className={` my-3 ${styles.heading}`}>{categorytag}</h1> */}
         <section
-          className={` p-2 ps-0 my-2 mb-0  ${styles.filter_section} d-flex media-filter-drop`}
+          className={`ms-2 ms-md-0 p-md-2 ps-0 my-3 my-md-2 mb-0  ${styles.filter_section} d-flex media-filter-drop`}
         >
           {/* Search input */}
-          <form className="media-new-search">
+          <form className="media-new-search ">
             <input
               className={styles.nosubmit}
               type="search"
@@ -284,6 +284,8 @@ const Media = () => {
         ))}
             {/* ))} */}
           </DropdownButton>
+
+
         </section>
         <section className="my-2 p-2">
           <Mediacard slice={slice} addonCart={addonCart} removefromCart={removefromCart} />
@@ -300,7 +302,7 @@ const Media = () => {
                       View More
                     </button>
                   )}
-                  {!slice.length <= 16 && <button
+                  {slice.length > 16 && <button
                       className={`${styles.load_button}  ms-5`}
                       onClick={Less}
                     >
