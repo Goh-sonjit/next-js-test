@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import { AccountContext } from "@/allApi/apicontext";
 import { Dropdown, DropdownButton } from "react-bootstrap";
 import {MdOutlineLocationOn } from "react-icons/md";
-import { setCookie, getCookie } from "cookies-next";
+import { setCookie} from "cookies-next";
 import { CityNameImage, mediaApi, addItem, removeItem, LocationFilterApi, illuminationFilterApi, subCategoryFilterApi, getAllCity, mediaDataApi } from "@/allApi/apis";
 import Mediacard from "./cards";
 import Medialogo from "@/components/mediaBranding";
@@ -30,9 +30,6 @@ const Media = () => {
   const [filtervalue, setFilterValue] = useState("");
   const [categoryvalue, setcategoryValue] = useState("");
 
-
-
-  let city_name="delhi"
   const SelectServc = async (obj) => {
     const services = [...serviceIcon];
     services.map((el) => {
@@ -123,7 +120,7 @@ const Media = () => {
     getData();
     apiforFillters()
     // apiforFillters()
-  }, []);
+  }, [category_name]);
   
   // const categorytag = getCookie("categorytag");
 
@@ -186,7 +183,7 @@ const Media = () => {
     setFocus(false);
     router.push(`/medias/${value}`);
   };
-
+  let city_name="delhi"
   return (
     <>
       <Fixednavbar />
