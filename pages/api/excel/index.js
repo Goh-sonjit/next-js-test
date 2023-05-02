@@ -1,7 +1,7 @@
 import nc from 'next-connect'
 import error from '@/server/utils/error'
 import { excel } from '@/server/controller/cartItems'
-import { mediaData } from '@/server/controller/mediaController'
+import { getCityData, mediaData } from '@/server/controller/mediaController'
 
 export const config = {
    api: {
@@ -11,4 +11,5 @@ export const config = {
 const handler = nc({error})
    handler.post(excel)
    handler.patch(mediaData)
+   handler.put(getCityData)
 export default handler

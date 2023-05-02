@@ -1,6 +1,7 @@
 import Fixednavbar from "@/components/navbar/fixednavbar";
 import React, {  useContext,useState, useEffect } from "react";
 import { useRouter } from "next/router";
+import { AccountContext } from "@/allApi/apicontext";
 
 import { setCookie} from "cookies-next";
 import { CityNameImage, mediaApi, addItem, removeItem, LocationFilterApi, illuminationFilterApi, subCategoryFilterApi, getAllCity, mediaDataApi } from "@/allApi/apis";
@@ -8,16 +9,16 @@ import { CityNameImage, mediaApi, addItem, removeItem, LocationFilterApi, illumi
 import MainUi from "@/components/mediaComponents/MainUi";
 
 const Media = () => {
-  const [noOfLogo, setnoOfLogo] = useState(16);
   const router = useRouter();
   const [value, setValue] = useState("");
   const [focus, setFocus] = useState(false);
+  const [serviceIcon, setServiceIcon] = useState(CityNameImage);
+  const [search, setSearch] = useState([]);
   const [locationData, setlocationData] = useState([]);
   const [mediaData, setMediadata] = useState([]);
   const [categoryData, setcategoryData] = useState([]);
-  const [serviceIcon, setServiceIcon] = useState(CityNameImage);
-  const [search, setSearch] = useState([]);
-  const { category_name } = router.query;
+  const [noOfLogo, setnoOfLogo] = useState(16);
+  const { category_name, city } = router.query;
 
 
   const SelectServc = async (obj) => {
@@ -31,41 +32,49 @@ const Media = () => {
         el.value2 = false;
       }
     });
-    router.push(`/medias/${obj.value}`);
+    router.push(`/${obj.value}/${city}`);
     setServiceIcon(services);
   };
 
-
   const getData = async () => {
-    const noofPage = parseInt(noOfLogo + 3)
-    const data = await mediaApi(category_name, noofPage);
+   
+    const data = await mediaDataApi(category_name, city);
     setSearch(data);
   };
+
+
+
+  useEffect(() => {
+    getData();
+    apiforFillters()
+  }, [category_name, city]);
   
+  // const categorytag = getCookie("categorytag");
+
+
+
+  const onSearch = async(searchCity) => {
+    setValue(searchCity);
+    const data = await mediaDataApi(category_name, searchCity)
+   setSearch(data);
+    setFocus(false);
+    router.push(`/${category_name}/${searchCity}`);
+  };
   const apiforFillters = async () => {
-    const data = await mediaApi(category_name, noOfLogo);
+    const data = await mediaDataApi(category_name, city);
     setMediadata(data);
     setlocationData(data);
     setcategoryData(data);
 };
 
-  useEffect(() => {
-    getData();
-    apiforFillters()
-  }, [category_name, noOfLogo]);
-  
-  // const categorytag = getCookie("categorytag");
 
-  const onSearch = async(searchCity) => {
-    setValue(searchCity);
-    setFocus(false);
-    router.push(`/medias/${category_name}/${searchCity}`);
-  };
-  let city=''
+
   return (
     <>
-      <Fixednavbar />
-     <MainUi noOfLogo={noOfLogo} setnoOfLogo={setnoOfLogo} categoryData={categoryData} mediaData={mediaData} locationData={locationData}  setSearch={setSearch} category_name={category_name} search={search} onSearch={onSearch} SelectServc={SelectServc} value={value} focus={focus} serviceIcon={serviceIcon} city={city} setValue={setValue} setFocus={setFocus}/>
+    
+    <Fixednavbar />
+    <MainUi noOfLogo={noOfLogo} setnoOfLogo={setnoOfLogo} categoryData={categoryData} mediaData={mediaData} locationData={locationData}  setSearch={setSearch} category_name={category_name} search={search} onSearch={onSearch} SelectServc={SelectServc} value={value} focus={focus} serviceIcon={serviceIcon} city={city} setValue={setValue} setFocus={setFocus}/>
+
     </>
   );
 };

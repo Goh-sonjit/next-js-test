@@ -375,4 +375,9 @@ export const illuminationFilterApi = async( category_name, illumination, city) =
   return data
 }
 
+export const getCityDataApi = async( city) =>{
+  const {data} = await instance.put('excel',{ city})
+  return data
+}
+
 

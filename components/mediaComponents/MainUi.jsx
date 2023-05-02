@@ -1,9 +1,8 @@
 import React,{useState, useContext} from 'react'
 import Fixednavbar from '../navbar/fixednavbar'
-import { useEffect } from 'react';
 import Mediacard from "./cards";
 import Medialogo from "@/components/mediaBranding";
-import OverView from "@/pages/[category_name]/overView";
+import OverView from "./overView";
 import styles from "@/styles/mediaN.module.scss";
 import { AccountContext } from "@/allApi/apicontext";
 import { Dropdown, DropdownButton } from "react-bootstrap";
@@ -277,7 +276,7 @@ const MainUi = ({noOfLogo, setnoOfLogo, categoryData, mediaData,locationData,set
         <section className="my-2">
         <Medialogo category_name={category_name} city_name={city} />
 
-       <OverView city_name={city}/>
+       {/* <OverView city_name={city}/> */}
         </section>
       </div>
     </>

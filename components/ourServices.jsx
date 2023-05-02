@@ -93,7 +93,7 @@ const Ourservices = () => {
                       {pos.label}
                     </h6>
                     <Link
-                      href={`medias/${pos.value}`}
+                      href={`/${pos.value}`}
                       className="text-decoration-none"
 
                     >

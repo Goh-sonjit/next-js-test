@@ -102,7 +102,7 @@ const Footer = () => {
       city: "mumbai",
     },
   ];
-  console.log(show);
+
   return (
     <>
       <div className=" footerN-content  pb-3  p-0 px-3 px-md-5 py-md-1  pt-md-5 ">
