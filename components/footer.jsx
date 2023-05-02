@@ -18,6 +18,7 @@ import {
 
 const Footer = () => {
   const route = useRouter();
+  const [serviceIcon, setServiceIcon] = useState(CityNameImage);
   const [email, setEmail] = useState([]);
   const { handleClose, handleShow, show} = useContext(AccountContext);
 
@@ -40,9 +41,24 @@ const Footer = () => {
     setCookie("category_name", "traditional-media");
     setCookie("city_name", e);
   };
+
+  const services = [...serviceIcon];
   const direactMedia = (e) => {
     setCookie("category_name", e);
     setCookie("city_name", "delhi");
+    services.map((el) => {
+      if (el.value == e) {
+        el.value2 = true;
+      
+      }
+      if (el.value !== e) {
+        el.value2 = false;
+      }
+    });
+
+    
+    setServiceIcon(services);
+    route.push(`/medias/${e}`);
   };
   const logo = [
     {
@@ -102,7 +118,7 @@ const Footer = () => {
       city: "mumbai",
     },
   ];
-  console.log(show);
+
   return (
     <>
       <div className=" footerN-content  pb-3  p-0 px-3 px-md-5 py-md-1  pt-md-5 ">
@@ -213,19 +229,19 @@ const Footer = () => {
               <h4 className=" f-heading  ">Popular Services</h4>
               <ul className=" pt-md-3   ps-0">
                 {CityNameImage.map((el, i) => (
-                  <Link
-                    key={i}
-                    //  href="#"
-                    href={el.value}
-                    className="text-decoration-none "
-                  >
+                  // <Link
+                  //   key={i}
+                  //   //  href="#"
+                  //   href={el.value}
+                  //   className="text-decoration-none "
+                  // >
                     <li
                       className=" py-md-2  text-decoration-none f-heading-clr"
                       onClick={(e) => direactMedia(el.value)}
                     >
                       {el.label}
                     </li>
-                  </Link>
+                  // </Link>
                 ))}
               </ul>
             </div>
