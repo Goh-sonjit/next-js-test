@@ -34,22 +34,19 @@ const Media = () => {
 
   const getData = async() => {
     const noofPage = parseInt(noOfLogo + 3)
-const categorys = ["inflight-media","traditional-ooh-media","digital-media", "mall-media","office-media","transit-media","airport-media"]
-
-    for(let i = 0; i<categorys.length ; i++){
-      console.log(i);
-      if(categorys[i] == category_name){
-        console.log(categorys[i] , category_name);
-        const data = await mediaApi(category_name, noofPage);
-        setSearch(data);
-        break;
-
-      }else {
-        const data = await getCityDataApi(category_name)
-        setSearch(data);
-
-      }
+    let data = []
+    if(category_name){
+      if(category_name.includes('-')){
+        data = await mediaApi(category_name, noofPage);
+            setSearch(data);
+          
+          }else {
+         data = await getCityDataApi(category_name)
+            setSearch(data);
+    
+          }
     }
+ 
 
    
  

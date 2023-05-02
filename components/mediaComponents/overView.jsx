@@ -1,11 +1,11 @@
 import React from 'react';
 
-const OverView = ({city_name}) => {
+const OverView = () => {
   
   return (
     <div className='container-xxl  container-xl container-lg container-md  my-5 overview-container'>
       <div className='my-5'>
-   <h3 className='fw-bold'>Outdoor Advertising Services {`${city_name.charAt(0).toUpperCase() + city_name.slice(1)}`}  Provide</h3>
+   <h3 className='fw-bold'>Outdoor Advertising Services  Provide</h3>
    <ul className='my-4'>
   <li>Contemporary and high-tech billboards advertisinU</li>
   <li>Bridge-panels AdvertisinU</li>
