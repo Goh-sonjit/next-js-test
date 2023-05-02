@@ -95,7 +95,7 @@ const Sign = ({ googleSignIn, toggleSignUp,sendOtp,  setPassword, afterLogin, pa
         id='noget' >
         Sign up
       </button>{" "}
-      <ToastContainer />
+  
     </div>}
   
     </form>
