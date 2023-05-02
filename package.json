@@ -43,6 +43,7 @@
     "react-places-autocomplete": "^7.3.0",
     "react-responsive-carousel": "^3.2.23",
     "react-select": "^5.7.2",
+    "react-select-search": "^4.1.6",
     "react-slick": "^0.29.0",
     "react-slider": "^2.0.4",
     "react-toastify": "^9.1.1",

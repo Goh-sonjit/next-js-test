@@ -25,7 +25,7 @@ import { getCookie, setCookie, removeCookies } from "cookies-next";
 const Userdetail = () => {
   const route = useRouter();
   const { data: session } = useSession();
-  const { handleClose, handleShow, show, addRemove, initalState } =
+  const {handleShow, addRemove, initalState } =
     useContext(AccountContext);
   const pth = route.asPath;
   const [posts, setPosts] = useState(true);
@@ -109,6 +109,11 @@ const Userdetail = () => {
     }
   }, [scrollY]);
 
+   // const [show, setShow] = useState(false);
+  // const handleClose = () => setShow(false);
+  // const handleShow = () => setShow(true);
+
+ 
   if (value) {
     return (
       <>
@@ -233,7 +238,7 @@ const Userdetail = () => {
             className={`${styles.login_icon} ps-0 p-0  ms-0 mb-1`}
           />
         </div>
-
+{/* 
         <Modal
           show={show}
           onHide={handleClose}
@@ -241,7 +246,7 @@ const Userdetail = () => {
           centered
         >
           <LoginN />
-        </Modal>
+        </Modal> */}
 
         {/* for mobile */}
 
