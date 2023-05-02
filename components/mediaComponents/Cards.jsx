@@ -10,7 +10,13 @@ const Mediacard = ({ slice, addonCart,removefromCart }) => {
     <>
       {slice.length == 0 ? (
         <div className="container ">
-          <Loader />
+         <div className={`${styles.no_data} row  text-center my-3`}>
+                <img
+                  src="../../../images/web_pics/no-data.png"
+                  alt="No Data Found"
+                  className=""
+                />
+              </div>
         </div>
       ) : (
         <div className={styles.card_media}>

@@ -54,8 +54,10 @@ const Fixednavbar = () => {
     setCity(data);
   };
 
- 
+  const [serviceIcon, setServiceIcon] = useState(CityNameImage);
   const mavigatetoMediaPage = (userType, value) => {
+    const services = [...serviceIcon];
+
     if (pathname === "/map" && userType.length > 3 && value.length > 2) {
       setCookie('category_name',userType)
         setCookie('city_name',value)
@@ -64,7 +66,18 @@ const Fixednavbar = () => {
     if (userType.length > 3 && value.length > 2) {
       setCookie("category_name", userType);
       setCookie("city_name", value);
-      route.push(`/${userType}`);
+      services.map((el) => {
+        if (el.value == userType) {
+          el.value2 = true;
+        
+        }
+        if (el.value !== userType) {
+          el.value2 = false;
+        }
+      });
+      
+      setServiceIcon(services);
+      route.push(`/medias/${userType}/${value}`);
     }
   };
 

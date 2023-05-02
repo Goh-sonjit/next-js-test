@@ -250,3 +250,13 @@ input.nosubmit {
     }
   }
 }
+.no_data {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  img {
+    // height: 10vh;
+    width: 20vw;
+  
+  }
+}

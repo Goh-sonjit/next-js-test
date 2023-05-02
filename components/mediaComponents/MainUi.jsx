@@ -277,7 +277,7 @@ const MainUi = ({noOfLogo, setnoOfLogo, categoryData, mediaData,locationData,set
         <section className="my-2">
         <Medialogo category_name={category_name} city_name={city} />
 
-       {city &&  <OverView city_name={city}/>}
+       <OverView city_name={city}/>
         </section>
       </div>
     </>

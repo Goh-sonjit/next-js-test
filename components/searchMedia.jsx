@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
-import { getAllCity } from "@/allApi/apis";
+import { CityNameImage, getAllCity } from "@/allApi/apis";
 import MediaDropDown from "../components/mediaDropdown";
 import Citylocation from "../components/cityLocation";
 import { useRouter } from 'next/router'
@@ -20,12 +20,28 @@ const Searchmedia = () => {
       const data = await getAllCity(cities);
       setCity(data);
     };
+    const [serviceIcon, setServiceIcon] = useState(CityNameImage);
     const mavigatetoMediaPage = (userType, value) => {
-
+    const services = [...serviceIcon];
       if (userType.length > 3 && value.length > 2) {
         setCookie('category_name',userType)
         setCookie('city_name',value)
-        route.push(userType)
+       
+       
+        services.map((el) => {
+          if (el.value == userType) {
+            el.value2 = true;
+          
+          }
+          if (el.value !== userType) {
+            el.value2 = false;
+          }
+        });
+        
+        setServiceIcon(services);
+        route.push(`/medias/${userType}/${value}`);
+
+
         
       }
     };

@@ -17,7 +17,7 @@ const City = () => {
       <div className="container mt-5 ">
         <div className="row">
           <div className="col col-md-4">
-            <Link href={`/delhi`}>
+            <Link href={`/medias/delhi`}>
               <div className="city-img-container "
                  onClick={() =>{setCookie("category_name","traditional-ooh-media"),setCookie("city_name","delhi")}}>
                 <img
@@ -33,7 +33,7 @@ const City = () => {
             </Link>
           </div>
           <div className="col col-md-4 " id="city-gh">
-            <Link href={`/mumbai`}>
+            <Link href={`/medias/mumbai`}>
               <div className="city-img-container "
               
                onClick={() =>{setCookie("category_name","traditional-ooh-media"),setCookie("city_name","mumbai")}}>
@@ -50,7 +50,7 @@ const City = () => {
             </Link>
           </div>
           <div className="col col-md-4">
-            <Link href={`/bengaluru`}>
+            <Link href={`/medias/bengaluru`}>
               <div className="city-img-container"
                onClick={() =>{setCookie("category_name","traditional-ooh-media"),setCookie("city_name","bengaluru")}}>
                 <img
@@ -71,7 +71,7 @@ const City = () => {
       <div className="container mt-4">
         <div className="row">
           <div className="col col-md-4">
-            <Link href={`/chennai`}>
+            <Link href={`/medias/chennai`}>
               <div className="city-img-container"
                onClick={() =>{setCookie("category_name","traditional-ooh-media"),setCookie("city_name","chennai")}}>
                 <img
@@ -88,7 +88,7 @@ const City = () => {
           </div>
 
           <div className="col col-md-4">
-            <Link href={`/hyderabad`}>
+            <Link href={`/medias/hyderabad`}>
               <div className="city-img-container "
                onClick={() =>{setCookie("category_name","traditional-ooh-media"),setCookie("city_name","hyderabad")}}>
                 <img
@@ -104,7 +104,7 @@ const City = () => {
             </Link>
           </div>
           <div className="col col-md-4">
-            <Link href={`/pune`}>
+            <Link href={`/medias/pune`}>
               <div className="city-img-container "
                onClick={() =>{setCookie("category_name","traditional-ooh-media"),setCookie("city_name","pune")}}>
                 <img
