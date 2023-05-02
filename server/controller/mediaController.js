@@ -30,6 +30,7 @@ exports.city = catchError(async (req, res, next) => {
 
 exports.SearchData = catchError(async (req, res, next) => {
     const { category_name, city_name } = req.body
+    const city = city_name ? city_name : "delhi";
 
     const cookieData = req.cookies
     const key = `${category_name + city_name}`
@@ -69,7 +70,7 @@ exports.SearchData = catchError(async (req, res, next) => {
             sql = "SELECT DISTINCT * FROM " + table_name + " WHERE city_name='" + city_name + "'";
         } else {
             const userID = user.id;
-            sql = "SELECT DISTINCT media.*, cart.campaigid, cart.userid, cart.isDelete FROM " + table_name + " AS media LEFT JOIN goh_shopping_carts_item AS cart ON media.code=cart.mediaid AND cart.userid = '" + userID + "' WHERE media.city_name = '" + city_name + "' ORDER BY `cart`.`userid` DESC ";
+            sql = "SELECT DISTINCT media.*, cart.campaigid, cart.userid, cart.isDelete FROM " + table_name + " AS media LEFT JOIN goh_shopping_carts_item AS cart ON media.code=cart.mediaid AND cart.userid = '" + userID + "' WHERE media.city_name = '" + city + "' ORDER BY `cart`.`userid` DESC ";
          }
         const data = await client.get(key)
     if (data) {
@@ -88,9 +89,10 @@ exports.SearchData = catchError(async (req, res, next) => {
 
 
 exports.mediaData = catchError(async (req, res, next) => {
-    const { category_name } = req.body
+    const { category_name, noofPage } = req.body
+    const pagination = noofPage ? noofPage : 8
     const cookieData = req.cookies
-    const key = `${category_name}`
+    const key = `${category_name + pagination}`
     if (!cookieData) {
         return res.status(204).json({ message: "No Cookie Found" })
     }
@@ -124,10 +126,10 @@ exports.mediaData = catchError(async (req, res, next) => {
     return jwtToken.verify(token, "thisismysecretejsonWebToken", async (err, user) => {
         if (err) {
        
-            sql = "SELECT DISTINCT * FROM " + table_name + "";
+            sql = "SELECT DISTINCT * FROM " + table_name + " LIMIT "+pagination+"";
         } else {
             const userID = user.id;
-            sql = "SELECT DISTINCT media.*, cart.campaigid, cart.userid, cart.isDelete FROM " + table_name + " AS media LEFT JOIN goh_shopping_carts_item AS cart ON media.code=cart.mediaid AND cart.userid = '" + userID + "' ORDER BY `cart`.`userid` DESC ";
+            sql = "SELECT DISTINCT media.*, cart.campaigid, cart.userid, cart.isDelete FROM " + table_name + " AS media LEFT JOIN goh_shopping_carts_item AS cart ON media.code=cart.mediaid AND cart.userid = '" + userID + "' ORDER BY `cart`.`userid` DESC LIMIT "+pagination+" ";
          }
         const data = await client.get(key)
     if (data) {

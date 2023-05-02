@@ -44,7 +44,7 @@ const Cart = () => {
     const value = getCookie("permissions");
     if (value) {
       const data = await cartitems();
-console.log(data);
+
       if (data) {
         data.map((obj, i) => {
           obj["days"] = 5;

@@ -15,10 +15,10 @@ export const CityNameImage = [
     label: "InFlight Branding",
     value: "inflight-media",
     value2: false,
-    srcImgCtSlc: "../images/web_pics/final/flight.png",
-    srcImgCt: "../images/web_pics/final/Grey/flight.png",
+    srcImgCtSlc: "../../images/web_pics/final/flight.png",
+    srcImgCt: "../../images/web_pics/final/Grey/flight.png",
     srcImg: "../images/web_pics/tr.jpg",
-    srcImgM: "../images/web_pics/tr.jpg",
+    srcImgM: "../../images/web_pics/tr.jpg",
     icon: <GiCommercialAirplane/>,  
     link: "inflight-media/",
     city: "delhi",
@@ -30,10 +30,10 @@ export const CityNameImage = [
     label: "Traditional OOH Media ",
     value2: false,
     value: "traditional-ooh-media",
-    srcImgCtSlc: "../images/web_pics/final/Tradition_OOH_01.png",
-    srcImgCt: "../images/web_pics/final/Grey/Tradition_OOH.png",
+    srcImgCtSlc: "../../images/web_pics/final/Tradition_OOH_01.png",
+    srcImgCt: "../../images/web_pics/final/Grey/Tradition_OOH.png",
     srcImg: "../images/web_pics/traditional-ooh-media-advertising-near-me.jpg",
-    srcImgM: "../images/web_pics/traditional-ooh-media-advertising.jpg",
+    srcImgM: "../../images/web_pics/traditional-ooh-media-advertising.jpg",
     Link: `/traditional-ooh-media/delhi`,
     icon: <GiAwareness />,
     city: "delhi",
@@ -44,10 +44,10 @@ export const CityNameImage = [
     label: "Digital Media",
     value: "digital-media",
     value2: false,
-    srcImgCtSlc: "../images/web_pics/final/Digital_OOH_Media.png",
-    srcImgCt: "../images/web_pics/final/Grey/Digital_OOH_Media.png",
+    srcImgCtSlc: "../../images/web_pics/final/Digital_OOH_Media.png",
+    srcImgCt: "../../images/web_pics/final/Grey/Digital_OOH_Media.png",
     srcImg: "../images/web_pics/digital-media-hoardings-near-me.jpg",
-    srcImgM: "../images/web_pics/digital-media-hoardings-digital-hoardings.jpg",
+    srcImgM: "../../images/web_pics/digital-media-hoardings-digital-hoardings.jpg",
     Link: `/digital-media/delhi`,
     icon: <GiLaptop />,
     city: "mumbai",
@@ -58,10 +58,10 @@ export const CityNameImage = [
     label: "Mall Media",
     value: "mall-media",
     value2: false,
-    srcImgCtSlc: "../images/web_pics/final/Mall_Media_01.png",
-    srcImgCt: "../images/web_pics/final/Grey/Mall_Media.png",
+    srcImgCtSlc: "../../images/web_pics/final/Mall_Media_01.png",
+    srcImgCt: "../../images/web_pics/final/Grey/Mall_Media.png",
     srcImg: "../images/web_pics/mall-media-advertising-company.jpg",
-    srcImgM: "../images/web_pics/mall-media-advertising-near-me.jpg",
+    srcImgM: "../../images/web_pics/mall-media-advertising-near-me.jpg",
     Link: `/mall-media/delhi`,
     icon: <TbBuildingCommunity />,
     city: "bengaluru",
@@ -72,10 +72,10 @@ export const CityNameImage = [
     label: "Office Branding",
     value: "office-media",
     value2: false,
-    srcImgCtSlc: "../images/web_pics/final/Office_Branding.png",
-    srcImgCt: "../images/web_pics/final/Grey/Office_Branding.png",
+    srcImgCtSlc: "../../images/web_pics/final/Office_Branding.png",
+    srcImgCt: "../../images/web_pics/final/Grey/Office_Branding.png",
     srcImg: "../images/web_pics/office-branding-advertising-company.jpg",
-    srcImgM: "../images/web_pics/office-branding-media-near-me.jpg",
+    srcImgM: "../../images/web_pics/office-branding-media-near-me.jpg",
     Link: `/office-branding/delhi`,
     icon: <ImOffice />,
     city: "pune",
@@ -86,10 +86,10 @@ export const CityNameImage = [
     label: "Transit Media",
     value: "transit-media",
     value2: false,
-    srcImgCtSlc: "../images/web_pics/final/Transit_Media.png",
-    srcImgCt: "../images/web_pics/final/Grey/Transit_Media.png",
+    srcImgCtSlc: "../../images/web_pics/final/Transit_Media.png",
+    srcImgCt: "../../images/web_pics/final/Grey/Transit_Media.png",
     srcImg: "../images/web_pics/transit-media-advertising-in-delhi.jpg",
-    srcImgM: "../images/web_pics/transit-media-advertising-near-me.jpg",
+    srcImgM: "../../images/web_pics/transit-media-advertising-near-me.jpg",
     Link: `/transit-media/delhi`,
     icon: <TfiLayoutMediaCenterAlt />,
     city: "chennai",
@@ -100,10 +100,10 @@ export const CityNameImage = [
     label: "Airport Branding",
     value: "airport-media",
     value2: false,
-    srcImgCtSlc: "../images/web_pics/final/Airport_Branding.png",
-    srcImgCt: "../images/web_pics/final/Grey/Airport_Branding_01.png",
+    srcImgCtSlc: "../../images/web_pics/final/Airport_Branding.png",
+    srcImgCt: "../../images/web_pics/final/Grey/Airport_Branding_01.png",
     srcImg: "../images/web_pics/airport-media-hoardings-near-me.jpg",
-    srcImgM: "../images/web_pics/airport-media-digital-hoardings.jpg",
+    srcImgM: "../../images/web_pics/airport-media-digital-hoardings.jpg",
     Link: `/airport-media/delhi`,
     icon: <GiAirplaneDeparture />,
     city: "hyderabad",
@@ -275,20 +275,6 @@ export const allcompanydata = async () => {
   return data
 }
 
-export const More = async (setnoOfLogo, noOfLogo, search) => {
-  if (search.length >= noOfLogo) {
-    setnoOfLogo(noOfLogo + 9);
-    window.scrollBy(0, 1150);
-  }
-}
-
-export const Less = async (setnoOfLogo, noOfLogo) => {
-  if (noOfLogo > 10) {
-    setnoOfLogo(noOfLogo - 9);
-    window.scrollBy(0, -1550);
-  }
-}
-
 export const singlemnedia = async(meta_title, category_name) =>{
   const { data } = await instance.post("seedetails", {
     meta_title,
@@ -372,8 +358,8 @@ export const latLongApi = async(lat, long) =>{
   })
   return data
 }
-export const mediaApi = async(category_name) =>{
-  const {data} = await instance.patch('excel',{ category_name})
+export const mediaApi = async(category_name, noofPage) =>{
+  const {data} = await instance.patch('excel',{ category_name, noofPage})
   return data
 }
 export const subCategoryFilterApi = async(category_name, subcategory, city) =>{

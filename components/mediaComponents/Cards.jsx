@@ -1,7 +1,7 @@
 import React from "react";
 import { MdLocalOffer } from "react-icons/md";
 import Link from "next/link";
-import styles from "../../../styles/mediaN.module.scss";
+import styles from "@/styles/mediaN.module.scss";
 import { HiOutlineCurrencyRupee } from "react-icons/hi";
 import Loader from "@/components/loader";
 

@@ -168,7 +168,6 @@ exports.iconFilter = catchError(async (req, res, next) => {
 //media filters
 exports.filterData = catchError(async (req, res, next) => {
   const {category_name, illunation, categorys, city_name} = req.body
-  console.log(category_name, illunation, categorys, city_name);
   const SubCategory = categorys.toString()
   const illumantios = illunation.toString()
   const newIllumantion = illumantios.replace(/,/g, "','")
