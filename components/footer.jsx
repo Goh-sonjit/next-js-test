@@ -1,8 +1,10 @@
 import React, { useContext, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import Modal from "react-bootstrap/Modal";
 import { AccountContext } from "@/allApi/apicontext";
 import { FiPhoneCall } from "react-icons/fi";
+import LoginN from "@/pages/login/loginParent";
 import { BiMailSend } from "react-icons/bi";
 import { setCookie } from "cookies-next";
 import { MdLocationOn } from "react-icons/md";
@@ -17,7 +19,7 @@ import {
 const Footer = () => {
   const route = useRouter();
   const [email, setEmail] = useState([]);
-  const { handleShow } = useContext(AccountContext);
+  const { handleClose, handleShow, show} = useContext(AccountContext);
 
   const handelSubmit = async (e) => {
     let count = 0;
@@ -100,7 +102,7 @@ const Footer = () => {
       city: "mumbai",
     },
   ];
-
+  console.log(show);
   return (
     <>
       <div className=" footerN-content  pb-3  p-0 px-3 px-md-5 py-md-1  pt-md-5 ">
@@ -336,6 +338,14 @@ const Footer = () => {
           </p>
         </div>
       </div>
+      <Modal
+          show={show}
+          onHide={handleClose}
+          aria-labelledby="contained-modal-title-vcenter"
+          centered
+        >
+          <LoginN />
+        </Modal>
       <style jsx>
         {`
           #not-work {

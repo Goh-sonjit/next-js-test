@@ -13,7 +13,9 @@ import instance from "@/allApi/axios";
 import { toast, ToastContainer } from "react-toastify";
 import {
   cartitems,
+  mediaDataApi,
   removeItem,
+  userDetails,
 } from "@/allApi/apis";
 import Loader from "@/components/loader";
 import { DateRange } from "react-date-range";
@@ -139,12 +141,13 @@ const Cart = () => {
     0
   );
 
+
   return (
     <>
       <Fixednavbar />
 
       <div
-        className={`container-xxl  container-xl container-lg container-md  ${styles.cart_content} cart-content animate__animated  animate__fadeIn`}
+        className={`container-xxl  container-xl container-lg container-md  ${styles.cart_content} cart-content`}
       >
         <div className="row mt-4 ">
           {posts ? (
@@ -284,15 +287,8 @@ const Cart = () => {
                                                   false
                                                 }
                                                 rangeColors={["#E8DC14"]}
-                                                ranges={state}
-                                                // ranges={[
-                                                //   {
-                                                //     startDate: obj.startDate,
-                                                //     endDate: obj.endDate,
-                                                //     key: "selection",
-                                                //   },
-                                                // ] 
-                                                // }
+                                                ranges={state
+                                                }
                                               />
                                             </Dropdown.Menu>
                                           </Dropdown>
@@ -302,9 +298,7 @@ const Cart = () => {
                                     <div className="col-md-3 col-4 ">
                                       <h6 className={styles.des}>Start date</h6>
                                       <h6 className="pt-2">
-                                        {moment(obj.startDate).format(
-                                          "DD/MM/YY"
-                                        )}
+                                        {moment(obj.startDate).format("DD/MM/YY")}
                                       </h6>
                                     </div>
                                     <div className="col-md-3 col-4 ">
@@ -314,7 +308,9 @@ const Cart = () => {
                                       </h6>
                                     </div>
                                     <div className="col-md-3 col">
+                                      
                                       <h6 className={styles.des}>Total days</h6>
+                                     
                                       <h6 className="">
                                         <input
                                           className={styles.input_2}
@@ -326,12 +322,13 @@ const Cart = () => {
                                             className="text-danger"
                                             id={styles.ereday}
                                           >
-                                            minimum 5
+                                         minimum 5
                                           </span>
                                         ) : (
                                           <></>
                                         )}
                                       </h6>
+                                    
                                     </div>
                                   </div>
                                   <div className="row mt-1">
@@ -449,9 +446,7 @@ const Cart = () => {
                               <span className={styles.tag_head}>
                                 Total Price
                               </span>
-                              <span
-                                className={`my-2 ${styles.tag_headd} float-end`}
-                              >
+                              <span className={`my-2 ${styles.tag_head}`}>
                                 {" "}
                                 <FaRupeeSign
                                   className={styles.rupees_logo}
