@@ -39,7 +39,7 @@ const Searchmedia = () => {
         });
         
         setServiceIcon(services);
-        route.push(`/medias/${userType}/${value}`);
+        route.push(`/${userType}/${value}`);
 
 
         

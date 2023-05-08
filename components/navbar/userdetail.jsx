@@ -135,7 +135,7 @@ const Userdetail = () => {
                 onClick={() => route.push("/profile")}
                   className={`${styles.drop_item} rounded-top  ps-2 pt-2 pb-2 text-light`}
                   >
-                  <CgUserlane className={`mb-1 } text-light`} />
+                  <CgUserlane className={`mb-1 me-1 text-light`} />
                   {user && user.map((el) => el.firstname.toUpperCase())}
                 </Dropdown.Item>
                 <hr className=" m-0" />

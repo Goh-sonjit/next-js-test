@@ -23,7 +23,7 @@ const NavbarDropdown = () => {
     });
 
     setServiceIcon(services);
-    route.push(`/medias/${e}`);
+    route.push(`/${e}`);
   };
   return (
     <>

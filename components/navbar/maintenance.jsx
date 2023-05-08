@@ -14,7 +14,7 @@ const Maintenance = () => {
  
             font-weight: 400;
             color: rgb(48, 47, 47) !important;
-            background-color: #e8dc14 !important;
+            background-color: #FFF212 !important;
       
             padding: 5px 20px !important;
           }

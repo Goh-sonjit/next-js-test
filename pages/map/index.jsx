@@ -118,11 +118,21 @@ const Map = () => {
   //     await setnoOfLogo(noOfLogo - 6);
   //   }
   // };
-
+  const value = getCookie("permissions");
+  useEffect(() => {
+   value ? (router.push("/map"))
+    :(router.push("/"),
+    handleShow()
+    ) 
+   
+  }, []);
 
   useEffect(() => {
     getData();
   }, [city_name, category_name]);
+
+  
+  
 
 
   return (

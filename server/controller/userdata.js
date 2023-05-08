@@ -20,9 +20,11 @@ exports.allcompanyData = catchError(async (req,res, next) => {
 
 exports.Profile = catchError(async (req, res, next) => {
     const userId = req.id;
+
     const search_activity = 'user, phone, campaign_name, start_date,end_date,city,pincode, address,campaign_city,media_type,status, payment_status';
     const sql =await executeQuery("SELECT  " + search_activity + " FROM goh_serach_activities WHERE user='" + userId + "' && status = 1", "gohoardi_goh", next)
-        if (sql) {
+
+    if (sql) {
              req.getItemdata = sql
             next()
         }
@@ -35,11 +37,13 @@ exports.getItemid = catchError(async(req,res, next) => {
     if(sql){   
     const newdata = await alldata(sql, next)
     const data = req.getItemdata;
+   if(newdata){
     for (let i = 0; i < data.length; i++) {
         data[i].meta_title = newdata[i].meta_title;
         data[i].illumination = newdata[i].illumination;
         data[i].subcategory = newdata[i].subcategory;
         }
+   }
         return res.status(200).json({message: data})
     }
   });

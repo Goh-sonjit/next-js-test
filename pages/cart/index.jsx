@@ -1,13 +1,13 @@
 import React, { useState, useEffect, useContext } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useRouter } from "next/router";
-import { AccountContext } from "@/allApi/apicontext";
 import { Dropdown } from "react-bootstrap";
 import Link from "next/link";
 import { RiDeleteBinLine } from "react-icons/ri";
 import { getCookie, removeCookies } from "cookies-next";
 import { FaRupeeSign } from "react-icons/fa";
 import { FaCalendarAlt } from "react-icons/fa";
+import { AccountContext } from "@/allApi/apicontext";
 import styles from "../../styles/cart.module.scss";
 import instance from "@/allApi/axios";
 import { toast, ToastContainer } from "react-toastify";
@@ -28,11 +28,11 @@ const Cart = () => {
   const [Start, setStart] = useState(new Date());
   let defaultEndDate = new Date(new Date().setDate(Start.getDate() + 4));
   const [End, setEnd] = useState(defaultEndDate);
-  const { addRemove, initalState } = useContext(AccountContext);
-  const [posts, setPosts] = useState([]);
+  const { addRemove, initalState,handleShow } = useContext(AccountContext);
   const [price, setPrice] = useState();
   const [daymsg, setDayMsg] = useState(false);
   const [inputDay, setInputDay] = useState(5);
+  const [posts, setPosts] = useState([]);
   const [campainName, setCampains] = useState("");
   const [state, setState] = useState([
     {
@@ -42,8 +42,17 @@ const Cart = () => {
     },
   ]);
 
+  const value = getCookie("permissions");
+
+  useEffect(() => {
+    value ? (route.push("/cart"))
+     :(route.push("/"),
+     handleShow()
+     ) 
+   }, []);
+
+
   const getData = async () => {
-    const value = getCookie("permissions");
     if (value) {
       const data = await cartitems();
 
@@ -56,9 +65,7 @@ const Cart = () => {
       }
 
       setPosts(data);
-    } else {
-      route.push("/");
-    }
+    } 
   };
 
   useEffect(() => {
@@ -161,7 +168,7 @@ const Cart = () => {
                           className={`col-md-9 col-12 ${styles.maincard_hight}`}
                         >
                           <h5
-                            className={`p-2 ps-3 ${styles.news_headings} rounded-2`}
+                            className={`p-2 ps-3 ${styles.news_headings} rounded-2 ${styles.hide_map}`}
                           >
                             Total Items:{" "}
                             <span className=" ms-md-1">
@@ -280,13 +287,10 @@ const Cart = () => {
                                               <DateRange
                                                 editableDateInputs={true}
                                                 minDate={new Date()}
-                                                onChange={(item) =>
-                                                  setState([item.selection])
-                                                }
-                                                moveRangeOnFirstSelection={
-                                                  false
-                                                }
+                                                onChange={(item) =>setState([item.selection])}
+                                                moveRangeOnFirstSelection={false}            
                                                 rangeColors={["#E8DC14"]}
+                                                showPreview={true}
                                                 ranges={state
                                                 }
                                               />
@@ -295,13 +299,13 @@ const Cart = () => {
                                         </div>
                                       </h6>
                                     </div>
-                                    <div className="col-md-3 col-4 ">
+                                    <div className={`col-md-3 col-4 ${styles.hide_map} `}>
                                       <h6 className={styles.des}>Start date</h6>
                                       <h6 className="pt-2">
                                         {moment(obj.startDate).format("DD/MM/YY")}
                                       </h6>
                                     </div>
-                                    <div className="col-md-3 col-4 ">
+                                    <div className={`col-md-3 col-4 ${styles.hide_map} `}>
                                       <h6 className={styles.des}>End date</h6>
                                       <h6 className="pt-2">
                                         {moment(obj.endDate).format("DD/MM/YY")}

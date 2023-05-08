@@ -1,7 +1,21 @@
 import Link from "next/link";
+import React,{useState} from "react";
 import { setCookie } from "cookies-next";
+import { CityNameImage } from "@/allApi/apis";
 const City = () => {
-  
+  const [serviceIcon, setServiceIcon] = useState(CityNameImage);
+
+  const directlink=()=>{
+
+    const services = [...serviceIcon];
+    services.map((el) => {
+   
+        el.value2 = false;
+      
+    });
+    
+    setServiceIcon(services);
+  }
 
   return (
     <div className="citylist m-0 mt-3 mt-md-5  py-md-4">
@@ -19,7 +33,7 @@ const City = () => {
           <div className="col col-md-4">
             <Link href={`/delhi`}>
               <div className="city-img-container "
-                 onClick={() =>{setCookie("category_name","traditional-ooh-media"),setCookie("city_name","delhi")}}>
+                 onClick={() =>{setCookie("category_name","traditional-ooh-media"),setCookie("city_name","delhi"),directlink()}}>
                 <img
                   src="../images/web_pics/home.jpg"
                   className="rounded iimmgg   "
@@ -36,7 +50,7 @@ const City = () => {
             <Link href={`/mumbai`}>
               <div className="city-img-container "
               
-               onClick={() =>{setCookie("category_name","traditional-ooh-media"),setCookie("city_name","mumbai")}}>
+               onClick={() =>{setCookie("category_name","traditional-ooh-media"),setCookie("city_name","mumbai"),directlink()}}>
                 <img
                   src="../images/web_pics/home1.jpg"
                   className="rounded iimmgg "
@@ -52,7 +66,7 @@ const City = () => {
           <div className="col col-md-4">
             <Link href={`/bengaluru`}>
               <div className="city-img-container"
-               onClick={() =>{setCookie("category_name","traditional-ooh-media"),setCookie("city_name","bengaluru")}}>
+               onClick={() =>{setCookie("category_name","traditional-ooh-media"),setCookie("city_name","bengaluru"),directlink()}}>
                 <img
                   src="../images/web_pics/home2.jpg"
                   className="rounded iimmgg  "
@@ -73,7 +87,7 @@ const City = () => {
           <div className="col col-md-4">
             <Link href={`/chennai`}>
               <div className="city-img-container"
-               onClick={() =>{setCookie("category_name","traditional-ooh-media"),setCookie("city_name","chennai")}}>
+               onClick={() =>{setCookie("category_name","traditional-ooh-media"),setCookie("city_name","chennai"),directlink()}}>
                 <img
                   src="../images/web_pics/home3.webp"
                   className=" rounded   iimmgg"
@@ -90,7 +104,7 @@ const City = () => {
           <div className="col col-md-4">
             <Link href={`/hyderabad`}>
               <div className="city-img-container "
-               onClick={() =>{setCookie("category_name","traditional-ooh-media"),setCookie("city_name","hyderabad")}}>
+               onClick={() =>{setCookie("category_name","traditional-ooh-media"),setCookie("city_name","hyderabad"),directlink()}}>
                 <img
                   src="../images/web_pics/home4.jpg"
                   className="rounded iimmgg "
@@ -106,7 +120,7 @@ const City = () => {
           <div className="col col-md-4">
             <Link href={`/pune`}>
               <div className="city-img-container "
-               onClick={() =>{setCookie("category_name","traditional-ooh-media"),setCookie("city_name","pune")}}>
+               onClick={() =>{setCookie("category_name","traditional-ooh-media"),setCookie("city_name","pune"),directlink()}}>
                 <img
                   src="../images/web_pics/home6.jpg"
                   className="rounded iimmgg "

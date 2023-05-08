@@ -37,10 +37,6 @@ const Footer = () => {
       }
     }
   };
-  const direactCity = (e) => {
-    setCookie("category_name", "traditional-media");
-    setCookie("city_name", e);
-  };
 
   const services = [...serviceIcon];
   const direactMedia = (e) => {
@@ -58,7 +54,7 @@ const Footer = () => {
 
     
     setServiceIcon(services);
-    route.push(`/medias/${e}`);
+    route.push(`/${e}`);
   };
   const logo = [
     {
@@ -119,6 +115,18 @@ const Footer = () => {
     },
   ];
 
+  const direactCity = (e)=>{
+    setCookie("category_name", "traditional-media");
+    setCookie("city_name", e);
+    const services = [...serviceIcon];
+    services.map((el) => {
+   
+        el.value2 = false;
+      
+    });
+    
+    setServiceIcon(services);
+  }
   return (
     <>
       <div className=" footerN-content  pb-3  p-0 px-3 px-md-5 py-md-1  pt-md-5 ">

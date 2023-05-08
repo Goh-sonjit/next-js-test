@@ -1,41 +1,42 @@
-import React, { use, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { profileDetails, updateProfilePic, userDetails } from "@/allApi/apis";
-import Campaings from "./userdata";
 import { useRouter } from "next/router";
-import Changepassword from "./changepassword";
 import Companyprofile from "./companyprofile";
+import { AccountContext } from "@/allApi/apicontext";
 import Userprofile from "./userprofile";
-import Campign from "./campign";
-import { FcEditImage } from "react-icons/fc";
-import Profoma from "./profoma";
 import { getCookie } from "cookies-next";
-import Invoice from "./invoice";
-import Announcement from "./announcement";
 import Fixednavbar from "@/components/navbar/fixednavbar";
 
 const Profile = () => {
   const route = useRouter();
   const [profile, setProfile] = useState(false);
   const [companey, setCompaney] = useState(false);
-
+  const {handleShow } = useContext(AccountContext);
   const [user, setUser] = useState([]);
 
   const value = getCookie("permissions");
+
+
+
+  useEffect(() => {
+    value ? (route.push("/profile"))
+     :(route.push("/"),
+     handleShow()
+     ) 
+   }, []);
 
   const getData = async () => {
     if (value) {
       const data = await userDetails();
       setUser(data);
-    } else {
-      route.push("/");
     }
   };
+   
+  
   const userData = async () => {
     if (value) {
       const data = await profileDetails();
       // setPosts(data.message);
-    } else {
-      route.push("/");
     }
   };
 

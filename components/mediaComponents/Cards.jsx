@@ -6,6 +6,7 @@ import { HiOutlineCurrencyRupee } from "react-icons/hi";
 import Loader from "@/components/loader";
 
 const Mediacard = ({ slice, addonCart,removefromCart }) => {
+
   return (
     <>
       {slice.length == 0 ? (

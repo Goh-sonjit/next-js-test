@@ -92,14 +92,9 @@ exports.NearproductByLocation = catchError(async (req, res, next) => {
    if(data){
    return res.send(JSON.parse(data))
    }else{
-    const result = await executeQuery("SELECT * FROM " + table_name + " WHERE location='" + loca + "' && city_name='" + city_name + "' LIMIT 1","gohoardi_goh", next)
+    const result = await executeQuery("SELECT * FROM " + table_name + " WHERE location='" + loca + "' && city_name='" + city_name + "'","gohoardi_goh", next)
      if (result) {
-            const lat = parseFloat(result[0].latitude + parseFloat(`0.00${noOfLogo}`))
-            const long = parseFloat(result[0].longitude + parseFloat(`0.00${noOfLogo}`))
-            const data = await executeQuery("SELECT  * FROM " + table_name + " WHERE  latitude BETWEEN  '" + lat + "' AND  '" + result[0].latitude + "' ||  longitude BETWEEN  '" + result[0].longitude + "'  AND  '" + long + "'", "gohoardi_goh", next)
-                if (data) 
-                    client.setEx(key, process.env.REDIS_TIMEOUT,JSON.stringify(data))
-                    return res.send(data);
+                    return res.send(result);
                 }
             }})
      

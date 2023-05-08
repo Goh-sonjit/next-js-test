@@ -363,7 +363,7 @@ exports.addOnCart = catchError(async (req, res, next) => {
     }
     const token = Object.values(cookieData)[0];
     return jwtToken.verify(token,  "thisismysecretejsonWebToken", async (err, user) => {
-        if (err) {
+        if (err || !token) {
             return res.status(206).json({success:false, message: "Login First" })
         } else {
             const userid = user.id
