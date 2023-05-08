@@ -42,19 +42,12 @@ const Media = (props) => {
       if(category_name.includes('-')){
         data = await mediaApi(category_name, noofPage);
             setSearch(data);
-          
           }else {
          data = await getCityDataApi(category_name)
             setSearch(data);
     
           }
     }
- 
-
-   
- 
- 
-  
   };
   
   const apiforFillters = async () => {
