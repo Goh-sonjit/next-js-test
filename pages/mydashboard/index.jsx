@@ -110,7 +110,7 @@ const Index = () => {
           Accept: "application/json",
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ ID: campingid }),
+        body: JSON.stringify({ ID: campingid }),  
         credentials: "include",
       }).then((data) => {
         response = data;
