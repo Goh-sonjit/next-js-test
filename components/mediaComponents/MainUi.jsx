@@ -236,8 +236,8 @@ const MainUi = ({
                 focus ? "dropdown-menu show ms-2 text-dark" : "dropdown-menu "
               }
             >
-              {citys.map((el) => (
-                <div onClick={() => onSearch(el.name)}>
+              {citys.map((el, i) => (
+                <div onClick={() => onSearch(el.name)} key={i}>
                   {" "}
                   <MdOutlineLocationOn
                     className="icon-clr "

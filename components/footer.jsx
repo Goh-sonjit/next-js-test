@@ -244,6 +244,7 @@ const Footer = () => {
                   //   className="text-decoration-none "
                   // >
                     <li
+                    key={i}
                       className=" py-md-2  text-decoration-none f-heading-clr"
                       onClick={(e) => direactMedia(el.value)}
                     >

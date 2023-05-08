@@ -127,19 +127,23 @@ exports.mediaData = catchError(async (req, res, next) => {
     return jwtToken.verify(token, "thisismysecretejsonWebToken", async (err, user) => {
         if (err) {
        
-            sql = "SELECT DISTINCT * FROM " + table_name + " WHERE price > 1 && NOT price = 'Ask Price' LIMIT "+pagination+"";
+            sql = "SELECT DISTINCT * FROM " + table_name + " WHERE price > 1 AND NOT price = 'Ask Price' LIMIT "+pagination+"";
         } else {
             const userID = user.id;
-            sql = "SELECT DISTINCT media.*, cart.campaigid, cart.userid, cart.isDelete FROM " + table_name + " AS media LEFT JOIN goh_shopping_carts_item AS cart ON media.code=cart.mediaid AND cart.userid = '" + userID + "' ORDER BY `cart`.`userid` DESC LIMIT "+pagination+" WHERE media.price > 1 && NOT media.price = 'Ask Price'";
+            sql = "SELECT DISTINCT media.*, cart.campaigid, cart.userid, cart.isDelete FROM " + table_name + " AS media LEFT JOIN goh_shopping_carts_item AS cart ON media.code=cart.mediaid AND cart.userid = '" + userID + "' AND media.price > 1 AND NOT media.price = 'Ask Price' ORDER BY `cart`.`userid` DESC  LIMIT "+pagination+" ";
          }
         const data = await client.get(key)
     if (data) {
+
        return  res.status(200).json(JSON.parse(data))
     } else {
       const dataLimit = await executeQuery(sql,"gohoardi_goh", next)
+
             if (dataLimit) {
                 client.setEx(key,process.env.REDIS_TIMEOUT,JSON.stringify(dataLimit))
                 return res.status(200).json(dataLimit)
+             }else{
+                return res.send("No Data") 
             }
     }    
     }
@@ -160,6 +164,8 @@ exports.getCityData = catchError(async (req,res, next) => {
             if(result){
                 // client.setEx(key,process.env.REDIS_TIMEOUT,JSON.stringify(result))
              return res.send(result)
+            }else{
+                return res.send("No Data") 
             }
     // }
     })
