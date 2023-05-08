@@ -34,7 +34,7 @@ const Userprofile = ({user}) => {
   };
 
   useEffect(() => {
-    setState({ ...user[0] });
+    setState({...user[0]});
   }, [user]);
 
   return (
@@ -45,7 +45,7 @@ const Userprofile = ({user}) => {
             <form onSubmit={handelSubmit}>
               <div className="col-md-12">
                 <div className="form-group ">
-                  <label for="firstname" className="ps-2">Name</label>
+                  <label htmlFor="firstname" className="ps-2">Name</label>
                   <Form.Control
                     type="text"
                     className="form-control"
@@ -57,7 +57,7 @@ const Userprofile = ({user}) => {
                   />
                 </div>
                 <div className="form-group my-3">
-                  <label for="email" className="ps-2">E-mail</label>
+                  <label htmlFor="email" className="ps-2">E-mail</label>
                   <Form.Control
                     type="text"
                     className="form-control"
@@ -69,7 +69,7 @@ const Userprofile = ({user}) => {
                 </div>
 
                 <div className="form-group my-3">
-                  <label for="phonenumber" className="ps-2">Phone No.</label>
+                  <label htmlFor="phonenumber" className="ps-2">Phone No.</label>
                   <Form.Control
                     type="number"
                     className="form-control"
@@ -80,7 +80,7 @@ const Userprofile = ({user}) => {
                   />
                 </div>
                 <div className="form-group my-3">
-                  <label for="newPassword" className="ps-2">New Password</label>
+                  <label htmlFor="newPassword" className="ps-2">New Password</label>
                   <Form.Control
                     type="password"
                     className="form-control"
@@ -91,7 +91,7 @@ const Userprofile = ({user}) => {
                   />
                 </div>
                 <div className="form-group my-3">
-                  <label for="confirmPassword" className="ps-2">Confirm Password</label>
+                  <label htmlFor="confirmPassword" className="ps-2">Confirm Password</label>
                   <Form.Control
                     type="password"
                     className="form-control"

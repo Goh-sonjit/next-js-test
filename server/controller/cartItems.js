@@ -400,7 +400,7 @@ exports.campaineId = catchError(async (req,res, next) => {
 })
 
 exports.editCart = catchError(async (req, res, next) => {
-    const { campingid , posts} = req.body;
+    const { campingid , campaingn} = req.body;
     const userId = req.id;
     let promises = [];
     if (!userId) {
@@ -409,7 +409,7 @@ exports.editCart = catchError(async (req, res, next) => {
         const data = await executeQuery("SELECT * FROM tblcontacts WHERE userid='" + userId + "'", "gohoardi_crmapp", next)
             if (data) {
 
-                posts.map((el) => {
+                campaingn.map((el) => {
                     promises.push(
                         new Promise(async (resolve,reject ) => {
                     const sql = await executeQuery(`UPDATE goh_serach_activities SET status=0 WHERE campaign_name LIKE '%`+campingid+`'`, "gohoardi_goh",next);  

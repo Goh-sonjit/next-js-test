@@ -53,7 +53,7 @@ const Team = () => {
   <Branding title="Our expert team includes the following Gems" />
  </section>
    
-      <section className="">
+      <section>
         <div className="team-area  pt-0 mb-5 mt-5">
           <div className="container">
  <h6><span  onClick={()=>route.push("/")} className="bredcamp">Home</span><MdKeyboardArrowRight/><span className="bredcamp text-secondary">Team</span></h6>

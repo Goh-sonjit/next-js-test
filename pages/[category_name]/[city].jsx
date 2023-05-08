@@ -75,7 +75,7 @@ const Media = (props) => {
   return (
     <>
      <Head>
-        {Metatag.map((el, i) => {
+        {Metatag.map((el) => {
           if (category_name === el.value) {
             return (
               <>

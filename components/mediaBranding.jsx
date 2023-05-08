@@ -8,9 +8,9 @@ const Medialogo = ({ category_name, city_name }) => {
           {CityNameImage.map((el, i) => {
             if (category_name === el.value || category_name === el.city) {
               return (
-                <>
+                <div key={i}>
                   {" "}
-                  <img key={i} src={el.srcImgM} alt={el.srcImg} />
+                  <img  src={el.srcImgM} alt={el.srcImg} />
                   <div className="centered">
                     <h1>
                       About {el.label}
@@ -31,7 +31,7 @@ const Medialogo = ({ category_name, city_name }) => {
                       providing fully managed hoarding advertising services.
                     </p>
                   </div>
-                </>
+                </div>
               );
             }
           })}

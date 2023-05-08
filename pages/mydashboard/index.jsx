@@ -132,13 +132,13 @@ const Index = () => {
 
       // Trigger the download
       a.click();
-    } catch (err) {
+    } catch (err) {    
       return false;
     }
   };
 
-  const editCart = async () => {
-    // const {data} = await instance.put("medias",{campingid , campaingn});
+  const editCart = async (e) => {
+    const {data} = await instance.put("medias",{campingid , campaingn});
     route.push("/cart");
   };
 
@@ -152,11 +152,11 @@ const Index = () => {
    
       if (obj.campaign_name === text && obj.select==true ) {
         obj.select = false;
-        console.log("222")
+
       }
     else if (obj.campaign_name === text && obj.select==false) {
         obj.select = true;
-        console.log("abc")
+
       }
       if (obj.campaign_name !== text) {
         obj.select = false;
@@ -165,7 +165,6 @@ const Index = () => {
 
     setCampaingnName(data);
   };
-
   // const [showMenu, setShowMenu] = useState(false);
   // function handleMouseEnter(id) {
   //   // const data = [...campaingnName]
@@ -280,7 +279,7 @@ const Index = () => {
                               PPT
                             </button>
                    
-                            <RiEdit2Fill className={`${styles.edit} ms-4 `}  onClick={editCart}/>
+                            <RiEdit2Fill className={`${styles.edit} ms-4 `}  onClick={(e) =>editCart(data.campaign_name.split("-")[1])}/>
                             <ToastContainer />
                           </div>
                         </h5>
