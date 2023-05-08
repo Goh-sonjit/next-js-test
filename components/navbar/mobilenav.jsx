@@ -13,8 +13,8 @@ const Mobilenav = () => {
 
   return (
     
-    <div className='mbilview'>
-      <div className={`${styles.mobilenav} fixed-top`}>
+    <div className='mbilview '>
+      <div className={`${styles.mobilenav} fixed-top ps-1 pe-1`}>
          <span className="m-1" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">
             <MdMenu className={`${styles.search_logo} `}/>
           </span>
