@@ -102,19 +102,19 @@ const MainUi = ({
     if(category_name !=="" && city!=="" ){
       router.push({
         pathname: `/${category_name}/${city}`,
-        query: {category:loca},
+        query: {location:loca},
       })
       }
     else if(category_name !=="" && city =="" ){
         router.push({
           pathname: `/${category_name}`,
-          query: {category:loca},
+          query: {location:loca},
         })
         }
     else if(city !=="" && category_name ==""){
           router.push({
             pathname: `/${city}`,
-            query: {category:loca},
+            query: {location:loca},
           })
           }
   }
@@ -128,19 +128,19 @@ const MainUi = ({
     if(category_name !=="" && city!=="" ){
       router.push({
         pathname: `/${category_name}/${city}`,
-        query: {category:cate},
+        query: {illumination:cate},
       })
       }
     else if(category_name !=="" && city =="" ){
         router.push({
           pathname: `/${category_name}`,
-          query: {category:cate},
+          query: {illumination:cate},
         })
         }
     else if(city !=="" && category_name ==""){
           router.push({
             pathname: `/${city}`,
-            query: {category:cate},
+            query: {illumination:cate},
           })
           }
   }
@@ -253,7 +253,7 @@ const MainUi = ({
 
           <DropdownButton
             className="map-filter-drop"
-            title={filtervalue ? filtervalue : "Media type"}
+            title={filtervalue ? filtervalue : "Illumination type"}
             id={styles.select_media_box}
             // onSelect={(e) => setUserType(e)}
             drop="down-centered"

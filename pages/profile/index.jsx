@@ -85,8 +85,8 @@ const Profile = () => {
   return (
     <>
       <Fixednavbar />
-      <div className=" container-xxl  container-xl container-lg container-md my-5 prf-content animate__animated  animate__fadeIn">
-        <div className="row  p-5 ">
+      <div className=" container-xxl  container-xl container-lg container-md my-md-5 my-4 prf-content animate__animated  animate__fadeIn">
+        <div className="row  p-md-5  p-3">
         <div className="col-md-3 p-2 pt-0">
           </div>
           <div className="col-md-9 p-2 pt-0">
@@ -166,6 +166,16 @@ const Profile = () => {
         #photo-upload[type="file"] {
           display: none;
         }
+
+        @media screen and (max-width: 425px) {
+          .card-img-top{
+            width: 30vw;
+          }
+         h1{
+          display:none;
+         }
+        }
+        
         `}
       </style>
     </>
