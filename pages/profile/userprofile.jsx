@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Form } from "react-bootstrap";
 import { updateProfile } from "@/allApi/apis";
 import { toast, ToastContainer } from "react-toastify";
+import instance from "@/allApi/axios";
 
 const initalState = {
   firstname: "",
@@ -10,13 +11,20 @@ const initalState = {
   newPassword: "",
   confirmPassword: ""
 };
-const Userprofile = ({user}) => {
-  const [state, setState] = useState(initalState);
+const Userprofile = () => {
+  const [posts, setPosts] = useState([]);
   const [newPassword, setNewPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
- 
+  
+  const getUser = async () => {
+    const { data } = await instance.get("loginApis");
+    setPosts(data);
+  };
+  useEffect(() => {
+    getUser();
+  }, []);
+  const [state, setState] = useState(initalState);
   const { firstname, phonenumber, email } = state;
-
   const handelSubmit = async (e) => {
     e.preventDefault();
     const data = await updateProfile(firstname, phonenumber,newPassword, confirmPassword);
@@ -34,8 +42,8 @@ const Userprofile = ({user}) => {
   };
 
   useEffect(() => {
-    setState({...user[0]});
-  }, [user]);
+    setState({ ...posts[0] });
+  }, [posts]);
 
   return (
     <>

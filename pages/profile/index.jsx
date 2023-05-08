@@ -16,8 +16,6 @@ const Profile = () => {
 
   const value = getCookie("permissions");
 
-
-
   useEffect(() => {
     value ? (route.push("/profile"))
      :(route.push("/"),
@@ -133,7 +131,7 @@ const Profile = () => {
             <div className="card ">
               {profile ? (
                 <>
-                  <Userprofile user={user}/>
+                  <Userprofile />
                 </>
               ) : (
                 <>
