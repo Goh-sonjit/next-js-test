@@ -1,8 +1,19 @@
 import Fixednavbar from "@/components/navbar/fixednavbar";
-import React, {  useContext,useState, useEffect } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import Head from "next/head";
-import { CityNameImage, mediaApi, addItem, removeItem, LocationFilterApi, illuminationFilterApi, subCategoryFilterApi, getAllCity, mediaDataApi, getCityDataApi } from "@/allApi/apis";
+import {
+  CityNameImage,
+  mediaApi,
+  addItem,
+  removeItem,
+  LocationFilterApi,
+  illuminationFilterApi,
+  subCategoryFilterApi,
+  getAllCity,
+  mediaDataApi,
+  getCityDataApi,
+} from "@/allApi/apis";
 
 import MainUi from "@/components/mediaComponents/MainUi";
 const Media = (props) => {
@@ -19,7 +30,6 @@ const Media = (props) => {
   const [search, setSearch] = useState([]);
   const { category_name } = router.query;
 
-
   const SelectServc = async (obj) => {
     const services = [...serviceIcon];
     services.map((el) => {
@@ -32,55 +42,47 @@ const Media = (props) => {
     });
     router.push(`/${obj.value}`);
     setServiceIcon(services);
+    setnoOfLogo(16)
   };
 
-
-  const getData = async() => {
-    const noofPage = parseInt(noOfLogo + 3)
-    let data = []
-    if(category_name){
-      if(category_name.includes('-')){
+  const getData = async () => {
+    const noofPage = parseInt(noOfLogo + 3);
+    let data = [];
+    if (category_name) {
+      if (category_name.includes("-")) {
         data = await mediaApi(category_name, noofPage);
-            setSearch(data);
-          
-          }else {
-         data = await getCityDataApi(category_name)
-            setSearch(data);
-    
-          }
+        setSearch(data);
+      } else {
+        data = await getCityDataApi(category_name);
+        setSearch(data);
+      }
     }
- 
-
-   
- 
- 
-  
   };
-  
+
   const apiforFillters = async () => {
     const data = await mediaApi(category_name, noOfLogo);
     setMediadata(data);
     setlocationData(data);
     setcategoryData(data);
-};
+  };
 
   useEffect(() => {
     getData();
-    apiforFillters()
+    apiforFillters();
   }, [category_name, noOfLogo]);
-  
+
   // const categorytag = getCookie("categorytag");
 
-  const onSearch = async(searchCity) => {
+  const onSearch = async (searchCity) => {
     setValue(searchCity);
     setFocus(false);
     router.push(`/${category_name}/${searchCity}`);
   };
-  let city=''
-  
+  let city = "";
+
   return (
     <>
-     <Head>
+      <Head>
         {Metatag.map((el, i) => {
           if (category_name === el.value) {
             return (
@@ -108,7 +110,24 @@ const Media = (props) => {
         })}
       </Head>
       <Fixednavbar />
-     <MainUi noOfLogo={noOfLogo} setnoOfLogo={setnoOfLogo} categoryData={categoryData} mediaData={mediaData} locationData={locationData}  setSearch={setSearch} category_name={category_name} search={search} onSearch={onSearch} SelectServc={SelectServc} value={value} focus={focus} serviceIcon={serviceIcon} city={city} setValue={setValue} setFocus={setFocus}/>
+      <MainUi
+        noOfLogo={noOfLogo}
+        setnoOfLogo={setnoOfLogo}
+        categoryData={categoryData}
+        mediaData={mediaData}
+        locationData={locationData}
+        setSearch={setSearch}
+        category_name={category_name}
+        search={search}
+        onSearch={onSearch}
+        SelectServc={SelectServc}
+        value={value}
+        focus={focus}
+        serviceIcon={serviceIcon}
+        city={city}
+        setValue={setValue}
+        setFocus={setFocus}
+      />
     </>
   );
 };
