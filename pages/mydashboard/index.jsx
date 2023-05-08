@@ -61,6 +61,7 @@ const Index = () => {
   }, []);
 
   const excel = async () => {
+    console.log(campingid);
     try {
       // Make a request to the server to download the file
       let response;
