@@ -9,7 +9,7 @@ import Fixednavbar from "@/components/navbar/fixednavbar";
 
 const Profile = () => {
   const route = useRouter();
-  const [profile, setProfile] = useState(false);
+  const [profile, setProfile] = useState(true);
   const [companey, setCompaney] = useState(false);
   const {handleShow } = useContext(AccountContext);
   const [user, setUser] = useState([]);
@@ -63,6 +63,25 @@ const Profile = () => {
     }
   };
 
+
+  var welcome;  
+  var date = new Date();  
+  var hour = date.getHours();  
+  var minute = date.getMinutes();  
+  var second = date.getSeconds();  
+  if (minute < 10) {  
+    minute = "0" + minute;  
+  }  
+  if (second < 10) {  
+    second = "0" + second;  
+  }  
+  if (hour < 12) {  
+    welcome = "Good morning";  
+  } else if (hour < 17) {  
+    welcome = "Good afternoon";  
+  } else {  
+    welcome = "Good evening";  
+  }  
   return (
     <>
       <Fixednavbar />
@@ -72,7 +91,7 @@ const Profile = () => {
           </div>
           <div className="col-md-9 p-2 pt-0">
 
-          <h1 className="text-center fw-bold ">Good Afternoon </h1>
+          <h1 className="text-center fw-bold ">{welcome}</h1>
           </div>
           <div className="col-md-3 p-2 pt-0 text-center">
    

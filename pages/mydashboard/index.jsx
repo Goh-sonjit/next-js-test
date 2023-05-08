@@ -1,10 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState,useContext } from "react";
 import { BsFillCircleFill } from "react-icons/bs";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import { RiEdit2Fill } from "react-icons/ri";
 import {MdOutlineCampaign} from "react-icons/md";
 import {AiOutlineApartment} from "react-icons/ai";
+import instance from "@/allApi/axios";
+import {GiNothingToSay} from "react-icons/gi";
 import {TbFileInvoice}  from "react-icons/tb";
+import { AccountContext } from "@/allApi/apicontext";
+import { getCookie } from "cookies-next";
 import Link from "next/link";
 import styles from "../../styles/dashboard.module.scss";
 import { toast, ToastContainer } from "react-toastify";
@@ -13,12 +17,22 @@ import Fixednavbar from "@/components/navbar/fixednavbar";
 import { profileDetails, userDetails } from "@/allApi/apis";
 
 const Index = () => {
-  const router = useRouter();
+  const route = useRouter();
   const [campings, setCampings] = useState();
   const [campingid, setCampingid] = useState();
   const [posts, setPosts] = useState([]);
+  const {handleShow } = useContext(AccountContext);
   const [campaingn, setCampaign] = useState([]);
   const [campaingnName, setCampaingnName] = useState([]);
+  const value = getCookie("permissions");
+
+  useEffect(() => {
+    value ? (route.push("/mydashboard"))
+     :(route.push("/"),
+     handleShow()
+     ) 
+   }, []);
+
 
   const profilData = async () => {
     const data = await userDetails();
@@ -124,8 +138,8 @@ const Index = () => {
   };
 
   const editCart = async () => {
-    // const {data} = await instance.put("medias",{campingid , posts});
-    // router.push("/cart");
+    // const {data} = await instance.put("medias",{campingid , campaingn});
+    route.push("/cart");
   };
 
   const getData = (text) => {
@@ -178,14 +192,38 @@ const Index = () => {
   //   // setCampaingnName(data)
   // }
 
+  const [camp,setCamp]=useState(true)
+  const [pay,setpay]=useState(false)
+  const [notif,setNotif]=useState(false)
+
+  const showCamp=()=>{
+    setCamp(true)
+    setpay(false)
+    setNotif(false)
+  };
+
+  const showpay=()=>{
+    setCamp(false)
+    setpay(true)
+    setNotif(false)
+  };
+
+  const showNoti=()=>{
+    setCamp(false)
+    setpay(true)
+    setNotif(false)
+  };
+
+
+
   return (
     <>
       <Fixednavbar />
-      <div className=" container-xxl  container-xl container-lg container-md my-5 pt-2  pt-md-5">
+      <div className=" container-xxl  container-xl container-lg container-md my-5 pt-2  pt-md-5 animate__animated  animate__fadeIn">
         <div className={` p-md-3 ${styles.options}`}>
-          <button> <AiOutlineApartment className={styles.options_icon}/>Campaigns</button>
-          <button> <TbFileInvoice className={styles.options_icon}/>Invoice & Payments</button>
-          <button><MdOutlineCampaign className={styles.options_icon3}/>Notification</button>
+          <button onClick={showCamp} aria-expanded={camp}> <AiOutlineApartment className={styles.options_icon}  />Campaigns</button>
+          <button onClick={showpay} aria-expanded={pay}> <TbFileInvoice className={styles.options_icon}   />Invoice & Payments</button>
+          <button  onClick={showNoti} aria-expanded={notif}><MdOutlineCampaign className={styles.options_icon3} />Notification</button>
         </div>
         <div className="row  p-md-3 ">
     
@@ -195,8 +233,9 @@ const Index = () => {
                 role="tabpanel"
                 className="tab-pane active row "
                 id={styles.booked_media}
-              >
-                    <input
+
+              >{camp?
+              <>  <input
                 type="text"
                 autoComplete="off"
                 placeholder="Search by name"
@@ -206,7 +245,7 @@ const Index = () => {
                   let abc = "a" + data.campaign_name;
                   return (
                     <div
-                      className={`${styles.campaign_box} mt-2`}
+                      className={`${styles.campaign_box} mt-2 animate__animated  animate__fadeIn`}
                       key={index}
                       // aria-expanded={data.select}
                 
@@ -280,7 +319,24 @@ const Index = () => {
                       </div>
                     </div>
                   );
-                })}
+                })} </>
+                :
+                 <>
+                {pay?
+                <>
+<h3 className="text-center p-3 animate__animated  animate__fadeIn">Nothing to show <GiNothingToSay /></h3>
+                 </>: 
+                 <>
+                <h3 className="text-center p-3 animate__animated  animate__fadeIn">Nothing to show <GiNothingToSay /></h3>
+                
+                 </>
+
+                }
+                
+                </>
+
+              }
+              
               </div>
             </div>
           </div>
