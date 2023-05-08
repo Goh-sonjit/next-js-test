@@ -100,8 +100,7 @@ const City = () => {
               </div>
             </Link>
           </div>
-
-          <div className="col col-md-4">
+          <div className="col col-md-4" id="citygh">
             <Link href={`/hyderabad`}>
               <div className="city-img-container "
                onClick={() =>{setCookie("category_name","traditional-ooh-media"),setCookie("city_name","hyderabad"),directlink()}}>
@@ -231,8 +230,9 @@ const City = () => {
           
         }
         @media screen and (max-width: 425px) {
-          #city_gh{
-            padding: 0px;
+          #citygh{
+            
+            padding: 0px!important ;
           }
           h1 {
             font-size: 1.6rem;
