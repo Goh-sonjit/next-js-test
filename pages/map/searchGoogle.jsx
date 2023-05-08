@@ -40,9 +40,9 @@ function SearchGoogle({setSearch, search})  {
               <div className={address ? "dropdown-menu show ms-2 text-dark" :"dropdown-menu"  }>
               {/* {loading ? <div>...loading</div> : null} */}
 
-              {suggestions.map(suggestion => (
+              {suggestions.map((suggestion,i) => (
       
-                  <div {...getSuggestionItemProps(suggestion)} >
+                  <div key={i} {...getSuggestionItemProps(suggestion)} >
                    <MdOutlineLocationOn className="icon-clr "   id={styles.select_location_icon}/>   {suggestion.description}
                   </div>
                    ))}
