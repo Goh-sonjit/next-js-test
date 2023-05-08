@@ -1,5 +1,5 @@
-import { Html, Head, Main, NextScript, Script  } from "next/document";
-
+import { Html, Head, Main, NextScript  } from "next/document";
+import Script from 'next/script';
 
 export default function Document() {
   return (
@@ -9,8 +9,8 @@ export default function Document() {
           rel="icon"
           href="../images/web_pics/favicon.png"  
         />
-        <Script strategy="lazyOnload">
-         <Script  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAYkchdPoe5HqvV7RhgrXdC81-d8Mo-uC0&libraries=places"/>
+        <Script strategy="lazyOnload" id="lazyOnload">
+      
           <script>
             {`
           (function(w,d,s,l,i){
@@ -35,6 +35,12 @@ export default function Document() {
       <body>
         <Main />
         <NextScript />
+        <Script
+  id="googlemaps"
+          type="text/javascript"
+          strategy="beforeInteractive"
+          src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAYkchdPoe5HqvV7RhgrXdC81-d8Mo-uC0&libraries=places"
+        />
         <noscript>
           <iframe
             src="https://www.googletagmanager.com/ns.html?id=GTM-T6SRDVL"
