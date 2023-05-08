@@ -79,7 +79,7 @@
     }
     .login_icon {
       background-color: #373435;
-      font-size: 6vw;
+      font-size: 7vw;
     }
   }
 
@@ -116,7 +116,7 @@
 @media screen and (max-width: 425px) {
   .login_icon {
     background-color: rgb(255, 255, 255);
-    font-size: 6vw;
+    font-size: 7vw;
   }
 }
 
@@ -207,16 +207,15 @@
 @media screen and (max-width: 425px) {
   .login_icon_cart {
     margin-top: -4px !important;
-    height: 34px !important;
+    height: 38px !important;
 
     cursor: pointer;
   }
   .cart span:nth-child(2) {
     color: #565656;
     font-size: 13px !important;
-
-    top: -18% !important;
-    left: -21px !important;
+    top: -16% !important;
+    left: -22px !important;
   }
 }
 @media screen and (max-width: 1366px) {
