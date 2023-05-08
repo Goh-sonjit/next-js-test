@@ -284,7 +284,7 @@ const Footer = () => {
                 <FiPhoneCall className="me-3 icon-clr" /> +91 7777871717
               </li>
               <li className="py-md-2 reach-clr py-md-2 py-1">
-                <BiMailSend className="me-3 icon-clr" /> info@gohoardings.com
+                <BiMailSend className="me-3 icon-clr" />info@gohoardings.com
               </li>
               <li className="d-flex reach-clr py-md-3 py-1">
                 <MdLocationOn className="me-3 icon-clr mt-1" />{" "}
