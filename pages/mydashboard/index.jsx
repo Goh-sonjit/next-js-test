@@ -211,8 +211,8 @@ const Index = () => {
 
   const showNoti=()=>{
     setCamp(false)
-    setpay(true)
-    setNotif(false)
+    setpay(false)
+    setNotif(true)
   };
 
 
@@ -310,7 +310,7 @@ const Index = () => {
                                       href={`/seedetails/${el.media_type}/${el.meta_title}`}
                                       className="text-decoration-none"
                                     >
-                                      <td className="text-dark ">View</td>
+                                      <td className="text-light">View</td>
                                     </Link>
                                   </tr>
                                 )
