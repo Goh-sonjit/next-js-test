@@ -261,7 +261,7 @@ export const mediaFilters = async (category_name, illunation, categorys, city_na
 }
 
 export const loginOTP = async (otp) => {
-  const { data } = await instance.put("otp/mobileOtp", { otp });
+  const { data } = await instance.put("linkedin", { otp });
   return data
 }
 

@@ -90,11 +90,7 @@ const ForgetPass = ({
                 
              SET PASSWORD
            </button>
-
               }
-            
-            
-     
             </div>
           </form>
         </div>
@@ -103,10 +99,7 @@ const ForgetPass = ({
           {sendOtp ? (
             <div className={`${styles.forget_content} animate__animated  animate__fadeIn`}>
               <form onSubmit={checkOTP} novalidate>
-
-
-          
-                <div className="form-floating mt-5">
+              <div className="form-floating mt-5">
                   <input
                     type="text"
                     className="form-control"

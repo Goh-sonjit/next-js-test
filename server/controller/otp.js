@@ -3,6 +3,7 @@ const request = require('request')
 const  {executeQuery} = require("../conn/conn");
 const bcrypt = require("bcryptjs");
 const jwtToken = require('jsonwebtoken');
+const cookie = require('cookie')
 const {token} = require("../middelware/token");
 const {sendEmail} = require("../middelware/sendEmail");
 const ErrorHandle = require("../utils/Errorhandler");
@@ -121,6 +122,7 @@ exports.changePassword = catchError(async (req, res, next) => {
 })
 
 exports.loginwithOTP = catchError(async (req, res, next) => {
+    console.log("hello");
     const {otp} = req.body
     if (!otp) {
         return res.status(206).json({success:false, message: "OTP Invalid"})
@@ -130,10 +132,10 @@ exports.loginwithOTP = catchError(async (req, res, next) => {
 
         if (!sql) {
             return res.status(206).json({success:false, message: "OTP Invalid"})
-        } else if (result.length == 0) {
+        } else if (sql.length == 0) {
             return res.status(206).json({success:false, message: "OTP Not Match, Try After 1min"})
         } else {
-            const userid = result[0].userid;
+            const userid = sql[0].userid;
             res.setHeader("Set-Cookie",cookie.serialize(String(userid),{expires: Date.now()}))
             token(userid, 200, res)
         }
