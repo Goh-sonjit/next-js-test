@@ -135,8 +135,8 @@ const Index = () => {
   };
 
   const editCart = async (e) => {
-    const campingid = e;
-    const { data } = await instance.put("medias", { campingid, campaingn });
+    const campingid = e
+    const {data} = await instance.put("medias",{campingid , campaingn});
     route.push("/cart");
   };
 
