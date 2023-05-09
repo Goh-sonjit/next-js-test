@@ -34,13 +34,7 @@ const Cart = () => {
   const [inputDay, setInputDay] = useState(5);
   const [posts, setPosts] = useState([]);
   const [campainName, setCampains] = useState("");
-  const [state, setState] = useState([
-    {
-      startDate: new Date(),
-      endDate: addDays(new Date(), 4),
-      key: "selection",
-    },
-  ]);
+  const [state, setState] = useState([])
 
   const value = getCookie("permissions");
 
@@ -65,6 +59,11 @@ const Cart = () => {
       }
 
       setPosts(data);
+      setState(data.map(() => ({
+        startDate: new Date(),
+        endDate: addDays(new Date(), 4),
+        key: "selection",
+      })));
     } 
   };
 
@@ -72,8 +71,8 @@ const Cart = () => {
     getData();
   }, []);
 
-  const SelectDate = (obj) => {
-    var diff = state[0].endDate - state[0].startDate;
+  const SelectDate = (obj,i) => {
+    var diff = state[i].endDate - state[i].startDate;
     let daysdifference = diff / (1000 * 60 * 60 * 24) + 1;
     if (daysdifference >= 5) {
       posts.map((product) => {
@@ -81,8 +80,8 @@ const Cart = () => {
           setDayMsg(false);
           obj.days = daysdifference;
           setInputDay(obj.days);
-          obj.startDate = state[0].startDate;
-          obj.endDate = state[0].endDate;
+          obj.startDate = state[i].startDate;
+          obj.endDate = state[i].endDate;
           setPosts(posts);
         }
       });
@@ -270,32 +269,30 @@ const Cart = () => {
                                           type="text "
                                           className={`${styles.input_1} d-flex bg-light `}
                                         >
-                                          <Dropdown
-                                            className="p-0 border-0"
-                                            onClick={() => SelectDate(obj)}
-                                          >
-                                            <Dropdown.Toggle
-                                              variant="transparent"
-                                              id={styles.dropdown_basic}
-                                              className="p-0 m-0 border-0"
-                                            >
-                                              <FaCalendarAlt
-                                                className={`${styles.calender_logo} mb-1 `}
-                                              />
-                                            </Dropdown.Toggle>
-                                            <Dropdown.Menu>
-                                              <DateRange
-                                                editableDateInputs={true}
-                                                minDate={new Date()}
-                                                onChange={(item) =>setState([item.selection])}
-                                                moveRangeOnFirstSelection={false}            
-                                                rangeColors={["#E8DC14"]}
-                                                showPreview={true}
-                                                ranges={state
-                                                }
-                                              />
-                                            </Dropdown.Menu>
-                                          </Dropdown>
+        <Dropdown className="p-0 border-0" onClick={() => SelectDate(obj, i)}>
+          <Dropdown.Toggle
+            variant="transparent"
+            id={styles.dropdown_basic}
+            className="p-0 m-0 border-0"
+          >
+            <FaCalendarAlt className={`${styles.calender_logo} mb-1 `} />
+          </Dropdown.Toggle>
+          <Dropdown.Menu>
+            <DateRange
+              editableDateInputs={true}
+              minDate={new Date()}
+              onChange={(item) => {
+                const updatedState = [...state];
+                updatedState[i] = item.selection;
+                setState(updatedState);
+              }}
+              moveRangeOnFirstSelection={false}
+              rangeColors={["#E8DC14"]}
+              showPreview={true}
+              ranges={[state[i]]}
+            />
+          </Dropdown.Menu>
+        </Dropdown>
                                         </div>
                                       </h6>
                                     </div>
