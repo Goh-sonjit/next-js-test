@@ -70,6 +70,7 @@ const Index = () => {
           Accept: "application/json",
           "Content-Type": "application/json",
         },
+     
         body: JSON.stringify({ ID: campingid }),
         credentials: "include",
       })
@@ -138,7 +139,9 @@ const Index = () => {
   };
 
   const editCart = async (e) => {
+    const campingid = e
     const {data} = await instance.put("medias",{campingid , campaingn});
+    console.log(data);
     route.push("/cart");
   };
 
