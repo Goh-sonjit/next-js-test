@@ -164,7 +164,13 @@ const Profile = () => {
         #photo-upload[type="file"] {
           display: none;
         }
-
+ 
+        .card-img-top{
+          width: 220px;
+          height: 220px;
+          border-radius: 50%;
+      }
+        }
         @media screen and (max-width: 425px) {
           .card-img-top{
             width: 30vw;
