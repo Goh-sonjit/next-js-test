@@ -31,6 +31,7 @@ async function planMail(data, email, next) {
   
   exports.excel = catchError(async (req, res, next) => {
     const {ID} = req.body;
+
     if(!ID){
         return res.status(206).json({success:false, message:"Try Again"})
     }
@@ -61,6 +62,7 @@ async function planMail(data, email, next) {
   
 exports.ppt = catchError(async (req, res, next) => {
     const {ID} = req.body;
+
     if(!ID){
         return res.status(206).json({success:false, message:"Try Again"})
     }

@@ -122,7 +122,7 @@ exports.changePassword = catchError(async (req, res, next) => {
 })
 
 exports.loginwithOTP = catchError(async (req, res, next) => {
-    console.log("hello");
+
     const {otp} = req.body
     if (!otp) {
         return res.status(206).json({success:false, message: "OTP Invalid"})
