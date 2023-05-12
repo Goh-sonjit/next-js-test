@@ -145,7 +145,7 @@ const Filters = ({ search, setSearch, setNsearch }) => {
   let uniqueValues = new Set();
 
   search.forEach((el) => {
-    uniqueValues.add(el.mp_lat);
+    uniqueValues.add(el.latitude);
   });
 
   useEffect(() => {
