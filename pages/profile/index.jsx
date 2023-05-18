@@ -5,6 +5,7 @@ import Companyprofile from "./companyprofile";
 import { AccountContext } from "@/allApi/apicontext";
 import Userprofile from "./userprofile";
 import { getCookie } from "cookies-next";
+import Head from "next/head";
 import Fixednavbar from "@/components/navbar/fixednavbar";
 
 const Profile = () => {
@@ -82,6 +83,10 @@ const Profile = () => {
   }  
   return (
     <>
+         <Head>
+      <link rel="canonical" href={`https://www.gohoardings.com${route.asPath}`}/>
+       
+      </Head>
       <Fixednavbar />
       <div className=" container-xxl  container-xl container-lg container-md my-md-5 my-4 prf-content animate__animated  animate__fadeIn">
         <div className="row  p-md-5  p-3">

@@ -6,6 +6,10 @@ import Enquire from "@/components/enquire/enquire";
 import Searchmedia from "@/components/searchMedia";
 import dynamic from "next/dynamic";
 import NavbarH from "@/components/navbar/navbar";
+import { useRouter } from "next/router";
+
+
+const Statemap = dynamic(() => import('@/components/statemap'), { ssr: false });
 
 const Trendingcity = dynamic(() => import("@/components/trendingcity"), {
   ssr: false,
@@ -19,9 +23,11 @@ const Floatingnavbar = dynamic(
 );
 
 export default function Home() {
+  const {asPath} = useRouter();
   return (
     <>
       <Head>
+      <link rel="canonical" href={`https://www.gohoardings.com${asPath}`}/>
         <title>
           India&#39;s Largest Outdoor Advertising Agency | Gohoarding Solution
         </title>
@@ -54,6 +60,9 @@ export default function Home() {
         </section>
         <section> 
           <Ourservices />
+        </section>
+        <section>
+          <Statemap/>
         </section>
         <section>
           <City />

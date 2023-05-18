@@ -10,6 +10,7 @@ import MainUi from "@/components/mediaComponents/MainUi";
 
 const Media = (props) => {
   const Metatag = props.MetaKeys;
+  const Canonicaltag = props.currentPageUrl;
   const router = useRouter();
   const [value, setValue] = useState("");
   const [focus, setFocus] = useState(false);
@@ -22,6 +23,7 @@ const Media = (props) => {
   const { category_name, city } = router.query;
 
 
+  
 
   const SelectServc = async (obj) => {
     const services = [...serviceIcon];
@@ -79,6 +81,7 @@ const Media = (props) => {
           if (category_name === el.value) {
             return (
               <>
+              <link rel="canonical" href={`https://www.gohoardings.com${Canonicaltag}`}/>
                 <title>{el.page_titel}</title>
                 <meta charSet="utf-8" />
                 <link
@@ -107,7 +110,18 @@ const Media = (props) => {
     </>
   );
 };
-Media.getInitialProps = async () => {
+
+
+
+Media.getInitialProps = async ({req,res}) => {
+
+  let currentPageUrl = '';
+
+  if (req) {
+    currentPageUrl = req.url;
+  } else if (res) {
+    currentPageUrl = res.socket.parser.incoming.originalUrl;
+  }
   const MetaKeys = [
     {
       value: "traditional-ooh-media",
@@ -164,8 +178,12 @@ Media.getInitialProps = async () => {
         "Airport Advertising, Airlines Advertising, Airport Advertising Rates, Airport Advertising Company in Noida, India, Airport Ad Company in Delhi, Airport Branding Agency in India, Indian Airport Advertising Company in Delhi, Delhi Airport Branding, Airlines Advertising",
     },
   ];
+
+ 
+
   return {
-    MetaKeys
+    MetaKeys,
+    currentPageUrl
   };
 };
 

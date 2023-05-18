@@ -7,6 +7,7 @@ import { AiOutlineApartment } from "react-icons/ai";
 import instance from "@/allApi/axios";
 import { GiNothingToSay } from "react-icons/gi";
 import { TbFileInvoice } from "react-icons/tb";
+import Head from "next/head";
 import { AccountContext } from "@/allApi/apicontext";
 import { getCookie } from "cookies-next";
 import Link from "next/link";
@@ -203,10 +204,14 @@ const Index = () => {
     setNotif(true);
   };
 
-  const [searchValue, setSearchValue] = useState("");
+  const [searchValue,setSearchValue] = useState("");
 
   return (
     <>
+             <Head>
+      <link rel="canonical" href={`https://www.gohoardings.com${route.asPath}`}/>
+       
+      </Head>
       <Fixednavbar />
       <div className=" container-xxl  container-xl container-lg container-md my-5 pt-2  pt-md-5 animate__animated  animate__fadeIn">
         <div className={` p-md-3 ${styles.options}`}>

@@ -6,8 +6,6 @@ import clientslogo from "./clients";
 import { useRouter } from "next/router";
 import dynamic from "next/dynamic";
 
-
- 
 const About = () => {
   const [noOfLogo, setnoOfLogo] = useState(18);
   const [showButton, setshowButon] = useState(true);
@@ -21,22 +19,20 @@ const About = () => {
     }
   };
 
-  const route=useRouter();
-  const Fixednavbar = dynamic(() => import("@/components/navbar/fixednavbar"),{
-    ssr:false
+  const route = useRouter();
+  const Fixednavbar = dynamic(() => import("@/components/navbar/fixednavbar"), {
+    ssr: false,
   });
 
   const toContact = () => {
-    route.push("/contact-us")
+    route.push("/contact-us");
   };
-
+  const { asPath } = useRouter();
   return (
     <>
-
-<Head>
-        <title>
-        About - Outdoor Advertising Agency in India | Gohoardings
-        </title>
+      <Head>
+        <link rel="canonical" href={`https://www.gohoardings.com${asPath}`} />
+        <title>About - Outdoor Advertising Agency in India | Gohoardings</title>
         <meta charSet="utf-8" />
         <link
           rel="icon"
@@ -58,13 +54,10 @@ const About = () => {
         />
       </Head>
 
-   <Fixednavbar/>
-      <div className="d-hide drop-nd">
-
-      </div>
+      <Fixednavbar />
+      <div className="d-hide drop-nd"></div>
       <section className="fvf">
-
-      <Branding title="About Us" />
+        <Branding title="About Us" />
       </section>
 
       <section>
@@ -162,10 +155,10 @@ const About = () => {
                 bridge between your brand and customer.
               </p>
               <p className="descrption">
-                We do it in a different way.We&#39;ve got the creative eye and the
-                perfect equation of ideas.We help you grow by adding the word
-                called success to your brand.Thus to conclude our vision is to
-                be the master touch, you need, to be visible and heard.
+                We do it in a different way.We&#39;ve got the creative eye and
+                the perfect equation of ideas.We help you grow by adding the
+                word called success to your brand.Thus to conclude our vision is
+                to be the master touch, you need, to be visible and heard.
               </p>
             </div>
 
@@ -196,8 +189,8 @@ const About = () => {
                 We aim to become the world&#39;s best OOH and DOOH advertising
                 company.Our mission is to guide you to find your brand’s voice
                 and help you to tell a bigger story through our best services
-                available in city.&#34;Quality never goes out of style&#34; and we
-                ensure to provide the best one.
+                available in city.&#34;Quality never goes out of style&#34; and
+                we ensure to provide the best one.
               </p>
 
               <p className="descrption">
@@ -248,8 +241,7 @@ const About = () => {
         </div>
       </section>
       <style>
-{
-  `
+        {`
   .fvf{
     margin-top: 4.1%;
   }
@@ -407,12 +399,15 @@ const About = () => {
       display:none;
     }
   }
-  `
-}
-
+  `}
       </style>
-      <h6><span  onClick={()=>route.push("/")} className="bredcamp">Home</span><MdKeyboardArrowRight/><span className="bredcamp text-secondary">About</span></h6>
-
+      <h6>
+        <span onClick={() => route.push("/")} className="bredcamp">
+          Home
+        </span>
+        <MdKeyboardArrowRight />
+        <span className="bredcamp text-secondary">About</span>
+      </h6>
     </>
   );
 };

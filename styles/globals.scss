@@ -216,6 +216,20 @@ display: none;
     --bs-dropdown-link-hover-bg: rgb(228, 228, 228);
   }
 }
+
+.map-sate{
+  position: relative;
+  display: flex;
+  justify-content:center;
+  align-items: center;
+  
+    svg{
+      position: initial !important;
+ 
+      height: 100vh !important;
+    }
+  }
+
 .media-new-search{
   .dropdown-menu {
     background-color: #ffffff;

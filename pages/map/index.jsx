@@ -9,6 +9,8 @@ import {
   mediaDataApi,
   singlemnedia,
   removeItem,
+  getCityDataApi,
+  mediaApi,
 } from "@/allApi/apis";
 import { useRouter } from "next/router";
 import {getCookie } from "cookies-next";
@@ -42,7 +44,7 @@ const Map = () => {
       const data = await mediaDataApi(category_name, city_name);
       setSearch(data);
     } else {
-      const data = await mediaDataApi("tradition-ooh-media", "delhi");
+      const data = await mediaApi("tradition-ooh-media");
       setSearch(data);
     }
   };
