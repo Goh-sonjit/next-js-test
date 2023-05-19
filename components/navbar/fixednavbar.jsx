@@ -36,8 +36,10 @@ const Fixednavbar = () => {
   const { pathname } = useRouter();
 
   const getMap = () => {
-    route.push("/map");
+ 
     removeCookies("meta_title");
+    removeCookies("state_name");
+    route.push("/map");
   };
 
   let selecType;

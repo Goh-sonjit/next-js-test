@@ -27,7 +27,58 @@ exports.city = catchError(async (req, res, next) => {
     }
 })
 
+exports.state_name = catchError(async (req, res, next) => {
+    const { state_name, pages } = req.body;
+    const pagination = pages ? pages :10
+    const sql = await executeQuery("SELECT * FROM `tblstates` WHERE `name` = '"+state_name+"'", "gohoardi_goh", next)
 
+    if (sql) {
+        const resultArray = await executeQuery("SELECT * FROM `goh_cities` WHERE `state_id` = "+sql[0].id+"", "gohoardi_goh", next)
+
+        if (resultArray && Array.isArray(resultArray) && resultArray.length > 0) {
+
+            const names = resultArray.map((row) => row.id);
+
+            const data = "mediaownercompanyname, thumb, category_name, meta_title, subcategory, medianame, price, location, state, city_name, width, height, foot_fall, illumination, latitude, longitude, mp_lat" 
+            const query = "SELECT * FROM (" +
+            "SELECT "+data+" FROM goh_media WHERE city IN ("+names+") " +
+            "UNION " +
+            "SELECT "+data+" FROM goh_media_digital WHERE city IN ("+names+") " +
+            "UNION " +
+            "SELECT "+data+" FROM goh_media_transit WHERE city IN ("+names+") " +
+            "UNION " +
+            "SELECT "+data+" FROM goh_media_mall WHERE city IN ("+names+") " +
+            "UNION " +
+            "SELECT "+data+" FROM goh_media_airport WHERE city IN ("+names+") " +
+            "UNION " +
+            "SELECT "+data+" FROM goh_media_inflight WHERE city IN ("+names+") " +
+            "UNION " +
+            "SELECT "+data+" FROM goh_media_office WHERE city IN ("+names+") " +
+            ") AS combined_query " +
+            "LIMIT "+pagination+""
+            const result  =  await executeQuery(query,"gohoardi_goh",next)
+            
+            return  res.status(200).json(result);
+
+        }
+    }
+    
+    // let citystart = ''
+    // if (value) {
+    //     citystart = " WHERE name LIKE '" + value + "%'"
+    // }
+    // const data = await client.get(`cities${citystart}`)
+    // if (data) {
+    //  return   res.send(JSON.parse(data))
+    // } else {
+    //     const sql = await executeQuery("SELECT DISTINCT name FROM goh_cities " + citystart + "  LIMIT 8", "gohoardi_goh", next)
+    //     if(sql) {
+    //         client.setEx(`cities${citystart}`, process.env.REDIS_TIMEOUT, JSON.stringify(sql))
+    //         return  res.status(200).json(sql)
+    //     }
+          
+    // }
+})
 exports.SearchData = catchError(async (req, res, next) => {
     const { category_name, city_name } = req.body
     const city = city_name ? city_name : "delhi";

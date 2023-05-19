@@ -11,6 +11,7 @@ import {
   removeItem,
   getCityDataApi,
   mediaApi,
+  statemediaApi
 } from "@/allApi/apis";
 import { useRouter } from "next/router";
 import {getCookie } from "cookies-next";
@@ -34,17 +35,26 @@ const Map = () => {
   slice = search.slice(0, noOfLogo);
 
   const city_name = getCookie("city_name");
+  const state_name = getCookie("state_name");
   const category_name = getCookie("category_name");
   const meta_title = getCookie("meta_title");
+
   const getData = async () => {
-    if (meta_title) {
+
+    if (state_name) {
+      const pages = noOfLogo + 8 
+ 
+      const data = await statemediaApi(state_name,pages);
+      setSearch(data);
+    } else if (meta_title) {
       const data = await singlemnedia(meta_title, category_name);
       setSearch(data);
     } else if (category_name) {
       const data = await mediaDataApi(category_name, city_name);
       setSearch(data);
     } else {
-      const data = await mediaApi("tradition-ooh-media");
+     const pages = noOfLogo + 8
+      const data = await mediaApi("tradition-ooh-media", pages);
       setSearch(data);
     }
   };
@@ -133,8 +143,11 @@ const Map = () => {
     getData();
   }, [city_name, category_name]);
 
-  
-  
+
+  useEffect(() => {
+    getData();
+  }, [ noOfLogo]);
+
 
 
   return (

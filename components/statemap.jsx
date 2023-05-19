@@ -12,6 +12,7 @@ import * as am4maps from "@amcharts/amcharts4/maps";
 import * as am4core from "@amcharts/amcharts4/core";
 import "@amcharts/amcharts4/core";
 import { CityNameImage } from "@/allApi/apis";
+import { setCookie } from "cookies-next";
 
 const Statemap = () => {
   const route = useRouter();
@@ -216,6 +217,7 @@ const Statemap = () => {
     // Handle click event on map polygon
     polygonTemplate.events.on("hit", (event) => {
       setSelectedState(event.target.dataItem.dataContext.name);
+      setCookie("state_name",event.target.dataItem.dataContext.name)
       route.push("/map");
     });
 
