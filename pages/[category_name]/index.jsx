@@ -1,13 +1,25 @@
 import Fixednavbar from "@/components/navbar/fixednavbar";
-import React, {  useContext,useState, useEffect } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import Head from "next/head";
-import { CityNameImage, mediaApi, addItem, removeItem, LocationFilterApi, illuminationFilterApi, subCategoryFilterApi, getAllCity, mediaDataApi, getCityDataApi } from "@/allApi/apis";
+import {
+  CityNameImage,
+  mediaApi,
+  addItem,
+  removeItem,
+  LocationFilterApi,
+  illuminationFilterApi,
+  subCategoryFilterApi,
+  getAllCity,
+  mediaDataApi,
+  getCityDataApi,
+} from "@/allApi/apis";
 
 import MainUi from "@/components/mediaComponents/MainUi";
+import ErrorPage from "../404";
 const Media = (props) => {
   const Metatag = props.MetaKeys;
-
+  const Canonicaltag = props.currentPageUrl;
   const [noOfLogo, setnoOfLogo] = useState(16);
   const router = useRouter();
   const [value, setValue] = useState("");
@@ -18,8 +30,7 @@ const Media = (props) => {
   const [serviceIcon, setServiceIcon] = useState(CityNameImage);
   const [search, setSearch] = useState([]);
   const { category_name } = router.query;
-
-
+ 
   const SelectServc = async (obj) => {
     const services = [...serviceIcon];
     services.map((el) => {
@@ -34,51 +45,68 @@ const Media = (props) => {
     setServiceIcon(services);
   };
 
-
-  const getData = async() => {
-    const noofPage = parseInt(noOfLogo + 3)
-    let data = []
-    if(category_name){
-      if(category_name.includes('-')){
+  const getData = async () => {
+    const noofPage = parseInt(noOfLogo + 3);
+   
+    let data = [];
+    if (category_name) {
+      if (category_name.includes("-")) {
         data = await mediaApi(category_name, noofPage);
-            setSearch(data);
-          }else {
-         data = await getCityDataApi(category_name)
-            setSearch(data);
-    
-          }
+        setSearch(data);
+      } else {
+        data = await getCityDataApi(category_name);
+        setSearch(data);
+      }
     }
-  };
   
+
+  };
+
   const apiforFillters = async () => {
     const data = await mediaApi(category_name, noOfLogo);
     setMediadata(data);
     setlocationData(data);
     setcategoryData(data);
-};
+  };
 
   useEffect(() => {
     getData();
-    apiforFillters()
+    apiforFillters();
   }, [category_name, noOfLogo]);
-  
+
   // const categorytag = getCookie("categorytag");
 
-  const onSearch = async(searchCity) => {
+  const onSearch = async (searchCity) => {
     setValue(searchCity);
     setFocus(false);
     router.push(`/${category_name}/${searchCity}`);
   };
-  let city=''
+  let city = "";
+
+
+
+  if (category_name === "services" || category_name === "cities" || category_name === "map-view" ) {
+    return (
+      <>
+        <ErrorPage />
+      </>
+    );
+  }
+
   
+ 
   return (
     <>
-     <Head>
+      <Head>
         {Metatag.map((el) => {
           if (category_name === el.value) {
             return (
               <>
-                <title >{el.page_titel}</title>
+                <link
+                  rel="canonical"
+                  href={`https://www.gohoardings.com${Canonicaltag}`}
+                />
+                <title>{el.page_titel}</title>
                 <meta charSet="utf-8" />
                 <link
                   rel="icon"
@@ -101,11 +129,36 @@ const Media = (props) => {
         })}
       </Head>
       <Fixednavbar />
-     <MainUi noOfLogo={noOfLogo} setnoOfLogo={setnoOfLogo} categoryData={categoryData} mediaData={mediaData} locationData={locationData}  setSearch={setSearch} category_name={category_name} search={search} onSearch={onSearch} SelectServc={SelectServc} value={value} focus={focus} serviceIcon={serviceIcon} city={city} setValue={setValue} setFocus={setFocus}/>
+      <MainUi
+        noOfLogo={noOfLogo}
+        setnoOfLogo={setnoOfLogo}
+        categoryData={categoryData}
+        mediaData={mediaData}
+        locationData={locationData}
+        setSearch={setSearch}
+        category_name={category_name}
+        search={search}
+        onSearch={onSearch}
+        SelectServc={SelectServc}
+        value={value}
+        focus={focus}
+        serviceIcon={serviceIcon}
+        city={city}
+        setValue={setValue}
+        setFocus={setFocus}
+      />
     </>
   );
 };
-Media.getInitialProps = async () => {
+
+Media.getInitialProps = async ({ req, res }) => {
+  let currentPageUrl = "";
+
+  if (req) {
+    currentPageUrl = req.url;
+  } else if (res) {
+    currentPageUrl = res.socket.parser.incoming.originalUrl;
+  }
   const MetaKeys = [
     {
       value: "traditional-ooh-media",
@@ -150,7 +203,8 @@ Media.getInitialProps = async () => {
         "Transit Advertising company in Delhi | Gohoardings Solution LLP",
       page_decri:
         "Go Hoardings offers a wide range of transit media advertising solutions to help you reach your target audience, Train, Mobile Van, State Roadways Buses, Auto Rickshaws, Metro and local train Advertising.",
-      meta_keyword: "",
+      meta_keyword:
+        "Transit Media Advertising Company Delhi, Transit Media Company Mumbai, Transportation Ads Company India, Transit Media Advertising Agency, Transportation Ads Company, Advertising in Auto Rickshaws, Advertising in State Roadways Buses, Advertising in Metro Feeder Buses, Advertising in Tarmac Coaches, Advertising in Cabs, Advertising in Delhi Metro",
     },
     {
       value: "airport-media",
@@ -161,9 +215,20 @@ Media.getInitialProps = async () => {
       meta_keyword:
         "Airport Advertising, Airlines Advertising, Airport Advertising Rates, Airport Advertising Company in Noida, India, Airport Ad Company in Delhi, Airport Branding Agency in India, Indian Airport Advertising Company in Delhi, Delhi Airport Branding, Airlines Advertising",
     },
+    {
+      value: "inflight-media",
+      page_titel:
+        "Inflight Advertising Agency in Noida, India | Gohoardings Solution",
+      page_decri:
+        "India's Leading Inflight Advertising Agency in Noida, India, We are in contact with many airlines in India providing the solution for Inflight Advertising Options. We surely help you to achieve this by displaying your ad on boarding passes and baggage tags. | Gohoardings Solutions.",
+      meta_keyword:
+        "Inflight Advertising, Advertising in Hello 6E Magazine, Advertising in Indigo In-flight Magazine, Advertising in Spice Route Magazine, Advertising in Spice Jet In-flight Magazine, Advertising in Go Air In-flight Magazine, Advertising in Jet Wings Magazine, Advertising in Jet Airways Inflight Magazine, Advertising in Air India Inflight Magazine, Advertising in Shubh Yatra Magazine, Advertising in Go Getter Inflight Magazine, Advertising on Airport  Luggage Trolleys, Advertising on Meal Tray in Airlines, Advertising on Seat Back Devices, Advertising in Vistara inflight Magazine",
+    },
   ];
+
   return {
     MetaKeys,
+    currentPageUrl,
   };
 };
 

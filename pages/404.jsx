@@ -5,11 +5,15 @@ import styles from "../styles/404.module.scss";
 import Image from "next/image";
 
 const ErrorPage = () => {
+  
+
+  let slice = CityNameImage.slice(0, 6);
+  
   return (
     <div className={`${styles.media_branding_n} text-center`}>
       <Fixednavbar />
       <div className="d-hide drop-nd"></div>
-      {/* <Branding title="You've found a page that does'nt exist" /> */}
+
       <div className="mt-5 pt-5">
         <Image
           src="/images/web_pics/404.png"
@@ -22,7 +26,7 @@ const ErrorPage = () => {
       <div
         className={`${styles.grid_containerN} container-xxl  container-xl text-center container-lg container-md my-5 p`}
       >
-        {CityNameImage.map((pos, index) => {
+        {slice.map((pos, index) => {
           return (
             <Link href={`/${pos.value}/delhi`} className="text-decoration-none" key={index}>
               <div className={styles.container} >

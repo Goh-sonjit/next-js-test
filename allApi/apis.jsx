@@ -362,6 +362,12 @@ export const mediaApi = async(category_name, noofPage) =>{
   const {data} = await instance.patch('excel',{ category_name, noofPage})
   return data
 }
+
+export const statemediaApi = async(state_name, pages) =>{
+  const {data} = await instance.patch('ppt',{ state_name, pages })
+  return data
+}
+
 export const subCategoryFilterApi = async(category_name, subcategory, city) =>{
   const {data} = await instance.patch('newFilters',{ category_name, subcategory, city})
   return data

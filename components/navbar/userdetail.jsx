@@ -70,11 +70,12 @@ const Userdetail = () => {
 
   const oneTap = async (response) => {
     const data = await googleLogin(response);
-    if (data.success === true) {
+    if (data.success == true) {
       setCookie("permissions", true);
       addRemove({ type: "DECR" });
-      setUser();
+      setUser(!    user)
     }
+
   };
 
   if (typeof window !== "undefined") {

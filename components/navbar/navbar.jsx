@@ -20,6 +20,8 @@ const NavbarH = () => {
       handleShow()
     }else{
       removeCookies("meta_title");
+      removeCookies("state_name");
+
       route.push("/map");    
     }
   };
