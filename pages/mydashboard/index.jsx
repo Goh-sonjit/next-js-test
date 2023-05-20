@@ -20,24 +20,19 @@ const Index = () => {
   const route = useRouter();
   const [campings, setCampings] = useState();
   const [campingid, setCampingid] = useState();
-  const [posts, setPosts] = useState([]);
   const {handleShow } = useContext(AccountContext);
   const [campaingn, setCampaign] = useState([]);
   const [campaingnName, setCampaingnName] = useState([]);
   const value = getCookie("permissions");
 
-  useEffect(() => {
-    value ? (route.push("/mydashboard"))
-     :(route.push("/"),
-     handleShow()
-     ) 
-   }, []);
+  // useEffect(() => {
+  //   value ? (route.push("/mydashboard"))
+  //    :(route.push("/"),
+  //    handleShow()
+  //    ) 
+  //  }, []);
 
 
-  const profilData = async () => {
-    const data = await userDetails();
-    setPosts(data);
-  };
   
   const campaignData = async () => {
     const data = await profileDetails();
@@ -56,7 +51,7 @@ const Index = () => {
   };
 
   useEffect(() => {
-    profilData();
+
     campaignData();
   }, []);
 
@@ -138,8 +133,12 @@ const Index = () => {
   };
 
   const editCart = async (e) => {
+    const campingid = e
     const {data} = await instance.put("medias",{campingid , campaingn});
-    route.push("/cart");
+    console.log(data);
+    if(data.success == true){
+      route.push("/cart");
+    }
   };
 
   const getData = (text) => {
