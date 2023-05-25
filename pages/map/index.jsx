@@ -31,8 +31,11 @@ const Map = () => {
   const [noOfLogo, setnoOfLogo] = useState(8);
   const { handleClose, handleShow } = useContext(AccountContext);
   var slice;
+  if(search.success !=false){
+    slice = search.slice(0, noOfLogo);
+  }
 
-  slice = search.slice(0, noOfLogo);
+
 
   const city_name = getCookie("city_name");
   const state_name = getCookie("state_name");
@@ -149,15 +152,22 @@ const Map = () => {
   }, [ noOfLogo]);
 
 
-
   return (
     <>
    <Fixednavbar/>
       <div className="container-fluid animate__animated  animate__fadeIn" id={styles.map_body}>
+      {search.success !=false?
+      <>
+      
+    
         <div className={` p-2 ps-4 pe-4 ${styles.filter_section} d-flex map-filter-drop`}>
+
+
          <Filters search={slice} setSearch={setSearch} setNsearch={setNsearch}/>
         </div>
-        <div className="row" id={styles.map_view_row}>
+
+      
+ <div className="row" id={styles.map_view_row}>
           <div className=" p-4 pt-2" id={styles.map_view}>
             {!mapMarker.length > 0 ? (
               isLoaded && slice && slice.length > 0 ? (
@@ -188,6 +198,17 @@ const Map = () => {
             )}
           </div>
         </div>
+        </>:
+        <div className="container ">
+        <div className={`${styles.no_data} row  text-center my-3`}>
+               <img
+                 src="../../../images/web_pics/no-data.png"
+                 alt="No Data Found"
+                 className=""
+               />
+             </div>
+       </div> }
+       
       </div>
     
     </>

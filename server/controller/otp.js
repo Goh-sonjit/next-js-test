@@ -71,7 +71,7 @@ exports.sendPasswordEmail = catchError(async (req, res, next) => {
                 await executeQuery(sql,"gohoardi_crmapp", next)
                  return res.status(200).json({success: true, message: `Email send on ${email}`})
             } catch (error) {
-                return res.status(500).json({message: error.message})
+                return res.status(206).json({message: error.message})
             }
         }
     })
@@ -104,6 +104,7 @@ exports.changePassword = catchError(async (req, res, next) => {
         return res.status(206).json({success:false, message: "Otp Expire"});
     }
     if (password == confirmpasswords) {
+    
         jwtToken.verify(expire, "thisismysecretejsonWebToken", async (err, user) => {
             if (err) {
                 return res.status(206).json({success:false, message: "Time Out"});
@@ -117,7 +118,8 @@ exports.changePassword = catchError(async (req, res, next) => {
        }
         })
     } else {
-        return res.status(500).json({message: "Password not matched"})
+     
+        return res.status(206).json({success:false, message: "Password not matched"})
     }
 })
 

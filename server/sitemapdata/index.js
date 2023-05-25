@@ -6,15 +6,11 @@ const client = redis.createClient()
 
 
 exports.allCity = catchError(async (req, res, next) => {
-    const data = await client.get("cities")
-   if(data){
-    return res.send(JSON.parse(data))
-   }else{
+   
     const sql = await executeQuery("SELECT DISTINCT name FROM goh_cities","gohoardi_goh",next)
       if (sql) {
-            client.setEx("cities", process.env.REDIS_TIMEOUT,JSON.stringify(result))
-            res.send(result)
-        };
+            res.send(sql)
+
     }});
 
 
@@ -46,10 +42,9 @@ const  category_name  = req.query.email
         default:
             table_name = "goh_media";
     }
-  
-        const sql = await executeQuery("SELECT DISTINCT meta_title, category_name FROM " + table_name + " WHERE category_name IS NOT NULL","gohoardi_goh",next)
+        const sql = await executeQuery("SELECT DISTINCT meta_title, category_name FROM " + table_name + " WHERE  category_name = '"+category_name+"' &&  meta_title IS NOT NULL","gohoardi_goh",next)
             if (sql) {   
-                return res.send(result)
+                return res.send(sql)
             }
         })
    

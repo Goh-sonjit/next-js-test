@@ -25,7 +25,7 @@ const Team = () => {
       <Head>
       <link rel="canonical"  href={`https://www.gohoardings.com${route.asPath}`} />
         <title>
-          Team - Outdoor Advertising Agency in India | Gohoardings.com
+        Team - Outdoor Advertising Agency in India | Gohoardings.com
         </title>
         <meta charSet="utf-8" />
         <link

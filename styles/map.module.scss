@@ -1,5 +1,15 @@
 @import "../assets/scss/variables";
-
+.no_data {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60vh;
+  img {
+    // height: 10vh;
+    width: 20vw;
+  
+  }
+}
 .map_btn_more{
   .btn_hover {
     width: 145px;

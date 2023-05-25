@@ -414,7 +414,7 @@ exports.editCart = catchError(async (req, res, next) => {
                 campaingn.map((el) => {
                     promises.push(
                         new Promise(async (resolve,reject ) => {
-                    const sql = await executeQuery(`UPDATE goh_serach_activities SET status=0 WHERE campaign_name LIKE '%`+campingid+`'`, "gohoardi_goh",next);  
+                    const sql = await executeQuery(`UPDATE goh_campaign SET status=0 WHERE campaign_name LIKE '%`+campingid+`'`, "gohoardi_goh",next);  
                      if (!sql) {
                                    return reject(sql)
                             } else {
@@ -461,7 +461,7 @@ exports.processdCart = catchError(async (req, res, next) => {
                 products.map((el) => {
                     promises.push(
                         new Promise(async (resolve,reject ) => {
-                    const sql = await executeQuery("INSERT into goh_serach_activities (user, phone, campaign_name, start_date, end_date, campaign_city, media_type, address, city) VALUES (" + userId + ",'" + phone + "', '"+newCampain+"-"+ campaign_name+ "','" + el.start_date.slice(0,10) + "','" + el.end_date.slice(0,10) + "','" + el.medianame + "','" + el.category_name + "','" + el.address + "','" + el.city_name + "')","gohoardi_goh",next);
+                    const sql = await executeQuery("INSERT into goh_campaign (user, phone, campaign_name, start_date, end_date, campaign_city, media_type, address, city, created_by) VALUES (" + userId + ",'" + phone + "', '"+newCampain+"-"+ campaign_name+ "','" + el.start_date.slice(0,10) + "','" + el.end_date.slice(0,10) + "','" + el.medianame + "','" + el.category_name + "','" + el.address + "','" + el.city_name + "','user')","gohoardi_goh",next);
                       
                             if (!sql) {
                                    return reject(sql)
