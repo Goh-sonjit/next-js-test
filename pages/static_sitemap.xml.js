@@ -51,17 +51,12 @@ function SiteMap() {
 
 export async function getServerSideProps({ res }) {
   // We make an API call to gather the sitemaps for our site
-
-
-
   // We generate the XML sitemap with the posts data
   const sitemap = generateSiteMap();
-
   res.setHeader('Content-Type', 'text/xml');
   // we send the XML to the browser
   res.write(sitemap);
   res.end();
-
   return {
     props: {},
   };
