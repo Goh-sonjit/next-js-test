@@ -35,12 +35,6 @@ function generateSiteMap() {
 <priority>0.8</priority>
      </url>
      <url>
-     <loc>https://www.gohoardings.com/blog/</loc>
-       <lastmod>${date}</lastmod>
-       <changefreq>daily</changefreq>
-<priority>0.8</priority>
-     </url>
-     <url>
      <loc>https://www.gohoardings.com/faqs</loc>
        <lastmod>${date}</lastmod>
        <changefreq>daily</changefreq>
