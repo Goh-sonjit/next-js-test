@@ -49,9 +49,13 @@ const MainUi = ({
     setCity(data);
   };
   let slice;
-  if (search) {
+  if(search.success !=false){
     slice = search.slice(0, noOfLogo);
+
+   
+
   }
+
   let locations;
   const allLocations = locationData.map((locate) => locate.location);
   locations = [...new Set(allLocations)];
@@ -64,6 +68,7 @@ const MainUi = ({
   const allIllumations = mediaData.map((illumation) => illumation.illumination);
   ILLUMINATION = [...new Set(allIllumations)];
   
+ 
   const router = useRouter();
 
   async function categoryFilter(cate) {
@@ -193,9 +198,11 @@ const MainUi = ({
     }
   };
 
+  
+
   return (
     <>
-      <Fixednavbar />
+   
       <div className=" container-xxl  container-xl container-lg container-md my-5 pt-4 animate__animated  animate__fadeIn ">
         <section
           className={`my-md-4 mt-md-5 p-2 ${styles.service} d-flex text-center`}
@@ -215,6 +222,9 @@ const MainUi = ({
             </span>
           ))}
         </section>
+        {search.success !=false ?
+  <>
+  
         {/* <h1 className={` my-3 ${styles.heading}`}>{categorytag}</h1> */}
         <section
           className={`ms-2 ms-md-0 p-md-2 ps-0 my-3 my-md-2 mb-0  ${styles.filter_section} d-flex media-filter-drop`}
@@ -248,6 +258,7 @@ const MainUi = ({
               ))}
             </div>
           </form>
+
 
           {/* Illumination type  */}
 
@@ -346,6 +357,18 @@ const MainUi = ({
             </>
           )}
         </section>
+        </>
+        :
+        <div className="container ">
+        <div className={`${styles.no_data} row  text-center my-3`}>
+               <img
+                 src="../../../images/web_pics/no-data.png"
+                 alt="No Data Found"
+                 className=""
+               />
+             </div>
+       </div>
+}
         <section className="my-2">
           <Medialogo category_name={category_name} city_name={city} />
 

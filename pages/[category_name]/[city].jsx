@@ -49,6 +49,7 @@ const Media = (props) => {
 
   const getData = async () => {
     const data = await mediaDataApi(category_name, city);
+   
     setSearch(data);
   };
 
@@ -75,15 +76,24 @@ const Media = (props) => {
   };
 
  
-  if (category_name === "services" || category_name === "cities" || category_name === "map-view" ) {
-    return (
-      <>
-        <ErrorPage />
-      </>
-    );
-  }
+  const validCategories = [
+    "traditional-ooh-media",
+    "digital-media",
+    "mall-media",
+    "office-media",
+    "transit-media",
+    "airport-media",
+    "inflight-media",
+    "delhi",
+    "pune",
+    "chennai",
+    "bengaluru",
+    "mumbai",
+    "hyderabad",
+  ];
 
-  return (
+  if (validCategories.includes(category_name)) {
+    return (
     <>
       <Head>
         {Metatag.map((el) => {
@@ -137,7 +147,14 @@ const Media = (props) => {
       />
     </>
   );
-};
+} else {
+  return(
+   <>
+   <ErrorPage/>
+   </>
+  )
+ }
+}
 
 Media.getInitialProps = async ({ req, res }) => {
   let currentPageUrl = "";

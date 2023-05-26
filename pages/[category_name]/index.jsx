@@ -30,7 +30,7 @@ const Media = (props) => {
   const [serviceIcon, setServiceIcon] = useState(CityNameImage);
   const [search, setSearch] = useState([]);
   const { category_name } = router.query;
- 
+
   const SelectServc = async (obj) => {
     const services = [...serviceIcon];
     services.map((el) => {
@@ -47,7 +47,7 @@ const Media = (props) => {
 
   const getData = async () => {
     const noofPage = parseInt(noOfLogo + 3);
-   
+
     let data = [];
     if (category_name) {
       if (category_name.includes("-")) {
@@ -55,11 +55,10 @@ const Media = (props) => {
         setSearch(data);
       } else {
         data = await getCityDataApi(category_name);
+
         setSearch(data);
       }
     }
-  
-
   };
 
   const apiforFillters = async () => {
@@ -74,6 +73,7 @@ const Media = (props) => {
     apiforFillters();
   }, [category_name, noOfLogo]);
 
+  console.log(search);
   // const categorytag = getCookie("categorytag");
 
   const onSearch = async (searchCity) => {
@@ -83,72 +83,85 @@ const Media = (props) => {
   };
   let city = "";
 
-
-
-  if (category_name === "services" || category_name === "cities" || category_name === "map-view" ) {
+  const validCategories = [
+    "traditional-ooh-media",
+    "digital-media",
+    "mall-media",
+    "office-media",
+    "transit-media",
+    "airport-media",
+    "inflight-media",
+    "delhi",
+    "pune",
+    "chennai",
+    "bengaluru",
+    "mumbai",
+    "hyderabad",
+  ];
+  if (
+   validCategories.includes(category_name)
+  ) {
     return (
       <>
-        <ErrorPage />
+        <Head>
+          {Metatag.map((el) => {
+            if (category_name === el.value) {
+              return (
+                <>
+                  <link
+                    rel="canonical"
+                    href={`https://www.gohoardings.com${Canonicaltag}`}
+                  />
+                  <title>{el.page_titel}</title>
+                  <meta charSet="utf-8" />
+                  <link
+                    rel="icon"
+                    href="https://www.gohoardings.com/assets/images/favicon.png"
+                  />
+                  <meta
+                    name="viewport"
+                    content="width=device-width, initial-scale=1"
+                  />
+                  <meta name="theme-color" content="#000000" />
+                  <meta name="description" content={el.page_decri} />
+                  <meta
+                    name="google-site-verification"
+                    content="fLT70DRZGdH5FUdrS8w1k2Zg_VTzNJGDF9ie9v4FAzM"
+                  />
+                  <meta name="keywords" content={el.meta_keyword} />
+                </>
+              );
+            }
+          })}
+        </Head>
+        <Fixednavbar />
+        <MainUi
+          noOfLogo={noOfLogo}
+          setnoOfLogo={setnoOfLogo}
+          categoryData={categoryData}
+          mediaData={mediaData}
+          locationData={locationData}
+          setSearch={setSearch}
+          category_name={category_name}
+          search={search}
+          onSearch={onSearch}
+          SelectServc={SelectServc}
+          value={value}
+          focus={focus}
+          serviceIcon={serviceIcon}
+          city={city}
+          setValue={setValue}
+          setFocus={setFocus}
+        />
       </>
     );
-  }
-
-  
- 
-  return (
+  } else {
+   return(
     <>
-      <Head>
-        {Metatag.map((el) => {
-          if (category_name === el.value) {
-            return (
-              <>
-                <link
-                  rel="canonical"
-                  href={`https://www.gohoardings.com${Canonicaltag}`}
-                />
-                <title>{el.page_titel}</title>
-                <meta charSet="utf-8" />
-                <link
-                  rel="icon"
-                  href="https://www.gohoardings.com/assets/images/favicon.png"
-                />
-                <meta
-                  name="viewport"
-                  content="width=device-width, initial-scale=1"
-                />
-                <meta name="theme-color" content="#000000" />
-                <meta name="description" content={el.page_decri} />
-                <meta
-                  name="google-site-verification"
-                  content="fLT70DRZGdH5FUdrS8w1k2Zg_VTzNJGDF9ie9v4FAzM"
-                />
-                <meta name="keywords" content={el.meta_keyword} />
-              </>
-            );
-          }
-        })}
-      </Head>
-      <Fixednavbar />
-      <MainUi
-        noOfLogo={noOfLogo}
-        setnoOfLogo={setnoOfLogo}
-        categoryData={categoryData}
-        mediaData={mediaData}
-        locationData={locationData}
-        setSearch={setSearch}
-        category_name={category_name}
-        search={search}
-        onSearch={onSearch}
-        SelectServc={SelectServc}
-        value={value}
-        focus={focus}
-        serviceIcon={serviceIcon}
-        city={city}
-        setValue={setValue}
-        setFocus={setFocus}
-      />
+    <ErrorPage/>
     </>
-  );
+   )
+  }
 };
 
 Media.getInitialProps = async ({ req, res }) => {

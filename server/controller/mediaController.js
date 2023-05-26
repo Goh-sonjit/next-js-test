@@ -31,10 +31,9 @@ exports.state_name = catchError(async (req, res, next) => {
     const { state_name, pages } = req.body;
     const pagination = pages ? pages :10
     const sql = await executeQuery("SELECT * FROM `tblstates` WHERE `name` = '"+state_name+"'", "gohoardi_goh", next)
-    console.log(sql);
     if (sql && sql.length > 0) {
-        const nsql = "SELECT * FROM `goh_cities` WHERE `state_id` = "+sql[0].id+""
-        const resultArray = await executeQuery(nsql, "gohoardi_goh", next)
+        const resultArray = await executeQuery("SELECT * FROM `goh_cities` WHERE `state_id` = "+sql[0].id+"", "gohoardi_goh", next)
+
         if (resultArray && Array.isArray(resultArray) && resultArray.length > 0) {
 
             const names = resultArray.map((row) => row.id);
@@ -61,10 +60,24 @@ exports.state_name = catchError(async (req, res, next) => {
             return  res.status(200).json(result);
 
         }
+        return res.send([]);
     }
     
-    return res.status(206).json({ success: false, message: "No data" });
-
+    // let citystart = ''
+    // if (value) {
+    //     citystart = " WHERE name LIKE '" + value + "%'"
+    // }
+    // const data = await client.get(`cities${citystart}`)
+    // if (data) {
+    //  return   res.send(JSON.parse(data))
+    // } else {
+    //     const sql = await executeQuery("SELECT DISTINCT name FROM goh_cities " + citystart + "  LIMIT 8", "gohoardi_goh", next)
+    //     if(sql) {
+    //         client.setEx(`cities${citystart}`, process.env.REDIS_TIMEOUT, JSON.stringify(sql))
+    //         return  res.status(200).json(sql)
+    //     }
+          
+    // }
 })
 exports.SearchData = catchError(async (req, res, next) => {
     const { category_name, city_name } = req.body
