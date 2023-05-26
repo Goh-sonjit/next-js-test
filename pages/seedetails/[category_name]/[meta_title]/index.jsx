@@ -60,11 +60,13 @@ const Details = (props) => {
   };
 
   const getMedia = async () => {
+    console.log("hii");
     if (category_name && meta_title) {
       const { data } = await instance.post("seedetails", {
         meta_title: meta_title,
         category_name: category_name,
       });
+      console.log(data);
       setPosts(data);
     }
   };
