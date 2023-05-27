@@ -55,7 +55,9 @@ const Testimonial = () => {
               {posts && posts.map((el, i) => (
                 <div className="col-md-4" key={i}>
                   <div className="testimonials">
-                    <img
+                    Image
+                           width={500}
+                           height={500}
                       src={
                         el.image
                           ? `https://www.gohoardings.com/gohadmin/uploads/testimonials/${el.image}`

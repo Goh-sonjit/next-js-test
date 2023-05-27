@@ -7,9 +7,9 @@ import styles from "../../styles/navbarHome.module.scss";
 import dynamic from "next/dynamic";
 import { removeCookies, setCookie } from "cookies-next";
 import Maintenance from "./maintenance";
-import { useState } from "react";
-import { useEffect } from "react";
+import Image from "next/image";
 import instance from "@/allApi/axios";
+
 
 const NavbarH = () => {
   const route = useRouter();
@@ -36,7 +36,9 @@ const NavbarH = () => {
       <Navbar expand={`lg px-md-0 pb-0 ${styles.fixd_nabar} sdsd mt-3`}>
         <div className="navbar container-xxl  container-xl container-lg container-md">
           <Navbar.Brand>
-            <img
+            <Image
+                             width={223}
+                             height={42}
               src="../images/web_pics/logo.png"
               className={styles.rand_logo}
               alt="gohoardings"

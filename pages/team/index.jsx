@@ -68,7 +68,9 @@ const Team = () => {
                   <div className="col-md-3 mt-3 col-6" id="maindiv" key={index}>
                     <div className="single-team    text-center rounded">
                       <div className="team-img d-flex  justify-content-center">
-                        <img
+                        Image
+                           width={500}
+                           height={500}
                           src={
                             person.profile_image
                               ? `https://www.gohoardings.com/gohadmin/uploads/testimonials/${person.profile_image}`

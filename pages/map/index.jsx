@@ -201,7 +201,9 @@ const Map = () => {
         </>:
         <div className="container ">
         <div className={`${styles.no_data} row  text-center my-3`}>
-               <img
+               Image
+                           width={500}
+                           height={500}
                  src="../../../images/web_pics/no-data.png"
                  alt="No Data Found"
                  className=""

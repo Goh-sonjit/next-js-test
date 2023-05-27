@@ -292,7 +292,9 @@ const Markers = ({ markers, nsearch, setSearch,removefromCart, addonCart,  More}
                       href={`/seedetails/${category_name}/${meta_title}`}
                       className="text-decoration-none"
                     >
-                            <img
+                            Image
+                           width={500}
+                           height={500}
                               src={
                                 thumb.startsWith("https")
                                   ? thumb
@@ -338,10 +340,14 @@ const Markers = ({ markers, nsearch, setSearch,removefromCart, addonCart,  More}
                               <span>FTF : </span>
                               {ftf}
                             </p>
-                            <img src="../images/web_pics/streetv.gif" className={styles.streetv}      onClick={(e, i) => onStreet(latitude, longitude)}/>
+                            Image
+                           width={500}
+                           height={500} src="../images/web_pics/streetv.gif" className={styles.streetv}      onClick={(e, i) => onStreet(latitude, longitude)}/>
                            
                             {isDelete === 0 ? (
-                              <img
+                              Image
+                           width={500}
+                           height={500}
                                 src="../images/web_pics/A-chek.png"
                                 onClick={() =>
                                   removefromCart(code)
@@ -350,7 +356,9 @@ const Markers = ({ markers, nsearch, setSearch,removefromCart, addonCart,  More}
                                 alt="check_button"
                               />
                             ) : (
-                              <img
+                              Image
+                           width={500}
+                           height={500}
                                 alt="cart_icon"
                                 src="../images/web_pics/A-cart.png"
                                 onClick={() => addonCart(code, category_name)}
@@ -377,7 +385,9 @@ const Markers = ({ markers, nsearch, setSearch,removefromCart, addonCart,  More}
                   <InfoWindow onCloseClick={() => setActiveMarker(null)}>
                     <div className={styles.infoWindow}>
                       <div className={styles.media_image}>
-                      <img src={`https://maps.googleapis.com/maps/api/place/photo?photoreference=`+photo+`&sensor=false&maxheight=210&maxwidth=330&key=AIzaSyDEKx_jLb_baUKyDgkXvzS_o-xlOkvLpeE`} alt="" srcset="" onError={(e) => (e.target.src ="../../images/web_pics/alter-img.png")} />
+                      Image
+                           width={500}
+                           height={500} src={`https://maps.googleapis.com/maps/api/place/photo?photoreference=`+photo+`&sensor=false&maxheight=210&maxwidth=330&key=AIzaSyDEKx_jLb_baUKyDgkXvzS_o-xlOkvLpeE`} alt="" srcset="" onError={(e) => (e.target.src ="../../images/web_pics/alter-img.png")} />
                       </div>
                       <br />
                       <p className="mb-2" >Name : {name}</p>

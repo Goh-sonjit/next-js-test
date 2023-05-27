@@ -1,6 +1,6 @@
 import React, { useEffect, useContext, useState } from "react";
 import Login from './login';
-
+import Image from "next/image";
 import Sign from "./signup";
 import ForgetPass from "./forgetPass";
 import { toast, ToastContainer } from "react-toastify";
@@ -278,7 +278,9 @@ const LoginN = () => {
                     </h2>
                     <h4>in just one click</h4>
                   </div>
-                  <img
+                  <Image
+                           width={500}
+                           height={500}
                     src="../../images/web_pics/login1.png"
                     className={styles.img_responsive}
                     alt="Registraion"
@@ -297,7 +299,9 @@ const LoginN = () => {
                       solutions in just a few clicks.
                     </h6>
                   </div>
-                  <img
+                  <Image
+                           width={500}
+                           height={500}
                     src="../images/web_pics/login2.png"
                     className={styles.img_responsive2}
                     alt="Login image"
@@ -309,7 +313,9 @@ const LoginN = () => {
         </div>
         <div className="col-md-6 p-4 m-0">
           <div className={`container-xxl  container-xl container-lg container-md  ${styles.login_container2}`}>
-            {/* <img src="../../images/web_pics/logo.png" alt="gohoardings" id={styles.brand_logo} /> */}
+            {/* Image
+                           width={500}
+                           height={500} src="../../images/web_pics/logo.png" alt="gohoardings" id={styles.brand_logo} /> */}
 
             {forget ? (
               <>

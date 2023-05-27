@@ -101,7 +101,9 @@ const Profile = () => {
             
                <label>
                <div className="img-wrap img-upload">
-                  <img
+                  Image
+                           width={500}
+                           height={500}
                     src={user && user.map((el) => el.profile_image)}
                     className="card-img-top"
                     alt="user-profile"

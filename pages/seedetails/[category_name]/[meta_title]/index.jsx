@@ -11,6 +11,7 @@ import Loader from "@/components/loader";
 import { useRouter } from "next/router";
 import { setCookie } from "cookies-next";
 import { MdKeyboardArrowRight } from "react-icons/md";
+import Image from "next/image";
 
 const Details = (props) => {
   const Canonicaltag = props.currentPageUrl;
@@ -165,7 +166,9 @@ const Details = (props) => {
                   <Carousel showThumbs={false} infiniteLoop={true}>
                     {item.thumbnail.split(",").map((element, i) => (
                       <div key={i}>
-                        <img
+                      <  Image
+                           width={420}
+                           height={390}
                           alt={item.mediaownercompanyname}
                           src={
                             element.startsWith("https")

@@ -5,34 +5,31 @@ import { setCookie } from "cookies-next";
 import styles from "../styles/ourServices.module.scss";
 import { HiOutlineArrowNarrowRight } from "react-icons/hi";
 import Link from "next/link";
-
+import Image from "next/image";
 const Ourservices = () => {
   const [serviceIcon, setServiceIcon] = useState(CityNameImage);
-  const directlink=(e)=>{
-
+  const directlink = (e) => {
     const services = [...serviceIcon];
     services.map((el) => {
       if (el.id == e.id) {
         el.value2 = true;
-      
       }
       if (el.id !== e.id) {
         el.value2 = false;
       }
     });
-    
-    setServiceIcon(services);
-    
-    setCookie("category_name",e.value)
-    setCookie("categorytag",e.label)
 
-  }
-  
-  const directlinkget=()=>{
-    setCookie("category_name","traditional-ooh-media")
-    setCookie("city_name","delhi")
-  }
- 
+    setServiceIcon(services);
+
+    setCookie("category_name", e.value);
+    setCookie("categorytag", e.label);
+  };
+
+  const directlinkget = () => {
+    setCookie("category_name", "traditional-ooh-media");
+    setCookie("city_name", "delhi");
+  };
+
   {
     var settings = {
       dots: false,
@@ -82,7 +79,9 @@ const Ourservices = () => {
                   className={`row bg-light rounded-2 ${styles.service_card} me-2 ms-2 "`}
                 >
                   <div className="col p-3 ">
-                    <img
+                    <Image
+                      width={100}
+                      height={100}
                       alt={pos.srcImg}
                       src={pos.srcImg}
                       className={`rounded-2 ${styles.service_card_img}`}
@@ -95,12 +94,10 @@ const Ourservices = () => {
                     <Link
                       href={`/${pos.value}`}
                       className="text-decoration-none"
-
                     >
                       <p
                         className={`position-absolute bottom-0  pb-3  mb-0 text-muted w-100 ${styles.View_Detail}`}
-                
-                      onClick={() =>directlink(pos)}
+                        onClick={() => directlink(pos)}
                       >
                         {" "}
                         View Detail{" "}
@@ -119,7 +116,9 @@ const Ourservices = () => {
           <div className="container-fluid  m-0 ">
             <div className={`row mx-auto ${styles.add_container} text-center`}>
               <div className="col-3">
-                <img
+                <Image
+                  width={100}
+                  height={100}
                   src="../images/web_pics/celebration.png"
                   className={styles.celebration_logo}
                   alt="celebration"
@@ -134,12 +133,16 @@ const Ourservices = () => {
                 </span>
               </div>
               <div className="col-3">
-                <span className={`${styles.button_serch} text-white rounded-pill`}>
-                  <Link href="/traditional-ooh-media-advertising" >
-                    <button className={styles.search_btn}   
-                      onClick={directlinkget}>
-                        Get it Now
-                        </button>
+                <span
+                  className={`${styles.button_serch} text-white rounded-pill`}
+                >
+                  <Link href="/traditional-ooh-media-advertising">
+                    <button
+                      className={styles.search_btn}
+                      onClick={directlinkget}
+                    >
+                      Get it Now
+                    </button>
                   </Link>
                 </span>
               </div>
@@ -147,10 +150,8 @@ const Ourservices = () => {
           </div>
         </section>
       </div>
-  
     </>
   );
 };
 
 export default Ourservices;
- 

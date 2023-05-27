@@ -1,5 +1,6 @@
 import React from "react";
 import { CityNameImage } from "@/allApi/apis";
+import Image from "next/image";
 const Medialogo = ({ category_name, city_name }) => {
   return (
     <>
@@ -10,7 +11,7 @@ const Medialogo = ({ category_name, city_name }) => {
               return (
                 <div key={i}>
                   {" "}
-                  <img  src={el.srcImgM} alt={el.srcImg} />
+                 <img  src={el.srcImgM} alt={el.srcImg} />
                   <div className="centered">
                     <h1>
                       About {el.label}

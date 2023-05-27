@@ -4,7 +4,7 @@ import { MdOutlineSearch, MdMenu } from "react-icons/md";
 import styles from "../../styles/mobileNav.module.scss";
 import { useRouter } from "next/router";
 import dynamic from "next/dynamic";
-
+import Image from "next/image";
 const Mobilenav = () => {
   const Userdetail = dynamic(() => import("./userdetail"), {
     ssr: false,
@@ -18,7 +18,9 @@ const Mobilenav = () => {
          <span className="m-1" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">
             <MdMenu className={`${styles.search_logo} `}/>
           </span>
-        <img
+       < Image
+                           width={500}
+                           height={500}
           alt="gohoardings"
           src="../../images/web_pics/logo.png"
           className={`${styles.navbrand} m-1`}
@@ -41,7 +43,9 @@ const Mobilenav = () => {
 
 <div className="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabIndex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
   <div className="offcanvas-header">
-  <img
+  <Image
+                           width={500}
+                           height={500}
           alt="gohoardings"
           src="../../images/web_pics/logo.png"
           className={`${styles.navbrand} m-1 mt-0`}

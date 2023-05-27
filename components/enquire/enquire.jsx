@@ -2,6 +2,7 @@ import Slider from "react-slick";
 import clientslogo from "../../pages/about-us/clients";
 import Enquireregister from "./enquireregister";
 import styles from '../../styles/enquire.module.scss'  ;
+import Image from "next/image";
 const Enquire = () => {
   const slice = clientslogo.slice(0, 21);
   {
@@ -44,7 +45,9 @@ const Enquire = () => {
                <div className="col p-md-3 ">
              
             
-                   <img
+                   <Image
+                           width={100}
+                           height={100}
                      src={clients.img}
                      alt={clients.alt}
                      key={i}

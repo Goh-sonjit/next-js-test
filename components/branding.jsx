@@ -8,7 +8,9 @@ const Branding = (props) => {
         <div className="container">
           <div className="row">
             {/* <a href="/">
-              <img
+              Image
+                           width={500}
+                           height={500}
                 src="../images/web_pics/logo.png"
                 alt="logo"
                 className="logo ps-2" 
