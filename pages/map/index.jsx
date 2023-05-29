@@ -3,6 +3,7 @@ import { AccountContext } from "@/allApi/apicontext";
 import styles from "../../styles/map.module.scss";
 import { useJsApiLoader } from "@react-google-maps/api";
 import Markers from "./marker";
+import Image from "next/image";
 
 import {
   addItem,
@@ -201,7 +202,7 @@ const Map = () => {
         </>:
         <div className="container ">
         <div className={`${styles.no_data} row  text-center my-3`}>
-               Image
+              < Image
                            width={500}
                            height={500}
                  src="../../../images/web_pics/no-data.png"

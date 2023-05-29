@@ -6,6 +6,7 @@ import { AccountContext } from "@/allApi/apicontext";
 import Userprofile from "./userprofile";
 import { getCookie } from "cookies-next";
 import Head from "next/head";
+import Image from "next/image";
 import Fixednavbar from "@/components/navbar/fixednavbar";
 
 const Profile = () => {
@@ -101,7 +102,7 @@ const Profile = () => {
             
                <label>
                <div className="img-wrap img-upload">
-                  Image
+                 < Image
                            width={500}
                            height={500}
                     src={user && user.map((el) => el.profile_image)}

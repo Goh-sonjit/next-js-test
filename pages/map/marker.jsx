@@ -5,6 +5,7 @@ import Streetview from "./streetview";
 import styles from '../../styles/markers.module.scss'
 import { markersPosition } from "@/allApi/apis";
 import Loader from "@/components/loader";
+import Image from "next/image";
 
 
 const Markers = ({ markers, nsearch, setSearch,removefromCart, addonCart,  More}) => {
@@ -292,7 +293,7 @@ const Markers = ({ markers, nsearch, setSearch,removefromCart, addonCart,  More}
                       href={`/seedetails/${category_name}/${meta_title}`}
                       className="text-decoration-none"
                     >
-                            Image
+                           < Image
                            width={500}
                            height={500}
                               src={
@@ -340,12 +341,12 @@ const Markers = ({ markers, nsearch, setSearch,removefromCart, addonCart,  More}
                               <span>FTF : </span>
                               {ftf}
                             </p>
-                            Image
+                           < Image
                            width={500}
                            height={500} src="../images/web_pics/streetv.gif" className={styles.streetv}      onClick={(e, i) => onStreet(latitude, longitude)}/>
                            
                             {isDelete === 0 ? (
-                              Image
+                              <Image
                            width={500}
                            height={500}
                                 src="../images/web_pics/A-chek.png"
@@ -356,7 +357,7 @@ const Markers = ({ markers, nsearch, setSearch,removefromCart, addonCart,  More}
                                 alt="check_button"
                               />
                             ) : (
-                              Image
+                             <Image
                            width={500}
                            height={500}
                                 alt="cart_icon"
@@ -385,7 +386,7 @@ const Markers = ({ markers, nsearch, setSearch,removefromCart, addonCart,  More}
                   <InfoWindow onCloseClick={() => setActiveMarker(null)}>
                     <div className={styles.infoWindow}>
                       <div className={styles.media_image}>
-                      Image
+                    <  Image
                            width={500}
                            height={500} src={`https://maps.googleapis.com/maps/api/place/photo?photoreference=`+photo+`&sensor=false&maxheight=210&maxwidth=330&key=AIzaSyDEKx_jLb_baUKyDgkXvzS_o-xlOkvLpeE`} alt="" srcset="" onError={(e) => (e.target.src ="../../images/web_pics/alter-img.png")} />
                       </div>

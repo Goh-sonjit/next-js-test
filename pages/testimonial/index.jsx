@@ -5,6 +5,7 @@ import Fixednavbar from "../../components/navbar/fixednavbar";
 import { BsStar, BsStarFill, BsStarHalf } from "react-icons/bs";
 import Branding from "@/components/branding";
 import Head from "next/head";
+import Image from "next/image";
 import instance from "@/allApi/axios";
 
 
@@ -45,7 +46,7 @@ const Testmonials = ({data}) => {
               {data && data.map((el, i) => (
                 <div className="col-md-4" key={i}>
                   <div className="testimonials">
-                    Image
+                   < Image
                            width={500}
                            height={500}
                       src={

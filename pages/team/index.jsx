@@ -8,6 +8,7 @@ import Head from "next/head";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import { useRouter } from "next/router";
 import axios from "axios";
+import Image from "next/image";
 import instance from "@/allApi/axios";
 
 const Team = ({data}) => {
@@ -60,7 +61,7 @@ const Team = ({data}) => {
                   <div className="col-md-3 mt-3 col-6" id="maindiv" key={index}>
                     <div className="single-team    text-center rounded">
                       <div className="team-img d-flex  justify-content-center">
-                        Image
+                       < Image
                            width={500}
                            height={500}
                           src={
