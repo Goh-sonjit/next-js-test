@@ -1,26 +1,26 @@
 import Link from "next/link";
-import React,{useState} from "react";
+import React, { useState } from "react";
 import { setCookie } from "cookies-next";
 import { CityNameImage } from "@/allApi/apis";
+import Image from "next/legacy/image";
 const City = () => {
   const [serviceIcon, setServiceIcon] = useState(CityNameImage);
 
-  const directlink=()=>{
-
+  const directlink = () => {
     const services = [...serviceIcon];
     services.map((el) => {
-   
-        el.value2 = false;
-      
+      el.value2 = false;
     });
-    
+
     setServiceIcon(services);
-  }
+  };
 
   return (
     <div className="citylist m-0 mt-3 mt-md-5  py-md-4">
       <section>
-        <h1 className="text-center text-nowrap pt-2 pt-md-0">Explore your City Listings</h1>
+        <h1 className="text-center text-nowrap pt-2 pt-md-0">
+          Explore your City Listings
+        </h1>
         <h6 className=" text-center">
           Explore some of the best business from around the
           <br />
@@ -32,9 +32,17 @@ const City = () => {
         <div className="row">
           <div className="col col-md-4">
             <Link href={`/delhi`}>
-              <div className="city-img-container "
-                 onClick={() =>{setCookie("category_name","traditional-ooh-media"),setCookie("city_name","delhi"),directlink()}}>
-                <img
+              <div
+                className="city-img-container "
+                onClick={() => {
+                  setCookie("category_name", "traditional-ooh-media"),
+                    setCookie("city_name", "delhi"),
+                    directlink();
+                }}
+              >
+                <Image     layout="responsive" 
+                  width={340}
+                  height={210}
                   src="../images/web_pics/home.jpg"
                   className="rounded iimmgg   "
                   alt="Delhi Hording"
@@ -51,7 +59,9 @@ const City = () => {
               <div className="city-img-container "
               
                onClick={() =>{setCookie("category_name","traditional-ooh-media"),setCookie("city_name","mumbai"),directlink()}}>
-                <img
+                <Image     layout="responsive" 
+                  width={340}
+                  height={210}
                   src="../images/web_pics/home1.jpg"
                   className="rounded iimmgg "
                   alt="Mumbai Hording"
@@ -67,7 +77,9 @@ const City = () => {
             <Link href={`/bengaluru`}>
               <div className="city-img-container"
                onClick={() =>{setCookie("category_name","traditional-ooh-media"),setCookie("city_name","bengaluru"),directlink()}}>
-                <img
+               < Image     layout="responsive" 
+                  width={340}
+                  height={210}
                   src="../images/web_pics/home2.jpg"
                   className="rounded iimmgg  "
                   alt="Bengalore Hording"
@@ -88,7 +100,9 @@ const City = () => {
             <Link href={`/chennai`}>
               <div className="city-img-container"
                onClick={() =>{setCookie("category_name","traditional-ooh-media"),setCookie("city_name","chennai"),directlink()}}>
-                <img
+               <Image     layout="responsive" 
+                  width={340}
+                  height={210}
                   src="../images/web_pics/home3.webp"
                   className=" rounded   iimmgg"
                   alt="Chennai Hording"
@@ -104,7 +118,9 @@ const City = () => {
             <Link href={`/hyderabad`}>
               <div className="city-img-container "
                onClick={() =>{setCookie("category_name","traditional-ooh-media"),setCookie("city_name","hyderabad"),directlink()}}>
-                <img
+               < Image     layout="responsive" 
+                  width={340}
+                  height={210}
                   src="../images/web_pics/home4.jpg"
                   className="rounded iimmgg "
                   alt="Hyderabad Hording"
@@ -120,7 +136,9 @@ const City = () => {
             <Link href={`/pune`}>
               <div className="city-img-container "
                onClick={() =>{setCookie("category_name","traditional-ooh-media"),setCookie("city_name","pune"),directlink()}}>
-                <img
+                <Image     layout="responsive" 
+                  width={340}
+                  height={210}
                   src="../images/web_pics/home6.jpg"
                   className="rounded iimmgg "
                   alt="Hyderabad Hording"
@@ -157,22 +175,22 @@ const City = () => {
           border-radius: 50%;
         }
 
-        .city-img-container:before {
-          content: "";
-          position: absolute;
-          background: linear-gradient(
-            to bottom,
-            transparent,
-            transparent,
-            rgba(0, 0, 0, 0.55) 90%
-          );
-          top: 0;
-          bottom: 0;
-          left: 0;
-          width: 400px;
-          height: 250px;
-          border-radius: 6px !important;
-        }
+        // .city-img-container:before {
+        //   content: "";
+        //   position: absolute;
+        //   background: linear-gradient(
+        //     to bottom,
+        //     transparent,
+        //     transparent,
+        //     rgba(0, 0, 0, 0.55) 90%
+        //   );
+        //   top: 0;
+        //   bottom: 0;
+        //   left: 0;
+        //   width: 400px;
+        //   height: 250px;
+        //   border-radius: 6px !important;
+        // }
 
         .city-img-container {
           position: relative;

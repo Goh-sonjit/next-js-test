@@ -4,6 +4,7 @@ import Link from "next/link";
 import styles from "@/styles/mediaN.module.scss";
 import { HiOutlineCurrencyRupee } from "react-icons/hi";
 import Loader from "@/components/loader";
+import Image from "next/image";
 
 const Mediacard = ({ slice, addonCart,removefromCart }) => {
 
@@ -24,7 +25,9 @@ const Mediacard = ({ slice, addonCart,removefromCart }) => {
                   href={`/seedetails/${item.category_name}/${item.meta_title}`}
                   className="text-decoration-none"
                 >
-                  <img
+                 < Image
+                           width={100}
+                           height={100}
                     className={`${styles.img_responsive_media} rounded_top`}
                     alt={item.mediaownercompanyname}
                     src={
@@ -76,14 +79,18 @@ const Mediacard = ({ slice, addonCart,removefromCart }) => {
 
                   <span className={styles.project_price}>
                     {item.isDelete === 0 ? (
-                      <img
+                      <Image
+                           width={100}
+                           height={100}
                         alt="check"
                         src="../../images/web_pics/A-chek.png"
                         onClick={() => removefromCart(item)}
                         className={` ${styles.addonCart} `}
                       />
                     ) : (
-                      <img
+                     < Image
+                           width={100}
+                           height={100}
                         alt="cart-icon"
                         src="../../images/web_pics/A-cart.png"
                         onClick={() => addonCart(item)}

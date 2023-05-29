@@ -56,7 +56,9 @@ const Newsmedia = () => {
             <>
              <div className="row" key={i}>
              <div className="col-md-4">
-               <img
+               Image
+                           width={500}
+                           height={500}
                  src={`https://www.gohoardings.com/gohadmin/uploads/news_events/listing-16.jpg`}
                 //  src={`https://www.gohoardings.com/gohadmin/uploads/news_events/${el.featured_image}`}
                  className="img-fluid rounded-start"

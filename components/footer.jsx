@@ -9,6 +9,7 @@ import { BiMailSend } from "react-icons/bi";
 import { setCookie } from "cookies-next";
 import { MdLocationOn } from "react-icons/md";
 import { toast, ToastContainer } from "react-toastify";
+import Image from "next/image";
 import {
   enquiryApi,
   emailformate,
@@ -20,7 +21,7 @@ const Footer = () => {
   const route = useRouter();
   const [serviceIcon, setServiceIcon] = useState(CityNameImage);
   const [email, setEmail] = useState([]);
-  const { handleClose, handleShow, show} = useContext(AccountContext);
+  const { handleClose, handleShow, show } = useContext(AccountContext);
 
   const handelSubmit = async (e) => {
     let count = 0;
@@ -45,14 +46,12 @@ const Footer = () => {
     services.map((el) => {
       if (el.value == e) {
         el.value2 = true;
-      
       }
       if (el.value !== e) {
         el.value2 = false;
       }
     });
 
-    
     setServiceIcon(services);
     route.push(`/${e}`);
   };
@@ -115,25 +114,25 @@ const Footer = () => {
     },
   ];
 
-  const direactCity = (e)=>{
+  const direactCity = (e) => {
     setCookie("category_name", "traditional-media");
     setCookie("city_name", e);
     const services = [...serviceIcon];
     services.map((el) => {
-   
-        el.value2 = false;
-      
+      el.value2 = false;
     });
-    
+
     setServiceIcon(services);
-  }
+  };
   return (
     <>
       <div className=" footerN-content  pb-3  p-0 px-3 px-md-5 py-md-1  pt-md-5 ">
         <div className="row footer-branding pb-md-4 pb-2">
           <div className="col-md-3 pt-3 pt-md-1 ">
             <Link href="/">
-              <img
+              <Image
+                width={245}
+                height={43}
                 src="../../images/web_pics/logo.png"
                 alt="gohoardings"
                 className="brand-logo-footer "
@@ -243,13 +242,13 @@ const Footer = () => {
                   //   href={el.value}
                   //   className="text-decoration-none "
                   // >
-                    <li
+                  <li
                     key={i}
-                      className=" py-md-2  text-decoration-none f-heading-clr"
-                      onClick={(e) => direactMedia(el.value)}
-                    >
-                      {el.label}
-                    </li>
+                    className=" py-md-2  text-decoration-none f-heading-clr"
+                    onClick={(e) => direactMedia(el.value)}
+                  >
+                    {el.label}
+                  </li>
                   // </Link>
                 ))}
               </ul>
@@ -284,7 +283,8 @@ const Footer = () => {
                 <FiPhoneCall className="me-3 icon-clr" /> +91 7777871717
               </li>
               <li className="py-md-2 reach-clr py-md-2 py-1">
-                <BiMailSend className="me-3 icon-clr" />info@gohoardings.com
+                <BiMailSend className="me-3 icon-clr" />
+                info@gohoardings.com
               </li>
               <li className="d-flex reach-clr py-md-3 py-1">
                 <MdLocationOn className="me-3 icon-clr mt-1" />{" "}
@@ -299,7 +299,9 @@ const Footer = () => {
                   return (
                     <div className="grid-item" key={index}>
                       <a href={clients.link} target="_blank">
-                        <img
+                        <Image
+                          width={27}
+                          height={27}
                           src={clients.img}
                           alt={clients.alt}
                           className="img-fluid logo-img"
@@ -364,13 +366,13 @@ const Footer = () => {
         </div>
       </div>
       <Modal
-          show={show}
-          onHide={handleClose}
-          aria-labelledby="contained-modal-title-vcenter"
-          centered
-        >
-          <LoginN />
-        </Modal>
+        show={show}
+        onHide={handleClose}
+        aria-labelledby="contained-modal-title-vcenter"
+        centered
+      >
+        <LoginN />
+      </Modal>
       <style jsx>
         {`
           #not-work {

@@ -9,6 +9,7 @@ import {
   refreshToken,
   userDetails,
 } from "@/allApi/apis";
+import Image from "next/image";
 import { AccountContext } from "@/allApi/apicontext";
 import Dropdown from "react-bootstrap/Dropdown";
 import styles from "../../styles/navbarHome.module.scss";
@@ -25,8 +26,7 @@ import { getCookie, setCookie, removeCookies } from "cookies-next";
 const Userdetail = () => {
   const route = useRouter();
   const { data: session } = useSession();
-  const {handleShow, addRemove, initalState } =
-    useContext(AccountContext);
+  const { handleShow, addRemove, initalState } = useContext(AccountContext);
   const pth = route.asPath;
   const [posts, setPosts] = useState(true);
   const [scrollY, setScrollY] = useState(0);
@@ -73,16 +73,13 @@ const Userdetail = () => {
     if (data.success == true) {
       setCookie("permissions", true);
       addRemove({ type: "DECR" });
-      setUser(!    user)
+      setUser(!user);
     }
-
   };
 
   if (typeof window !== "undefined") {
- 
   }
   useGoogleOneTapLogin({
-    
     onSuccess: (response) => oneTap(response),
     onError: (response) => toast(response.message),
     disabled: getCookie("permissions"),
@@ -103,18 +100,17 @@ const Userdetail = () => {
   }, []);
 
   useEffect(() => {
-    if (scrollY >= 500 || pth !== "/") {
+    if (scrollY >= 10 || pth !== "/") {
       setPosts(false);
     } else {
       setPosts(true);
     }
   }, [scrollY]);
 
-   // const [show, setShow] = useState(false);
+  // const [show, setShow] = useState(false);
   // const handleClose = () => setShow(false);
   // const handleShow = () => setShow(true);
 
- 
   if (value) {
     return (
       <>
@@ -133,9 +129,9 @@ const Userdetail = () => {
 
               <Dropdown.Menu className={`pt-0 pb-0 `}>
                 <Dropdown.Item
-                onClick={() => route.push("/profile")}
+                  onClick={() => route.push("/profile")}
                   className={`${styles.drop_item} rounded-top  ps-2 pt-2 pb-2 text-light`}
-                  >
+                >
                   <CgUserlane className={`mb-1 me-1 text-light`} />
                   {user && user.map((el) => el.firstname.toUpperCase())}
                 </Dropdown.Item>
@@ -161,7 +157,9 @@ const Userdetail = () => {
               onClick={() => route.push("/cart")}
             >
               <span>
-                <img
+                <Image
+                  width={50}
+                  height={10}
                   aria-expanded={posts}
                   src="../../images/web_pics/hoarding.png"
                   className={`${styles.login_icon_cart} `}
@@ -171,7 +169,7 @@ const Userdetail = () => {
             </div>
           </div>
         </div>
-      {/* for mobile */}
+        {/* for mobile */}
         <div className={styles.userDetail2_mbil}>
           <div className={`p-0 m-0  d-flex ${styles.userDetail2} usrdtl`}>
             <Dropdown className={`${styles.login_profile}`}>
@@ -184,11 +182,12 @@ const Userdetail = () => {
 
               <Dropdown.Menu className={`pt-0 pb-0 `}>
                 <Dropdown.Item
-                onClick={() => route.push("/profile")}
+                  onClick={() => route.push("/profile")}
                   className={`${styles.drop_item} rounded-top  ps-2 pt-2 pb-2 text-light`}
-                  >
+                >
                   <CgUserlane className={`mb-1  text-light `} />
-                  {"  "}{user && user.map((el) => el.firstname.toUpperCase())}
+                  {"  "}
+                  {user && user.map((el) => el.firstname.toUpperCase())}
                 </Dropdown.Item>
                 <hr className=" m-0" />
                 <Dropdown.Item
@@ -213,7 +212,9 @@ const Userdetail = () => {
               onClick={() => route.push("/cart")}
             >
               <span>
-                <img
+                <Image
+                  width={10}
+                  height={10}
                   aria-expanded={posts}
                   src="../../images/web_pics/hoarding.png"
                   className={`${styles.login_icon_cart} `}
@@ -239,7 +240,7 @@ const Userdetail = () => {
             className={`${styles.login_icon} ps-0 p-0  ms-0 mb-1`}
           />
         </div>
-{/* 
+        {/* 
         <Modal
           show={show}
           onHide={handleClose}

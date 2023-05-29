@@ -14,7 +14,7 @@ import { removeCookies, setCookie } from "cookies-next";
 import styles from "../../styles/fixedNavbar.module.scss";
 import NavbarDropdown from "./dropdown";
 import dynamic from "next/dynamic";
-
+import Image from "next/image";
 import { useRouter } from "next/router";
 import Maintenance from "./maintenance";
 
@@ -117,7 +117,9 @@ const Fixednavbar = () => {
             <span></span>
           </div>
 
-          <img
+          <Image
+                           width={10}
+                           height={35}
             alt="gohoardings"
             src="../../images/web_pics/logo.png"
             className={`border-0 brand ${styles.float_brand} ms-2`}

@@ -1,5 +1,4 @@
 import React, { useState, useContext } from "react";
-import Fixednavbar from "../navbar/fixednavbar";
 import Mediacard from "./cards";
 import Medialogo from "@/components/mediaBranding";
 import OverView from "./overView";
@@ -7,6 +6,7 @@ import styles from "@/styles/mediaN.module.scss";
 import { AccountContext } from "@/allApi/apicontext";
 import { Dropdown, DropdownButton } from "react-bootstrap";
 import { MdOutlineLocationOn } from "react-icons/md";
+import Image from "next/image";
 import {
   addItem,
   removeItem,
@@ -49,11 +49,8 @@ const MainUi = ({
     setCity(data);
   };
   let slice;
-  if(search.success !=false){
+  if (search.success != false) {
     slice = search.slice(0, noOfLogo);
-
-   
-
   }
 
   let locations;
@@ -67,8 +64,7 @@ const MainUi = ({
   let ILLUMINATION;
   const allIllumations = mediaData.map((illumation) => illumation.illumination);
   ILLUMINATION = [...new Set(allIllumations)];
-  
- 
+
   const router = useRouter();
 
   async function categoryFilter(cate) {
@@ -77,25 +73,22 @@ const MainUi = ({
     setilocationValue("");
     setFilterValue("");
     setSearch(data);
-    if(category_name !=="" && city!=="" ){
-    router.push({
-      pathname: `/${category_name}/${city}`,
-      query: {category:cate},
-    })
-    }
-  else if(category_name !=="" && city =="" ){
+    if (category_name !== "" && city !== "") {
+      router.push({
+        pathname: `/${category_name}/${city}`,
+        query: { category: cate },
+      });
+    } else if (category_name !== "" && city == "") {
       router.push({
         pathname: `/${category_name}`,
-        query: {category:cate},
-      })
-      }
-  else if(city !=="" && category_name ==""){
-        router.push({
-          pathname: `/${city}`,
-          query: {category:cate},
-        })
-        }
-
+        query: { category: cate },
+      });
+    } else if (city !== "" && category_name == "") {
+      router.push({
+        pathname: `/${city}`,
+        query: { category: cate },
+      });
+    }
   }
 
   async function locationFilter(loca) {
@@ -104,24 +97,22 @@ const MainUi = ({
     setcategoryValue("");
     setFilterValue("");
     setSearch(data);
-    if(category_name !=="" && city!=="" ){
+    if (category_name !== "" && city !== "") {
       router.push({
         pathname: `/${category_name}/${city}`,
-        query: {location:loca},
-      })
-      }
-    else if(category_name !=="" && city =="" ){
-        router.push({
-          pathname: `/${category_name}`,
-          query: {location:loca},
-        })
-        }
-    else if(city !=="" && category_name ==""){
-          router.push({
-            pathname: `/${city}`,
-            query: {location:loca},
-          })
-          }
+        query: { location: loca },
+      });
+    } else if (category_name !== "" && city == "") {
+      router.push({
+        pathname: `/${category_name}`,
+        query: { location: loca },
+      });
+    } else if (city !== "" && category_name == "") {
+      router.push({
+        pathname: `/${city}`,
+        query: { location: loca },
+      });
+    }
   }
 
   async function mediaTypeFilter(cate) {
@@ -130,24 +121,22 @@ const MainUi = ({
     setilocationValue("");
     setcategoryValue("");
     setSearch(data);
-    if(category_name !=="" && city!=="" ){
+    if (category_name !== "" && city !== "") {
       router.push({
         pathname: `/${category_name}/${city}`,
-        query: {illumination:cate},
-      })
-      }
-    else if(category_name !=="" && city =="" ){
-        router.push({
-          pathname: `/${category_name}`,
-          query: {illumination:cate},
-        })
-        }
-    else if(city !=="" && category_name ==""){
-          router.push({
-            pathname: `/${city}`,
-            query: {illumination:cate},
-          })
-          }
+        query: { illumination: cate },
+      });
+    } else if (category_name !== "" && city == "") {
+      router.push({
+        pathname: `/${category_name}`,
+        query: { illumination: cate },
+      });
+    } else if (city !== "" && category_name == "") {
+      router.push({
+        pathname: `/${city}`,
+        query: { illumination: cate },
+      });
+    }
   }
 
   const addonCart = async (e) => {
@@ -198,11 +187,8 @@ const MainUi = ({
     }
   };
 
-  
-
   return (
     <>
-   
       <div className=" container-xxl  container-xl container-lg container-md my-5 pt-4 animate__animated  animate__fadeIn ">
         <section
           className={`my-md-4 mt-md-5 p-2 ${styles.service} d-flex text-center`}
@@ -213,7 +199,10 @@ const MainUi = ({
               key={i}
               onClick={() => SelectServc(el)}
             >
-              <img
+              <Image
+                width={50}
+                height={45}
+                
                 className={`${styles.service_Icon} mb-2`}
                 src={el.value2 == true ? el.srcImgCtSlc : el.srcImgCt}
                 alt={el.srcImg}
@@ -222,153 +211,160 @@ const MainUi = ({
             </span>
           ))}
         </section>
-        {search.success !=false ?
-  <>
-  
-        {/* <h1 className={` my-3 ${styles.heading}`}>{categorytag}</h1> */}
-        <section
-          className={`ms-2 ms-md-0 p-md-2 ps-0 my-3 my-md-2 mb-0  ${styles.filter_section} d-flex media-filter-drop`}
-        >
-          {/* Search input */}
-          <form className="media-new-search ">
-            <input
-              className={styles.nosubmit}
-              type="search"
-              aria-describedby="basic-addon1"
-              placeholder="Search Cities"
-              onChange={(e) => onChange(e.target.value)}
-              value={value}
-              // onBlur={() => setFocus(false)}
-              autoComplete="off"
-            />
-            <div
-              className={
-                focus ? "dropdown-menu show ms-2 text-dark" : "dropdown-menu "
-              }
+        {search.success != false ? (
+          <>
+            {/* <h1 className={` my-3 ${styles.heading}`}>{categorytag}</h1> */}
+            <section
+              className={`ms-2 ms-md-0 p-md-2 ps-0 my-3 my-md-2 mb-0  ${styles.filter_section} d-flex media-filter-drop`}
             >
-              {citys.map((el, i) => (
-                <div onClick={() => onSearch(el.name)} key={i}>
-                  {" "}
-                  <MdOutlineLocationOn
-                    className="icon-clr "
-                    id={styles.select_location_icon}
-                  />{" "}
-                  {el.name}
+              {/* Search input */}
+              <form className="media-new-search ">
+                <input
+                  className={styles.nosubmit}
+                  type="search"
+                  aria-describedby="basic-addon1"
+                  placeholder="Search Cities"
+                  onChange={(e) => onChange(e.target.value)}
+                  value={value}
+                  // onBlur={() => setFocus(false)}
+                  autoComplete="off"
+                />
+                <div
+                  className={
+                    focus
+                      ? "dropdown-menu show ms-2 text-dark"
+                      : "dropdown-menu "
+                  }
+                >
+                  {citys.map((el, i) => (
+                    <div onClick={() => onSearch(el.name)} key={i}>
+                      {" "}
+                      <MdOutlineLocationOn
+                        className="icon-clr "
+                        id={styles.select_location_icon}
+                      />{" "}
+                      {el.name}
+                    </div>
+                  ))}
                 </div>
-              ))}
+              </form>
+
+              {/* Illumination type  */}
+
+              <DropdownButton
+                className="map-filter-drop"
+                title={filtervalue ? filtervalue : "Illumination type"}
+                id={styles.select_media_box}
+                // onSelect={(e) => setUserType(e)}
+                drop="down-centered"
+              >
+                {/* {ILLUMINATION.map((el, i) => ( */}
+                {ILLUMINATION.map((el, i) => (
+                  <Dropdown.Item
+                    key={i}
+                    className="p-2 mt-0 "
+                    onClick={(e) => mediaTypeFilter(el)}
+                  >
+                    {el}
+                  </Dropdown.Item>
+                ))}
+
+                {/* ))} */}
+              </DropdownButton>
+
+              {/* Category */}
+
+              <DropdownButton
+                title={categoryvalue ? categoryvalue : "Category type"}
+                className="map-filter-drop"
+                id={styles.select_media_box}
+                // onSelect={(e) => setUserType(e)}
+                drop="down-centered"
+              >
+                {/* {ILLUMINATION.map((el, i) => ( */}
+                {category.map((cate, i) => (
+                  <Dropdown.Item
+                    key={i}
+                    className="p-2 mt-0 "
+                    onClick={(e) => categoryFilter(cate)}
+                  >
+                    {cate.substring(0, 13)}
+                  </Dropdown.Item>
+                ))}
+              </DropdownButton>
+
+              {/* Location */}
+
+              <DropdownButton
+                className="map-filter-drop"
+                id={styles.select_media_box}
+                title={
+                  ilocationvalue ? ilocationvalue.substring(0, 45) : "Location"
+                }
+                drop="down-centered"
+              >
+                {/* {ILLUMINATION.map((el, i) => ( */}
+                {locations.map((el, i) => (
+                  <Dropdown.Item
+                    key={i}
+                    className="p-2 mt-0 "
+                    onClick={(e) => locationFilter(el)}
+                  >
+                    {el}
+                  </Dropdown.Item>
+                ))}
+                {/* ))} */}
+              </DropdownButton>
+            </section>
+            <section className="my-2 my-md-2 p-2">
+              <Mediacard
+                slice={slice}
+                addonCart={addonCart}
+                removefromCart={removefromCart}
+              />
+            </section>
+            <section>
+              {slice.length < 16 ? (
+                <></>
+              ) : (
+                <>
+                  <div className=" my-3 text-center">
+                    <div className=" ">
+                      {slice.length !== search.length && (
+                        <button
+                          className={`${styles.load_button} `}
+                          onClick={More}
+                        >
+                          View More
+                        </button>
+                      )}
+                      {slice.length > 16 && (
+                        <button
+                          className={`${styles.load_button}  ms-5`}
+                          onClick={Less}
+                        >
+                          View Less
+                        </button>
+                      )}
+                    </div>
+                  </div>
+                </>
+              )}
+            </section>
+          </>
+        ) : (
+          <div className="container ">
+            <div className={`${styles.no_data} row  text-center my-3`}>
+              <Image
+                width={250}
+                height={250}
+                src="../../../images/web_pics/no-data.png"
+                alt="No Data Found"
+                className=""
+              />
             </div>
-          </form>
-
-
-          {/* Illumination type  */}
-
-          <DropdownButton
-            className="map-filter-drop"
-            title={filtervalue ? filtervalue : "Illumination type"}
-            id={styles.select_media_box}
-            // onSelect={(e) => setUserType(e)}
-            drop="down-centered"
-          >
-            {/* {ILLUMINATION.map((el, i) => ( */}
-            {ILLUMINATION.map((el, i) => (
-              <Dropdown.Item
-                key={i}
-                className="p-2 mt-0 "
-                onClick={(e) => mediaTypeFilter(el)}
-              >
-                {el}
-              </Dropdown.Item>
-            ))}
-
-            {/* ))} */}
-          </DropdownButton>
-
-          {/* Category */}
-
-          <DropdownButton
-            title={categoryvalue ? categoryvalue : "Category type"}
-            className="map-filter-drop"
-            id={styles.select_media_box}
-            // onSelect={(e) => setUserType(e)}
-            drop="down-centered"
-          >
-            {/* {ILLUMINATION.map((el, i) => ( */}
-            {category.map((cate, i) => (
-              <Dropdown.Item
-                key={i}
-                className="p-2 mt-0 "
-                onClick={(e) => categoryFilter(cate)}
-              >
-                {cate.substring(0, 13)}
-              </Dropdown.Item>
-            ))}
-          </DropdownButton>
-
-          {/* Location */}
-
-          <DropdownButton
-            className="map-filter-drop"
-            id={styles.select_media_box}
-            title={ilocationvalue ? ilocationvalue.substring(0, 45) : "Location"}
-            drop="down-centered"
-          >
-            {/* {ILLUMINATION.map((el, i) => ( */}
-            {locations.map((el, i) => (
-              <Dropdown.Item
-                key={i}
-                className="p-2 mt-0 "
-                onClick={(e) => locationFilter(el)}
-              >
-                {el}
-              </Dropdown.Item>
-            ))}
-            {/* ))} */}
-          </DropdownButton>
-        </section>
-        <section className="my-2 my-md-2 p-2">
-          <Mediacard
-            slice={slice}
-            addonCart={addonCart}
-            removefromCart={removefromCart}
-          />
-        </section>
-        <section>
-          {slice.length < 16 ? (
-            <></>
-          ) : (
-            <>
-              <div className=" my-3 text-center">
-                <div className=" ">
-                  {slice.length !== search.length && (
-                    <button className={`${styles.load_button} `} onClick={More}>
-                      View More
-                    </button>
-                  )}
-                  {slice.length > 16 && (
-                    <button
-                      className={`${styles.load_button}  ms-5`}
-                      onClick={Less}
-                    >
-                      View Less
-                    </button>
-                  )}
-                </div>
-              </div>
-            </>
-          )}
-        </section>
-        </>
-        :
-        <div className="container ">
-        <div className={`${styles.no_data} row  text-center my-3`}>
-               <img
-                 src="../../../images/web_pics/no-data.png"
-                 alt="No Data Found"
-                 className=""
-               />
-             </div>
-       </div>
-}
+          </div>
+        )}
         <section className="my-2">
           <Medialogo category_name={category_name} city_name={city} />
 

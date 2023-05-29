@@ -22,6 +22,7 @@ import { DateRange } from "react-date-range";
 import { addDays } from "date-fns";
 import Fixednavbar from "@/components/navbar/fixednavbar";
 import moment from "moment";
+import Image from "next/image";
 
 const Cart = () => {
   const route = useRouter();
@@ -188,7 +189,7 @@ const Cart = () => {
                                   href={`/seedetails/${obj.category_name}/${obj.meta_title}`}
                                   className="text-decoration-none"
                                 >
-                                  <img
+                                  <Image
                                     src={
                                       obj.thumb.startsWith("https")
                                         ? obj.thumb
@@ -210,6 +211,8 @@ const Cart = () => {
                                       (e.target.src =
                                         "../../images/web_pics/alter-img.png")
                                     }
+                                    width={500}
+                                    height={500}
                                     className={`img-fluid w-100 rounded-2  m-2 ${styles.cart_media_img}`}
                                     alt={obj.mediaownercompanyname}
                                   />
@@ -498,7 +501,9 @@ const Cart = () => {
                     >
                       <div className="modal-content">
                         <div className="modal-body pb-0 text-center">
-                          <img
+                          <Image
+                           width={500}
+                           height={500}
                             src="../images/web_pics/celebration.png"
                             className={`${styles.celebration_logo} w-50 h-50`}
                             alt="celebration"
@@ -548,7 +553,9 @@ const Cart = () => {
                     className={`container  text-center ${styles.cart_container}`}
                   >
                     <div className="  my-3">
-                      <img
+                      <Image
+                           width={500}
+                           height={500}
                         alt="empty-cart"
                         src="../images/web_pics/empty-cart.gif"
                         className={`${styles.empty_cart} ext-center`}

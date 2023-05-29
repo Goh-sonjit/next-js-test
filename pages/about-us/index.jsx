@@ -4,12 +4,13 @@ import Head from "next/head";
 import Branding from "../../components/branding";
 import clientslogo from "./clients";
 import { useRouter } from "next/router";
-import dynamic from "next/dynamic";
-
+import Image from "next/image";
+import Fixednavbar from "@/components/navbar/fixednavbar";
 const About = () => {
   const [noOfLogo, setnoOfLogo] = useState(18);
   const [showButton, setshowButon] = useState(true);
   const slice = clientslogo.slice(0, noOfLogo);
+
   const loadMore = () => {
     if (noOfLogo === 18) {
       setnoOfLogo(noOfLogo + noOfLogo);
@@ -18,11 +19,6 @@ const About = () => {
       setshowButon(false);
     }
   };
-
-  const route = useRouter();
-  const Fixednavbar = dynamic(() => import("@/components/navbar/fixednavbar"), {
-    ssr: false,
-  });
 
   const toContact = () => {
     route.push("/contact-us");
@@ -78,11 +74,14 @@ const About = () => {
               </p>
             </div>
             <div className="col-md-5">
-              <img
+              <Image
+               width={500}
+               height={500}
+                src="../../images/web_pics/ooh.png"
+               
+                alt="img"
                 className="img-fluid"
                 id="media-img"
-                src="../../images/web_pics/ooh.png"
-                alt="img"
               />
             </div>
           </div>
@@ -163,7 +162,9 @@ const About = () => {
             </div>
 
             <div className="col-md-5">
-              <img
+              <Image
+                width={500}
+                height={500}
                 id="map-img"
                 className="img-fluid "
                 src="../../images/web_pics/india_map.png"
@@ -175,7 +176,9 @@ const About = () => {
         <div className="container text-center">
           <div className="row mt-3">
             <div className="col-md-5">
-              <img
+              <Image
+                width={500}
+                height={500}
                 id="care-img"
                 className="img-fluid care"
                 src="../images/web_pics/vision.png"
@@ -213,7 +216,9 @@ const About = () => {
               {slice.map((clients, index) => {
                 return (
                   <div className="grid-item" key={index}>
-                    <img
+                    <Image
+                      width={500}
+                      height={500}
                       src={clients.img}
                       alt={clients.alt}
                       className="img-fluid logo-img"
