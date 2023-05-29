@@ -256,7 +256,7 @@ const City = () => {
             font-size: 1.6rem;
           }
           h6 {
-            font-size: 1rem;
+            display: none;
           }
           .iimmgg {
             width: 100%;
@@ -272,19 +272,17 @@ const City = () => {
       
             .bottom-left {
               position: absolute;
-              bottom: 2px;
-              color: #ffffff;
-              left: 8px;
-              font-size: 1rem;
+              bottom: 0px;
+              color: #fff;
+              left: 5px;
+              font-size: .8rem;
             }
 
 
             .bottom-left-media {
-           
-              bottom: 22px;
-            
-              left: 8px;
-              font-size: 1.1rem;
+              bottom: 14px;
+              left: 5px;
+              font-size: .9rem;
               font-weight: 600;
               padding-right: 0px;
             }
