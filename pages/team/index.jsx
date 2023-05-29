@@ -7,19 +7,11 @@ import Branding from "@/components/branding";
 import Head from "next/head";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import { useRouter } from "next/router";
+import axios from "axios";
+import instance from "@/allApi/axios";
 
-const Team = () => {
+const Team = ({data}) => {
   const route = useRouter();
-  const [posts, setPosts] = useState([]);
-  const staff = async () => {
-    const data = await gohordingStaffAPi();
-    setPosts(data);
-  };
-
-  useEffect(() => {
-    staff();
-  }, []);
-
   return (
     <>
       <Head>
@@ -63,7 +55,7 @@ const Team = () => {
               <span className="bredcamp text-secondary">Team</span>
             </h6>
             <div className="row">
-              {posts.map((person, index) => {
+              {data && data.map((person, index) => {
                 return (
                   <div className="col-md-3 mt-3 col-6" id="maindiv" key={index}>
                     <div className="single-team    text-center rounded">
@@ -189,5 +181,11 @@ const Team = () => {
     </>
   );
 };
+
+export async function getServerSideProps() {
+  // Fetch data from external API
+  const {data} = await instance.get("team");
+  return { props: { data } };
+}
 
 export default Team;

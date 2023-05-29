@@ -60,7 +60,7 @@ const Contact = () => {
      <Head>
       <link rel="canonical" href={`https://www.gohoardings.com${asPath}`} />
         <title>
-          India&#39;s Largest Outdoor Advertising Agency | Gohoarding Solution
+        Gohoardings Solutions is the leading online media buying agency. Contact us to get exclusive media buying rates and make your brand visible.
         </title>
         <meta charSet="utf-8" />
        
@@ -76,7 +76,8 @@ const Contact = () => {
         />
         <meta
           name="keywords"
-          content="India&#39s Largest Outdoor Advertising Agency,  Hoarding agency, Outdoor Advertising Company, Bus Advertising, Airport Advertising, OOH Media Agency, Train Advertising, Cab and Autorikshaw Advertising, Digital LED Display Ads, DOOH Advertising, Ad Agency India, Hoarding Advertising Agency Nearby, Multiplex Advertising, Gohoardings is india’s largest Outdoor Advertising Agency"
+          content="Contact Us | India's Leading Hoardings and Billboards Advertising Agency in Delhi, India, Best Offline Advertising Agency in Delhi NCR, Advertising Agency in Noida, Delhi, NCR, Dealing with Billboards, Hoardings, Airport Branding, Transit Medial Airlines Branding, on best prices.
+          "
         />
       </Head>
    <Fixednavbar/>

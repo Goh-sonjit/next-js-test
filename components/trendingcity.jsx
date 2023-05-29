@@ -14,15 +14,14 @@ const Trendingcity = () => {
     return setCity(items[Math.floor(Math.random() * items.length)]);
   }
   const data = async () => {
-    const category_name = "traditional-ooh-media";
     const city_name = city;
-    const data2 = await  mediaDataApi(category_name, city_name)
+    const data2 = await mediaDataApi("traditional-ooh-media", city_name)
     setSearch(data2)
   };
   useEffect(() => {
     random_item();
     data();
-  }, [city]);
+  }, []);
 
   {
     var settings = {

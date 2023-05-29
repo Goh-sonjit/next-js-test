@@ -6,16 +6,10 @@ const client = redis.createClient()
 
 
 exports.allcompanyData = catchError(async (req,res, next) => {
-    const userId = req.id;
-    const data = await client.get("companydata")
-    if (data) {
-        res.send(JSON.parse(data))
-    } else {
+  const userId = req.id;
   const result = await executeQuery("SELECT * FROM tblclients WHERE userid = "+userId+"", "gohoardi_crmapp",next) 
         if(result){
-            client.setEx("companydata",process.env.REDIS_TIMEOUT,JSON.stringify(result))
             return res.status(200).json(result)
-        }
     }})
 
 exports.Profile = catchError(async (req, res, next) => {
