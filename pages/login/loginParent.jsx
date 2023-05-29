@@ -168,7 +168,7 @@ const LoginN = () => {
   const changePassword = async (e) => {
     e.preventDefault();
     const data = await changePasswordApi(password, confirmpasswords, expire);
-    console.log(data);
+
     setPassword(" ");
     setconfirmPasswords(" ");
     if (data.success === true) {

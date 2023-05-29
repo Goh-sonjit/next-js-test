@@ -2,21 +2,15 @@ import React, {useEffect, useState} from "react";
 import Branding from "@/components/branding";
 import Fixednavbar from "@/components/navbar/fixednavbar";
 import Head from "next/head";
-import { goh_media_and_newsApi } from "@/allApi/apis";
+import Image from "next/image";
+
 import {MdKeyboardArrowRight } from "react-icons/md";
 import { useRouter } from "next/router";
+import instance from "@/allApi/axios";
 
-const Newsmedia = () => {
+const Newsmedia = ({data}) => {
   const route = useRouter()
-  const [posts, setPosts] = useState([])
-  const staff = async() =>{
-    const data = await goh_media_and_newsApi()
-    setPosts(data)
-  }
-  
-  useEffect(()=>{
-    staff()
-  },[])
+
   const {asPath} = useRouter();
   return (
     <>
@@ -52,17 +46,17 @@ const Newsmedia = () => {
           <h5 className=" p-2 ps-3 news-heading ">Latest News</h5>
           <div className="card mb-3">
           
-          {posts && posts.map((el,i) =>(
+          {data && data.map((el,i) =>(
             <>
              <div className="row" key={i}>
              <div className="col-md-4">
-               Image
+               <Image
                            width={500}
                            height={500}
                  src={`https://www.gohoardings.com/gohadmin/uploads/news_events/listing-16.jpg`}
                 //  src={`https://www.gohoardings.com/gohadmin/uploads/news_events/${el.featured_image}`}
                  className="img-fluid rounded-start"
-                 alt="..."
+                 alt="news_events"
                  id="news_events"
                />
              </div>
@@ -78,7 +72,7 @@ const Newsmedia = () => {
                    </small>
 
                  </p>
-                 <p className="card-text" dangerouslySetInnerHTML={{__html: el.description.split(".",3)}}/>
+                 <span className="card-text" dangerouslySetInnerHTML={{__html: el.description.split(".",3)}}/>
                
                </div>
              </div>
@@ -104,6 +98,10 @@ const Newsmedia = () => {
       </style>
     </>
   );
-};
+};export async function getServerSideProps() {
+  // Fetch data from external API
+  const {data} = await instance.get("news&media");
+  return { props: { data } };
+}
 
 export default Newsmedia;

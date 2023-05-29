@@ -121,10 +121,6 @@ export const logoutUser = async () => {
   return data;
 }
 
-export const refreshToken = async () => {
-  const { data } = await instance.get(`seedetails`, { withCredentials: true })
-  return data
-}
 
 export const googleLogin = async (res) => {
   const { data } = await instance.post("sociallogin", res)
@@ -192,31 +188,6 @@ export const sendOTP = async (otp) => {
 
 export const changePasswordApi = async (password, confirmpasswords, expire) => {
   const { data } = await instance.put("forgetPass", { password, confirmpasswords, expire });
-  return data
-}
-
-export const gohordingStaffAPi = async () => {
-  const { data } = await instance.get("team");
-  return data
-}
-
-export const goh_quick_linksApi = async () => {
-  const { data } = await instance.get("static/goh_quick_links");
-  return data
-}
-
-export const goh_faqsApi = async () => {
-  const { data } = await instance.get("medias");
-  return data
-}
-
-export const goh_media_and_newsApi = async () => {
-  const { data } = await instance.get("news&media");
-  return data
-}
-
-export const goh_testimonialsApi = async () => {
-  const { data } = await instance.get("testmonials");
   return data
 }
 

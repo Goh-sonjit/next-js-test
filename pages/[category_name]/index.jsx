@@ -73,7 +73,6 @@ const Media = (props) => {
     apiforFillters();
   }, [category_name, noOfLogo]);
 
-  console.log(search);
   // const categorytag = getCookie("categorytag");
 
   const onSearch = async (searchCity) => {

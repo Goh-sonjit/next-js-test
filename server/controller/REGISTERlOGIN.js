@@ -146,37 +146,6 @@ exports.googleLogin = catchError(async (req, res, next) => {
                     }
    })
    
-exports.refreshToken = catchError(async (req, res, next) => {
-    const cookieData = req.cookies;
-    if (!cookieData) {
-        return res.status(400).json({message: "No Cookie Found"})
-    }
-    const token = Object.values(cookieData)[0];
-    if (!token) {
-        return res.status(206).json({success: false,message: "No Token Found"})
-    } else {
-        return jwtToken.verify(token, "thisismysecretejsonWebToken", async (err, user) => {
-            if (err) {
-                return res.status(206).json({success: false,message: "InValid Token"});
-            } else {
-                res.setHeader("Set-Cookie",cookie.serialize(String(user.id),{expires: Date.now()}))
-                const token = jwtToken.sign({id: user.id}, "thisismysecretejsonWebToken", {
-                    expiresIn: "7d"
-                });
-                res.cookie(String(user.id), token, {
-                    path: '/',
-                    expires: new Date(Date.now() + 6 * 24 * 3600000),
-                    httpOnly: true,
-                    sameSite: "lax",
-
-                })
-                req.id = user.id;
-                next()
-            }
-        })
-    }
-
-})
 
 exports.getuser = catchError(async (req, res, next) => {
     const userId = req.id;

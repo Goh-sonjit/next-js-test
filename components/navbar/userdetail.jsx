@@ -6,7 +6,7 @@ import {
   clientId,
   googleLogin,
   logoutUser,
-  refreshToken,
+
   userDetails,
 } from "@/allApi/apis";
 import Image from "next/image";
@@ -63,10 +63,7 @@ const Userdetail = () => {
     userData();
   }, [value]);
 
-  const refreshUser = async () => {
-    const data = await refreshToken();
-    return data;
-  };
+
 
   const oneTap = async (response) => {
     const data = await googleLogin(response);

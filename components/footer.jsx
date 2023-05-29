@@ -151,8 +151,8 @@ const Footer = () => {
           </div>
         </div>
         <div className="row pt-3">
-          <div className="col  py-md-3 ms-md-2">
-            <div className="quick-links ">
+          <div className="col  py-md-3 ms-md-2 quick-links">
+            
               <h4 className="   f-heading">Quick Links</h4>
               <ul className="position-relative  pt-md-3  ps-0">
                 <li className="py-md-2">
@@ -229,19 +229,13 @@ const Footer = () => {
                   </li>
                 </span>
               </ul>
-            </div>
+            
           </div>
-          <div className="col  py-md-3 ms-md-2">
-            <div className="popular-media ">
-              <h4 className=" f-heading  ">Popular Services</h4>
+          <div className="col py-md-3 ms-md-2 popular-media">
+          
+              <h4 className=" f-heading">Popular Services</h4>
               <ul className=" pt-md-3   ps-0">
                 {CityNameImage.map((el, i) => (
-                  // <Link
-                  //   key={i}
-                  //   //  href="#"
-                  //   href={el.value}
-                  //   className="text-decoration-none "
-                  // >
                   <li
                     key={i}
                     className=" py-md-2  text-decoration-none f-heading-clr"
@@ -249,10 +243,10 @@ const Footer = () => {
                   >
                     {el.label}
                   </li>
-                  // </Link>
+
                 ))}
               </ul>
-            </div>
+            
           </div>
           <div className="col  py-md-3 ms-md-2 p-md-1">
             <h4 className="   f-heading">Trending Cities</h4>
@@ -344,16 +338,7 @@ const Footer = () => {
 
               <ToastContainer />
             </form>
-            {/* <p className="error-msg">
-              {" "}
-              {error == true && !emailformate.test(email) ? (
-                <small className="p-0 p-0 text-danger text-small  ">
-                  Type your email corectly
-                </small>
-              ) : (
-                <> </>
-              )}{" "}
-            </p> */}
+          
             <h6 className=" py-0 text-muted head6">
               * Join our newsletter for the most recent information.
             </h6>

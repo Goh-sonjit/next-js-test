@@ -32,17 +32,9 @@ const Profile = () => {
     }
   };
    
-  
-  const userData = async () => {
-    if (value) {
-      const data = await profileDetails();
-      // setPosts(data.message);
-    }
-  };
 
   useEffect(() => {
     getData();
-    userData();
   }, [value]);
 
   const showCompaney = async () => {
@@ -103,8 +95,8 @@ const Profile = () => {
                <label>
                <div className="img-wrap img-upload">
                  < Image
-                           width={500}
-                           height={500}
+                           width={250}
+                           height={250}
                     src={user && user.map((el) => el.profile_image)}
                     className="card-img-top"
                     alt="user-profile"

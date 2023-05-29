@@ -6,13 +6,6 @@ import Head from "next/head";
 import { setCookie } from "cookies-next";
 import {
   CityNameImage,
-  mediaApi,
-  addItem,
-  removeItem,
-  LocationFilterApi,
-  illuminationFilterApi,
-  subCategoryFilterApi,
-  getAllCity,
   mediaDataApi,
 } from "@/allApi/apis";
 import ErrorPage from "../404";
