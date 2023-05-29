@@ -19,8 +19,8 @@ const Mobilenav = () => {
             <MdMenu className={`${styles.search_logo} `}/>
           </span>
        < Image
-                           width={500}
-                           height={500}
+                           width={50}
+                           height={30}
           alt="gohoardings"
           src="../../images/web_pics/logo.png"
           className={`${styles.navbrand} m-1`}
@@ -44,8 +44,8 @@ const Mobilenav = () => {
 <div className="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabIndex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
   <div className="offcanvas-header">
   <Image
-                           width={500}
-                           height={500}
+                           width={50}
+                           height={30}
           alt="gohoardings"
           src="../../images/web_pics/logo.png"
           className={`${styles.navbrand} m-1 mt-0`}

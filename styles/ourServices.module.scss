@@ -90,6 +90,7 @@
     // h6 {
     //   font-size: 1rem;
     // }
+   
     .service_card_img {
       height: 130px;
     }
@@ -108,9 +109,10 @@
         font-size: 0.9rem !important;
         padding-top: 4px;
       }
-      h6 {
-        font-size: 0.7rem !important;
+      h6{
+        display: none !important;
       }
+
 
       .celebration_logo {
         height: 43px;
