@@ -2,14 +2,16 @@ import { MdKeyboardArrowRight } from "react-icons/md";
 import React, { useState } from "react";
 import Head from "next/head";
 import Branding from "../../components/branding";
-import clientslogo from "./clients";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import Fixednavbar from "@/components/navbar/fixednavbar";
+import { brandLogoApi } from "@/allApi/apis";
+import { useEffect } from "react";
 const About = () => {
   const [noOfLogo, setnoOfLogo] = useState(18);
+  const [logo,SetLogo] = useState([])
   const [showButton, setshowButon] = useState(true);
-  const slice = clientslogo.slice(0, noOfLogo);
+  const slice = logo.slice(0, noOfLogo);
 
   const loadMore = () => {
     if (noOfLogo === 18) {
@@ -19,11 +21,18 @@ const About = () => {
       setshowButon(false);
     }
   };
+  const allLogo = async() =>{
+    const data = await brandLogoApi()
+    SetLogo(data)
+  } 
 
   const toContact = () => {
     route.push("/contact-us");
   };
   const { asPath } = useRouter();
+  useEffect(() =>{
+    allLogo()
+  },[])
   return (
     <>
       <Head>

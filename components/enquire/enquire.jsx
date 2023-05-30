@@ -1,10 +1,21 @@
+import React,{useState, useEffect} from "react";
 import Slider from "react-slick";
-import clientslogo from "../../pages/about-us/clients";
 import Enquireregister from "./enquireregister";
 import styles from '../../styles/enquire.module.scss'  ;
 import Image from "next/image";
+import { brandLogoApi } from "@/allApi/apis";
 const Enquire = () => {
-  const slice = clientslogo.slice(0, 21);
+  const [logo,SetLogo] = useState([])
+  const allLogo = async() =>{
+    const data = await brandLogoApi()
+    SetLogo(data)
+  } 
+
+  useEffect(() =>{
+    allLogo()
+  },[])
+
+  const slice = logo.slice(0, 21);
   {
     var settings = {
       pauseOnHover: false,

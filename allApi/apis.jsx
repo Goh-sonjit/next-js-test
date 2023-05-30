@@ -358,3 +358,10 @@ export const getCityDataApi = async( city) =>{
 }
 
 
+
+export const brandLogoApi = async() =>{
+  const {data} = await instance.get('excel')
+  return data
+}
+
+

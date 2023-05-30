@@ -50,3 +50,9 @@ exports.getReview = catchError(async (req,res, next) =>{
     })
 
 
+    exports.brangLogo = catchError(async (req,res, next) =>{
+        const result =  await  executeQuery("SELECT * from tbl_client_logos", "gohoardi_goh", next)
+        if (result) {   
+            return res.status(200).json(result)
+        } 
+    })
