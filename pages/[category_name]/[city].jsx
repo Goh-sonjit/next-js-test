@@ -1,23 +1,22 @@
 import Fixednavbar from "@/components/navbar/fixednavbar";
-import React, { useContext, useState, useEffect } from "react";
+import React, {useState, useEffect } from "react";
 import { useRouter } from "next/router";
-import { AccountContext } from "@/allApi/apicontext";
 import Head from "next/head";
-import { setCookie } from "cookies-next";
 import {
   CityNameImage,
   mediaDataApi,
 } from "@/allApi/apis";
-import ErrorPage from "../404";
 import MainUi from "@/components/mediaComponents/MainUi";
+import dynamic from "next/dynamic";
 
 const Media = (props) => {
+
+  const ErrorPage = dynamic(() => import("../404"));
   const Metatag = props.MetaKeys;
   const Canonicaltag = props.currentPageUrl;
   const router = useRouter();
   const [value, setValue] = useState("");
   const [focus, setFocus] = useState(false);
-  const [serviceIcon, setServiceIcon] = useState(CityNameImage);
   const [search, setSearch] = useState([]);
   const [locationData, setlocationData] = useState([]);
   const [mediaData, setMediadata] = useState([]);
@@ -26,23 +25,14 @@ const Media = (props) => {
   const { category_name, city } = router.query;
 
   const SelectServc = async (obj) => {
-    const services = [...serviceIcon];
-    services.map((el) => {
-      if (el.id == obj.id) {
-        el.value2 = true;
-        setCookie("categorytag", obj.label);
-      }
-      if (el.id !== obj.id) {
-        el.value2 = false;
-      }
+    CityNameImage.forEach((el) => {
+      el.value2 = el.value === obj.value? true : false;
     });
     router.push(`/${obj.value}/${city}`);
-    setServiceIcon(services);
   };
 
   const getData = async () => {
     const data = await mediaDataApi(category_name, city);
-   
     setSearch(data);
   };
 
@@ -133,7 +123,7 @@ const Media = (props) => {
         SelectServc={SelectServc}
         value={value}
         focus={focus}
-        serviceIcon={serviceIcon}
+        serviceIcon={CityNameImage}
         city={city}
         setValue={setValue}
         setFocus={setFocus}

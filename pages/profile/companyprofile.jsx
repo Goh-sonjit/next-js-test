@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { allcompanydata, companydata } from "@/allApi/apis";
-import { toast, ToastContainer } from "react-toastify";
+import { toast} from "react-toastify";
 
 const initalState = {
   company: " ",

@@ -1,12 +1,11 @@
 import React, { useState, useContext } from "react";
 import Mediacard from "./cards";
-import Medialogo from "@/components/mediaBranding";
-import OverView from "./overView";
 import styles from "@/styles/mediaN.module.scss";
 import { AccountContext } from "@/allApi/apicontext";
 import { Dropdown, DropdownButton } from "react-bootstrap";
 import { MdOutlineLocationOn } from "react-icons/md";
 import Image from "next/image";
+import dynamic from "next/dynamic";
 import {
   addItem,
   removeItem,
@@ -35,6 +34,8 @@ const MainUi = ({
   setValue,
   setFocus,
 }) => {
+  const Medialogo = dynamic(() => import("@/components/mediaBranding"));
+  const OverView = dynamic(() => import("./overView"));
   const { addRemove, handleShow } = useContext(AccountContext);
   const [citys, setCity] = useState([]);
 
@@ -202,7 +203,6 @@ const MainUi = ({
               <Image
                 width={50}
                 height={45}
-                
                 className={`${styles.service_Icon} mb-2`}
                 src={el.value2 == true ? el.srcImgCtSlc : el.srcImgCt}
                 alt={el.srcImg}

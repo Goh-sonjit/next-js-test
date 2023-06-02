@@ -57,7 +57,7 @@ const Enquire = () => {
              
             
                    <Image
-                           width={100}
+                           width={160}
                            height={100}
                      src={clients.img}
                      alt={clients.alt}

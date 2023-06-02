@@ -18,8 +18,6 @@ import { CgUserlane } from "react-icons/cg";
 import { BiLogOut, BiLogIn } from "react-icons/bi";
 import { FaUserCircle } from "react-icons/fa";
 import { useRouter } from "next/router";
-import Modal from "react-bootstrap/Modal";
-import LoginN from "@/pages/login/loginParent";
 import instance from "@/allApi/axios";
 import { getCookie, setCookie, removeCookies } from "cookies-next";
 
@@ -97,16 +95,14 @@ const Userdetail = () => {
   }, []);
 
   useEffect(() => {
-    if (scrollY >= 10 || pth !== "/") {
+    if (scrollY >= 500 || pth !== "/") {
       setPosts(false);
     } else {
       setPosts(true);
     }
   }, [scrollY]);
 
-  // const [show, setShow] = useState(false);
-  // const handleClose = () => setShow(false);
-  // const handleShow = () => setShow(true);
+
 
   if (value) {
     return (
@@ -158,7 +154,7 @@ const Userdetail = () => {
                   width={50}
                   height={10}
                   aria-expanded={posts}
-                  src="../../images/web_pics/hoarding.png"
+                  src="/images/web_pics/hoarding.png"
                   className={`${styles.login_icon_cart} `}
                 />
               </span>
@@ -213,7 +209,7 @@ const Userdetail = () => {
                   width={10}
                   height={10}
                   aria-expanded={posts}
-                  src="../../images/web_pics/hoarding.png"
+                  src="/images/web_pics/hoarding.png"
                   className={`${styles.login_icon_cart} `}
                 />
               </span>
@@ -237,15 +233,7 @@ const Userdetail = () => {
             className={`${styles.login_icon} ps-0 p-0  ms-0 mb-1`}
           />
         </div>
-        {/* 
-        <Modal
-          show={show}
-          onHide={handleClose}
-          aria-labelledby="contained-modal-title-vcenter"
-          centered
-        >
-          <LoginN />
-        </Modal> */}
+ 
 
         {/* for mobile */}
 

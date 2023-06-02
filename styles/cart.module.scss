@@ -1,6 +1,6 @@
 .rupees_logo {
   font-size: 12px;
-  margin-bottom: 2px !important;
+  margin-bottom: 2px;
 }
 
 .off_text {
@@ -13,18 +13,18 @@
   margin-bottom: 65px;
 }
 
-.continue{
-  border: none !important;
-  width: 200px  ;
-  font-size: 17px !important;
-  font-weight: 600 !important;
-  color: rgb(48, 47, 47) !important;
-  background-color: #FFF323 !important;
+.continue {
+  border: none;
+  width: 200px;
+  font-size: 17px;
+  font-weight: 600;
+  color: rgb(48, 47, 47);
+  background-color: #fff323;
   text-transform: uppercase;
-  padding: 5px 20px !important;
+  padding: 5px 20px;
 }
 .cart_media_img {
-  height: 230px !important;
+  height: 230px;
 }
 
 .delet_icon {
@@ -37,35 +37,33 @@
 .card_title {
   font-size: 19px;
 }
-#fgb{
+#fgb {
   cursor: not-allowed;
-  
-  
 }
 .card_text {
   font-size: 14px;
 }
 
 .maincard {
-  box-shadow: rgba(0, 0, 0, 0.05) 1px 1px 2px 0px !important;
-  border: none !important ;
+  box-shadow: rgba(0, 0, 0, 0.05) 1px 1px 2px 0px;
+  border: none;
 }
-.maincard:hover{
+.maincard:hover {
   cursor: pointer;
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px !important;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
   border-radius: 6px;
 }
 
-.maincard:hover .delet_icon{
-  color:#808080 !important;
-  transform: scale(1.1) ;
+.maincard:hover .delet_icon {
+  color: #808080;
+  transform: scale(1.1);
 }
 
 .chek_avl_btn {
   border: none;
-  width: 100% !important ;
-  color: rgb(48, 47, 47) !important;
-  background-color: #FFF323;
+  width: 100%;
+  color: rgb(48, 47, 47);
+  background-color: #fff323;
   padding: 5px 25px;
   h5 {
     font-size: 17px;
@@ -73,7 +71,7 @@
   }
 }
 
-.news_headings{
+.news_headings {
   color: black;
   font-size: 1.6rem;
   font-weight: 600;
@@ -81,7 +79,7 @@
   box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
 }
 
-#ereday{
+#ereday {
   font-size: 10px;
 }
 
@@ -100,22 +98,18 @@
 }
 .date_select_section {
   .input_2 {
-    // box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
-    //   rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
     border-radius: 3px;
-    width: 70px !important;
-    font-size: 16px !important ;
+    width: 70px;
+    font-size: 16px;
     border: none;
     font-weight: bold;
     text-align: center;
     height: 35px;
   }
   .input_1 {
-    // box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
-    //   rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
     border-radius: 3px;
-    width: 70px !important;
-    font-size: 7px !important ;
+    width: 70px;
+    font-size: 7px;
     padding-top: 2%;
     height: 35px;
     align-items: center;
@@ -123,18 +117,18 @@
     justify-content: center;
   }
   .calender_logos {
-    font-size: 25px !important ;
+    font-size: 25px;
     color: #7d7c7c;
   }
 
   .calender_logo {
-    font-size: 28px !important ;
+    font-size: 28px;
     color: #747474;
   }
-  
 }
 .total-container {
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
+    rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
   border: none;
   background-color: #f7f7f7;
   h2 {
@@ -164,7 +158,7 @@
     }
   }
   .button_section {
-    margin-top: 15px !important;
+    margin-top: 15px;
   }
   .card_title {
     font-size: 18px;
@@ -176,7 +170,7 @@
     font-size: 12px;
   }
   .cart_media_img {
-    height: 220px !important;
+    height: 220px;
   }
   .quantitey {
     margin-left: 4px;
@@ -205,21 +199,21 @@
   }
   .date_select_section {
     input {
-      width: 70px !important;
-      font-size: 13px !important ;
+      width: 70px;
+      font-size: 13px;
       height: 30px;
     }
     .input_1 {
-      width: 150px !important;
+      width: 150px;
 
       height: 30px;
     }
     .calender_logos {
-      font-size: 16px !important ;
+      font-size: 16px;
     }
 
     .calender_logo {
-      font-size: 16px !important ;
+      font-size: 16px;
     }
   }
   .cart-container {
@@ -231,7 +225,6 @@
     }
   }
 
-
   .quantitey {
     font-size: medium;
   }
@@ -241,33 +234,29 @@
   .card_text {
     font-size: 12px;
   }
-  .des{
+  .des {
     font-size: 13px;
   }
   .off_text {
-    font-size: 6px !important;
+    font-size: 6px;
   }
-  
 }
-
 
 @media screen and (max-width: 425px) {
-  .maincard_hight{
+  .maincard_hight {
     margin-bottom: 10px;
-   max-height: 335px ; 
+    max-height: 335px;
     overflow: scroll;
   }
-.hide_map{
-  display: none;
-}
+  .hide_map {
+    display: none;
+  }
   .cart_content {
     margin-top: 50px;
     margin-bottom: 25px;
-    
   }
   .cart_media_img {
-
-    height: 120px !important;
+    height: 120px;
   }
   .card_title {
     font-size: 14px;
@@ -277,23 +266,19 @@
     margin-top: -4px;
   }
   .maincard {
-
-    h6{
-   font-size: 13px;
+    h6 {
+      font-size: 13px;
+    }
   }
-  
-  }
-  .rupees_logo{
+  .rupees_logo {
     font-size: 11px;
   }
   .date_select_section {
-
-
     .input_1 {
-      width: 45px !important;
+      width: 45px;
     }
   }
   .des {
-    margin-bottom: 0% ;
+    margin-bottom: 0%;
   }
 }

@@ -108,7 +108,7 @@ const Trendingcity = () => {
                                   }
                                   onError={(e) =>
                                     (e.target.src =
-                                      "../../images/web_pics/alter-img.png")
+                                      "/images/web_pics/alter-img.png")
                                   }
                                 />
 

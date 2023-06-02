@@ -34,7 +34,6 @@
   margin: 0px 12px;
   appearance: none;
   width: auto;
-
   display: inline-flex;
   -webkit-box-align: center;
   align-items: center;
@@ -45,7 +44,7 @@
   border-radius: 6px;
   white-space: nowrap;
   transition: background-color 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
-    box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
   outline: 0px;
   text-decoration: none;
   font-size: 1rem;
@@ -255,7 +254,7 @@ input.nosubmit {
   justify-content: center;
   align-items: center;
   img {
-    // height: 10vh;
+
     width: 20vw;
   
   }

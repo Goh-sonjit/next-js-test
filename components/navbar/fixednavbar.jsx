@@ -56,9 +56,9 @@ const Fixednavbar = () => {
     setCity(data);
   };
 
-  const [serviceIcon, setServiceIcon] = useState(CityNameImage);
+
   const mavigatetoMediaPage = (userType, value) => {
-    const services = [...serviceIcon];
+  
 
     if (pathname === "/map" && userType.length > 3 && value.length > 2) {
       setCookie('category_name',userType)
@@ -70,17 +70,9 @@ const Fixednavbar = () => {
     if (userType.length > 3 && value.length > 2) {
       setCookie("category_name", userType);
       setCookie("city_name", value);
-      services.map((el) => {
-        if (el.value == userType) {
-          el.value2 = true;
-        
-        }
-        if (el.value !== userType) {
-          el.value2 = false;
-        }
+      CityNameImage.forEach((el) => {
+        el.value2 = el.value === userType ? true : false;
       });
-      
-      setServiceIcon(services);
       route.push(`/${userType}/${value}`);
     }
   };
@@ -118,10 +110,10 @@ const Fixednavbar = () => {
           </div>
 
           <Image
-                           width={10}
+                           width={100}
                            height={35}
             alt="gohoardings"
-            src="../../images/web_pics/logo.png"
+            src="/images/web_pics/logo.png"
             className={`border-0 brand ${styles.float_brand} ms-2`}
             onClick={() => route.push("/")}
           />

@@ -5,6 +5,7 @@ import { MdLocationPin } from "react-icons/md";
 import { toast, ToastContainer } from "react-toastify";
 import instance from "@/allApi/axios";
 import Head from "next/head";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 import Fixednavbar from "../../../../components/navbar/fixednavbar";
 import { Carousel } from "react-responsive-carousel";
 import Loader from "@/components/loader";
@@ -24,7 +25,6 @@ const Details = (props) => {
   const [phone, setNumber] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
-
   const [error, setEror] = useState(false);
 
   let count = 0;
@@ -69,8 +69,6 @@ const Details = (props) => {
       setPosts(data);
     }
   };
-
-
 
   const addonCart = async (e) => {
     const data = await addItem(e.code, e.category_name)
@@ -182,7 +180,7 @@ const Details = (props) => {
                                   .toLowerCase()}/media/images/new${element}`
                           }
                           onError={(e) =>
-                            (e.target.src = "../../images/web_pics/alter-img.png")
+                            (e.target.src = "/images/web_pics/alter-img.png")
                           }
                           className="rounded-3 detail-img"
                         />

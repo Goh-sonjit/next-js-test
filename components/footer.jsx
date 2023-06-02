@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import Modal from "react-bootstrap/Modal";
 import { AccountContext } from "@/allApi/apicontext";
 import { FiPhoneCall } from "react-icons/fi";
-import LoginN from "@/pages/login/loginParent";
+import dynamic from "next/dynamic";
 import { BiMailSend } from "react-icons/bi";
 import { setCookie } from "cookies-next";
 import { MdLocationOn } from "react-icons/md";
@@ -22,6 +22,8 @@ const Footer = () => {
   const [serviceIcon, setServiceIcon] = useState(CityNameImage);
   const [email, setEmail] = useState([]);
   const { handleClose, handleShow, show } = useContext(AccountContext);
+
+  const LoginN = dynamic(() => import("@/pages/login/loginParent"));
 
   const handelSubmit = async (e) => {
     let count = 0;
@@ -58,31 +60,31 @@ const Footer = () => {
   const logo = [
     {
       id: 1,
-      img: "../../images/web_pics/facebook.png",
+      img: "/images/web_pics/facebook.png",
       alt: "logo1",
       link: "https://www.facebook.com/gohoardings/",
     },
     {
       id: 2,
-      img: "../../images/web_pics/insta.png",
+      img: "/images/web_pics/insta.png",
       alt: "logo2",
       link: "https://www.instagram.com/gohoardings/",
     },
     {
       id: 3,
-      img: "../../images/web_pics/twiter.png",
+      img: "/images/web_pics/twiter.png",
       alt: "logo3",
       link: "https://twitter.com/gohoardings",
     },
     {
       id: 4,
-      img: "../../images/web_pics/linkdin.png",
+      img: "/images/web_pics/linkdin.png",
       alt: "logo4",
       link: "https://www.linkedin.com/company/gohoardings/",
     },
     {
       id: 5,
-      img: "../../images/web_pics/meail.png",
+      img: "/images/web_pics/meail.png",
       alt: "logo5",
       link: "mailto:info@gohoardings.com",
     },
@@ -133,7 +135,7 @@ const Footer = () => {
               <Image
                 width={245}
                 height={43}
-                src="../../images/web_pics/logo.png"
+                src="/images/web_pics/logo.png"
                 alt="gohoardings"
                 className="brand-logo-footer "
               />

@@ -4,42 +4,34 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "animate.css";
-import "react-date-range/dist/styles.css"; 
-import "react-date-range/dist/theme/default.css"; 
+import "react-date-range/dist/styles.css";
+import "react-date-range/dist/theme/default.css";
 import "bootstrap/dist/css/bootstrap.css";
-
 import "react-toastify/dist/ReactToastify.css";
 import { SSRProvider } from "react-bootstrap";
-import {SessionProvider} from 'next-auth/react'
+import { SessionProvider } from "next-auth/react";
 import AccountProvider from "@/allApi/apicontext";
 import Footer from "@/components/footer";
-import Mobilenav from "@/components/navbar/mobilenav";
 
-// const Feedback = dynamic(() => import("@/components/feedback"), {
-//   ssr: false,
-// });
-
-
+const Mobilenav = React.lazy(() => import("@/components/navbar/mobilenav"));
 
 function App({ Component, pageProps, session }) {
   useEffect(() => {
     import("bootstrap/dist/js/bootstrap.js");
   }, []);
-  
+
   return (
-   
-      <SSRProvider>
-        <AccountProvider>
-          <SessionProvider session={session}>
-            <Mobilenav/>
+    <SSRProvider>
+      <AccountProvider>
+        <SessionProvider session={session}>
+          <React.Suspense fallback={<div>Loading...</div>}>
+            <Mobilenav />
+          </React.Suspense>
           <Component {...pageProps} />
-          </SessionProvider>
-  
-          {/* <Feedback/> */}
-          <Footer />
-        </AccountProvider>
-      </SSRProvider>
-     
+        </SessionProvider>
+        <Footer />
+      </AccountProvider>
+    </SSRProvider>
   );
 }
 

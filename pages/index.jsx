@@ -1,38 +1,25 @@
-import React, { useState, useEffect } from "react";
 import Head from "next/head";
-import Ourservices from "@/components/ourServices";
-import City from "@/components/cityList";
-import Enquire from "@/components/enquire/enquire";
-import Searchmedia from "@/components/searchMedia";
 import dynamic from "next/dynamic";
-import NavbarH from "@/components/navbar/navbar";
 import { useRouter } from "next/router";
-
-
-const Statemap = dynamic(() => import('@/components/statemap'), { ssr: false });
-
-const Trendingcity = dynamic(() => import("@/components/trendingcity"), {
-  ssr: false,
-});
-
-const Floatingnavbar = dynamic(
-  () => import("@/components/navbar/flotingnavbar"),
-  {
-    ssr: false,
-  }
-);
+const NavbarH = dynamic(() => import("@/components/navbar/navbar"));
+const Floatingnavbar = dynamic(() => import("@/components/navbar/flotingnavbar"),{ssr:false});
+const Searchmedia = dynamic(() => import("@/components/searchMedia"));
+const Ourservices = dynamic(() => import("@/components/ourServices"));
+const City = dynamic(() => import("@/components/cityList"));
+const Enquire = dynamic(() => import("@/components/enquire/enquire"));
+const Trendingcity = dynamic(() => import("@/components/trendingcity"),{ssr:false});
 
 export default function Home() {
-  const {asPath} = useRouter();
+  const { asPath } = useRouter();
   return (
     <>
       <Head>
-      <link rel="canonical" href={`https://www.gohoardings.com${asPath}`}/>
+        <link rel="canonical" href={`https://www.gohoardings.com${asPath}`} />
         <title>
           India&#39;s Largest Outdoor Advertising Agency | Gohoarding Solution
         </title>
         <meta charSet="utf-8" />
-       
+
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="theme-color" content="#000000" />
         <meta
@@ -49,30 +36,13 @@ export default function Home() {
         />
       </Head>
       <main className="animate__animated  animate__fadeIn">
-
-
-        
         <NavbarH />
-      
         <Floatingnavbar />
-        <section>
-          <Searchmedia />
-        </section>
-        <section> 
-          <Ourservices />
-        </section>
-        <section>
-          <Statemap/>
-        </section>
-        <section>
-          <City />
-        </section>
-        <section>
-          <Enquire />
-        </section>
-        <section>
-          <Trendingcity />
-        </section>
+        <Searchmedia />
+        <Ourservices />
+        <City />
+        <Enquire />
+        <Trendingcity />
       </main>
     </>
   );

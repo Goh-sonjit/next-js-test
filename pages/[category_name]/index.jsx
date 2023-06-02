@@ -1,23 +1,17 @@
 import Fixednavbar from "@/components/navbar/fixednavbar";
-import React, { useContext, useState, useEffect } from "react";
+import React, {useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import Head from "next/head";
 import {
   CityNameImage,
   mediaApi,
-  addItem,
-  removeItem,
-  LocationFilterApi,
-  illuminationFilterApi,
-  subCategoryFilterApi,
-  getAllCity,
-  mediaDataApi,
   getCityDataApi,
 } from "@/allApi/apis";
 
 import MainUi from "@/components/mediaComponents/MainUi";
-import ErrorPage from "../404";
+import dynamic from "next/dynamic";
 const Media = (props) => {
+  const ErrorPage = dynamic(() => import("../404"));
   const Metatag = props.MetaKeys;
   const Canonicaltag = props.currentPageUrl;
   const [noOfLogo, setnoOfLogo] = useState(16);
@@ -27,27 +21,19 @@ const Media = (props) => {
   const [locationData, setlocationData] = useState([]);
   const [mediaData, setMediadata] = useState([]);
   const [categoryData, setcategoryData] = useState([]);
-  const [serviceIcon, setServiceIcon] = useState(CityNameImage);
   const [search, setSearch] = useState([]);
   const { category_name } = router.query;
 
   const SelectServc = async (obj) => {
-    const services = [...serviceIcon];
-    services.map((el) => {
-      if (el.id == obj.id) {
-        el.value2 = true;
-      }
-      if (el.id !== obj.id) {
-        el.value2 = false;
-      }
+ 
+    CityNameImage.forEach((el) => {
+      el.value2 = el.value === obj.value? true : false;
     });
     router.push(`/${obj.value}`);
-    setServiceIcon(services);
   };
 
   const getData = async () => {
     const noofPage = parseInt(noOfLogo + 3);
-
     let data = [];
     if (category_name) {
       if (category_name.includes("-")) {
@@ -55,7 +41,6 @@ const Media = (props) => {
         setSearch(data);
       } else {
         data = await getCityDataApi(category_name);
-
         setSearch(data);
       }
     }
@@ -73,8 +58,7 @@ const Media = (props) => {
     apiforFillters();
   }, [category_name, noOfLogo]);
 
-  // const categorytag = getCookie("categorytag");
-
+ 
   const onSearch = async (searchCity) => {
     setValue(searchCity);
     setFocus(false);
@@ -147,7 +131,7 @@ const Media = (props) => {
           SelectServc={SelectServc}
           value={value}
           focus={focus}
-          serviceIcon={serviceIcon}
+          serviceIcon={CityNameImage}
           city={city}
           setValue={setValue}
           setFocus={setFocus}

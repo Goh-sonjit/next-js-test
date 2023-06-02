@@ -61,12 +61,12 @@ const Team = ({data}) => {
                     <div className="single-team    text-center rounded">
                       <div className="team-img d-flex  justify-content-center">
                        < Image
-                           width={500}
-                           height={500}
+                           width={50}
+                           height={50}
                           src={
                             person.profile_image
                               ? `https://www.gohoardings.com/gohadmin/uploads/testimonials/${person.profile_image}`
-                              : `../../clientslogo/user-profile.png`
+                              : `/web_pics/user-profile.png`
                           }
                           alt={person.firstname}
                           className="image-fluid rounded-circle pt-2 "

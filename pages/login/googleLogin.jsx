@@ -16,7 +16,7 @@ const LoginOauth = ({ googleSignIn, afterLogin,setWithOtp ,withOtp,success}) => 
                            width={500}
                            height={500}
         alt="phone_otp"
-          src="../../images/web_pics/gpmpas.png"
+          src="/images/web_pics/gpmpas.png"
           className={`${styles.otp_icon} offset-1`}
            onClick={()=>setWithOtp(!withOtp)}
          
@@ -25,7 +25,7 @@ const LoginOauth = ({ googleSignIn, afterLogin,setWithOtp ,withOtp,success}) => 
                            width={500}
                            height={500}
         alt="phone_otp"
-          src="../../images/web_pics/otp.png"
+          src="/images/web_pics/otp.png"
           className={`${styles.otp_icon} offset-1`}
            onClick={()=>setWithOtp(!withOtp)}
          
@@ -36,7 +36,7 @@ const LoginOauth = ({ googleSignIn, afterLogin,setWithOtp ,withOtp,success}) => 
                            width={500}
                            height={500}
         alt="linkdin"
-          src="../../images/web_pics/linkdin.png"
+          src="/images/web_pics/linkdin.png"
           className={`${styles.linkdin_icon} offset-1`}
           onClick={() =>signIn()}
         />

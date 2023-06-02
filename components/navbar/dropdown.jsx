@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { setCookie } from "cookies-next";
@@ -6,25 +6,28 @@ import { CityNameImage } from "@/allApi/apis";
 
 const NavbarDropdown = () => {
   const route = useRouter();
+  const pages = [
+    { text: "About Us", href: "/about-us" },
+    { text: "Team", href: "/team" },
+    { text: "News & Media", href: "/media-and-news" },
+    { text: "Contact", href: "/contact-us" },
+    { text: "Testimonials", href: "/testimonial" },
+    { text: "Blogs", href: "https://blog.gohoardings.com/",taget:"_blank"  },
+    { text: "FAQs", href: "/faqs" }
+  ];
+  
 
-  const [serviceIcon, setServiceIcon] = useState(CityNameImage);
   const directlink = (e) => {
-    const services = [...serviceIcon];
     setCookie("category_name", e);
     setCookie("city_name", "delhi");
-
-    services.map((el) => {
-      if (el.value == e) {
-        el.value2 = true;
-      }
-      if (el.value !== e) {
-        el.value2 = false;
-      }
+  
+    CityNameImage.forEach((el) => {
+      el.value2 = el.value === e ? true : false;
     });
-
-    setServiceIcon(services);
     route.push(`/${e}`);
   };
+  
+
   return (
     <>
       <div
@@ -35,126 +38,56 @@ const NavbarDropdown = () => {
           <div className="row m-1 drop-data">
             <div className="col-3 p-0  border-box mb-3">
               <ul className="list-none ms-2">
-                <li
-                  onClick={(e) => directlink(`traditional-ooh-media`)}
-                  className="button text-light text-nowrap is-small is-info"
-                >
-                  Traditional OOH
-                </li>
-                <li
-                  onClick={(e) => directlink(`mall-media`)}
-                  className="button text-light text-nowrap is-small is-info"
-                >
-                  Mall Media
-                </li>
-                <li
-                  onClick={(e) => directlink(`airport-media`)}
-                  className="button text-light text-nowrap is-small is-info"
-                >
-                  Airport Media
-                </li>
-
-                <li
-                  onClick={(e) => directlink(`office-media`)}
-                  className="button text-light text-nowrap is-small is-info"
-                >
-                  Office Branding
-                </li>
+                {CityNameImage.slice(0, 4).map((e, i) => (
+                  <li
+                    key={i}
+                    onClick={() => directlink(e.value)}
+                    className="button text-light text-nowrap is-small is-info"
+                  >
+                    {e.label}
+                  </li>
+                ))}
               </ul>
             </div>
             <div className="col-3 p-0 m-0 border-box mb-3">
               <ul className="list-none">
-                <li
-                  onClick={(e) => directlink(`digital-media`)}
-                  className="button text-light text-nowrap is-small is-info"
-                >
-                  Digital Screen
-                </li>
-                {/* <li>
-                
-                  <Link
-                    href={`/inFlight-branding`}
-                    className="button text-light text-nowrap is-small is-info text-decoration-none"
+                {CityNameImage.slice(4).map((e, i) => (
+                  <li
+                    key={i}
+                    onClick={() => directlink(e.value)}
+                    className="button text-light text-nowrap is-small is-info"
                   >
-                    InFlight Branding
-                  </Link>
-                </li> */}
-                <li
-                  onClick={(e) => directlink(`transit-media`)}
-                  className="button text-light text-nowrap is-small is-info"
-                >
-                  Transit Media
-                </li>
+                    {e.label}
+                  </li>
+                ))}
               </ul>
             </div>
             <div className="col-3 p-0 m-0 border-box mb-3">
               <ul className="list-none">
-                <li>
-                  <Link
-                    href="/about-us"
-                    className="text-decoration-none text-light"
-                  >
-                    About Us
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/team"
-                    className="text-decoration-none text-light"
-                  >
-                    Team
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/media-and-news"
-                    className="text-decoration-none text-light"
-                  >
-                    News & Media
-                  </Link>
-                </li>
-
-                {/* <li>
-                
-                  Case Studies
-                </li> */}
-                <li>
-                  <Link
-                    href="/contact-us"
-                    className="text-decoration-none text-light"
-                  >
-                    Contact
-                  </Link>
-                </li>
+                {pages.slice(0, 4).map((e, i) => (
+                  <li key={i}>
+                    <Link
+                      href={e.href}
+                      className="text-decoration-none text-light"
+                    >
+                      {e.text}
+                    </Link>
+                  </li>
+                ))}
               </ul>
             </div>
             <div className="col-3 p-0 m-0 mb-3">
               <ul className="list-none">
-                <li>
-                  <Link
-                    href="/testimonial"
-                    className="text-decoration-none text-light"
-                  >
-                    Testimonials
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="https://blog.gohoardings.com/"
-                    className="text-decoration-none text-light"
-                    target="_blank"
-                  >
-                    Blogs
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/faqs"
-                    className="text-decoration-none text-light"
-                  >
-                    FAQs
-                  </Link>
-                </li>
+                {pages.slice(4).map((e, i) => (
+                  <li key={i}>
+                    <Link
+                      href={e.href}
+                      className="text-decoration-none text-light"
+                    target={e.taget && e.taget}>
+                      {e.text}
+                    </Link>
+                  </li>
+                ))}
               </ul>
             </div>
           </div>

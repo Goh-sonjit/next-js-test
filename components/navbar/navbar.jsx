@@ -39,7 +39,7 @@ const NavbarH = () => {
             <Image
                              width={223}
                              height={42}
-              src="../images/web_pics/logo.png"
+              src="/images/web_pics/logo.png"
               className={styles.rand_logo}
               alt="gohoardings"
             />

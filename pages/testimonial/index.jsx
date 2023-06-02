@@ -14,7 +14,7 @@ const Testmonials = ({data}) => {
 
   return (
     <>
-       <Head>
+       {/* <Head>
       <link rel="canonical" href={route.asPath}/>
         <title>
         Testimonials | India's Leading Outdoor Advertising Agency
@@ -25,7 +25,7 @@ const Testmonials = ({data}) => {
         <meta name="theme-color" content="#000000" />
         <meta
           name="description"
-          content="Testimonials | India's Leading Hoardings and Billboards Advertising Agency in Delhi, India, Best Offline Advertising Agency in Delhi NCR"
+          content="Testimonials | India`&apos;`s Leading Hoardings and Billboards Advertising Agency in Delhi, India, Best Offline Advertising Agency in Delhi NCR"
         />
         <meta
           name="google-site-verification"
@@ -35,7 +35,7 @@ const Testmonials = ({data}) => {
           name="keywords"
           content="Testimonials | India's Leading Hoardings and Billboards Advertising Agency in Delhi, India, Best Offline Advertising Agency in Delhi NCR, Advertising Agency in Noida, Delhi, NCR, Dealing with Billboards, Hoardings, Airport Branding, Transit Medial Airlines Branding, on best prices."
         />
-      </Head>
+      </Head> */}
       <Fixednavbar />
       <Branding title="Testimonials" />
       <div className="container  mt-5">

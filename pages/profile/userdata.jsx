@@ -105,9 +105,8 @@ const Campaings = ({ posts }) => {
                           <th>End Date</th>
                         </tr>
                       </thead>
-
                       <tbody>
-                        {posts.map((el, i) => {
+                        {posts && posts.map((el, i) => {
                           return el.media_type ? (
                             <tr key={i}>
                               <td>{i + 1} </td>
@@ -133,7 +132,7 @@ const Campaings = ({ posts }) => {
                         </tr>
                       </thead>
                       <tbody>
-                        {posts.map((el, i) => {
+                        {posts && posts.map((el, i) => {
                           return el.media_type ? (
                             <tr key={i}>
                               <td text={el.campaign_city}>

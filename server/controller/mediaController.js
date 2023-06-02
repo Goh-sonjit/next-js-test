@@ -204,12 +204,6 @@ exports.mediaData = catchError(async (req, res, next) => {
 
 exports.getCityData = catchError(async (req,res, next) => {
     const {city} = req.body;
-    // const key = `${city}`
-    // const value = await client.get(key)
-    // if(value){
-    //     return  res.status(200).json(JSON.parse(data))
-    // }else{
-
         const data = "mediaownercompanyname, thumb, category_name, meta_title, subcategory, medianame, price" 
        const result  =  await executeQuery("SELECT "+data+" FROM goh_media WHERE city_name = '" + city + "' UNION SELECT "+data+" FROM goh_media_digital WHERE city_name = '" + city + "' UNION SELECT "+data+" FROM goh_media_transit WHERE city_name = '" + city + "' UNION SELECT "+data+" FROM goh_media_mall WHERE city_name = '" + city + "' UNION SELECT "+data+" FROM goh_media_airport WHERE city_name = '" + city + "' UNION SELECT "+data+" FROM goh_media_inflight WHERE city_name = '" + city + "' UNION SELECT "+data+" FROM goh_media_office WHERE city_name = '" + city + "'","gohoardi_goh",next)
             if(result){

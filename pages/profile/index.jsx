@@ -101,7 +101,7 @@ const Profile = () => {
                     className="card-img-top"
                     alt="user-profile"
                     onError={(e) =>
-                      (e.target.src = "../images/web_pics/user-profile.png")
+                      (e.target.src = "/images/web_pics/user-profile.png")
                     }
                   />
                 </div>

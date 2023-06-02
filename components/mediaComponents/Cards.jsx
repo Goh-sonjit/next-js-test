@@ -1,4 +1,3 @@
-import React from "react";
 import { MdLocalOffer } from "react-icons/md";
 import Link from "next/link";
 import styles from "@/styles/mediaN.module.scss";
@@ -6,28 +5,30 @@ import { HiOutlineCurrencyRupee } from "react-icons/hi";
 import Loader from "@/components/loader";
 import Image from "next/image";
 
-const Mediacard = ({ slice, addonCart,removefromCart }) => {
-
+const Mediacard = ({ slice, addonCart, removefromCart }) => {
   return (
     <>
       {slice.length == 0 ? (
         <div className="container ">
-         <div className={`${styles.no_data} row  text-center my-3`}>
-             <Loader/>
-              </div>
+          <div className={`${styles.no_data} row  text-center my-3`}>
+            <Loader />
+          </div>
         </div>
       ) : (
         <div className={styles.card_media}>
           {slice.map((item, i) => (
-            <div className={`${styles.project}   mt-2  animate__animated  animate__fadeIn`} key={i}>
+            <div
+              className={`${styles.project}   mt-2  animate__animated  animate__fadeIn`}
+              key={i}
+            >
               <div className={`${styles.img_responsive} ${styles.figure}  `}>
                 <Link
                   href={`/seedetails/${item.category_name}/${item.meta_title}`}
                   className="text-decoration-none"
                 >
-                 < Image
-                           width={100}
-                           height={100}
+                  <Image
+                    width={200}
+                    height={200}
                     className={`${styles.img_responsive_media} rounded_top`}
                     alt={item.mediaownercompanyname}
                     src={
@@ -46,7 +47,7 @@ const Mediacard = ({ slice, addonCart,removefromCart }) => {
                             .toLowerCase()}/media/images/new${item.thumb}`
                     }
                     onError={(e) =>
-                      (e.target.src = "../../images/web_pics/alter-img.png")
+                      (e.target.src = "/images/web_pics/alter-img.png")
                     }
                   />
                 </Link>
@@ -80,19 +81,19 @@ const Mediacard = ({ slice, addonCart,removefromCart }) => {
                   <span className={styles.project_price}>
                     {item.isDelete === 0 ? (
                       <Image
-                           width={100}
-                           height={100}
+                        width={100}
+                        height={100}
                         alt="check"
-                        src="../../images/web_pics/A-chek.png"
+                        src="/images/web_pics/A-chek.png"
                         onClick={() => removefromCart(item)}
                         className={` ${styles.addonCart} `}
                       />
                     ) : (
-                     < Image
-                           width={100}
-                           height={100}
+                      <Image
+                        width={100}
+                        height={100}
                         alt="cart-icon"
-                        src="../../images/web_pics/A-cart.png"
+                        src="/images/web_pics/A-cart.png"
                         onClick={() => addonCart(item)}
                         className={` ${styles.addonCart} `}
                       />
