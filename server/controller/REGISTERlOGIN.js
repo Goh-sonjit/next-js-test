@@ -267,7 +267,6 @@ exports.updateImage = catchError(async(req,res, next) => {
             const filePath = data[0].profile_image.slice(43)
             fs.unlink(`./public/images/profile_image/${filePath}`, async(err) => {
                 if (err) {
-                    console.log(err);
         sql = await executeQuery("UPDATE tblcontacts SET  profile_image='" + image + "' WHERE userid=" + userId + "","gohoardi_crmapp",next);
         return res.status(200).json({sucess: true, message: " Updated"})
       

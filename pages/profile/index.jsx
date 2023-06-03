@@ -94,11 +94,11 @@ const Profile = () => {
             
                <label>
                <div className="img-wrap img-upload">
-                 < Image
+                 < img
+                 className="card-img-top"
                            width={250}
                            height={250}
-                    src={user && user[0].profile_image}
-                    className="card-img-top"
+                    src={user && user.map((el) => el.profile_image)}
                     alt="user-profile"
                     onError={(e) =>
                       (e.target.src = "/images/web_pics/user-profile.png")

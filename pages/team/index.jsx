@@ -75,7 +75,7 @@ const Team = () => {
                           src={
                             person.profile_image
                               ? `https://www.gohoardings.com/gohadmin/uploads/testimonials/${person.profile_image}`
-                              : `/web_pics/user-profile.png`
+                              : `images/web_pics/user-profile.png`
                           }
                           alt={person.firstname}
                           className="image-fluid rounded-circle pt-2 "

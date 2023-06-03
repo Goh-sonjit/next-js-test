@@ -24,7 +24,7 @@ const Testimonial = () => {
   
   return (
     <>
-       {/* <Head>
+        <Head>
       <link rel="canonical" href={route.asPath}/>
         <title>
           India&#39;s Largest Outdoor Advertising Agency | Gohoarding Solution
@@ -45,7 +45,7 @@ const Testimonial = () => {
           name="keywords"
           content="India&#39s Largest Outdoor Advertising Agency,  Hoarding agency, Outdoor Advertising Company, Bus Advertising, Airport Advertising, OOH Media Agency, Train Advertising, Cab and Autorikshaw Advertising, Digital LED Display Ads, DOOH Advertising, Ad Agency India, Hoarding Advertising Agency Nearby, Multiplex Advertising, Gohoardings is india’s largest Outdoor Advertising Agency"
         />
-      </Head> */}
+      </Head>
       <Fixednavbar />
       <Branding title="Testimonials" />
       <div className="container  mt-5">
@@ -57,12 +57,12 @@ const Testimonial = () => {
                 <div className="col-md-4" key={i}>
                   <div className="testimonials">
                     <Image
-                           width={500}
-                           height={500}
+                           width={50}
+                           height={50}
                       src={
                         el.image
                           ? `https://www.gohoardings.com/gohadmin/uploads/testimonials/${el.image}`
-                          : `../../clientslogo/user-profile.png`
+                          : `images/web_pics/user-profile.png`
                       }
                       alt="..."
                     />

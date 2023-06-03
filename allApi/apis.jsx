@@ -150,7 +150,6 @@ export const goh_media_and_newsApi = async () => {
 
 export const goh_testimonialsApi = async () => {
   const { data } = await instance.get("ppt");
-  console.log(data);
   return data
 }
 
