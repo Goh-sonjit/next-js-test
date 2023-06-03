@@ -209,7 +209,7 @@ const Cart = () => {
                                     }
                                     onError={(e) =>
                                       (e.target.src =
-                                        "../../images/web_pics/alter-img.png")
+                                        "/images/web_pics/alter-img.png")
                                     }
                                     width={500}
                                     height={500}
@@ -450,11 +450,12 @@ const Cart = () => {
                               <span className={styles.tag_head}>
                                 Total Price
                               </span>
-                              <span className={`my-2 ${styles.tag_head}`}>
+                              <span className={`my-2 ${styles.tag_head} float-end`}>
                                 {" "}
                                 <FaRupeeSign
                                   className={styles.rupees_logo}
                                 />{" "}
+                                
                                 {parseInt(
                                   (cartItemprice + (cartItemprice * 18) / 100) /
                                     30
@@ -504,7 +505,7 @@ const Cart = () => {
                           <Image
                            width={500}
                            height={500}
-                            src="../images/web_pics/celebration.png"
+                            src="/images/web_pics/celebration.png"
                             className={`${styles.celebration_logo} w-50 h-50`}
                             alt="celebration"
                           />
@@ -557,7 +558,7 @@ const Cart = () => {
                            width={500}
                            height={500}
                         alt="empty-cart"
-                        src="../images/web_pics/empty-cart.gif"
+                        src="/images/web_pics/empty-cart.gif"
                         className={`${styles.empty_cart} ext-center`}
                       />
                       <h2 className={styles.empty_cart_text}>

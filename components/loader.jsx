@@ -3,9 +3,9 @@ function Loader() {
   return (
     <div className="loading-container text-center">
       <Image
-        width={10}
+        width={100}
         height={250}
-        src="../../images/web_pics/loading.gif"
+        src="/images/web_pics/loading.gif"
         className="loading"
       />
       <style jsx>

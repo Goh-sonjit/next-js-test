@@ -281,7 +281,7 @@ const LoginN = () => {
                   <Image
                            width={500}
                            height={500}
-                    src="../../images/web_pics/login1.png"
+                    src="/images/web_pics/login1.png"
                     className={styles.img_responsive}
                     alt="Registraion"
                   />
@@ -302,7 +302,7 @@ const LoginN = () => {
                   <Image
                            width={500}
                            height={500}
-                    src="../images/web_pics/login2.png"
+                    src="/images/web_pics/login2.png"
                     className={styles.img_responsive2}
                     alt="Login image"
                   />
@@ -315,7 +315,7 @@ const LoginN = () => {
           <div className={`container-xxl  container-xl container-lg container-md  ${styles.login_container2}`}>
             {/* Image
                            width={500}
-                           height={500} src="../../images/web_pics/logo.png" alt="gohoardings" id={styles.brand_logo} /> */}
+                           height={500} src="/images/web_pics/logo.png" alt="gohoardings" id={styles.brand_logo} /> */}
 
             {forget ? (
               <>

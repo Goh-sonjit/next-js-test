@@ -7,23 +7,17 @@ import { HiOutlineArrowNarrowRight } from "react-icons/hi";
 import Link from "next/link";
 import Image from "next/image";
 const Ourservices = () => {
-  const [serviceIcon, setServiceIcon] = useState(CityNameImage);
+ 
   const directlink = (e) => {
-    const services = [...serviceIcon];
-    services.map((el) => {
-      if (el.id == e.id) {
-        el.value2 = true;
-      }
-      if (el.id !== e.id) {
-        el.value2 = false;
-      }
+    CityNameImage.forEach((el) => {
+      el.value2 = el.value === e.value? true : false;
     });
 
-    setServiceIcon(services);
 
     setCookie("category_name", e.value);
     setCookie("categorytag", e.label);
   };
+
 
   const directlinkget = () => {
     setCookie("category_name", "traditional-ooh-media");
@@ -73,7 +67,7 @@ const Ourservices = () => {
         </h6>
         <div>
           <Slider {...settings}>
-            {serviceIcon.map((pos, i) => (
+            {CityNameImage.map((pos, i) => (
               <div className="container pt-4 " key={i}>
                 <div
                   className={`row bg-light rounded-2 ${styles.service_card} me-2 ms-2 "`}
@@ -119,7 +113,7 @@ const Ourservices = () => {
                 <Image
                   width={100}
                   height={100}
-                  src="../images/web_pics/celebration.png"
+                  src="/images/web_pics/celebration.png"
                   className={styles.celebration_logo}
                   alt="celebration"
                 />

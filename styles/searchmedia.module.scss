@@ -4,7 +4,6 @@
   height: auto;
   padding-top: 2%;
   .search_media_img {
-
     border: 1px solid #fff;
     -moz-box-shadow: 10px 10px 5px #ccc;
     -webkit-box-shadow: 10px 10px 5px #ccc;
@@ -15,11 +14,11 @@
   }
   .heading_text {
     h2 {
-      font-size: 2.8rem ;
-      font-weight: 700 ;
+      font-size: 2.8rem;
+      font-weight: 700;
       color: #373435;
     }
-    h1 { 
+    h1 {
       font-size: 3.6rem;
       font-weight: 700;
       color: #373435;
@@ -39,10 +38,8 @@
     background: rgb(255, 255, 255);
     border-radius: 8px;
     padding: 10px 10px 10px 10px;
-    // border: 1px solid #dfdfdf;
+
     box-shadow: 0px 4px 22px -10px rgb(0 0 0 / 47%);
-
-
 
     .select_media_icon {
       height: 24px;
@@ -52,7 +49,7 @@
     }
   }
   .basic_addon {
-    background-color: #dfdfdf ;
+    background-color: #dfdfdf;
     border-top-left-radius: 8px;
     border-bottom-left-radius: 8px;
     border: none;
@@ -80,9 +77,8 @@
     margin-top: 4px;
     margin-left: 44px;
     border-radius: 6px;
-    z-index: 4 ;
-    padding: 0px ;
-
+    z-index: 4;
+    padding: 0px;
   }
   #abcd > .border_1 {
     margin-top: 0px;
@@ -155,8 +151,6 @@
     }
   }
   .search_btn {
- 
- 
     border: 1px solid #dfdfdf;
     font-size: 16px;
     border-radius: 10px;
@@ -171,7 +165,7 @@
     cursor: not-allowed;
   }
   .dropdown_menu_location {
-    z-index: 0 ;
+    z-index: 0;
     cursor: pointer;
   }
   #search_location-box:focus {
@@ -186,17 +180,17 @@
       width: 74%;
     }
     .search_media_img {
-      width: 320px ;
-      height: 308px ;
+      width: 320px;
+      height: 308px;
     }
-    
+
     .search_btn {
       font-size: 13px;
       height: 46px;
       width: 110px;
     }
     .dropdown_toggle::after {
-      font-size: 20px ;
+      font-size: 20px;
     }
     #search_location_box {
       font-size: 14px;
@@ -209,19 +203,18 @@
   }
   @media screen and (max-width: 1024px) {
     .search_container {
-      width: 87% ;
+      width: 87%;
     }
   }
   @media screen and (max-width: 425px) {
- 
     #abcd {
-      width: 230px ;
+      width: 230px;
     }
     .search_container {
-      width: 100% ;
-     
+      width: 100%;
+
       .select_media_con {
-        height: 16px ;
+        height: 16px;
       }
     }
     .enquire_now {
@@ -237,7 +230,7 @@
     .heading_text {
       margin: 0px 10px;
       h2 {
-        font-size: 2.4rem ;
+        font-size: 2.4rem;
       }
       h1 {
         font-size: 3.3rem;
@@ -255,16 +248,14 @@
       width: 100%;
       background-color: #373435;
     }
-  
+
     #search_location_box {
       font-size: 12px;
-     
     }
- 
 
     #select_media_box {
       font-size: 12px;
- 
+
       border-radius: 8px;
       width: 100%;
       background-color: #efefef;

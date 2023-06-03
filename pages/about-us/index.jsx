@@ -9,30 +9,63 @@ import { brandLogoApi } from "@/allApi/apis";
 import { useEffect } from "react";
 const About = () => {
   const [noOfLogo, setnoOfLogo] = useState(18);
-  const [logo,SetLogo] = useState([])
+  const [logo, SetLogo] = useState([]);
   const [showButton, setshowButon] = useState(true);
   const slice = logo.slice(0, noOfLogo);
 
   const loadMore = () => {
     if (noOfLogo === 18) {
-      setnoOfLogo(noOfLogo + noOfLogo);
+      setnoOfLogo(noOfLogo * 2);
     } else if (noOfLogo === 36) {
       setnoOfLogo(noOfLogo + 12);
       setshowButon(false);
     }
   };
-  const allLogo = async() =>{
-    const data = await brandLogoApi()
-    SetLogo(data)
-  } 
+  const allLogo = async () => {
+    const data = await brandLogoApi();
+    SetLogo(data);
+  };
 
   const toContact = () => {
     route.push("/contact-us");
   };
   const { asPath } = useRouter();
-  useEffect(() =>{
-    allLogo()
-  },[])
+  useEffect(() => {
+    allLogo();
+  }, []);
+
+  const cardData = [
+    {
+      title: "TRADITIONAL",
+      description:
+        "Local directory is the smartest way to find the best services",
+    },
+    {
+      title: "MALL MEDIA",
+      description:
+        "Local directory is the smartest way to find the best services",
+    },
+    {
+      title: "DIGITAL OOH MEDIA",
+      description:
+        "Local directory is the smartest way to find the best services",
+    },
+    {
+      title: "AIRPORT BRANDING",
+      description:
+        "Local directory is the smartest way to find the best services",
+    },
+    {
+      title: "OFFICE BRANDING",
+      description:
+        "Local directory is the smartest way to find the best services",
+    },
+    {
+      title: "TRANSIT MEDIA",
+      description:
+        "Local directory is the smartest way to find the best services",
+    },
+  ];
   return (
     <>
       <Head>
@@ -84,10 +117,9 @@ const About = () => {
             </div>
             <div className="col-md-5">
               <Image
-               width={500}
-               height={500}
-                src="../../images/web_pics/ooh.png"
-               
+                width={500}
+                height={500}
+                src="/images/web_pics/ooh.png"
                 alt="img"
                 className="img-fluid"
                 id="media-img"
@@ -99,54 +131,17 @@ const About = () => {
       <section>
         <div className="media-container container pb-4">
           <div className="row">
-            <div className="col-lg-2 col-md-4 mt-2 col-sm-6 col-6">
-              <div className="card about-cards">
-                <h6>TRADITIONAL </h6>
-                <p className="descrption">
-                  Local directory is the smartest way to find the best services
-                </p>
+            {cardData.map((card, index) => (
+              <div
+                key={index}
+                className="col-lg-2 col-md-4 mt-2 col-sm-6 col-6"
+              >
+                <div className="card about-cards">
+                  <h6>{card.title}</h6>
+                  <p className="descrption">{card.description}</p>
+                </div>
               </div>
-            </div>
-            <div className="col-lg-2 col-md-4 mt-2 col-sm-6 col-6 ">
-              <div className="card about-cards">
-                <h6>MALL MEDIA</h6>
-                <p className="descrption">
-                  Local directory is the smartest way to find the best services
-                </p>
-              </div>
-            </div>
-            <div className="col-lg-2 col-md-4 mt-2 col-sm-6 col-6">
-              <div className="card about-cards">
-                <h6>DIGITAL OOH MEDIA</h6>
-                <p className="descrption">
-                  Local directory is the smartest way to find the best services
-                </p>
-              </div>
-            </div>
-            <div className="col-lg-2 col-md-4 mt-2 col-sm-6 col-6">
-              <div className="card about-cards">
-                <h6>AIRPORT BRANDING</h6>
-                <p className="descrption">
-                  Local directory is the smartest way to find the best services
-                </p>
-              </div>
-            </div>
-            <div className="col-lg-2 col-md-4 mt-2 col-sm-6 col-6">
-              <div className="card about-cards">
-                <h6>OFFICE BRANDING</h6>
-                <p className="descrption">
-                  Local directory is the smartest way to find the best services
-                </p>
-              </div>
-            </div>
-            <div className="col-lg-2 col-md-4 mt-2 col-sm-6 col-6">
-              <div className="card about-cards">
-                <h6>TRANSIT MEDIA</h6>
-                <p className="descrption">
-                  Local directory is the smartest way to find the best services
-                </p>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>
@@ -176,7 +171,7 @@ const About = () => {
                 height={500}
                 id="map-img"
                 className="img-fluid "
-                src="../../images/web_pics/india_map.png"
+                src="/images/web_pics/india_map.png"
                 alt="map"
               />
             </div>
@@ -190,7 +185,7 @@ const About = () => {
                 height={500}
                 id="care-img"
                 className="img-fluid care"
-                src="../images/web_pics/vision.png"
+                src="/images/web_pics/vision.png"
                 alt="care"
               />
             </div>

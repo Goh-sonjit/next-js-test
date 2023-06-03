@@ -11,7 +11,7 @@ const Branding = (props) => {
               Image
                            width={500}
                            height={500}
-                src="../images/web_pics/logo.png"
+                src="/images/web_pics/logo.png"
                 alt="logo"
                 className="logo ps-2" 
               />

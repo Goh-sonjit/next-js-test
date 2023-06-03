@@ -6,7 +6,7 @@ export default function Document() {
     <Html lang="en">
       <Head>
         <link rel="icon" href="../images/web_pics/favicon.png" />
-        <Script strategy="beforeInteractive" id="lazyOnload">
+        <Script strategy="lazyOnload" id="lazyOnload">
           {`
             (function(w,d,s,l,i){
               w[l]=w[l]||[];
@@ -32,7 +32,7 @@ export default function Document() {
         <Script
           id="googlemaps"
           type="text/javascript"
-          strategy="beforeInteractive"
+          strategy="lazyOnload"
           src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAYkchdPoe5HqvV7RhgrXdC81-d8Mo-uC0&libraries=places"
         />
         <noscript>

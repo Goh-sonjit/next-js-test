@@ -1,16 +1,12 @@
 @import "../assets/scss/variables";
 
-
-.media_branding_n{
-
-
+.media_branding_n {
   * {
     transition: all 0.3s ease-out;
   }
-  h2{
- font-weight: 700;
+  h2 {
+    font-weight: 700;
     color: #424966;
-
   }
   h3 {
     color: #666666;
@@ -18,18 +14,14 @@
     line-height: 24px;
     font-weight: 700;
     margin-top: 6px;
-    
   }
-  
 
-    .logo_img {
-      font-size: 50px;
+  .logo_img {
+    font-size: 50px;
     line-height: 20px;
     color: #666666;
-  
-    
   }
-  
+
   .go_corner {
     display: flex;
     align-items: center;
@@ -40,23 +32,21 @@
     overflow: hidden;
     top: 0;
     right: 0;
-    background-color: #FFF212;
+    background-color: #fff212;
     border-radius: 0 4px 0 32px;
   }
-  
+
   .go_arrow {
     margin-top: -4px;
     margin-right: -4px;
-    color: #000000 ;
-
+    color: #000000;
   }
-  
-  .grid_containerN{
+
+  .grid_containerN {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
   }
-  
- 
+
   .container {
     width: 100%;
     height: 100%;
@@ -77,14 +67,14 @@
     text-decoration: none;
     z-index: 0;
     overflow: hidden;
-  
+
     &:before {
       content: "";
       position: absolute;
       z-index: -1;
       top: -16px;
       right: -16px;
-      background: #FFF212;
+      background: #fff212;
       height: 32px;
       width: 32px;
       border-radius: 32px;
@@ -92,14 +82,14 @@
       transform-origin: 50% 50%;
       transition: transform 0.25s ease-out;
     }
-  
+
     &:hover:before {
       transform: scale(21);
     }
   }
-  
+
   .card1:hover {
-    .logo_img{
+    .logo_img {
       transition: all 0.3s ease-out;
       color: black;
     }
@@ -108,7 +98,4 @@
       color: black;
     }
   }
-
-
 }
- 

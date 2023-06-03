@@ -22,7 +22,7 @@ const Mobilenav = () => {
                            width={50}
                            height={30}
           alt="gohoardings"
-          src="../../images/web_pics/logo.png"
+          src="/images/web_pics/logo.png"
           className={`${styles.navbrand} m-1`}
           onClick={() => route.push("/")}
         />
@@ -47,7 +47,7 @@ const Mobilenav = () => {
                            width={50}
                            height={30}
           alt="gohoardings"
-          src="../../images/web_pics/logo.png"
+          src="/images/web_pics/logo.png"
           className={`${styles.navbrand} m-1 mt-0`}
           onClick={() => route.push("/")}
         />

@@ -6,14 +6,52 @@ import Image from "next/legacy/image";
 const City = () => {
   const [serviceIcon, setServiceIcon] = useState(CityNameImage);
 
-  const directlink = () => {
+  const directlink = (e) => {
     const services = [...serviceIcon];
-    services.map((el) => {
-      el.value2 = false;
-    });
-
+    setCookie("category_name", "traditional-ooh-media"),
+      setCookie("city_name", e.city),
+      services.map((el) => (el.value2 = false));
     setServiceIcon(services);
   };
+
+  const City = [
+    {
+      city: "Delhi",
+      href: "/delhi",
+      no: "2493+",
+      src: "/images/web_pics/01-min.png",
+    },
+    {
+      city: "Mumbai",
+      href: "/mumbai",
+      no: "1716+",
+      src: "/images/web_pics/02-min.png",
+    },
+    {
+      city: "Bengaluru",
+      href: "/bengaluru",
+      no: "960+",
+      src: "/images/web_pics/03-min.png",
+    },
+    {
+      city: "Chennai",
+      href: "/chennai",
+      no: "482+",
+      src: "/images/web_pics/04-min.png",
+    },
+    {
+      city: "Hyderabad",
+      href: "/hyderabad",
+      no: "897+",
+      src: "/images/web_pics/05-min.png",
+    },
+    {
+      city: "Pune",
+      href: "/pune",
+      no: "429+",
+      src: "/images/web_pics/06-min.png",
+    },
+  ];
 
   return (
     <div className="citylist m-0 mt-3 mt-md-5  py-md-4">
@@ -30,126 +68,64 @@ const City = () => {
 
       <div className="container mt-5 ">
         <div className="row">
-          <div className="col col-md-4">
-            <Link href={`/delhi`}>
-              <div
-                className="city-img-container "
-                onClick={() => {
-                  setCookie("category_name", "traditional-ooh-media"),
-                    setCookie("city_name", "delhi"),
-                    directlink();
-                }}
-              >
-                <Image     layout="responsive" 
-                  width={340}
-                  height={210}
-                  src="../images/web_pics/home.jpg"
-                  className="rounded iimmgg   "
-                  alt="Delhi Hording"
-                />
-                <div className="bottom-left">Delhi</div>
-                <div className="bottom-left-media">
-                  2493+ <span className="bottom-left-media-text">medias </span>{" "}
+          {City.slice(0, 3).map((e, i) => (
+            <div className="col col-md-4" key={i}>
+              <Link href={e.href}>
+                <div
+                  className="city-img-container "
+                  onClick={() => {
+                    directlink(e);
+                  }}
+                >
+                  <Image
+                    layout="responsive"
+                    width={340}
+                    height={210}
+                    src={e.src}
+                    className="rounded "
+                    alt="Delhi Hording"
+                    
+                  />
+                  <div className="bottom-left">{e.city}</div>
+                  <div className="bottom-left-media">
+                    {e.no}
+                    <span className="bottom-left-media-text">medias </span>{" "}
+                  </div>
                 </div>
-              </div>
-            </Link>
-          </div>
-          <div className="col col-md-4 " id="city-gh">
-            <Link href={`/mumbai`}>
-              <div className="city-img-container "
-              
-               onClick={() =>{setCookie("category_name","traditional-ooh-media"),setCookie("city_name","mumbai"),directlink()}}>
-                <Image     layout="responsive" 
-                  width={340}
-                  height={210}
-                  src="../images/web_pics/home1.jpg"
-                  className="rounded iimmgg "
-                  alt="Mumbai Hording"
-                />
-                <div className="bottom-left">Mumbai</div>
-                <div className="bottom-left-media">
-                  1716+ <span className="bottom-left-media-text">medias </span>{" "}
-                </div>
-              </div>
-            </Link>
-          </div>
-          <div className="col col-md-4">
-            <Link href={`/bengaluru`}>
-              <div className="city-img-container"
-               onClick={() =>{setCookie("category_name","traditional-ooh-media"),setCookie("city_name","bengaluru"),directlink()}}>
-               < Image     layout="responsive" 
-                  width={340}
-                  height={210}
-                  src="../images/web_pics/home2.jpg"
-                  className="rounded iimmgg  "
-                  alt="Bengalore Hording"
-                />
-                <div className="bottom-left">Bengaluru</div>
-                <div className="bottom-left-media">
-                  960+ <span className="bottom-left-media-text">medias </span>{" "}
-                </div>
-              </div>
-            </Link>
-          </div>
+              </Link>
+            </div>
+          ))}
         </div>
       </div>
 
       <div className="container mt-4">
         <div className="row">
-          <div className="col col-md-4">
-            <Link href={`/chennai`}>
-              <div className="city-img-container"
-               onClick={() =>{setCookie("category_name","traditional-ooh-media"),setCookie("city_name","chennai"),directlink()}}>
-               <Image     layout="responsive" 
-                  width={340}
-                  height={210}
-                  src="../images/web_pics/home3.webp"
-                  className=" rounded   iimmgg"
-                  alt="Chennai Hording"
-                />
-                <div className="bottom-left">Chennai</div>
-                <div className="bottom-left-media">
-                  482+ <span className="bottom-left-media-text">medias </span>{" "}
+          {City.slice(3).map((e, i) => (
+            <div className="col col-md-4" key={i}>
+              <Link href={e.href}>
+                <div
+                  className="city-img-container "
+                  onClick={() => {
+                    directlink(e);
+                  }}
+                >
+                  <Image
+                    layout="responsive"
+                    width={340}
+                    height={210}
+                    src={e.src}
+                    className="rounded "
+                    alt="Delhi Hording"
+                  />
+                  <div className="bottom-left">{e.city}</div>
+                  <div className="bottom-left-media">
+                    {e.no}
+                    <span className="bottom-left-media-text">medias </span>{" "}
+                  </div>
                 </div>
-              </div>
-            </Link>
-          </div>
-          <div className="col col-md-4" id="citygh">
-            <Link href={`/hyderabad`}>
-              <div className="city-img-container "
-               onClick={() =>{setCookie("category_name","traditional-ooh-media"),setCookie("city_name","hyderabad"),directlink()}}>
-               < Image     layout="responsive" 
-                  width={340}
-                  height={210}
-                  src="../images/web_pics/home4.jpg"
-                  className="rounded iimmgg "
-                  alt="Hyderabad Hording"
-                />
-                <div className="bottom-left">Hyderabad</div>
-                <div className="bottom-left-media">
-                  897+ <span className="bottom-left-media-text">medias </span>{" "}
-                </div>
-              </div>
-            </Link>
-          </div>
-          <div className="col col-md-4">
-            <Link href={`/pune`}>
-              <div className="city-img-container "
-               onClick={() =>{setCookie("category_name","traditional-ooh-media"),setCookie("city_name","pune"),directlink()}}>
-                <Image     layout="responsive" 
-                  width={340}
-                  height={210}
-                  src="../images/web_pics/home6.jpg"
-                  className="rounded iimmgg "
-                  alt="Hyderabad Hording"
-                />
-                <div className="bottom-left">Pune</div>
-                <div className="bottom-left-media">
-                  427+ <span className="bottom-left-media-text">medias </span>{" "}
-                </div>
-              </div>
-            </Link>
-          </div>
+              </Link>
+            </div>
+          ))}
         </div>
       </div>
 
@@ -169,28 +145,7 @@ const City = () => {
           color: #373435;
         }
 
-        .iimmgg {
-          width: 400px;
-          height: 250px;
-          border-radius: 50%;
-        }
-
-        // .city-img-container:before {
-        //   content: "";
-        //   position: absolute;
-        //   background: linear-gradient(
-        //     to bottom,
-        //     transparent,
-        //     transparent,
-        //     rgba(0, 0, 0, 0.55) 90%
-        //   );
-        //   top: 0;
-        //   bottom: 0;
-        //   left: 0;
-        //   width: 400px;
-        //   height: 250px;
-        //   border-radius: 6px !important;
-        // }
+  
 
         .city-img-container {
           position: relative;
@@ -229,24 +184,6 @@ const City = () => {
         }
 
 
-        @media screen and (max-width: 1366px) {
-        
-          .iimmgg {
-            width: 300px;
-            height: 200px;
-          }
-          .city-img-container:before {
-            height: 100%;
-            width: 300px !important;
-          }
-
-            .bottom-left {
-              font-size: 1.1rem;
-            }
-        
-          
-          
-        }
         @media screen and (max-width: 425px) {
           #citygh{
             
@@ -258,11 +195,7 @@ const City = () => {
           h6 {
             display: none;
           }
-          .iimmgg {
-            width: 100%;
-            height: 150px;
-            margin: 0px ;
-          }
+   
           .city-img-container:before {
             width: 100%!important;
             height: 150px;
@@ -299,3 +232,4 @@ const City = () => {
 
 export default City;
 
+   

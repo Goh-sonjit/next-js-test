@@ -8,7 +8,6 @@ const Enquireregister = () => {
   const [phone, setNumber] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
-
   const [error, setEror] = useState(false);
 
   let count = 0;

@@ -69,13 +69,13 @@ const Team = () => {
                   <div className="col-md-3 mt-3 col-6" id="maindiv" key={index}>
                     <div className="single-team    text-center rounded">
                       <div className="team-img d-flex  justify-content-center">
-                        <Image
-                           width={500}
-                           height={500}
+                       < Image
+                           width={50}
+                           height={50}
                           src={
                             person.profile_image
                               ? `https://www.gohoardings.com/gohadmin/uploads/testimonials/${person.profile_image}`
-                              : `../../clientslogo/user-profile.png`
+                              : `/web_pics/user-profile.png`
                           }
                           alt={person.firstname}
                           className="image-fluid rounded-circle pt-2 "
