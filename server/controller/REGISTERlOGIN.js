@@ -1,4 +1,5 @@
 const bcrypt = require("bcryptjs");
+const fs = require('fs')
 const cookie = require('cookie')
 const request = require('request')
 const {executeQuery} =  require('../conn/conn')
@@ -258,15 +259,26 @@ exports.updateImage = catchError(async(req,res, next) => {
     const {filename} = req.file;
     const userId = req.id;
     let sql; 
+    const image = `http://${req.headers.host}/images/profile_image/${filename}`
+    
     if(filename){
-        const image = `http://${req.headers.host}/images/profile_image/${filename}`
+        const data = await executeQuery("SELECT profile_image FROM tblcontacts WHERE userid=" + userId + "","gohoardi_crmapp",next)
+        if(data){
+            const filePath = data[0].profile_image.slice(43)
+            fs.unlink(`./public/images/profile_image/${filePath}`, async(err) => {
+                if (err) {
+                    console.log(err);
         sql = await executeQuery("UPDATE tblcontacts SET  profile_image='" + image + "' WHERE userid=" + userId + "","gohoardi_crmapp",next);
-        if (sql) {
-            return res.status(200).json({sucess: true, message: " Updated"})
-        } else {
-            return res.status(200).json({ success: false, message: 'Please select an image' });
+        return res.status(200).json({sucess: true, message: " Updated"})
+      
+    }else{
+        sql = await executeQuery("UPDATE tblcontacts SET  profile_image='" + image + "' WHERE userid=" + userId + "","gohoardi_crmapp",next);
+        return res.status(200).json({sucess: true, message: " Updated"})
+    }
+  })
         }
     }else{
         return res.status(204).json({success:false, message:"Please Select Image"})
     }
+    
 })

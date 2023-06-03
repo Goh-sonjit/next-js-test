@@ -97,7 +97,7 @@ const Profile = () => {
                  < Image
                            width={250}
                            height={250}
-                    src={user && user.map((el) => el.profile_image)}
+                    src={user && user[0].profile_image}
                     className="card-img-top"
                     alt="user-profile"
                     onError={(e) =>

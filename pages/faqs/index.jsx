@@ -2,15 +2,22 @@ import React, { useEffect, useState } from "react";
 import { BsFillCircleFill } from "react-icons/bs";
 import { IoIosArrowDown } from "react-icons/io";
 import Fixednavbar from "@/components/navbar/fixednavbar";
-
+import { goh_faqsApi } from "@/allApi/apis";
 import {MdKeyboardArrowRight } from "react-icons/md";
 import Head from "next/head";
 import { useRouter } from "next/router";
-import instance from "@/allApi/axios";
 
-const Faqs = ({data}) => {
+const Faqs = () => {
   const route = useRouter()
+  const [posts, setPosts] = useState([]);
+  const staff = async() =>{
+    const data = await goh_faqsApi()
+    setPosts(data)
+  }
 
+  useEffect(()=>{
+    staff()
+  },[])
 
   return (
     <>
@@ -43,7 +50,7 @@ const Faqs = ({data}) => {
  <h6 className="mt-5 pt-5"><span  onClick={()=>route.push("/")} className="bredcamp">Home</span><MdKeyboardArrowRight/><span className="bredcamp text-secondary">Frequently Asked Questions</span></h6>
         <h1 className=" mt-4 mb-4">Frequently Asked Questions</h1>
         <section className="mt-5 mb-5">
-          {data.map((data, index) => {
+          {posts.map((data, index) => {
             let abc = 'a' + data.id;
             return (
               < div className="question-box mt-3"  key={index}>
@@ -119,12 +126,5 @@ const Faqs = ({data}) => {
     </>
   );
 };
-
-export async function getServerSideProps() {
-  // Fetch data from external API
-  const {data} = await instance.get("medias");
-  return { props: { data } };
-}
-
 
 export default Faqs;

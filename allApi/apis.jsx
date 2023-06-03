@@ -133,6 +133,27 @@ export const loginUser = async (email, password) => {
   return data
 }
 
+export const gohordingStaffAPi = async () => {
+  const { data } = await instance.get("team");
+  return data
+}
+
+export const goh_faqsApi = async () => {
+  const { data } = await instance.get("medias");
+  return data
+}
+
+export const goh_media_and_newsApi = async () => {
+  const { data } = await instance.get("news&media");
+  return data
+}
+
+export const goh_testimonialsApi = async () => {
+  const { data } = await instance.get("ppt");
+  console.log(data);
+  return data
+}
+
 export const registerUser = async (email, phone) => {
   const { data } = await instance.post('loginApis', {
     email, phone

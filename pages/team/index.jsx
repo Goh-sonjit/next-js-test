@@ -1,17 +1,26 @@
 import React, { useEffect, useState } from "react";
 import Fixednavbar from "../../components/navbar/fixednavbar";
+import { gohordingStaffAPi } from "@/allApi/apis";
 import { FaFacebookSquare, FaLinkedin } from "react-icons/fa";
 import { TiSocialTwitter } from "react-icons/ti";
 import Branding from "@/components/branding";
 import Head from "next/head";
+import Image from "next/image";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import { useRouter } from "next/router";
-import axios from "axios";
-import Image from "next/image";
-import instance from "@/allApi/axios";
 
-const Team = ({data}) => {
+const Team = () => {
   const route = useRouter();
+  const [posts, setPosts] = useState([]);
+  const staff = async () => {
+    const data = await gohordingStaffAPi();
+    setPosts(data);
+  };
+
+  useEffect(() => {
+    staff();
+  }, []);
+
   return (
     <>
       <Head>
@@ -55,12 +64,12 @@ const Team = ({data}) => {
               <span className="bredcamp text-secondary">Team</span>
             </h6>
             <div className="row">
-              {data && data.map((person, index) => {
+              {posts.map((person, index) => {
                 return (
                   <div className="col-md-3 mt-3 col-6" id="maindiv" key={index}>
                     <div className="single-team    text-center rounded">
                       <div className="team-img d-flex  justify-content-center">
-                       < Image
+                        <Image
                            width={500}
                            height={500}
                           src={
@@ -183,11 +192,5 @@ const Team = ({data}) => {
     </>
   );
 };
-
-export async function getServerSideProps() {
-  // Fetch data from external API
-  const {data} = await instance.get("team");
-  return { props: { data } };
-}
 
 export default Team;

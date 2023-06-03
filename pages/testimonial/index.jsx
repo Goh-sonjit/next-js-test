@@ -6,18 +6,28 @@ import { BsStar, BsStarFill, BsStarHalf } from "react-icons/bs";
 import Branding from "@/components/branding";
 import Head from "next/head";
 import Image from "next/image";
-import instance from "@/allApi/axios";
+import { goh_testimonialsApi } from "@/allApi/apis";
 
 
-const Testmonials = ({data}) => {
+const Testimonial = () => {
   const route = useRouter()
+  const [posts, setPosts] = useState([]);
 
+  const staff = async () => {
+    const data = await goh_testimonialsApi();
+    setPosts(data);
+  };
+
+  useEffect(() => {
+    staff();
+  }, []);
+  
   return (
     <>
        <Head>
       <link rel="canonical" href={route.asPath}/>
         <title>
-        Testimonials | India's Leading Outdoor Advertising Agency
+          India&#39;s Largest Outdoor Advertising Agency | Gohoarding Solution
         </title>
         <meta charSet="utf-8" />
        
@@ -25,7 +35,7 @@ const Testmonials = ({data}) => {
         <meta name="theme-color" content="#000000" />
         <meta
           name="description"
-          content="Testimonials | India's Leading Hoardings and Billboards Advertising Agency in Delhi, India, Best Offline Advertising Agency in Delhi NCR"
+          content="India's Largest Outdoor Advertising Agency. We are helping business to grow offline with hoardings, billboards ads, bus shelters, metro pillars, airport, and office brandings | Gohoardings"
         />
         <meta
           name="google-site-verification"
@@ -33,7 +43,7 @@ const Testmonials = ({data}) => {
         />
         <meta
           name="keywords"
-          content="Testimonials | India's Leading Hoardings and Billboards Advertising Agency in Delhi, India, Best Offline Advertising Agency in Delhi NCR, Advertising Agency in Noida, Delhi, NCR, Dealing with Billboards, Hoardings, Airport Branding, Transit Medial Airlines Branding, on best prices."
+          content="India&#39s Largest Outdoor Advertising Agency,  Hoarding agency, Outdoor Advertising Company, Bus Advertising, Airport Advertising, OOH Media Agency, Train Advertising, Cab and Autorikshaw Advertising, Digital LED Display Ads, DOOH Advertising, Ad Agency India, Hoarding Advertising Agency Nearby, Multiplex Advertising, Gohoardings is india’s largest Outdoor Advertising Agency"
         />
       </Head>
       <Fixednavbar />
@@ -43,10 +53,10 @@ const Testmonials = ({data}) => {
 
         <div className="row testimonial-row mt-5">
          
-              {data && data.map((el, i) => (
+              {posts && posts.map((el, i) => (
                 <div className="col-md-4" key={i}>
                   <div className="testimonials">
-                   < Image
+                    <Image
                            width={500}
                            height={500}
                       src={
@@ -64,7 +74,7 @@ const Testmonials = ({data}) => {
                       <BsStarHalf />
                       <BsStar />
                     </div>
-                    <span dangerouslySetInnerHTML={{ __html: el.testimony }} />
+                    <p dangerouslySetInnerHTML={{ __html: el.testimony }} />
                   </div>
                 </div>
               ))}
@@ -108,10 +118,4 @@ const Testmonials = ({data}) => {
   );
 };
 
-export const getServerSideProps = async() => {
-  // Fetch data from external API
-  const  {data}  = await instance.get("ppt")
-  return { props: { data } };
-}
-
-export default Testmonials;
+export default Testimonial;
