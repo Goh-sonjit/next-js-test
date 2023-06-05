@@ -9,7 +9,7 @@ function generateSiteMap(data) {
        .map(({ name}) => {
          return `
        <url>
-           <loc>${`https://localhost:3000/${name}`}</loc>
+           <loc>${`https://gohoardings.com/${name}`}</loc>
              <lastmod>${date}</lastmod>
              <changefreq>daily</changefreq>
 <priority>0.8</priority>
@@ -26,7 +26,7 @@ function SiteMap() {
   // getServerSideProps will do the heavy lifting
 }
 
-export async function getServerSideProps({ res }) {
+export async function getStaticProps({ res }) {
   // We make an API call to gather the URLs for our site
   const {data} = await instance.get("sitemapdata")
 
